@@ -31,20 +31,22 @@ int main()
 
 	std::chrono::year_month_day todayDate = getCurrentLocalDate();
 	auto easterDate = calculateEaster(int(todayDate.year()));
-
 	std::cout << "Easter date: " << unsigned(easterDate.day()) << "-" << unsigned(easterDate.month()) << "-" << int(easterDate.year()) << "\n";
 
 	auto ashWednesdayDate = calculateAshWednesday(int(todayDate.year()));
-
 	std::cout << "Ash Wednesday date: " << unsigned(ashWednesdayDate.day()) << "-" << unsigned(ashWednesdayDate.month()) << "-" << int(ashWednesdayDate.year()) << "\n";
 
 	auto palmSundayDate = calculatePalmSunday(int(todayDate.year()));
-
 	std::cout << "Palm Sunday date: " << unsigned(palmSundayDate.day()) << "-" << unsigned(palmSundayDate.month()) << "-" << int(palmSundayDate.year()) << "\n";
 
 	auto pentecostDate = calculatePentecost(int(todayDate.year()));
-
 	std::cout << "Pentecost date: " << unsigned(pentecostDate.day()) << "-" << unsigned(pentecostDate.month()) << "-" << int(pentecostDate.year()) << "\n";
+
+	auto adventDate = calculateFirstAdventSunday(int(todayDate.year()));
+	std::cout << "Advent date: " << unsigned(adventDate.day()) << "-" << unsigned(adventDate.month()) << "-" << int(adventDate.year()) << "\n";
+
+
+
 
 }
 

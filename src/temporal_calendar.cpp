@@ -1,6 +1,7 @@
 #include <chrono>
 #include "temporal_calendar.h"
 #include "easter.h"
+// #include <iostream>
 
 std::chrono::year_month_day calculateAshWednesday(int year)
 {
@@ -44,3 +45,26 @@ std::chrono::year_month_day calculatePentecost(int year)
 
 }
 
+std::chrono::year_month_day calculateFirstAdventSunday(int year)
+{
+
+	std::chrono::year_month_day novDate{
+		std::chrono::year{year},
+			std::chrono::November,
+			std::chrono::day{27}
+	};
+
+	std::chrono::sys_days calendarDay{novDate};
+
+	std::chrono::weekday dayOfWeek{calendarDay};
+
+	int daysUntilSunday = (7 - dayOfWeek.c_encoding()) % 7;
+
+	std::chrono::sys_days adventDay =
+		calendarDay + std::chrono::days{daysUntilSunday};
+
+	std::chrono::year_month_day adventDate{adventDay};
+
+	return adventDate;
+
+}
