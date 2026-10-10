@@ -2,7 +2,7 @@
 #include <chrono>
 #include <ctime>
 #include <stdexcept>
-
+#include "easter.h"
 
 std::chrono::year_month_day getCurrentLocalDate()
 {
@@ -29,16 +29,11 @@ int main()
 {
 
 	std::chrono::year_month_day todayDate = getCurrentLocalDate();
+	auto easterDate = calculateEaster(int(todayDate.year()));
 
-	if(todayDate.ok())
-	{
-		std::cout << "Valid date\n";
-		std::cout << unsigned(todayDate.day()) << "-" << unsigned(todayDate.month()) << "-" << int(todayDate.year()) << "\n";
-	}
-	else
-	{
-		std::cout << "Invalid date\n";
-	}
+		std::cout << "Easter date: " << unsigned(easterDate.day()) << "-" << unsigned(easterDate.month()) << "-" << int(easterDate.year()) << "\n";
+
+
 
 }
 

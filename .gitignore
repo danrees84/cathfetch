@@ -1,2 +1,4 @@
-/horarium-cli
+/build/
 *.o
+core
+core.*
