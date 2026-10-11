@@ -6,6 +6,7 @@
 #include "temporal_calendar.h"
 #include "liturgical_format.h"
 #include "liturgical_colour.h"
+#include "terminal_format.h"
 
 std::chrono::year_month_day getCurrentLocalDate()
 {
@@ -33,22 +34,21 @@ int main()
 
 	std::chrono::year_month_day todayDate = getCurrentLocalDate();
 	std::cout << "Horarium\n\n";
-	std::cout << "Date: " << todayDate.day() << "-" << todayDate.month() << "-" << todayDate.year() << "\n";
+	std::cout << todayDate.day() << "-" << todayDate.month() << "-" << todayDate.year() << "\n";
 
 	auto period = getLiturgicalPeriod(todayDate);
 	auto colour = seasonalColour(period);
 
-	std::cout << "Liturgical period: "
-		<< liturgicalPeriodName(period) << "\n";
-
-
 	if (colour.has_value())
 	{
-		std::cout << "Seasonal colour: " << liturgicalColourName(colour.value()) << "\n";
+		std::cout << terminalColourCode(colour.value())
+			<< "●"
+			<< "\033[0m"
+			<< " " << liturgicalPeriodName(period) << "\n";
 	}
 	else
 	{
-		std::cout << "No single seasonal colour\n";
+		std::cout << liturgicalPeriodName(period) << "\n";
 	}
 
 
