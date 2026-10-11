@@ -15,8 +15,12 @@ void printLiturgicalDay(std::chrono::year_month_day date, bool showCross)
 		std::cout << "          ███\n";
 		std::cout << "          ███          ";
 	}
-	std::cout << date.day() << "-" << date.month()
-		<< "-" << date.year() << "\n";
+	
+//	std::cout << date.day() << "-" << date.month()
+//		<< "-" << date.year() << "\n";
+
+std::cout << formatCalendarDate(date) << "\n";
+
 	if (showCross) {
 		std::cout << "      ███████████      ";
 	}

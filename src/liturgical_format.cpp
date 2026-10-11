@@ -1,5 +1,6 @@
 #include "liturgical_format.h"
 #include "liturgical_colour.h"
+#include <format>
 
 std::string liturgicalPeriodName(LiturgicalPeriod period)
 {
@@ -43,4 +44,15 @@ std::string liturgicalColourName(LiturgicalColour colour)
     }
 
     return "Unknown";
+}
+
+std::string formatCalendarDate(std::chrono::year_month_day date)
+{
+    return std::format(
+        "{:%A}, {} {:%B} {}",
+        std::chrono::sys_days{date},
+        unsigned(date.day()),
+        date.month(),
+        int(date.year())
+    );
 }

@@ -4,8 +4,10 @@
 #include <string>
 #include "temporal_calendar.h"
 #include "liturgical_colour.h"
+#include <chrono>
 
 std::string liturgicalPeriodName(LiturgicalPeriod period);
 std::string liturgicalColourName(LiturgicalColour colour);
+std::string formatCalendarDate(std::chrono::year_month_day date);
 
 #endif

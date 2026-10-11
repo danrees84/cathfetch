@@ -1,5 +1,5 @@
-#ifndef HORARIUM_TEMPORAL_CALENDAR_H
-#define HORARIUM_TEMPORAL_CALENDAR_H
+#ifndef TEMPORAL_CALENDAR_H
+#define TEMPORAL_CALENDAR_H
 
 #include <chrono>
 
@@ -26,5 +26,6 @@ bool isTriduum(std::chrono::year_month_day date);
 bool isEaster(std::chrono::year_month_day date);
 bool isOrdinaryTime(std::chrono::year_month_day date);
 LiturgicalPeriod getLiturgicalPeriod(std::chrono::year_month_day date);
+int calculateOrdinaryTimeWeek(std::chrono::year_month_day date);
 
 #endif

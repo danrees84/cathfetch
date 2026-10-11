@@ -35,14 +35,87 @@ std::chrono::year_month_day getCurrentLocalDate()
 int main(int argc, char* argv[])
 {
 
-	bool showCross = std::ranges::any_of(
-			argv + 1, argv + argc,
-			[](const char* arg) {
-			return std::string_view{arg} == "--cross";
-			}
-			);
+	bool showCross = false;
+	auto selectedDate = getCurrentLocalDate();
+	bool dateSpecified = false;
 
-	std::chrono::year_month_day todayDate = getCurrentLocalDate();
-	printLiturgicalDay(todayDate, showCross);
-	}
+	for (int i = 1; i < argc; ++i)
+	{
+		std::string_view arg{argv[i]};
+
+		if (arg == "--cross")
+		{
+			if (showCross)
+			{
+				std::cerr << "Duplicate option: --cross\n";
+				return 1;
+			}
+
+			showCross = true;
+		}
+
+		else if (arg.starts_with("--date="))
+		{
+			if (dateSpecified)
+			{
+				std::cerr << "Duplicate option: --date\n";
+				return 1;
+			}
+
+			std::string_view value = arg.substr(7);
+
+			if (value.size() != 8 ||
+					!std::ranges::all_of(value, [](char c) {
+						return c >= '0' && c <= '9';
+						}))
+			{
+				std::cerr << "Date must be DDMMYYYY\n";
+				return 1;
+			}
+
+			auto parseNumber = [](std::string_view digits)
+{
+    int number = 0;
+
+    for (char digit : digits)
+    {
+        number = number * 10 + (digit - '0');
+    }
+
+    return number;
+};
+
+int day = parseNumber(value.substr(0, 2));
+int month = parseNumber(value.substr(2, 2));
+int year = parseNumber(value.substr(4, 4));
+
+std::chrono::year_month_day parsedDate{
+    std::chrono::year{year},
+    std::chrono::month{unsigned(month)},
+    std::chrono::day{unsigned(day)}
+};
+
+if (!parsedDate.ok())
+{
+    std::cerr << "Invalid calendar date\n";
+    return 1;
+}
+
+selectedDate = parsedDate;
+dateSpecified = true;
+
+
+		}
+
+
+		else
+		{
+			std::cerr << "Unknown option: " << arg << "\n";
+			return 1;
+		}
+}
+        printLiturgicalDay(selectedDate, showCross);
+
+return 0;
+}
 
