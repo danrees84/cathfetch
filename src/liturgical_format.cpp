@@ -1,4 +1,5 @@
 #include "liturgical_format.h"
+#include "liturgical_colour.h"
 
 std::string liturgicalPeriodName(LiturgicalPeriod period)
 {
@@ -18,8 +19,27 @@ case LiturgicalPeriod::OrdinaryTime:
 case LiturgicalPeriod::Triduum:
             return "Sacred Paschal Triduum";
 
+    }
 
+    return "Unknown";
+}
 
+std::string liturgicalColourName(LiturgicalColour colour)
+{
+    switch (colour)
+    {
+        case LiturgicalColour::White:
+            return "White";
+	case LiturgicalColour::Violet:
+	    return "Violet";
+	case LiturgicalColour::Black:
+	    return "Black";
+	case LiturgicalColour::Green:
+	    return "Green";
+	case LiturgicalColour::Red:
+	    return "Red";
+	case LiturgicalColour::Rose:
+	    return "Rose";
     }
 
     return "Unknown";

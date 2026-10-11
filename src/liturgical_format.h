@@ -3,7 +3,9 @@
 
 #include <string>
 #include "temporal_calendar.h"
+#include "liturgical_colour.h"
 
 std::string liturgicalPeriodName(LiturgicalPeriod period);
+std::string liturgicalColourName(LiturgicalColour colour);
 
 #endif
