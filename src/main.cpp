@@ -8,6 +8,8 @@
 #include "liturgical_colour.h"
 #include "terminal_format.h"
 #include "terminal_display.h"
+#include <string_view>
+#include <algorithm>
 
 std::chrono::year_month_day getCurrentLocalDate()
 {
@@ -30,11 +32,17 @@ std::chrono::year_month_day getCurrentLocalDate()
 
 }
 
-int main()
+int main(int argc, char* argv[])
 {
 
-	std::chrono::year_month_day todayDate = getCurrentLocalDate();
-printLiturgicalDay(todayDate);
+	bool showCross = std::ranges::any_of(
+			argv + 1, argv + argc,
+			[](const char* arg) {
+			return std::string_view{arg} == "--cross";
+			}
+			);
 
-}
+	std::chrono::year_month_day todayDate = getCurrentLocalDate();
+	printLiturgicalDay(todayDate, showCross);
+	}
 

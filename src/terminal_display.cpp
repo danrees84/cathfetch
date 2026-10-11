@@ -6,12 +6,22 @@
 
 #include <iostream>
 
-void printLiturgicalDay(std::chrono::year_month_day date)
+void printLiturgicalDay(std::chrono::year_month_day date, bool showCross)
 {
 	auto period = getLiturgicalPeriod(date);
 	auto colour = seasonalColour(period);
 
-	std::cout << date.day() << "-" << date.month() << "-" << date.year() << "\n";
+	if (showCross) {
+		std::cout << "          ███\n";
+		std::cout << "          ███          ";
+	}
+	std::cout << date.day() << "-" << date.month()
+		<< "-" << date.year() << "\n";
+	if (showCross) {
+		std::cout << "      ███████████      ";
+	}
+
+	//	std::cout << date.day() << "-" << date.month() << "-" << date.year() << "\n";
 
 	if (colour.has_value())
 	{
@@ -24,7 +34,12 @@ void printLiturgicalDay(std::chrono::year_month_day date)
 	{
 		std::cout << liturgicalPeriodName(period) << "\n";
 	}
-
+	if (showCross) {
+		for (int i = 0; i < 5; ++i)
+		{
+			std::cout << "          ███\n";
+		}
+	}
 
 
 }

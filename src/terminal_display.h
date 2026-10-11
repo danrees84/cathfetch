@@ -3,6 +3,6 @@
 
 #include <chrono>
 
-void printLiturgicalDay(std::chrono::year_month_day date);
+void printLiturgicalDay(std::chrono::year_month_day date, bool showCross);
 
 #endif
