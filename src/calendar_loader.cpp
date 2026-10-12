@@ -4,6 +4,7 @@
 #include <optional>
 #include <stdexcept>
 #include <nlohmann/json.hpp>
+#include "celebration_rank.h"
 
 std::vector<FixedCelebration> loadFixedCelebrations(
     const std::string& filename)
@@ -26,12 +27,13 @@ std::vector<FixedCelebration> loadFixedCelebrations(
         int month = entry.at("month").get<int>();
         int day = entry.at("day").get<int>();
 
-        std::optional<std::string> rank;
+       std::optional<CelebrationRank> rank;
 
         if (!entry.at("rank").is_null())
         {
-            rank = entry.at("rank").get<std::string>();
-        }
+            rank = parseCelebrationRank(
+        entry.at("rank").get<std::string>());
+	}
 
         FixedCelebration celebration{
             entry.at("id").get<std::string>(),

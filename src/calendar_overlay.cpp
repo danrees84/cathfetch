@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <nlohmann/json.hpp>
 #include <optional>
+#include "celebration_rank.h"
 
 void applyRankOverrides(
     std::vector<FixedCelebration>& celebrations,
@@ -24,10 +25,10 @@ void applyRankOverrides(
         std::string id =
             overrideEntry.at("id").get<std::string>();
 
-        std::string newRank =
-            overrideEntry.at("changes").at("rank").get<std::string>();
+CelebrationRank newRank = parseCelebrationRank(
+    overrideEntry.at("changes").at("rank").get<std::string>());
 
-        bool found = false;
+	bool found = false;
 
         for (auto& celebration : celebrations)
         {
@@ -89,11 +90,13 @@ void applyAdditions(
                 "Invalid calendar addition date: " + id);
         }
 
-        std::optional<std::string> rank;
+	std::optional<CelebrationRank> rank;
+
 
         if (!entry.at("rank").is_null())
         {
-            rank = entry.at("rank").get<std::string>();
+            rank = parseCelebrationRank(
+    entry.at("rank").get<std::string>());
         }
 
         FixedCelebration celebration{

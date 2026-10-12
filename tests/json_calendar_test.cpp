@@ -1,18 +1,13 @@
 #include <iostream>
 #include "calendar_loader.h"
 #include "calendar_lookup.h"
-#include <fstream>
 #include <nlohmann/json.hpp>
-#include <stdexcept>
 #include "calendar_overlay.h"
 #include "calendar_selection.h"
-
+#include "celebration_rank.h"
 
 int main()
 {
-//    auto celebrations = loadFixedCelebrations(
-//        "data/calendars/general_roman_fixed.json");
-
 auto celebrations = loadSelectedCalendar("grc");
 
     std::cout << "Loaded celebrations: "
@@ -35,7 +30,7 @@ auto matches = findFixedCelebrations(
 for (const auto& celebration : matches)
 {
     std::cout << celebration.name << ": "
-              << celebration.rank.value_or("special") << "\n";
+              <<  celebrationRankName(celebration.rank) << "\n";
 }
 
 //auto europeanCelebrations = celebrations;
@@ -52,7 +47,7 @@ auto europeanMatches = findFixedCelebrations(
 for (const auto& celebration : europeanMatches)
 {
     std::cout << "Europe: " << celebration.name << ": "
-              << celebration.rank.value_or("special") << "\n";
+              << celebrationRankName(celebration.rank) << "\n";
 }
 
 auto englandWalesCelebrations = europeanCelebrations;
@@ -80,7 +75,7 @@ for (const auto& celebration : stDavidMatches)
 {
     std::cout << "England & Wales: "
               << celebration.name << ": "
-              << celebration.rank.value_or("special") << "\n";
+              << celebrationRankName(celebration.rank)  << "\n";
 }
 
 auto welshCelebrations = englandWalesCelebrations;
@@ -102,7 +97,7 @@ for (const auto& celebration : welshMatches)
 {
     std::cout << "Wales: "
               << celebration.name << ": "
-              << celebration.rank.value_or("special") << "\n";
+              << celebrationRankName(celebration.rank) << "\n";
 }
 
 
@@ -113,14 +108,14 @@ for (const auto& celebration : findFixedCelebrations(
         englishCalendar, std::chrono::March / std::chrono::day{1}))
 {
     std::cout << "England: " << celebration.name << " — "
-              << celebration.rank.value_or("special") << "\n";
+              << celebrationRankName(celebration.rank) << "\n";
 }
 
 for (const auto& celebration : findFixedCelebrations(
         welshCalendar, std::chrono::March / std::chrono::day{1}))
 {
     std::cout << "Wales (selected): " << celebration.name << " — "
-              << celebration.rank.value_or("special") << "\n";
+              <<  celebrationRankName(celebration.rank) << "\n";
 }
 
     return 0;

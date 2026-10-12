@@ -12,6 +12,7 @@
 #include <algorithm>
 #include "calendar_selection.h"
 #include "calendar_lookup.h"
+#include "celebration_rank.h"
 
 std::chrono::year_month_day getCurrentLocalDate()
 {
@@ -156,10 +157,9 @@ for (const auto& candidate : candidates)
 {
     std::cout << "Fixed-date candidate: "
               << candidate.name << " ("
-              << candidate.rank.value_or("special")
+              << celebrationRankName(candidate.rank)
               << ")\n";
 }
-
 
 	return 0;
 }
