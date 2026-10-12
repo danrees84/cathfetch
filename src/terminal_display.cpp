@@ -15,17 +15,14 @@ void printLiturgicalDay(std::chrono::year_month_day date, bool showCross)
 		std::cout << "          ███\n";
 		std::cout << "          ███          ";
 	}
-	
-//	std::cout << date.day() << "-" << date.month()
-//		<< "-" << date.year() << "\n";
 
-std::cout << formatCalendarDate(date) << "\n";
+
+	std::cout << formatCalendarDate(date) << "\n";
 
 	if (showCross) {
 		std::cout << "      ███████████      ";
 	}
 
-	//	std::cout << date.day() << "-" << date.month() << "-" << date.year() << "\n";
 
 	if (colour.has_value())
 	{
@@ -38,12 +35,29 @@ std::cout << formatCalendarDate(date) << "\n";
 	{
 		std::cout << liturgicalPeriodName(period) << "\n";
 	}
-	if (showCross) {
-		for (int i = 0; i < 5; ++i)
+
+	bool ordinaryTime = (period == LiturgicalPeriod::OrdinaryTime);
+
+	if (ordinaryTime)
+	{
+		int week = calculateOrdinaryTimeWeek(date);
+
+		if (showCross)
+		{
+			std::cout << "          ███          ";
+		}
+
+		std::cout << formatOrdinaryTimeDay(date, week) << "\n";
+	}
+
+	if (showCross)
+	{
+		int remainingRows = ordinaryTime ? 4 : 5;
+
+		for (int i = 0; i < remainingRows; ++i)
 		{
 			std::cout << "          ███\n";
 		}
 	}
-
 
 }

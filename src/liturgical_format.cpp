@@ -56,3 +56,44 @@ std::string formatCalendarDate(std::chrono::year_month_day date)
         int(date.year())
     );
 }
+
+std::string formatOrdinal(int number)
+{
+    std::string suffix = "th";
+
+    int lastTwo = number % 100;
+
+    if (lastTwo < 11 || lastTwo > 13)
+    {
+        switch (number % 10)
+        {
+            case 1:
+                suffix = "st";
+                break;
+            case 2:
+                suffix = "nd";
+                break;
+            case 3:
+                suffix = "rd";
+                break;
+        }
+    }
+
+    return std::to_string(number) + suffix;
+}
+
+std::string formatOrdinaryTimeDay(
+    std::chrono::year_month_day date, int week)
+{
+    std::chrono::sys_days calendarDay{date};
+    std::chrono::weekday dayOfWeek{calendarDay};
+
+    if (dayOfWeek == std::chrono::Sunday)
+    {
+        return formatOrdinal(week) + " Sunday in Ordinary Time";
+    }
+
+    return std::format("{:%A}", calendarDay)
+        + " of the " + formatOrdinal(week)
+        + " Week in Ordinary Time";
+}

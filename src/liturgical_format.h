@@ -9,5 +9,8 @@
 std::string liturgicalPeriodName(LiturgicalPeriod period);
 std::string liturgicalColourName(LiturgicalColour colour);
 std::string formatCalendarDate(std::chrono::year_month_day date);
+std::string formatOrdinal(int number);
+std::string formatOrdinaryTimeDay(
+    std::chrono::year_month_day date, int week);
 
 #endif

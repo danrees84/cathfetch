@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "calendar": "wales",
+  "inherits": "england_wales",
+  "scope": "fixed_nominal_sanctoral_calendar_only",
+  "status": "draft_independently_structured_facts_review_before_production",
+  "as_of": "2026-10-11",
+  "description": "Wales-specific nominal celebrations and rank changes layered over shared England/Wales and Europe.",
+  "sources": [
+    {
+      "id": "wales",
+      "url": "https://www.liturgyoffice.org.uk/Calendar/National/Wales1.shtml",
+      "title": "Liturgy Office — National Calendar for Wales (summary)"
+    },
+    {
+      "id": "wales_detail",
+      "url": "https://www.liturgyoffice.org.uk/Calendar/National/Wales2.shtml",
+      "title": "Liturgy Office — National Calendar for Wales (details)"
+    },
+    {
+      "id": "calendar2026",
+      "url": "https://www.liturgyoffice.org.uk/Calendar/2026/Calendar-2026.pdf",
+      "title": "Liturgy Office — 2026 liturgical calendar (year-specific validation)"
+    }
+  ],
+  "additions": [
+    {
+      "id": "wal-02-09-st-teilo",
+      "month": 2,
+      "day": 9,
+      "name": "St Teilo, Bishop",
+      "rank": "optional_memorial",
+      "source_id": "wales"
+    },
+    {
+      "id": "wal-04-20-st-beuno",
+      "month": 4,
+      "day": 20,
+      "name": "St Beuno, Abbot",
+      "rank": "optional_memorial",
+      "source_id": "wales"
+    },
+    {
+      "id": "wal-05-05-st-asaph",
+      "month": 5,
+      "day": 5,
+      "name": "St Asaph, Bishop",
+      "rank": "memorial",
+      "source_id": "wales_detail"
+    },
+    {
+      "id": "wal-06-20-sts-alban-julius-and-aaron",
+      "month": 6,
+      "day": 20,
+      "name": "Sts Alban, Julius and Aaron, Martyrs",
+      "rank": "optional_memorial",
+      "source_id": "wales"
+    },
+    {
+      "id": "wal-07-12-st-john-jones",
+      "month": 7,
+      "day": 12,
+      "name": "St John Jones, Priest and Martyr",
+      "rank": "memorial",
+      "source_id": "wales_detail"
+    },
+    {
+      "id": "wal-07-23-sts-philip-evans-and-john-lloyd",
+      "month": 7,
+      "day": 23,
+      "name": "Sts Philip Evans and John Lloyd, Martyrs",
+      "rank": "memorial",
+      "source_id": "wales_detail"
+    },
+    {
+      "id": "wal-08-03-st-germanus-of-auxerre",
+      "month": 8,
+      "day": 3,
+      "name": "St Germanus of Auxerre, Bishop",
+      "rank": "optional_memorial",
+      "source_id": "wales"
+    },
+    {
+      "id": "wal-08-26-st-david-lewis",
+      "month": 8,
+      "day": 26,
+      "name": "St David Lewis, Priest and Martyr",
+      "rank": "memorial",
+      "source_id": "wales_detail"
+    },
+    {
+      "id": "wal-09-11-st-deiniol",
+      "month": 9,
+      "day": 11,
+      "name": "St Deiniol, Bishop",
+      "rank": "optional_memorial",
+      "source_id": "wales"
+    },
+    {
+      "id": "wal-10-16-st-richard-gwyn",
+      "month": 10,
+      "day": 16,
+      "name": "St Richard Gwyn, Martyr",
+      "rank": "optional_memorial",
+      "source_id": "wales"
+    },
+    {
+      "id": "wal-10-25-six-welsh-martyrs-and-companions",
+      "month": 10,
+      "day": 25,
+      "name": "Six Welsh Martyrs and their Companions",
+      "rank": "feast",
+      "source_id": "wales"
+    },
+    {
+      "id": "wal-11-06-st-illtud",
+      "month": 11,
+      "day": 6,
+      "name": "St Illtud, Abbot",
+      "rank": "optional_memorial",
+      "source_id": "wales"
+    },
+    {
+      "id": "wal-11-08-all-saints-of-wales",
+      "month": 11,
+      "day": 8,
+      "name": "All Saints of Wales",
+      "rank": "feast",
+      "source_id": "wales"
+    },
+    {
+      "id": "wal-11-14-st-dyfrig",
+      "month": 11,
+      "day": 14,
+      "name": "St Dyfrig, Bishop",
+      "rank": "optional_memorial",
+      "source_id": "wales"
+    },
+    {
+      "id": "wal-12-10-st-john-roberts",
+      "month": 12,
+      "day": 10,
+      "name": "St John Roberts, Priest and Martyr",
+      "rank": "memorial",
+      "source_id": "wales_detail"
+    }
+  ],
+  "overrides": [
+    {
+      "id": "ew-03-01-st-david",
+      "changes": {
+        "rank": "solemnity"
+      },
+      "source_id": "wales",
+      "note": "Patron of Wales: solemnity in Wales; feast in England."
+    }
+  ],
+  "date_reassignments": [],
+  "notes": [
+    "Calendar overlays describe nominal celebrations; they do not determine what is observed on a particular year/date.",
+    "Do not infer colour, readings, holy-day obligation, or precedence solely from the rank in these records.",
+    "Retain all candidates on a date; a separate precedence engine selects the applicable observance.",
+    "The detailed Wales descriptions explicitly call St Asaph, St John Jones, St Philip Evans and John Lloyd, St David Lewis, and St John Roberts memorials, despite blank ranks in the summary. These should be reconfirmed against current liturgical books.",
+    "On 23 July, the feast of St Bridget (European overlay) coincides nominally with a Welsh memorial; retain both candidates and let precedence resolve."
+  ],
+  "counts": {
+    "additions": 15,
+    "overrides": 1,
+    "date_reassignments": 0
+  }
+}

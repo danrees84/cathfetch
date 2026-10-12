@@ -10,6 +10,8 @@
 #include "terminal_display.h"
 #include <string_view>
 #include <algorithm>
+#include "calendar_selection.h"
+#include "calendar_lookup.h"
 
 std::chrono::year_month_day getCurrentLocalDate()
 {
@@ -38,6 +40,8 @@ int main(int argc, char* argv[])
 	bool showCross = false;
 	auto selectedDate = getCurrentLocalDate();
 	bool dateSpecified = false;
+	std::string_view selectedCalendar = "grc";
+	bool calendarSpecified = false;
 
 	for (int i = 1; i < argc; ++i)
 	{
@@ -74,48 +78,89 @@ int main(int argc, char* argv[])
 			}
 
 			auto parseNumber = [](std::string_view digits)
-{
-    int number = 0;
+			{
+				int number = 0;
 
-    for (char digit : digits)
-    {
-        number = number * 10 + (digit - '0');
-    }
+				for (char digit : digits)
+				{
+					number = number * 10 + (digit - '0');
+				}
 
-    return number;
-};
+				return number;
+			};
 
-int day = parseNumber(value.substr(0, 2));
-int month = parseNumber(value.substr(2, 2));
-int year = parseNumber(value.substr(4, 4));
+			int day = parseNumber(value.substr(0, 2));
+			int month = parseNumber(value.substr(2, 2));
+			int year = parseNumber(value.substr(4, 4));
 
-std::chrono::year_month_day parsedDate{
-    std::chrono::year{year},
-    std::chrono::month{unsigned(month)},
-    std::chrono::day{unsigned(day)}
-};
+			std::chrono::year_month_day parsedDate{
+				std::chrono::year{year},
+					std::chrono::month{unsigned(month)},
+					std::chrono::day{unsigned(day)}
+			};
 
-if (!parsedDate.ok())
-{
-    std::cerr << "Invalid calendar date\n";
-    return 1;
-}
+			if (!parsedDate.ok())
+			{
+				std::cerr << "Invalid calendar date\n";
+				return 1;
+			}
 
-selectedDate = parsedDate;
-dateSpecified = true;
+			selectedDate = parsedDate;
+			dateSpecified = true;
 
 
 		}
 
+
+		else if (arg.starts_with("--calendar="))
+		{
+			if (calendarSpecified)
+			{
+				std::cerr << "Duplicate option: --calendar\n";
+				return 1;
+			}
+
+			auto calendarName = arg.substr(11);
+
+			if (calendarName != "grc" &&
+					calendarName != "europe" &&
+					calendarName != "england" &&
+					calendarName != "wales")
+			{
+				std::cerr << "Unknown calendar: " << calendarName << "\n";
+				return 1;
+			}
+
+			selectedCalendar = calendarName;
+			calendarSpecified = true;
+		}
 
 		else
 		{
 			std::cerr << "Unknown option: " << arg << "\n";
 			return 1;
 		}
-}
-        printLiturgicalDay(selectedDate, showCross);
+	}
 
-return 0;
+
+
+
+auto celebrations = loadSelectedCalendar(selectedCalendar);
+	printLiturgicalDay(selectedDate, showCross);
+
+	auto candidates = findFixedCelebrations(
+    celebrations,
+    selectedDate.month() / selectedDate.day());
+
+for (const auto& candidate : candidates)
+{
+    std::cout << "Fixed-date candidate: "
+              << candidate.name << " ("
+              << candidate.rank.value_or("special")
+              << ")\n";
+}
+
+
+	return 0;
 }
 

@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "calendar": "england",
+  "inherits": "england_wales",
+  "scope": "fixed_nominal_sanctoral_calendar_only",
+  "status": "draft_independently_structured_facts_review_before_production",
+  "as_of": "2026-10-11",
+  "description": "England-specific sanctoral facts layered over the shared England/Wales and European calendars.",
+  "sources": [
+    {
+      "id": "england",
+      "url": "https://www.liturgyoffice.org.uk/Calendar/National/England1.shtml",
+      "title": "Liturgy Office — National Calendar for England (summary)"
+    },
+    {
+      "id": "calendar2026",
+      "url": "https://www.liturgyoffice.org.uk/Calendar/2026/Calendar-2026.pdf",
+      "title": "Liturgy Office — 2026 liturgical calendar (year-specific validation)"
+    },
+    {
+      "id": "walsingham",
+      "url": "https://www.liturgyoffice.org.uk/Calendar/National/England1.shtml",
+      "title": "Liturgy Office — National Calendar England: Our Lady of Walsingham (feast)"
+    }
+  ],
+  "additions": [
+    {
+      "id": "eng-01-12-st-aelred-of-rievaulx",
+      "month": 1,
+      "day": 12,
+      "name": "St Aelred of Rievaulx, Abbot",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-01-19-st-wulstan",
+      "month": 1,
+      "day": 19,
+      "name": "St Wulstan, Bishop",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-05-04-english-martyrs",
+      "month": 5,
+      "day": 4,
+      "name": "The English Martyrs",
+      "rank": "feast",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-05-19-st-dunstan",
+      "month": 5,
+      "day": 19,
+      "name": "St Dunstan, Bishop",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-06-09-st-columba",
+      "month": 6,
+      "day": 9,
+      "name": "St Columba, Abbot",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-06-16-st-richard-of-chichester",
+      "month": 6,
+      "day": 16,
+      "name": "St Richard of Chichester, Bishop",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-06-20-st-alban",
+      "month": 6,
+      "day": 20,
+      "name": "St Alban, Martyr",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-06-23-st-etheldreda",
+      "month": 6,
+      "day": 23,
+      "name": "St Etheldreda (Audrey), Abbess",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-07-01-st-oliver-plunkett",
+      "month": 7,
+      "day": 1,
+      "name": "St Oliver Plunkett, Bishop and Martyr",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-08-26-bl-dominic-barberi",
+      "month": 8,
+      "day": 26,
+      "name": "Blessed Dominic of the Mother of God Barberi, Priest",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-08-30-sts-margaret-clitherow-anne-line-margaret-ward",
+      "month": 8,
+      "day": 30,
+      "name": "Sts Margaret Clitherow, Anne Line and Margaret Ward, Martyrs",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-08-31-st-aidan-and-saints-of-lindisfarne",
+      "month": 8,
+      "day": 31,
+      "name": "St Aidan, Bishop, and the Saints of Lindisfarne",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-09-04-st-cuthbert",
+      "month": 9,
+      "day": 4,
+      "name": "St Cuthbert, Bishop",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-09-19-st-theodore-of-canterbury",
+      "month": 9,
+      "day": 19,
+      "name": "St Theodore of Canterbury, Bishop",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-09-24-our-lady-of-walsingham",
+      "month": 9,
+      "day": 24,
+      "name": "Our Lady of Walsingham",
+      "rank": "feast",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-10-10-st-paulinus-of-york",
+      "month": 10,
+      "day": 10,
+      "name": "St Paulinus of York, Bishop",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-10-12-st-wilfrid",
+      "month": 10,
+      "day": 12,
+      "name": "St Wilfrid, Bishop",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-10-13-st-edward-the-confessor",
+      "month": 10,
+      "day": 13,
+      "name": "St Edward the Confessor",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-10-26-sts-chad-and-cedd",
+      "month": 10,
+      "day": 26,
+      "name": "Sts Chad and Cedd, Bishops",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-11-07-st-willibrord",
+      "month": 11,
+      "day": 7,
+      "name": "St Willibrord, Bishop",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-11-16-st-edmund-of-abingdon",
+      "month": 11,
+      "day": 16,
+      "name": "St Edmund of Abingdon, Bishop",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-11-17-st-hilda",
+      "month": 11,
+      "day": 17,
+      "name": "St Hilda, Abbess",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    },
+    {
+      "id": "eng-11-17-st-hugh-of-lincoln",
+      "month": 11,
+      "day": 17,
+      "name": "St Hugh of Lincoln, Bishop",
+      "rank": "optional_memorial",
+      "source_id": "england"
+    }
+  ],
+  "overrides": [
+    {
+      "id": "grc-03-17-st-patrick-bishop",
+      "changes": {
+        "rank": "feast"
+      },
+      "source_id": "england"
+    },
+    {
+      "id": "grc-04-23-st-george-martyr",
+      "changes": {
+        "rank": "solemnity"
+      },
+      "source_id": "england"
+    },
+    {
+      "id": "grc-05-25-st-bede-the-venerable-priest-and-doctor-of-the-church",
+      "changes": {
+        "rank": "memorial"
+      },
+      "source_id": "england"
+    },
+    {
+      "id": "grc-05-27-st-augustine-of-canterbury-bishop",
+      "changes": {
+        "rank": "feast"
+      },
+      "source_id": "england"
+    },
+    {
+      "id": "grc-06-22-sts-john-fisher-bishop-and-thomas-more-martyrs",
+      "changes": {
+        "rank": "feast"
+      },
+      "source_id": "england"
+    },
+    {
+      "id": "grc-09-03-st-gregory-the-great-pope-and-doctor-of-the-church",
+      "changes": {
+        "rank": "feast"
+      },
+      "source_id": "england"
+    },
+    {
+      "id": "grc-12-29-st-thomas-becket-bishop-and-martyr",
+      "changes": {
+        "rank": "feast"
+      },
+      "source_id": "england"
+    }
+  ],
+  "date_reassignments": [
+    {
+      "id": "grc-04-23-st-adalbert-bishop-and-martyr",
+      "new_month": 4,
+      "new_day": 24,
+      "source_id": "england",
+      "note": "England nominal calendar lists St Adalbert on 24 April alongside St Fidelis; Wales keeps 23 April."
+    }
+  ],
+  "notes": [
+    "Calendar overlays describe nominal celebrations; they do not determine what is observed on a particular year/date.",
+    "Do not infer colour, readings, holy-day obligation, or precedence solely from the rank in these records.",
+    "Retain all candidates on a date; a separate precedence engine selects the applicable observance.",
+    "St Anselm (21 April), St Boniface (5 June), and St Andrew (30 November) already have the appropriate dates/ranks in the universal layer, so no duplicates are needed.",
+    "St Fidelis of Sigmaringen remains on 24 April in the universal layer; St Adalbert becomes an additional nominal candidate that day in England."
+  ],
+  "counts": {
+    "additions": 23,
+    "overrides": 7,
+    "date_reassignments": 1
+  }
+}

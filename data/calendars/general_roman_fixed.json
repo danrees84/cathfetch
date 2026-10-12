@@ -1,0 +1,1970 @@
+{
+  "schema_version": 1,
+  "calendar": "general_roman",
+  "status": "historical_baseline_with_verified_fixed_date_vatican_amendments_transcription_review_pending",
+  "description": "Fixed-date General Roman Calendar baseline from the Liturgy Office PDF, amended for identified Holy See changes through 11 October 2026. Baseline transcription has not been independently reviewed line by line; this is not a resolved ordo.",
+  "source": {
+    "publisher": "Catholic Bishops’ Conference of England and Wales — Liturgy Office",
+    "title": "General Roman Calendar",
+    "url": "https://www.liturgyoffice.org.uk/Calendar/Info/General-Roman-Calendar.pdf",
+    "document_pages": 13,
+    "basis": "Fixed-date listings on printed pages 2–13",
+    "rank_note": "The source footnote states that an entry with no indicated rank is an Optional Memorial. All Souls’ Day is retained as a special commemoration rather than applying that default."
+  },
+  "scope_notes": [
+    "Movable observances printed below month tables are excluded and should be calculated with liturgical rules.",
+    "Fixed nominal dates do not account for precedence, transfers, omitted celebrations, optional memorial selection, or national/local calendars.",
+    "No liturgical colours have been assigned: the source PDF lists ranks but not colours.",
+    "Fixed-date additions and changes are recorded with per-entry amendment provenance. The original source PDF remains the provenance for unchanged entries.",
+    "The Memorial of the Blessed Virgin Mary, Mother of the Church (2018) occurs on the Monday after Pentecost and is intentionally not part of this fixed-date dataset; implement it in movable-observance rules.",
+    "The dates and ranks given here are nominal General Roman Calendar facts and do not resolve liturgical precedence or England and Wales national differences."
+  ],
+  "entries": [
+    {
+      "id": "grc-01-01-the-octave-day-of-the-nativity-of-the-lord-solemnity-of-mary-the-holy-mother-of-god",
+      "month": 1,
+      "day": 1,
+      "name": "The Octave Day of the Nativity of the Lord — Solemnity of Mary, the Holy Mother of God",
+      "rank": "solemnity",
+      "source_page": 2
+    },
+    {
+      "id": "grc-01-02-sts-basil-the-great-and-gregory-nazianzen-bishops-and-doctors-of-the-church",
+      "month": 1,
+      "day": 2,
+      "name": "Sts Basil the Great and Gregory Nazianzen, Bishops and Doctors of the Church",
+      "rank": "memorial",
+      "source_page": 2
+    },
+    {
+      "id": "grc-01-03-the-most-holy-name-of-jesus",
+      "month": 1,
+      "day": 3,
+      "name": "The Most Holy Name of Jesus",
+      "rank": "optional_memorial",
+      "source_page": 2
+    },
+    {
+      "id": "grc-01-06-the-epiphany-of-the-lord",
+      "month": 1,
+      "day": 6,
+      "name": "The Epiphany of the Lord",
+      "rank": "solemnity",
+      "source_page": 2
+    },
+    {
+      "id": "grc-01-07-st-raymond-of-penyafort-priest",
+      "month": 1,
+      "day": 7,
+      "name": "St Raymond of Penyafort, Priest",
+      "rank": "optional_memorial",
+      "source_page": 2
+    },
+    {
+      "id": "grc-01-13-st-hilary-bishop-and-doctor-of-the-church",
+      "month": 1,
+      "day": 13,
+      "name": "St Hilary, Bishop and Doctor of the Church",
+      "rank": "optional_memorial",
+      "source_page": 2
+    },
+    {
+      "id": "grc-01-17-st-anthony-abbot",
+      "month": 1,
+      "day": 17,
+      "name": "St Anthony, Abbot",
+      "rank": "memorial",
+      "source_page": 2
+    },
+    {
+      "id": "grc-01-20-st-fabian-pope-and-martyr",
+      "month": 1,
+      "day": 20,
+      "name": "St Fabian, Pope and Martyr",
+      "rank": "optional_memorial",
+      "source_page": 2
+    },
+    {
+      "id": "grc-01-20-st-sebastian-martyr",
+      "month": 1,
+      "day": 20,
+      "name": "St Sebastian, Martyr",
+      "rank": "optional_memorial",
+      "source_page": 2
+    },
+    {
+      "id": "grc-01-21-st-agnes-virgin-and-martyr",
+      "month": 1,
+      "day": 21,
+      "name": "St Agnes, Virgin and Martyr",
+      "rank": "memorial",
+      "source_page": 2
+    },
+    {
+      "id": "grc-01-22-st-vincent-deacon-and-martyr",
+      "month": 1,
+      "day": 22,
+      "name": "St Vincent, Deacon and Martyr",
+      "rank": "optional_memorial",
+      "source_page": 2
+    },
+    {
+      "id": "grc-01-24-st-francis-de-sales-bishop-and-doctor-of-the-church",
+      "month": 1,
+      "day": 24,
+      "name": "St Francis de Sales, Bishop and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 2
+    },
+    {
+      "id": "grc-01-25-the-conversion-of-st-paul-the-apostle",
+      "month": 1,
+      "day": 25,
+      "name": "The Conversion of St Paul, the Apostle",
+      "rank": "feast",
+      "source_page": 2
+    },
+    {
+      "id": "grc-01-26-sts-timothy-and-titus-bishops",
+      "month": 1,
+      "day": 26,
+      "name": "Sts Timothy and Titus, Bishops",
+      "rank": "memorial",
+      "source_page": 2
+    },
+    {
+      "id": "grc-01-27-st-angela-merici-virgin",
+      "month": 1,
+      "day": 27,
+      "name": "St Angela Merici, Virgin",
+      "rank": "optional_memorial",
+      "source_page": 2
+    },
+    {
+      "id": "grc-01-28-st-thomas-aquinas-priest-and-doctor-of-the-church",
+      "month": 1,
+      "day": 28,
+      "name": "St Thomas Aquinas, Priest and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 2
+    },
+    {
+      "id": "grc-01-31-st-john-bosco-priest",
+      "month": 1,
+      "day": 31,
+      "name": "St John Bosco, Priest",
+      "rank": "memorial",
+      "source_page": 2
+    },
+    {
+      "id": "grc-02-02-the-presentation-of-the-lord",
+      "month": 2,
+      "day": 2,
+      "name": "The Presentation of the Lord",
+      "rank": "feast",
+      "source_page": 3
+    },
+    {
+      "id": "grc-02-03-st-ansgar-bishop",
+      "month": 2,
+      "day": 3,
+      "name": "St Ansgar, Bishop",
+      "rank": "optional_memorial",
+      "source_page": 3
+    },
+    {
+      "id": "grc-02-03-st-blaise-bishop-and-martyr",
+      "month": 2,
+      "day": 3,
+      "name": "St Blaise, Bishop and Martyr",
+      "rank": "optional_memorial",
+      "source_page": 3
+    },
+    {
+      "id": "grc-02-05-st-agatha-virgin-and-martyr",
+      "month": 2,
+      "day": 5,
+      "name": "St Agatha, Virgin and Martyr",
+      "rank": "memorial",
+      "source_page": 3
+    },
+    {
+      "id": "grc-02-06-st-paul-miki-and-companions-martyrs",
+      "month": 2,
+      "day": 6,
+      "name": "St Paul Miki and Companions, Martyrs",
+      "rank": "memorial",
+      "source_page": 3
+    },
+    {
+      "id": "grc-02-08-st-jerome-emiliani",
+      "month": 2,
+      "day": 8,
+      "name": "St Jerome Emiliani",
+      "rank": "optional_memorial",
+      "source_page": 3
+    },
+    {
+      "id": "grc-02-08-st-josephine-bakhita-virgin",
+      "month": 2,
+      "day": 8,
+      "name": "St Josephine Bakhita, Virgin",
+      "rank": "optional_memorial",
+      "source_page": 3
+    },
+    {
+      "id": "grc-02-10-st-scholastica-virgin",
+      "month": 2,
+      "day": 10,
+      "name": "St Scholastica, Virgin",
+      "rank": "memorial",
+      "source_page": 3
+    },
+    {
+      "id": "grc-02-11-our-lady-of-lourdes",
+      "month": 2,
+      "day": 11,
+      "name": "Our Lady of Lourdes",
+      "rank": "optional_memorial",
+      "source_page": 3
+    },
+    {
+      "id": "grc-02-14-sts-cyril-monk-and-methodius-bishop",
+      "month": 2,
+      "day": 14,
+      "name": "Sts Cyril, Monk, and Methodius, Bishop",
+      "rank": "memorial",
+      "source_page": 3
+    },
+    {
+      "id": "grc-02-17-the-seven-holy-founders-of-the-servite-order",
+      "month": 2,
+      "day": 17,
+      "name": "The Seven Holy Founders of the Servite Order",
+      "rank": "optional_memorial",
+      "source_page": 3
+    },
+    {
+      "id": "grc-02-21-st-peter-damian-bishop-and-doctor-of-the-church",
+      "month": 2,
+      "day": 21,
+      "name": "St Peter Damian, Bishop and Doctor of the Church",
+      "rank": "optional_memorial",
+      "source_page": 3
+    },
+    {
+      "id": "grc-02-22-the-chair-of-st-peter-the-apostle",
+      "month": 2,
+      "day": 22,
+      "name": "The Chair of St Peter the Apostle",
+      "rank": "feast",
+      "source_page": 3
+    },
+    {
+      "id": "grc-02-23-st-polycarp-bishop-and-martyr",
+      "month": 2,
+      "day": 23,
+      "name": "St Polycarp, Bishop and Martyr",
+      "rank": "memorial",
+      "source_page": 3
+    },
+    {
+      "id": "grc-02-27-gregory-of-narek",
+      "month": 2,
+      "day": 27,
+      "name": "St Gregory of Narek, Abbot and Doctor of the Church",
+      "rank": "optional_memorial",
+      "amendment": {
+        "action": "addition",
+        "decree_date": "2021-01-25",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20210125_decreto-dottori_en.html"
+      }
+    },
+    {
+      "id": "grc-03-04-st-casimir",
+      "month": 3,
+      "day": 4,
+      "name": "St Casimir",
+      "rank": "optional_memorial",
+      "source_page": 4
+    },
+    {
+      "id": "grc-03-07-sts-perpetua-and-felicity-martyrs",
+      "month": 3,
+      "day": 7,
+      "name": "Sts Perpetua and Felicity, Martyrs",
+      "rank": "memorial",
+      "source_page": 4
+    },
+    {
+      "id": "grc-03-08-st-john-of-god-religious",
+      "month": 3,
+      "day": 8,
+      "name": "St John of God, Religious",
+      "rank": "optional_memorial",
+      "source_page": 4
+    },
+    {
+      "id": "grc-03-09-st-frances-of-rome-religious",
+      "month": 3,
+      "day": 9,
+      "name": "St Frances of Rome, Religious",
+      "rank": "optional_memorial",
+      "source_page": 4
+    },
+    {
+      "id": "grc-03-17-st-patrick-bishop",
+      "month": 3,
+      "day": 17,
+      "name": "St Patrick, Bishop",
+      "rank": "optional_memorial",
+      "source_page": 4
+    },
+    {
+      "id": "grc-03-18-st-cyril-of-jerusalem-bishop-and-doctor-of-the-church",
+      "month": 3,
+      "day": 18,
+      "name": "St Cyril of Jerusalem, Bishop and Doctor of the Church",
+      "rank": "optional_memorial",
+      "source_page": 4
+    },
+    {
+      "id": "grc-03-19-st-joseph-spouse-of-the-blessed-virgin-mary",
+      "month": 3,
+      "day": 19,
+      "name": "St Joseph, Spouse of the Blessed Virgin Mary",
+      "rank": "solemnity",
+      "source_page": 4
+    },
+    {
+      "id": "grc-03-23-st-turibius-of-mogrovejo-bishop",
+      "month": 3,
+      "day": 23,
+      "name": "St Turibius of Mogrovejo, Bishop",
+      "rank": "optional_memorial",
+      "source_page": 4
+    },
+    {
+      "id": "grc-03-25-the-annunciation-of-the-lord",
+      "month": 3,
+      "day": 25,
+      "name": "The Annunciation of the Lord",
+      "rank": "solemnity",
+      "source_page": 4
+    },
+    {
+      "id": "grc-04-02-st-francis-of-paola-hermit",
+      "month": 4,
+      "day": 2,
+      "name": "St Francis of Paola, Hermit",
+      "rank": "optional_memorial",
+      "source_page": 5
+    },
+    {
+      "id": "grc-04-04-st-isidore-bishop-and-doctor-of-the-church",
+      "month": 4,
+      "day": 4,
+      "name": "St Isidore, Bishop and Doctor of the Church",
+      "rank": "optional_memorial",
+      "source_page": 5
+    },
+    {
+      "id": "grc-04-05-st-vincent-ferrer-priest",
+      "month": 4,
+      "day": 5,
+      "name": "St Vincent Ferrer, Priest",
+      "rank": "optional_memorial",
+      "source_page": 5
+    },
+    {
+      "id": "grc-04-07-st-john-baptist-de-la-salle-priest",
+      "month": 4,
+      "day": 7,
+      "name": "St John Baptist de la Salle, Priest",
+      "rank": "memorial",
+      "source_page": 5
+    },
+    {
+      "id": "grc-04-11-st-stanislaus-bishop-and-martyr",
+      "month": 4,
+      "day": 11,
+      "name": "St Stanislaus, Bishop and Martyr",
+      "rank": "memorial",
+      "source_page": 5
+    },
+    {
+      "id": "grc-04-13-st-martin-i-pope-and-martyr",
+      "month": 4,
+      "day": 13,
+      "name": "St Martin I, Pope and Martyr",
+      "rank": "optional_memorial",
+      "source_page": 5
+    },
+    {
+      "id": "grc-04-21-st-anselm-bishop-and-doctor-of-the-church",
+      "month": 4,
+      "day": 21,
+      "name": "St Anselm, Bishop and Doctor of the Church",
+      "rank": "optional_memorial",
+      "source_page": 5
+    },
+    {
+      "id": "grc-04-23-st-adalbert-bishop-and-martyr",
+      "month": 4,
+      "day": 23,
+      "name": "St Adalbert, Bishop and Martyr",
+      "rank": "optional_memorial",
+      "source_page": 5
+    },
+    {
+      "id": "grc-04-23-st-george-martyr",
+      "month": 4,
+      "day": 23,
+      "name": "St George, Martyr",
+      "rank": "optional_memorial",
+      "source_page": 5
+    },
+    {
+      "id": "grc-04-24-st-fidelis-of-sigmaringen-priest-and-martyr",
+      "month": 4,
+      "day": 24,
+      "name": "St Fidelis of Sigmaringen, Priest and Martyr",
+      "rank": "optional_memorial",
+      "source_page": 5
+    },
+    {
+      "id": "grc-04-25-st-mark-evangelist",
+      "month": 4,
+      "day": 25,
+      "name": "St Mark, Evangelist",
+      "rank": "feast",
+      "source_page": 5
+    },
+    {
+      "id": "grc-04-28-st-louis-grignion-de-montfort-priest",
+      "month": 4,
+      "day": 28,
+      "name": "St Louis Grignion de Montfort, Priest",
+      "rank": "optional_memorial",
+      "source_page": 5
+    },
+    {
+      "id": "grc-04-28-st-peter-chanel-priest-and-martyr",
+      "month": 4,
+      "day": 28,
+      "name": "St Peter Chanel, Priest and Martyr",
+      "rank": "optional_memorial",
+      "source_page": 5
+    },
+    {
+      "id": "grc-04-29-st-catherine-of-siena-virgin-and-doctor-of-the-church",
+      "month": 4,
+      "day": 29,
+      "name": "St Catherine of Siena, Virgin and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 5
+    },
+    {
+      "id": "grc-04-30-st-pius-v-pope",
+      "month": 4,
+      "day": 30,
+      "name": "St Pius V, Pope",
+      "rank": "optional_memorial",
+      "source_page": 5
+    },
+    {
+      "id": "grc-05-01-st-joseph-the-worker",
+      "month": 5,
+      "day": 1,
+      "name": "St Joseph the Worker",
+      "rank": "optional_memorial",
+      "source_page": 6
+    },
+    {
+      "id": "grc-05-02-st-athanasius-bishop-and-doctor-of-the-church",
+      "month": 5,
+      "day": 2,
+      "name": "St Athanasius, Bishop and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 6
+    },
+    {
+      "id": "grc-05-03-sts-philip-and-james-apostles",
+      "month": 5,
+      "day": 3,
+      "name": "Sts Philip and James, Apostles",
+      "rank": "feast",
+      "source_page": 6
+    },
+    {
+      "id": "grc-05-10-john-de-avila",
+      "month": 5,
+      "day": 10,
+      "name": "St John de Avila, Priest and Doctor of the Church",
+      "rank": "optional_memorial",
+      "amendment": {
+        "action": "addition",
+        "decree_date": "2021-01-25",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20210125_decreto-dottori_en.html"
+      }
+    },
+    {
+      "id": "grc-05-12-st-pancras-martyr",
+      "month": 5,
+      "day": 12,
+      "name": "St Pancras, Martyr",
+      "rank": "optional_memorial",
+      "source_page": 6
+    },
+    {
+      "id": "grc-05-12-sts-nereus-and-achilleus-martyrs",
+      "month": 5,
+      "day": 12,
+      "name": "Sts Nereus and Achilleus, Martyrs",
+      "rank": "optional_memorial",
+      "source_page": 6
+    },
+    {
+      "id": "grc-05-13-our-lady-of-fatima",
+      "month": 5,
+      "day": 13,
+      "name": "Our Lady of Fatima",
+      "rank": "optional_memorial",
+      "source_page": 6
+    },
+    {
+      "id": "grc-05-14-st-matthias-apostle",
+      "month": 5,
+      "day": 14,
+      "name": "St Matthias, Apostle",
+      "rank": "feast",
+      "source_page": 6
+    },
+    {
+      "id": "grc-05-18-st-john-i-pope-and-martyr",
+      "month": 5,
+      "day": 18,
+      "name": "St John I, Pope and Martyr",
+      "rank": "optional_memorial",
+      "source_page": 6
+    },
+    {
+      "id": "grc-05-20-st-bernardine-of-siena-priest",
+      "month": 5,
+      "day": 20,
+      "name": "St Bernardine of Siena, Priest",
+      "rank": "optional_memorial",
+      "source_page": 6
+    },
+    {
+      "id": "grc-05-21-st-christopher-magallanes-priest-and-companions-martyrs",
+      "month": 5,
+      "day": 21,
+      "name": "St Christopher Magallanes, Priest, and Companions, Martyrs",
+      "rank": "optional_memorial",
+      "source_page": 6
+    },
+    {
+      "id": "grc-05-22-st-rita-of-cascia-religious",
+      "month": 5,
+      "day": 22,
+      "name": "St Rita of Cascia, Religious",
+      "rank": "optional_memorial",
+      "source_page": 6
+    },
+    {
+      "id": "grc-05-25-st-bede-the-venerable-priest-and-doctor-of-the-church",
+      "month": 5,
+      "day": 25,
+      "name": "St Bede the Venerable, Priest and Doctor of the Church",
+      "rank": "optional_memorial",
+      "source_page": 6
+    },
+    {
+      "id": "grc-05-25-st-gregory-vii-pope",
+      "month": 5,
+      "day": 25,
+      "name": "St Gregory VII, Pope",
+      "rank": "optional_memorial",
+      "source_page": 6
+    },
+    {
+      "id": "grc-05-25-st-mary-magdalene-de-pazzi-virgin",
+      "month": 5,
+      "day": 25,
+      "name": "St Mary Magdalene de’ Pazzi, Virgin",
+      "rank": "optional_memorial",
+      "source_page": 6
+    },
+    {
+      "id": "grc-05-26-st-philip-neri-priest",
+      "month": 5,
+      "day": 26,
+      "name": "St Philip Neri, Priest",
+      "rank": "memorial",
+      "source_page": 6
+    },
+    {
+      "id": "grc-05-27-st-augustine-of-canterbury-bishop",
+      "month": 5,
+      "day": 27,
+      "name": "St Augustine of Canterbury, Bishop",
+      "rank": "optional_memorial",
+      "source_page": 6
+    },
+    {
+      "id": "grc-05-29-paul-vi-pope",
+      "month": 5,
+      "day": 29,
+      "name": "St Paul VI, Pope",
+      "rank": "optional_memorial",
+      "amendment": {
+        "action": "addition",
+        "decree_date": "2019-01-25",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20190125_decreto-celebrazione-paolovi_en.html"
+      }
+    },
+    {
+      "id": "grc-05-31-the-visitation-of-the-blessed-virgin-mary",
+      "month": 5,
+      "day": 31,
+      "name": "The Visitation of the Blessed Virgin Mary",
+      "rank": "feast",
+      "source_page": 6
+    },
+    {
+      "id": "grc-06-01-st-justin-martyr",
+      "month": 6,
+      "day": 1,
+      "name": "St Justin, Martyr",
+      "rank": "memorial",
+      "source_page": 7
+    },
+    {
+      "id": "grc-06-02-sts-marcellinus-and-peter-martyrs",
+      "month": 6,
+      "day": 2,
+      "name": "Sts Marcellinus and Peter, Martyrs",
+      "rank": "optional_memorial",
+      "source_page": 7
+    },
+    {
+      "id": "grc-06-03-st-charles-lwanga-and-companions-martyrs",
+      "month": 6,
+      "day": 3,
+      "name": "St Charles Lwanga and Companions, Martyrs",
+      "rank": "memorial",
+      "source_page": 7
+    },
+    {
+      "id": "grc-06-05-st-boniface-bishop-and-martyr",
+      "month": 6,
+      "day": 5,
+      "name": "St Boniface, Bishop and Martyr",
+      "rank": "memorial",
+      "source_page": 7
+    },
+    {
+      "id": "grc-06-06-st-norbert-bishop",
+      "month": 6,
+      "day": 6,
+      "name": "St Norbert, Bishop",
+      "rank": "optional_memorial",
+      "source_page": 7
+    },
+    {
+      "id": "grc-06-09-st-ephrem-deacon-and-doctor-of-the-church",
+      "month": 6,
+      "day": 9,
+      "name": "St Ephrem, Deacon and Doctor of the Church",
+      "rank": "optional_memorial",
+      "source_page": 7
+    },
+    {
+      "id": "grc-06-11-st-barnabas-apostle",
+      "month": 6,
+      "day": 11,
+      "name": "St Barnabas, Apostle",
+      "rank": "memorial",
+      "source_page": 7
+    },
+    {
+      "id": "grc-06-13-st-anthony-of-padua-priest-and-doctor-of-the-church",
+      "month": 6,
+      "day": 13,
+      "name": "St Anthony of Padua, Priest and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 7
+    },
+    {
+      "id": "grc-06-19-st-romuald-abbot",
+      "month": 6,
+      "day": 19,
+      "name": "St Romuald, Abbot",
+      "rank": "optional_memorial",
+      "source_page": 7
+    },
+    {
+      "id": "grc-06-21-st-aloysius-gonzaga-religious",
+      "month": 6,
+      "day": 21,
+      "name": "St Aloysius Gonzaga, Religious",
+      "rank": "memorial",
+      "source_page": 7
+    },
+    {
+      "id": "grc-06-22-st-paulinus-of-nola-bishop",
+      "month": 6,
+      "day": 22,
+      "name": "St Paulinus of Nola, Bishop",
+      "rank": "optional_memorial",
+      "source_page": 7
+    },
+    {
+      "id": "grc-06-22-sts-john-fisher-bishop-and-thomas-more-martyrs",
+      "month": 6,
+      "day": 22,
+      "name": "Sts John Fisher, Bishop, and Thomas More, Martyrs",
+      "rank": "optional_memorial",
+      "source_page": 7
+    },
+    {
+      "id": "grc-06-24-the-nativity-of-st-john-the-baptist",
+      "month": 6,
+      "day": 24,
+      "name": "The Nativity of St John the Baptist",
+      "rank": "solemnity",
+      "source_page": 7
+    },
+    {
+      "id": "grc-06-27-st-cyril-of-alexandria-bishop-and-doctor-of-the-church",
+      "month": 6,
+      "day": 27,
+      "name": "St Cyril of Alexandria, Bishop and Doctor of the Church",
+      "rank": "optional_memorial",
+      "source_page": 7
+    },
+    {
+      "id": "grc-06-28-st-irenaeus-bishop-and-martyr",
+      "month": 6,
+      "day": 28,
+      "name": "St Irenaeus, Bishop and Martyr",
+      "rank": "memorial",
+      "source_page": 7
+    },
+    {
+      "id": "grc-06-29-sts-peter-and-paul-apostles",
+      "month": 6,
+      "day": 29,
+      "name": "Sts Peter and Paul, Apostles",
+      "rank": "solemnity",
+      "source_page": 7
+    },
+    {
+      "id": "grc-06-30-the-first-martyrs-of-the-holy-roman-church",
+      "month": 6,
+      "day": 30,
+      "name": "The First Martyrs of the Holy Roman Church",
+      "rank": "optional_memorial",
+      "source_page": 7
+    },
+    {
+      "id": "grc-07-03-st-thomas-apostle",
+      "month": 7,
+      "day": 3,
+      "name": "St Thomas, Apostle",
+      "rank": "feast",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-04-st-elizabeth-of-portugal",
+      "month": 7,
+      "day": 4,
+      "name": "St Elizabeth of Portugal",
+      "rank": "optional_memorial",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-05-st-anthony-zaccaria-priest",
+      "month": 7,
+      "day": 5,
+      "name": "St Anthony Zaccaria, Priest",
+      "rank": "optional_memorial",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-06-st-maria-goretti-virgin-and-martyr",
+      "month": 7,
+      "day": 6,
+      "name": "St Maria Goretti, Virgin and Martyr",
+      "rank": "optional_memorial",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-09-st-augustine-zhao-rong-priest-and-companions-martyrs",
+      "month": 7,
+      "day": 9,
+      "name": "St Augustine Zhao Rong, Priest, and Companions, Martyrs",
+      "rank": "optional_memorial",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-11-st-benedict-abbot",
+      "month": 7,
+      "day": 11,
+      "name": "St Benedict, Abbot",
+      "rank": "memorial",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-13-st-henry",
+      "month": 7,
+      "day": 13,
+      "name": "St Henry",
+      "rank": "optional_memorial",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-14-st-camillus-de-lellis-priest",
+      "month": 7,
+      "day": 14,
+      "name": "St Camillus de Lellis, Priest",
+      "rank": "optional_memorial",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-15-st-bonaventure-bishop-and-doctor-of-the-church",
+      "month": 7,
+      "day": 15,
+      "name": "St Bonaventure, Bishop and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-16-our-lady-of-mount-carmel",
+      "month": 7,
+      "day": 16,
+      "name": "Our Lady of Mount Carmel",
+      "rank": "optional_memorial",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-20-st-apollinaris-bishop-and-martyr",
+      "month": 7,
+      "day": 20,
+      "name": "St Apollinaris, Bishop and Martyr",
+      "rank": "optional_memorial",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-21-st-lawrence-of-brindisi-priest-and-doctor-of-the-church",
+      "month": 7,
+      "day": 21,
+      "name": "St Lawrence of Brindisi, Priest and Doctor of the Church",
+      "rank": "optional_memorial",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-22-st-mary-magdalene",
+      "month": 7,
+      "day": 22,
+      "name": "St Mary Magdalene",
+      "rank": "feast",
+      "source_page": 8,
+      "amendment": {
+        "action": "rank_change",
+        "decree_date": "2016-06-03",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/sanctae-m-magdalenae-decretum_en.pdf",
+        "previous_rank": "memorial"
+      }
+    },
+    {
+      "id": "grc-07-23-st-bridget-religious",
+      "month": 7,
+      "day": 23,
+      "name": "St Bridget, Religious",
+      "rank": "optional_memorial",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-24-st-sharbel-makhluf-priest",
+      "month": 7,
+      "day": 24,
+      "name": "St Sharbel Makhlūf, Priest",
+      "rank": "optional_memorial",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-25-st-james-apostle",
+      "month": 7,
+      "day": 25,
+      "name": "St James, Apostle",
+      "rank": "feast",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-26-sts-joachim-and-anne-parents-of-the-blessed-virgin-mary",
+      "month": 7,
+      "day": 26,
+      "name": "Sts Joachim and Anne, Parents of the Blessed Virgin Mary",
+      "rank": "memorial",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-29-sts-martha-mary-and-lazarus",
+      "month": 7,
+      "day": 29,
+      "name": "Sts Martha, Mary and Lazarus",
+      "rank": "memorial",
+      "source_page": 8,
+      "amendment": {
+        "action": "expanded_celebration",
+        "decree_date": "2021-01-26",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20210126_decreto-santi_en.html",
+        "previous_name": "St Martha",
+        "previous_id": "grc-07-29-st-martha"
+      }
+    },
+    {
+      "id": "grc-07-30-st-peter-chrysologus-bishop-and-doctor-of-the-church",
+      "month": 7,
+      "day": 30,
+      "name": "St Peter Chrysologus, Bishop and Doctor of the Church",
+      "rank": "optional_memorial",
+      "source_page": 8
+    },
+    {
+      "id": "grc-07-31-st-ignatius-of-loyola-priest",
+      "month": 7,
+      "day": 31,
+      "name": "St Ignatius of Loyola, Priest",
+      "rank": "memorial",
+      "source_page": 8
+    },
+    {
+      "id": "grc-08-01-st-alphonsus-mary-liguori-bishop-and-doctor-of-the-church",
+      "month": 8,
+      "day": 1,
+      "name": "St Alphonsus Mary Liguori, Bishop and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-02-st-eusebius-of-vercelli-bishop",
+      "month": 8,
+      "day": 2,
+      "name": "St Eusebius of Vercelli, Bishop",
+      "rank": "optional_memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-02-st-peter-julian-eymard-priest",
+      "month": 8,
+      "day": 2,
+      "name": "St Peter Julian Eymard, Priest",
+      "rank": "optional_memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-04-st-john-mary-vianney-priest",
+      "month": 8,
+      "day": 4,
+      "name": "St John Mary Vianney, Priest",
+      "rank": "memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-05-the-dedication-of-the-basilica-of-st-mary-major",
+      "month": 8,
+      "day": 5,
+      "name": "The Dedication of the Basilica of St Mary Major",
+      "rank": "optional_memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-06-the-transfiguration-of-the-lord",
+      "month": 8,
+      "day": 6,
+      "name": "The Transfiguration of the Lord",
+      "rank": "feast",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-07-st-cajetan-priest",
+      "month": 8,
+      "day": 7,
+      "name": "St Cajetan, Priest",
+      "rank": "optional_memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-07-st-sixtus-ii-pope-and-companions-martyrs",
+      "month": 8,
+      "day": 7,
+      "name": "St Sixtus II, Pope, and Companions, Martyrs",
+      "rank": "optional_memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-08-st-dominic-priest",
+      "month": 8,
+      "day": 8,
+      "name": "St Dominic, Priest",
+      "rank": "memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-09-st-teresa-benedicta-of-the-cross-virgin-and-martyr",
+      "month": 8,
+      "day": 9,
+      "name": "St Teresa Benedicta of the Cross, Virgin and Martyr",
+      "rank": "optional_memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-10-st-lawrence-deacon-and-martyr",
+      "month": 8,
+      "day": 10,
+      "name": "St Lawrence, Deacon and Martyr",
+      "rank": "feast",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-11-st-clare-virgin",
+      "month": 8,
+      "day": 11,
+      "name": "St Clare, Virgin",
+      "rank": "memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-12-st-jane-frances-de-chantal-religious",
+      "month": 8,
+      "day": 12,
+      "name": "St Jane Frances de Chantal, Religious",
+      "rank": "optional_memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-13-sts-pontian-pope-and-hippolytus-priest-martyrs",
+      "month": 8,
+      "day": 13,
+      "name": "Sts Pontian, Pope, and Hippolytus, Priest, Martyrs",
+      "rank": "optional_memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-14-st-maximilian-mary-kolbe-priest-and-martyr",
+      "month": 8,
+      "day": 14,
+      "name": "St Maximilian Mary Kolbe, Priest and Martyr",
+      "rank": "memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-15-the-assumption-of-the-blessed-virgin-mary",
+      "month": 8,
+      "day": 15,
+      "name": "The Assumption of the Blessed Virgin Mary",
+      "rank": "solemnity",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-16-st-stephen-of-hungary",
+      "month": 8,
+      "day": 16,
+      "name": "St Stephen of Hungary",
+      "rank": "optional_memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-19-st-john-eudes-priest",
+      "month": 8,
+      "day": 19,
+      "name": "St John Eudes, Priest",
+      "rank": "optional_memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-20-st-bernard-abbot-and-doctor-of-the-church",
+      "month": 8,
+      "day": 20,
+      "name": "St Bernard, Abbot and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-21-st-pius-x-pope",
+      "month": 8,
+      "day": 21,
+      "name": "St Pius X, Pope",
+      "rank": "memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-22-the-queenship-of-the-blessed-virgin-mary",
+      "month": 8,
+      "day": 22,
+      "name": "The Queenship of the Blessed Virgin Mary",
+      "rank": "memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-23-st-rose-of-lima-virgin",
+      "month": 8,
+      "day": 23,
+      "name": "St Rose of Lima, Virgin",
+      "rank": "optional_memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-24-st-bartholomew-apostle",
+      "month": 8,
+      "day": 24,
+      "name": "St Bartholomew, Apostle",
+      "rank": "feast",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-25-st-joseph-calasanz-priest",
+      "month": 8,
+      "day": 25,
+      "name": "St Joseph Calasanz, Priest",
+      "rank": "optional_memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-25-st-louis",
+      "month": 8,
+      "day": 25,
+      "name": "St Louis",
+      "rank": "optional_memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-27-st-monica",
+      "month": 8,
+      "day": 27,
+      "name": "St Monica",
+      "rank": "memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-28-st-augustine-bishop-and-doctor-of-the-church",
+      "month": 8,
+      "day": 28,
+      "name": "St Augustine, Bishop and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-08-29-the-passion-of-st-john-the-baptist",
+      "month": 8,
+      "day": 29,
+      "name": "The Passion of St John the Baptist",
+      "rank": "memorial",
+      "source_page": 9
+    },
+    {
+      "id": "grc-09-03-st-gregory-the-great-pope-and-doctor-of-the-church",
+      "month": 9,
+      "day": 3,
+      "name": "St Gregory the Great, Pope and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-05-teresa-of-calcutta",
+      "month": 9,
+      "day": 5,
+      "name": "St Teresa of Calcutta, Virgin",
+      "rank": "optional_memorial",
+      "amendment": {
+        "action": "addition",
+        "decree_date": "2024-12-24",
+        "decree_url": "https://press.vatican.va/content/salastampa/it/bollettino/pubblico/2025/02/11/0125/00250.html"
+      }
+    },
+    {
+      "id": "grc-09-08-the-nativity-of-the-blessed-virgin-mary",
+      "month": 9,
+      "day": 8,
+      "name": "The Nativity of the Blessed Virgin Mary",
+      "rank": "feast",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-09-st-peter-claver-priest",
+      "month": 9,
+      "day": 9,
+      "name": "St Peter Claver, Priest",
+      "rank": "optional_memorial",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-12-the-most-holy-name-of-mary",
+      "month": 9,
+      "day": 12,
+      "name": "The Most Holy Name of Mary",
+      "rank": "optional_memorial",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-13-st-john-chrysostom-bishop-and-doctor-of-the-church",
+      "month": 9,
+      "day": 13,
+      "name": "St John Chrysostom, Bishop and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-14-the-exaltation-of-the-holy-cross",
+      "month": 9,
+      "day": 14,
+      "name": "The Exaltation of the Holy Cross",
+      "rank": "feast",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-15-our-lady-of-sorrows",
+      "month": 9,
+      "day": 15,
+      "name": "Our Lady of Sorrows",
+      "rank": "memorial",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-16-sts-cornelius-pope-and-cyprian-bishop-martyrs",
+      "month": 9,
+      "day": 16,
+      "name": "Sts Cornelius, Pope, and Cyprian, Bishop, Martyrs",
+      "rank": "memorial",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-17-hildegard-of-bingen",
+      "month": 9,
+      "day": 17,
+      "name": "St Hildegard of Bingen, Virgin and Doctor of the Church",
+      "rank": "optional_memorial",
+      "amendment": {
+        "action": "addition",
+        "decree_date": "2021-01-25",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20210125_decreto-dottori_en.html"
+      }
+    },
+    {
+      "id": "grc-09-17-st-robert-bellarmine-bishop-and-doctor-of-the-church",
+      "month": 9,
+      "day": 17,
+      "name": "St Robert Bellarmine, Bishop and Doctor of the Church",
+      "rank": "optional_memorial",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-19-st-januarius-bishop-and-martyr",
+      "month": 9,
+      "day": 19,
+      "name": "St Januarius, Bishop and Martyr",
+      "rank": "optional_memorial",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-20-sts-andrew-kim-tae-gon-priest-paul-chong-ha-sang-and-companions-martyrs",
+      "month": 9,
+      "day": 20,
+      "name": "Sts Andrew Kim Tae-gŏn, Priest, Paul Chŏng Ha-sang, and Companions, Martyrs",
+      "rank": "memorial",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-21-st-matthew-apostle-and-evangelist",
+      "month": 9,
+      "day": 21,
+      "name": "St Matthew, Apostle and Evangelist",
+      "rank": "feast",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-23-st-pius-of-pietrelcina-priest",
+      "month": 9,
+      "day": 23,
+      "name": "St Pius of Pietrelcina, Priest",
+      "rank": "memorial",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-26-sts-cosmas-and-damian-martyrs",
+      "month": 9,
+      "day": 26,
+      "name": "Sts Cosmas and Damian, Martyrs",
+      "rank": "optional_memorial",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-27-st-vincent-de-paul-priest",
+      "month": 9,
+      "day": 27,
+      "name": "St Vincent de Paul, Priest",
+      "rank": "memorial",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-28-st-lawrence-ruiz-and-companions-martyrs",
+      "month": 9,
+      "day": 28,
+      "name": "St Lawrence Ruiz and Companions, Martyrs",
+      "rank": "optional_memorial",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-28-st-wenceslaus-martyr",
+      "month": 9,
+      "day": 28,
+      "name": "St Wenceslaus, Martyr",
+      "rank": "optional_memorial",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-29-sts-michael-gabriel-and-raphael-archangels",
+      "month": 9,
+      "day": 29,
+      "name": "Sts Michael, Gabriel and Raphael, Archangels",
+      "rank": "feast",
+      "source_page": 10
+    },
+    {
+      "id": "grc-09-30-st-jerome-priest-and-doctor-of-the-church",
+      "month": 9,
+      "day": 30,
+      "name": "St Jerome, Priest and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 10
+    },
+    {
+      "id": "grc-10-01-st-therese-of-the-child-jesus-virgin-and-doctor-of-the-church",
+      "month": 10,
+      "day": 1,
+      "name": "St Thérèse of the Child Jesus, Virgin and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-02-the-holy-guardian-angels",
+      "month": 10,
+      "day": 2,
+      "name": "The Holy Guardian Angels",
+      "rank": "memorial",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-04-st-francis-of-assisi",
+      "month": 10,
+      "day": 4,
+      "name": "St Francis of Assisi",
+      "rank": "memorial",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-05-faustina-kowalska",
+      "month": 10,
+      "day": 5,
+      "name": "St Faustina Kowalska, Virgin",
+      "rank": "optional_memorial",
+      "amendment": {
+        "action": "addition",
+        "decree_date": "2020-05-18",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20200518_decreto-celebrazione-santafaustina_en.html"
+      }
+    },
+    {
+      "id": "grc-10-06-st-bruno-priest",
+      "month": 10,
+      "day": 6,
+      "name": "St Bruno, Priest",
+      "rank": "optional_memorial",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-07-our-lady-of-the-rosary",
+      "month": 10,
+      "day": 7,
+      "name": "Our Lady of the Rosary",
+      "rank": "memorial",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-09-john-henry-newman",
+      "month": 10,
+      "day": 9,
+      "name": "St John Henry Newman, Priest and Doctor of the Church",
+      "rank": "optional_memorial",
+      "amendment": {
+        "action": "addition",
+        "decree_date": "2025-11-09",
+        "decree_url": "https://www.vatican.va/content/romancuria/en/dicasteri/dicastero-culto-divino-e-disciplina-sacramenti/documenti/20251109-decreto-iscrizione-newman.html"
+      }
+    },
+    {
+      "id": "grc-10-09-st-denis-bishop-and-companions-martyrs",
+      "month": 10,
+      "day": 9,
+      "name": "St Denis, Bishop, and Companions, Martyrs",
+      "rank": "optional_memorial",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-09-st-john-leonardi-priest",
+      "month": 10,
+      "day": 9,
+      "name": "St John Leonardi, Priest",
+      "rank": "optional_memorial",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-11-john-xxiii-pope",
+      "month": 10,
+      "day": 11,
+      "name": "St John XXIII, Pope",
+      "rank": "optional_memorial",
+      "amendment": {
+        "action": "addition",
+        "decree_date": "2014-05-29",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20140529_decreto-calendario-generale-gxxiii-gpii_en.html"
+      }
+    },
+    {
+      "id": "grc-10-14-st-callistus-i-pope-and-martyr",
+      "month": 10,
+      "day": 14,
+      "name": "St Callistus I, Pope and Martyr",
+      "rank": "optional_memorial",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-15-st-teresa-of-jesus-virgin-and-doctor-of-the-church",
+      "month": 10,
+      "day": 15,
+      "name": "St Teresa of Jesus, Virgin and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-16-st-hedwig-religious",
+      "month": 10,
+      "day": 16,
+      "name": "St Hedwig, Religious",
+      "rank": "optional_memorial",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-16-st-margaret-mary-alacoque-virgin",
+      "month": 10,
+      "day": 16,
+      "name": "St Margaret Mary Alacoque, Virgin",
+      "rank": "optional_memorial",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-17-st-ignatius-of-antioch-bishop-and-martyr",
+      "month": 10,
+      "day": 17,
+      "name": "St Ignatius of Antioch, Bishop and Martyr",
+      "rank": "memorial",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-18-st-luke-evangelist",
+      "month": 10,
+      "day": 18,
+      "name": "St Luke, Evangelist",
+      "rank": "feast",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-19-st-paul-of-the-cross-priest",
+      "month": 10,
+      "day": 19,
+      "name": "St Paul of the Cross, Priest",
+      "rank": "optional_memorial",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-19-sts-john-de-brebeuf-and-isaac-jogues-priests-and-companions-martyrs",
+      "month": 10,
+      "day": 19,
+      "name": "Sts John de Brébeuf and Isaac Jogues, Priests, and Companions, Martyrs",
+      "rank": "optional_memorial",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-22-john-paul-ii-pope",
+      "month": 10,
+      "day": 22,
+      "name": "St John Paul II, Pope",
+      "rank": "optional_memorial",
+      "amendment": {
+        "action": "addition",
+        "decree_date": "2014-05-29",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20140529_decreto-calendario-generale-gxxiii-gpii_en.html"
+      }
+    },
+    {
+      "id": "grc-10-23-st-john-of-capestrano-priest",
+      "month": 10,
+      "day": 23,
+      "name": "St John of Capestrano, Priest",
+      "rank": "optional_memorial",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-24-st-anthony-mary-claret-bishop",
+      "month": 10,
+      "day": 24,
+      "name": "St Anthony Mary Claret, Bishop",
+      "rank": "optional_memorial",
+      "source_page": 11
+    },
+    {
+      "id": "grc-10-28-sts-simon-and-jude-apostles",
+      "month": 10,
+      "day": 28,
+      "name": "Sts Simon and Jude, Apostles",
+      "rank": "feast",
+      "source_page": 11
+    },
+    {
+      "id": "grc-11-01-all-saints",
+      "month": 11,
+      "day": 1,
+      "name": "All Saints",
+      "rank": "solemnity",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-02-the-commemoration-of-all-the-faithful-departed-all-souls-day",
+      "month": 11,
+      "day": 2,
+      "name": "The Commemoration of All the Faithful Departed (All Souls’ Day)",
+      "rank": null,
+      "source_page": 12,
+      "note": "The source lists this as a commemoration, not as an optional memorial; resolve using its special liturgical rules."
+    },
+    {
+      "id": "grc-11-03-st-martin-de-porres-religious",
+      "month": 11,
+      "day": 3,
+      "name": "St Martin de Porres, Religious",
+      "rank": "optional_memorial",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-04-st-charles-borromeo-bishop",
+      "month": 11,
+      "day": 4,
+      "name": "St Charles Borromeo, Bishop",
+      "rank": "memorial",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-09-the-dedication-of-the-lateran-basilica",
+      "month": 11,
+      "day": 9,
+      "name": "The Dedication of the Lateran Basilica",
+      "rank": "feast",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-10-st-leo-the-great-pope-and-doctor-of-the-church",
+      "month": 11,
+      "day": 10,
+      "name": "St Leo the Great, Pope and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-11-st-martin-of-tours-bishop",
+      "month": 11,
+      "day": 11,
+      "name": "St Martin of Tours, Bishop",
+      "rank": "memorial",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-12-st-josaphat-bishop-and-martyr",
+      "month": 11,
+      "day": 12,
+      "name": "St Josaphat, Bishop and Martyr",
+      "rank": "memorial",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-15-st-albert-the-great-bishop-and-doctor-of-the-church",
+      "month": 11,
+      "day": 15,
+      "name": "St Albert the Great, Bishop and Doctor of the Church",
+      "rank": "optional_memorial",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-16-st-gertrude-virgin",
+      "month": 11,
+      "day": 16,
+      "name": "St Gertrude, Virgin",
+      "rank": "optional_memorial",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-16-st-margaret-of-scotland",
+      "month": 11,
+      "day": 16,
+      "name": "St Margaret of Scotland",
+      "rank": "optional_memorial",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-17-st-elizabeth-of-hungary-religious",
+      "month": 11,
+      "day": 17,
+      "name": "St Elizabeth of Hungary, Religious",
+      "rank": "memorial",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-18-the-dedication-of-the-basilicas-of-sts-peter-and-paul-apostles",
+      "month": 11,
+      "day": 18,
+      "name": "The Dedication of the Basilicas of Sts Peter and Paul, Apostles",
+      "rank": "optional_memorial",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-21-the-presentation-of-the-blessed-virgin-mary",
+      "month": 11,
+      "day": 21,
+      "name": "The Presentation of the Blessed Virgin Mary",
+      "rank": "memorial",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-22-st-cecilia-virgin-and-martyr",
+      "month": 11,
+      "day": 22,
+      "name": "St Cecilia, Virgin and Martyr",
+      "rank": "memorial",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-23-st-clement-i-pope-and-martyr",
+      "month": 11,
+      "day": 23,
+      "name": "St Clement I, Pope and Martyr",
+      "rank": "optional_memorial",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-23-st-columban-abbot",
+      "month": 11,
+      "day": 23,
+      "name": "St Columban, Abbot",
+      "rank": "optional_memorial",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-24-st-andrew-dung-lac-priest-and-companions-martyrs",
+      "month": 11,
+      "day": 24,
+      "name": "St Andrew Dũng-Lạc, Priest, and Companions, Martyrs",
+      "rank": "memorial",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-25-st-catherine-of-alexandria-virgin-and-martyr",
+      "month": 11,
+      "day": 25,
+      "name": "St Catherine of Alexandria, Virgin and Martyr",
+      "rank": "optional_memorial",
+      "source_page": 12
+    },
+    {
+      "id": "grc-11-30-st-andrew-apostle",
+      "month": 11,
+      "day": 30,
+      "name": "St Andrew, Apostle",
+      "rank": "feast",
+      "source_page": 12
+    },
+    {
+      "id": "grc-12-03-st-francis-xavier-priest",
+      "month": 12,
+      "day": 3,
+      "name": "St Francis Xavier, Priest",
+      "rank": "memorial",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-04-st-john-damascene-priest-and-doctor-of-the-church",
+      "month": 12,
+      "day": 4,
+      "name": "St John Damascene, Priest and Doctor of the Church",
+      "rank": "optional_memorial",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-06-st-nicholas-bishop",
+      "month": 12,
+      "day": 6,
+      "name": "St Nicholas, Bishop",
+      "rank": "optional_memorial",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-07-st-ambrose-bishop-and-doctor-of-the-church",
+      "month": 12,
+      "day": 7,
+      "name": "St Ambrose, Bishop and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-08-the-immaculate-conception-of-the-blessed-virgin-mary",
+      "month": 12,
+      "day": 8,
+      "name": "The Immaculate Conception of the Blessed Virgin Mary",
+      "rank": "solemnity",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-09-st-juan-diego-cuauhtlatoatzin",
+      "month": 12,
+      "day": 9,
+      "name": "St Juan Diego Cuauhtlatoatzin",
+      "rank": "optional_memorial",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-10-our-lady-of-loreto",
+      "month": 12,
+      "day": 10,
+      "name": "Our Lady of Loreto",
+      "rank": "optional_memorial",
+      "amendment": {
+        "action": "addition",
+        "decree_date": "2019-10-07",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20191007_decreto-celebrazione-verginediloreto_en.html"
+      }
+    },
+    {
+      "id": "grc-12-11-st-damasus-i-pope",
+      "month": 12,
+      "day": 11,
+      "name": "St Damasus I, Pope",
+      "rank": "optional_memorial",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-12-our-lady-of-guadalupe",
+      "month": 12,
+      "day": 12,
+      "name": "Our Lady of Guadalupe",
+      "rank": "optional_memorial",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-13-st-lucy-virgin-and-martyr",
+      "month": 12,
+      "day": 13,
+      "name": "St Lucy, Virgin and Martyr",
+      "rank": "memorial",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-14-st-john-of-the-cross-priest-and-doctor-of-the-church",
+      "month": 12,
+      "day": 14,
+      "name": "St John of the Cross, Priest and Doctor of the Church",
+      "rank": "memorial",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-21-st-peter-canisius-priest-and-doctor-of-the-church",
+      "month": 12,
+      "day": 21,
+      "name": "St Peter Canisius, Priest and Doctor of the Church",
+      "rank": "optional_memorial",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-23-st-john-of-kanty-priest",
+      "month": 12,
+      "day": 23,
+      "name": "St John of Kanty, Priest",
+      "rank": "optional_memorial",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-25-the-nativity-of-the-lord-christmas",
+      "month": 12,
+      "day": 25,
+      "name": "The Nativity of the Lord (Christmas)",
+      "rank": "solemnity",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-26-st-stephen-the-first-martyr",
+      "month": 12,
+      "day": 26,
+      "name": "St Stephen, the First Martyr",
+      "rank": "feast",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-27-st-john-apostle-and-evangelist",
+      "month": 12,
+      "day": 27,
+      "name": "St John, Apostle and Evangelist",
+      "rank": "feast",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-28-the-holy-innocents-martyrs",
+      "month": 12,
+      "day": 28,
+      "name": "The Holy Innocents, Martyrs",
+      "rank": "feast",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-29-st-thomas-becket-bishop-and-martyr",
+      "month": 12,
+      "day": 29,
+      "name": "St Thomas Becket, Bishop and Martyr",
+      "rank": "optional_memorial",
+      "source_page": 13
+    },
+    {
+      "id": "grc-12-31-st-sylvester-i-pope",
+      "month": 12,
+      "day": 31,
+      "name": "St Sylvester I, Pope",
+      "rank": "optional_memorial",
+      "source_page": 13
+    }
+  ],
+  "as_of": "2026-10-11",
+  "revision_summary": {
+    "previous_entry_count": 212,
+    "fixed_date_additions": 10,
+    "existing_entries_changed": 2,
+    "excluded_movable_addition": {
+      "name": "Blessed Virgin Mary, Mother of the Church",
+      "rank": "memorial",
+      "date_rule": "Monday after Pentecost",
+      "action": "movable_addition_not_in_fixed_dataset",
+      "decree_date": "2018-02-11",
+      "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20180211_decreto-mater-ecclesiae_en.html"
+    },
+    "reference_crosscheck": "https://www.usccb.org/prayer-worship/liturgical-year",
+    "changes": [
+      {
+        "action": "addition",
+        "id": "grc-02-27-gregory-of-narek",
+        "date": "02-27",
+        "name": "St Gregory of Narek, Abbot and Doctor of the Church",
+        "decree_date": "2021-01-25",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20210125_decreto-dottori_en.html"
+      },
+      {
+        "action": "addition",
+        "id": "grc-05-10-john-de-avila",
+        "date": "05-10",
+        "name": "St John de Avila, Priest and Doctor of the Church",
+        "decree_date": "2021-01-25",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20210125_decreto-dottori_en.html"
+      },
+      {
+        "action": "addition",
+        "id": "grc-05-29-paul-vi-pope",
+        "date": "05-29",
+        "name": "St Paul VI, Pope",
+        "decree_date": "2019-01-25",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20190125_decreto-celebrazione-paolovi_en.html"
+      },
+      {
+        "id": "grc-07-22-st-mary-magdalene",
+        "date": "07-22",
+        "name": "St Mary Magdalene",
+        "action": "rank_change",
+        "decree_date": "2016-06-03",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/sanctae-m-magdalenae-decretum_en.pdf",
+        "previous_rank": "memorial"
+      },
+      {
+        "id": "grc-07-29-sts-martha-mary-and-lazarus",
+        "date": "07-29",
+        "name": "Sts Martha, Mary and Lazarus",
+        "action": "expanded_celebration",
+        "decree_date": "2021-01-26",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20210126_decreto-santi_en.html",
+        "previous_name": "St Martha",
+        "previous_id": "grc-07-29-st-martha"
+      },
+      {
+        "action": "addition",
+        "id": "grc-09-05-teresa-of-calcutta",
+        "date": "09-05",
+        "name": "St Teresa of Calcutta, Virgin",
+        "decree_date": "2024-12-24",
+        "decree_url": "https://press.vatican.va/content/salastampa/it/bollettino/pubblico/2025/02/11/0125/00250.html"
+      },
+      {
+        "action": "addition",
+        "id": "grc-09-17-hildegard-of-bingen",
+        "date": "09-17",
+        "name": "St Hildegard of Bingen, Virgin and Doctor of the Church",
+        "decree_date": "2021-01-25",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20210125_decreto-dottori_en.html"
+      },
+      {
+        "action": "addition",
+        "id": "grc-10-05-faustina-kowalska",
+        "date": "10-05",
+        "name": "St Faustina Kowalska, Virgin",
+        "decree_date": "2020-05-18",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20200518_decreto-celebrazione-santafaustina_en.html"
+      },
+      {
+        "action": "addition",
+        "id": "grc-10-09-john-henry-newman",
+        "date": "10-09",
+        "name": "St John Henry Newman, Priest and Doctor of the Church",
+        "decree_date": "2025-11-09",
+        "decree_url": "https://www.vatican.va/content/romancuria/en/dicasteri/dicastero-culto-divino-e-disciplina-sacramenti/documenti/20251109-decreto-iscrizione-newman.html"
+      },
+      {
+        "action": "addition",
+        "id": "grc-10-11-john-xxiii-pope",
+        "date": "10-11",
+        "name": "St John XXIII, Pope",
+        "decree_date": "2014-05-29",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20140529_decreto-calendario-generale-gxxiii-gpii_en.html"
+      },
+      {
+        "action": "addition",
+        "id": "grc-10-22-john-paul-ii-pope",
+        "date": "10-22",
+        "name": "St John Paul II, Pope",
+        "decree_date": "2014-05-29",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20140529_decreto-calendario-generale-gxxiii-gpii_en.html"
+      },
+      {
+        "action": "addition",
+        "id": "grc-12-10-our-lady-of-loreto",
+        "date": "12-10",
+        "name": "Our Lady of Loreto",
+        "decree_date": "2019-10-07",
+        "decree_url": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20191007_decreto-celebrazione-verginediloreto_en.html"
+      }
+    ]
+  }
+}

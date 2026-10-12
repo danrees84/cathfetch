@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "calendar": "europe",
+  "inherits": "general_roman",
+  "scope": "fixed_nominal_sanctoral_calendar_only",
+  "status": "draft_independently_structured_facts_review_before_production",
+  "as_of": "2026-10-11",
+  "description": "Regional rank changes for the co-patrons of Europe, inherited by England and Wales.",
+  "sources": [
+    {
+      "id": "europe",
+      "url": "https://www.liturgyoffice.org.uk/Calendar/Info/background2.shtml",
+      "title": "Liturgy Office — Background: Liturgical Calendars, Regional"
+    }
+  ],
+  "additions": [],
+  "overrides": [
+    {
+      "id": "grc-02-14-sts-cyril-monk-and-methodius-bishop",
+      "changes": {
+        "rank": "feast"
+      },
+      "source_id": "europe"
+    },
+    {
+      "id": "grc-04-29-st-catherine-of-siena-virgin-and-doctor-of-the-church",
+      "changes": {
+        "rank": "feast"
+      },
+      "source_id": "europe"
+    },
+    {
+      "id": "grc-07-11-st-benedict-abbot",
+      "changes": {
+        "rank": "feast"
+      },
+      "source_id": "europe"
+    },
+    {
+      "id": "grc-07-23-st-bridget-religious",
+      "changes": {
+        "rank": "feast"
+      },
+      "source_id": "europe"
+    },
+    {
+      "id": "grc-08-09-st-teresa-benedicta-of-the-cross-virgin-and-martyr",
+      "changes": {
+        "rank": "feast"
+      },
+      "source_id": "europe"
+    }
+  ],
+  "date_reassignments": [],
+  "notes": [
+    "Calendar overlays describe nominal celebrations; they do not determine what is observed on a particular year/date.",
+    "Do not infer colour, readings, holy-day obligation, or precedence solely from the rank in these records.",
+    "Retain all candidates on a date; a separate precedence engine selects the applicable observance.",
+    "Five calendar dates cover six patron saints because Cyril and Methodius are celebrated together on 14 February."
+  ],
+  "counts": {
+    "additions": 0,
+    "overrides": 5,
+    "date_reassignments": 0
+  }
+}

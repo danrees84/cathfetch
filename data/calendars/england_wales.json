@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "calendar": "england_wales",
+  "inherits": "europe",
+  "scope": "fixed_nominal_sanctoral_calendar_only",
+  "status": "draft_independently_structured_facts_review_before_production",
+  "as_of": "2026-10-11",
+  "description": "Fixed-date additions and overrides shared by the national calendars of England and Wales.",
+  "sources": [
+    {
+      "id": "england",
+      "url": "https://www.liturgyoffice.org.uk/Calendar/National/England1.shtml",
+      "title": "Liturgy Office — National Calendar for England (summary)"
+    },
+    {
+      "id": "wales",
+      "url": "https://www.liturgyoffice.org.uk/Calendar/National/Wales1.shtml",
+      "title": "Liturgy Office — National Calendar for Wales (summary)"
+    },
+    {
+      "id": "decree_newman",
+      "url": "https://www.liturgyoffice.org.uk/Calendar/National/October/SJHN-CDW-Decrees.pdf",
+      "title": "Holy See, Congregation for Divine Worship — England and Wales, prot. 353/19, 6 Aug 2020"
+    },
+    {
+      "id": "calendar2026",
+      "url": "https://www.liturgyoffice.org.uk/Calendar/2026/Calendar-2026.pdf",
+      "title": "Liturgy Office — 2026 liturgical calendar (year-specific validation)"
+    }
+  ],
+  "additions": [
+    {
+      "id": "ew-03-01-st-david",
+      "month": 3,
+      "day": 1,
+      "name": "St David, Bishop, Patron of Wales",
+      "rank": "feast",
+      "source_id": "england",
+      "note": "England: feast. Wales elevates this shared entry to solemnity in the Wales overlay."
+    },
+    {
+      "id": "ew-11-03-st-winefride",
+      "month": 11,
+      "day": 3,
+      "name": "St Winefride, Virgin",
+      "rank": "optional_memorial",
+      "source_id": "wales",
+      "note": "The England summary spells the name Winifride; the Wales detail page spells it Winefride."
+    }
+  ],
+  "overrides": [
+    {
+      "id": "grc-10-09-john-henry-newman",
+      "changes": {
+        "rank": "feast"
+      },
+      "source_id": "decree_newman",
+      "note": "2020 decree explicitly applies to both England and Wales; general calendar remains optional memorial."
+    }
+  ],
+  "date_reassignments": [
+    {
+      "id": "grc-10-09-st-denis-bishop-and-companions-martyrs",
+      "new_month": 10,
+      "new_day": 10,
+      "source_id": "decree_newman",
+      "note": "Permanent national nominal reassignment granted with the Newman feast; this is not a year-specific precedence transfer."
+    },
+    {
+      "id": "grc-10-09-st-john-leonardi-priest",
+      "new_month": 10,
+      "new_day": 10,
+      "source_id": "decree_newman",
+      "note": "Permanent national nominal reassignment granted with the Newman feast; this is not a year-specific precedence transfer."
+    }
+  ],
+  "notes": [
+    "Calendar overlays describe nominal celebrations; they do not determine what is observed on a particular year/date.",
+    "Do not infer colour, readings, holy-day obligation, or precedence solely from the rank in these records.",
+    "Retain all candidates on a date; a separate precedence engine selects the applicable observance.",
+    "St John Paul II (22 October) was already added to the General Roman Calendar in the supplied updated base; no duplicate national entry is necessary.",
+    "St David is a shared entry of rank feast, elevated to solemnity by Wales only."
+  ],
+  "counts": {
+    "additions": 2,
+    "overrides": 1,
+    "date_reassignments": 2
+  }
+}
