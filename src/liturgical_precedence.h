@@ -3,6 +3,7 @@
 
 #include <chrono>
 #include "fixed_celebration.h"
+#include <string_view>
 
 enum class PrecedenceLevel : int
 {
@@ -21,31 +22,17 @@ enum class PrecedenceLevel : int
     OtherWeekday = 13
 };
 
-enum class ObservanceStatus
-{
-    Observed,
-    Optional,
-    Impeded
-};
-
 bool outranks(PrecedenceLevel candidate, PrecedenceLevel current);
+
 PrecedenceLevel ordinaryTimeBaselinePrecedence(
-    std::chrono::year_month_day date);
+    std::chrono::year_month_day date,
+    std::string_view calendarName = "grc");
+
+PrecedenceLevel temporalBaselinePrecedence(
+    std::chrono::year_month_day date,
+    std::string_view calendarName = "grc");
 
 PrecedenceLevel fixedCelebrationPrecedence(
     const FixedCelebration& celebration);
-
-ObservanceStatus optionalMemorialStatusInOrdinaryTime(
-    std::chrono::year_month_day date);
-
-struct CelebrationAssessment
-{
-    FixedCelebration celebration;
-    ObservanceStatus status;
-};
-
-CelebrationAssessment assessOptionalMemorialInOrdinaryTime(
-    const FixedCelebration& celebration,
-    std::chrono::year_month_day date);
 
 #endif

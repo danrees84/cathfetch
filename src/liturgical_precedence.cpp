@@ -1,6 +1,7 @@
 #include "liturgical_precedence.h"
 #include "temporal_calendar.h"
 #include <stdexcept>
+#include "easter.h"
 
 bool outranks(PrecedenceLevel candidate, PrecedenceLevel current)
 {
@@ -8,13 +9,16 @@ bool outranks(PrecedenceLevel candidate, PrecedenceLevel current)
 }
 
 PrecedenceLevel ordinaryTimeBaselinePrecedence(
-		std::chrono::year_month_day date)
+    std::chrono::year_month_day date,
+    std::string_view calendarName)
 {
-	if (!date.ok() || !isOrdinaryTime(date))
-	{
-		throw std::invalid_argument(
-				"Date is not a valid Ordinary Time date");
-	}
+
+
+if (!date.ok() || !isOrdinaryTime(date, calendarName))
+{
+    throw std::invalid_argument(
+        "Date is not a valid Ordinary Time date");
+}
 
 	std::chrono::sys_days calendarDay{date};
 	std::chrono::weekday dayOfWeek{calendarDay};
@@ -25,6 +29,133 @@ PrecedenceLevel ordinaryTimeBaselinePrecedence(
 	}
 
 	return PrecedenceLevel::OtherWeekday;
+}
+
+PrecedenceLevel temporalBaselinePrecedence(
+    std::chrono::year_month_day date,
+    std::string_view calendarName)
+{
+	if (!date.ok())
+	{
+		throw std::invalid_argument("Invalid calendar date");
+	}
+
+	if (isTriduum(date))
+{
+    return PrecedenceLevel::Triduum;
+}
+
+
+if (isOrdinaryTime(date, calendarName))
+{
+    return ordinaryTimeBaselinePrecedence(date, calendarName);
+}
+
+	if (isAdvent(date))
+	{
+		std::chrono::sys_days calendarDay{date};
+		std::chrono::weekday dayOfWeek{calendarDay};
+
+		if (dayOfWeek == std::chrono::Sunday)
+		{
+			return PrecedenceLevel::HighestDays;
+		}
+
+		if (date.month() == std::chrono::December &&
+				unsigned(date.day()) >= 17)
+		{
+			return PrecedenceLevel::PrivilegedWeekday;
+		}
+
+		return PrecedenceLevel::OtherWeekday;
+	}
+
+	if (isLent(date))
+{
+    int year = int(date.year());
+
+    if (date == calculateAshWednesday(year))
+    {
+        return PrecedenceLevel::HighestDays;
+    }
+
+    std::chrono::sys_days calendarDay{date};
+    std::chrono::weekday dayOfWeek{calendarDay};
+
+    if (dayOfWeek == std::chrono::Sunday)
+    {
+        return PrecedenceLevel::HighestDays;
+    }
+
+    std::chrono::sys_days palmSunday{
+        calculatePalmSunday(year)
+    };
+
+    if (calendarDay > palmSunday)
+    {
+        return PrecedenceLevel::HighestDays;
+    }
+
+    return PrecedenceLevel::PrivilegedWeekday;
+}
+
+if (date == calculateAscension(int(date.year())))
+{
+    return PrecedenceLevel::HighestDays;
+}
+
+if (isEaster(date))
+{
+    std::chrono::sys_days calendarDay{date};
+    std::chrono::weekday dayOfWeek{calendarDay};
+
+    if (dayOfWeek == std::chrono::Sunday)
+    {
+        return PrecedenceLevel::HighestDays;
+    }
+
+    std::chrono::sys_days easterDay{
+        calculateEaster(int(date.year()))
+    };
+
+    if (calendarDay <= easterDay + std::chrono::days{7})
+    {
+        return PrecedenceLevel::HighestDays;
+    }
+
+    return PrecedenceLevel::OtherWeekday;
+}
+
+
+if (isChristmas(date, calendarName))
+{
+    if (date.month() == std::chrono::December &&
+        unsigned(date.day()) == 25)
+    {
+        return PrecedenceLevel::HighestDays;
+    }
+
+    std::chrono::sys_days calendarDay{date};
+    std::chrono::weekday dayOfWeek{calendarDay};
+
+    if (dayOfWeek == std::chrono::Sunday)
+    {
+        return PrecedenceLevel::SundayOfChristmasOrOrdinaryTime;
+    }
+
+    if ((date.month() == std::chrono::December &&
+         unsigned(date.day()) >= 26) ||
+        (date.month() == std::chrono::January &&
+         unsigned(date.day()) == 1))
+    {
+        return PrecedenceLevel::PrivilegedWeekday;
+    }
+
+    return PrecedenceLevel::OtherWeekday;
+}
+
+	throw std::logic_error(
+			"Temporal precedence not yet implemented for this season");
 }
 
 PrecedenceLevel fixedCelebrationPrecedence(
@@ -42,22 +173,31 @@ PrecedenceLevel fixedCelebrationPrecedence(
 		return PrecedenceLevel::OptionalMemorial;
 	}
 
-if (celebration.rank == CelebrationRank::Memorial &&
-    celebration.rankSourceCalendar == "general_roman")
-{
-    return PrecedenceLevel::GeneralMemorial;
-}
+	if (celebration.rank == CelebrationRank::Memorial &&
+			celebration.rankSourceCalendar == "general_roman")
+	{
+		return PrecedenceLevel::GeneralMemorial;
+	}
 
-if (celebration.rank == CelebrationRank::Memorial &&
-    celebration.rankSourceCalendar != "general_roman")
-{
-    return PrecedenceLevel::ProperMemorial;
-}
+	if (celebration.rank == CelebrationRank::Memorial &&
+			celebration.rankSourceCalendar != "general_roman")
+	{
+		return PrecedenceLevel::ProperMemorial;
+	}
 
 	if (celebration.rank == CelebrationRank::Solemnity &&
 			celebration.rankSourceCalendar != "general_roman")
 	{
 		return PrecedenceLevel::ProperSolemnity;
+	}
+
+	// TODO: Distinguish highest-ranking solemnities (level 2)
+	// from ordinary General Roman Calendar solemnities (level 3).
+
+	if (celebration.rank == CelebrationRank::Solemnity &&
+			celebration.rankSourceCalendar == "general_roman")
+	{
+		return PrecedenceLevel::GeneralSolemnityOrAllSouls;
 	}
 
 	if (celebration.rank == CelebrationRank::Feast)
@@ -73,10 +213,9 @@ if (celebration.rank == CelebrationRank::Memorial &&
 			return PrecedenceLevel::GeneralFeast;
 		}
 
-
-// TODO (post-v1.0): Replace calendar-specific precedence
-// assumptions with explicit classifications in JSON,
-// allowing new jurisdictions without C++ changes.
+		// TODO (post-v1.0): Replace calendar-specific precedence
+		// assumptions with explicit classifications in JSON,
+		// allowing new jurisdictions without C++ changes.
 
 		if (celebration.rankSourceCalendar == "europe")
 		{
@@ -86,45 +225,4 @@ if (celebration.rank == CelebrationRank::Memorial &&
 
 	throw std::logic_error(
 			"Precedence not yet implemented for: " + celebration.id);
-}
-
-ObservanceStatus optionalMemorialStatusInOrdinaryTime(
-		std::chrono::year_month_day date)
-{
-	auto baseline = ordinaryTimeBaselinePrecedence(date);
-
-	if (outranks(baseline, PrecedenceLevel::OptionalMemorial))
-	{
-		return ObservanceStatus::Impeded;
-	}
-
-	return ObservanceStatus::Optional;
-}
-
-CelebrationAssessment assessOptionalMemorialInOrdinaryTime(
-		const FixedCelebration& celebration,
-		std::chrono::year_month_day date)
-{
-	if (!date.ok())
-	{
-		throw std::invalid_argument("Invalid calendar date");
-	}
-
-	if (celebration.date !=
-			std::chrono::month_day{date.month(), date.day()})
-	{
-		throw std::invalid_argument(
-				"Celebration does not match the given date");
-	}
-
-	if (celebration.rank != CelebrationRank::OptionalMemorial)
-	{
-		throw std::invalid_argument(
-				"Celebration is not an optional memorial");
-	}
-
-	ObservanceStatus status =
-		optionalMemorialStatusInOrdinaryTime(date);
-
-	return CelebrationAssessment{celebration, status};
 }

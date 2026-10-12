@@ -4,12 +4,15 @@
 #include <chrono>
 #include <optional>
 #include <vector>
+#include <string_view>
 
 #include "liturgical_day.h"
 #include "fixed_celebration.h"
 
 LiturgicalDay resolveLiturgicalDay(
     std::chrono::year_month_day date,
-    const std::vector<FixedCelebration>& celebrations);
+    const std::vector<FixedCelebration>& celebrations,
+    std::string_view calendarName = "grc");
+
 
 #endif

@@ -1,6 +1,8 @@
 #include "liturgical_format.h"
 #include "liturgical_colour.h"
 #include <format>
+#include <array>
+#include <string_view>
 
 std::string liturgicalPeriodName(LiturgicalPeriod period)
 {
@@ -96,4 +98,37 @@ std::string formatOrdinaryTimeDay(
     return std::format("{:%A}", calendarDay)
         + " of the " + formatOrdinal(week)
         + " Week in Ordinary Time";
+}
+
+std::string formatAdventDay(
+    std::chrono::year_month_day date,
+    int week)
+{
+    constexpr std::array<std::string_view, 4> weekNames{
+        "First",
+        "Second",
+        "Third",
+        "Fourth"
+    };
+
+    std::string_view weekName = weekNames.at(week - 1);
+
+    std::chrono::sys_days calendarDay{date};
+    std::chrono::weekday dayOfWeek{calendarDay};
+
+    if (dayOfWeek == std::chrono::Sunday)
+    {
+        return std::format("{} Sunday of Advent", weekName);
+    }
+
+    if (date.month() == std::chrono::December &&
+        unsigned(date.day()) >= 17)
+    {
+        return std::format("{} December", unsigned(date.day()));
+    }
+
+    return std::format(
+        "{:%A} of the {} Week of Advent",
+        calendarDay,
+        weekName);
 }

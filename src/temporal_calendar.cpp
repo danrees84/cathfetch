@@ -33,6 +33,7 @@ std::chrono::year_month_day calculateGoodFriday(int year)
 }
 
 
+
 std::chrono::year_month_day calculatePalmSunday(int year)
 {
 
@@ -61,6 +62,18 @@ std::chrono::year_month_day calculatePentecost(int year)
 
 }
 
+std::chrono::year_month_day calculateAscension(int year)
+{
+	auto easterDate = calculateEaster(year);
+
+	std::chrono::sys_days easterDay{easterDate};
+
+	std::chrono::sys_days ascensionDay =
+		easterDay + std::chrono::days{39};
+
+	return std::chrono::year_month_day{ascensionDay};
+}
+
 std::chrono::year_month_day calculateFirstAdventSunday(int year)
 {
 
@@ -85,28 +98,92 @@ std::chrono::year_month_day calculateFirstAdventSunday(int year)
 
 }
 
-std::chrono::year_month_day calculateBaptismOfLord(int year)
+std::chrono::year_month_day calculateHolyFamily(int year)
 {
-
-	std::chrono::year_month_day janDate{
+	std::chrono::year_month_day christmasDate{
 		std::chrono::year{year},
-			std::chrono::January,
-			std::chrono::day{7}
+			std::chrono::December,
+			std::chrono::day{25}
 	};
 
-	std::chrono::sys_days calendarDay{janDate};
+	std::chrono::sys_days christmasDay{christmasDate};
+	std::chrono::weekday christmasWeekday{christmasDay};
 
+	if (christmasWeekday == std::chrono::Sunday)
+	{
+		return std::chrono::year{year} /
+		std::chrono::December / 30;
+	}
+
+	int daysUntilSunday = 7 - christmasWeekday.c_encoding();
+
+	return std::chrono::year_month_day{
+		christmasDay + std::chrono::days{daysUntilSunday}
+	};
+}
+
+std::chrono::year_month_day calculateBaptismOfLord(
+		int year,
+		std::string_view calendarName)
+{
+	auto epiphanyDate = calculateEpiphany(year, calendarName);
+
+	std::chrono::sys_days epiphanyDay{epiphanyDate};
+	std::chrono::weekday dayOfWeek{epiphanyDay};
+
+	if (dayOfWeek == std::chrono::Sunday &&
+			unsigned(epiphanyDate.day()) >= 7)
+	{
+		return std::chrono::year_month_day{
+			epiphanyDay + std::chrono::days{1}
+		};
+	}
+
+	int daysUntilSunday = 7 - dayOfWeek.c_encoding();
+
+	return std::chrono::year_month_day{
+		epiphanyDay + std::chrono::days{daysUntilSunday}
+	};
+}
+
+std::chrono::year_month_day calculateEpiphany(
+		int year,
+		std::string_view calendarName)
+{
+	std::chrono::year_month_day januarySixth{
+		std::chrono::year{year},
+		std::chrono::January,
+		std::chrono::day{6}
+	};
+
+	if (calendarName == "grc" || calendarName == "europe")
+	{
+		return januarySixth;
+	}
+
+	if (calendarName != "england" && calendarName != "wales")
+	{
+		throw std::invalid_argument("Unknown liturgical calendar");
+	}
+
+	std::chrono::sys_days calendarDay{januarySixth};
 	std::chrono::weekday dayOfWeek{calendarDay};
 
-	int daysUntilSunday = (7 - dayOfWeek.c_encoding()) % 7;
+	if (dayOfWeek == std::chrono::Saturday)
+	{
+		return std::chrono::year_month_day{
+			calendarDay + std::chrono::days{1}
+		};
+	}
 
-	std::chrono::sys_days baptismDay =
-		calendarDay + std::chrono::days{daysUntilSunday};
+	if (dayOfWeek == std::chrono::Monday)
+	{
+		return std::chrono::year_month_day{
+			calendarDay - std::chrono::days{1}
+		};
+	}
 
-	std::chrono::year_month_day baptismDate{baptismDay};
-
-	return baptismDate;
-
+	return januarySixth;
 }
 
 bool isAdvent(std::chrono::year_month_day date)
@@ -123,17 +200,19 @@ bool isAdvent(std::chrono::year_month_day date)
 	return date >= firstAdventSunday && date < christmasDay;
 }
 
-bool isChristmas(std::chrono::year_month_day date)
+bool isChristmas(
+		std::chrono::year_month_day date,
+		std::string_view calendarName)
 {
 
 	std::chrono::year_month_day christmasDay{
 		date.year(),
-			std::chrono::December,
-			std::chrono::day{25}
+		std::chrono::December,
+		std::chrono::day{25}
 	};
 
-
-	auto baptismLordDate = calculateBaptismOfLord(int(date.year()));
+	auto baptismLordDate = calculateBaptismOfLord(
+			int(date.year()), calendarName);
 
 	return date >= christmasDay || date <= baptismLordDate;
 
@@ -169,25 +248,31 @@ bool isEaster(std::chrono::year_month_day date)
 
 }
 
-bool isOrdinaryTime(std::chrono::year_month_day date)
+bool isOrdinaryTime(
+		std::chrono::year_month_day date,
+		std::string_view calendarName)
 {
-
-	return !isAdvent(date) && !isChristmas(date) && !isLent(date) && !isTriduum(date) && !isEaster(date);
-
+	return !isAdvent(date) &&
+		!isChristmas(date, calendarName) &&
+		!isLent(date) &&
+		!isTriduum(date) &&
+		!isEaster(date);
 }
 
-
-LiturgicalPeriod getLiturgicalPeriod(std::chrono::year_month_day date)
+LiturgicalPeriod getLiturgicalPeriod(
+		std::chrono::year_month_day date,
+		std::string_view calendarName)
 {
 	if (isAdvent(date))
 	{
 		return LiturgicalPeriod::Advent;
 	}
 
-	if (isChristmas(date))
+	if (isChristmas(date, calendarName))
 	{
 		return LiturgicalPeriod::Christmas;
 	}
+
 	if (isLent(date))
 	{
 		return LiturgicalPeriod::Lent;
@@ -205,19 +290,15 @@ LiturgicalPeriod getLiturgicalPeriod(std::chrono::year_month_day date)
 
 }
 
-int calculateOrdinaryTimeWeek(std::chrono::year_month_day date)
+int calculateOrdinaryTimeWeek(
+		std::chrono::year_month_day date,
+		std::string_view calendarName)
 {
 
-	if (!date.ok())
-	{
-		throw std::invalid_argument("Invalid calendar date");
-	}
-
-	if (!isOrdinaryTime(date))
+	if (!date.ok() || !isOrdinaryTime(date, calendarName))
 	{
 		throw std::invalid_argument("Date is not in Ordinary Time");
 	}
-
 
 	std::chrono::sys_days calendarDay{date};
 	std::chrono::weekday dayOfWeek{calendarDay};
@@ -226,17 +307,46 @@ int calculateOrdinaryTimeWeek(std::chrono::year_month_day date)
 	if (date < calculateAshWednesday(int(date.year())))
 	{
 
-		auto baptismOfLord = calculateBaptismOfLord(int(date.year()));
+		auto baptismOfLord = calculateBaptismOfLord(
+				int(date.year()), calendarName);
 
-		std::chrono::sys_days baptismSunday{baptismOfLord};
-		return 1 + (((weekSunday - baptismSunday).count())/7);
+		std::chrono::sys_days baptismDay{baptismOfLord};
+		std::chrono::weekday baptismWeekday{baptismDay};
+
+		std::chrono::sys_days baptismWeekSunday =
+			baptismDay - std::chrono::days{
+				int(baptismWeekday.c_encoding())
+			};
+
+		int weeksSinceBaptism =
+			int((weekSunday - baptismWeekSunday).count() / 7);
+
+		return weeksSinceBaptism + 1;
 	}
 
-	else {
-		auto advent = calculateFirstAdventSunday(int(date.year()));
-		std::chrono::sys_days adventDay{advent};
-		int daysUntilAdvent = (adventDay - weekSunday).count();
-		int weeksUntilAdvent = daysUntilAdvent / 7;
-		return 35 - weeksUntilAdvent;
+		else {
+			auto advent = calculateFirstAdventSunday(int(date.year()));
+			std::chrono::sys_days adventDay{advent};
+			int daysUntilAdvent = (adventDay - weekSunday).count();
+			int weeksUntilAdvent = daysUntilAdvent / 7;
+			return 35 - weeksUntilAdvent;
+		}
 	}
-}
+
+	int calculateAdventWeek(std::chrono::year_month_day date)
+	{
+		if (!date.ok() || !isAdvent(date))
+		{
+			throw std::invalid_argument("Date is not in Advent");
+		}
+
+		auto firstAdventSunday =
+			calculateFirstAdventSunday(int(date.year()));
+
+		std::chrono::sys_days firstSunday{firstAdventSunday};
+		std::chrono::sys_days calendarDay{date};
+
+		int daysSinceAdvent = (calendarDay - firstSunday).count();
+
+		return (daysSinceAdvent / 7) + 1;
+	}
