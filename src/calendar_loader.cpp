@@ -40,7 +40,7 @@ std::vector<FixedCelebration> loadFixedCelebrations(
             std::chrono::month{unsigned(month)} /
                 std::chrono::day{unsigned(day)},
             entry.at("name").get<std::string>(),
-            rank
+            rank, "general_roman", entry.value("feast_of_lord", false)
         };
 
         celebrations.push_back(celebration);

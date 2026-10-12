@@ -1,0 +1,15 @@
+#ifndef LITURGICAL_RESOLVER_H
+#define LITURGICAL_RESOLVER_H
+
+#include <chrono>
+#include <optional>
+#include <vector>
+
+#include "liturgical_day.h"
+#include "fixed_celebration.h"
+
+LiturgicalDay resolveLiturgicalDay(
+    std::chrono::year_month_day date,
+    const std::vector<FixedCelebration>& celebrations);
+
+#endif

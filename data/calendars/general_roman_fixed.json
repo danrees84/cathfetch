@@ -162,6 +162,7 @@
       "day": 2,
       "name": "The Presentation of the Lord",
       "rank": "feast",
+      "feast_of_lord": true,
       "source_page": 3
     },
     {
@@ -987,6 +988,7 @@
       "day": 6,
       "name": "The Transfiguration of the Lord",
       "rank": "feast",
+      "feast_of_lord": true,
       "source_page": 9
     },
     {
@@ -1223,6 +1225,7 @@
       "day": 14,
       "name": "The Exaltation of the Holy Cross",
       "rank": "feast",
+      "feast_of_lord": true,
       "source_page": 10
     },
     {
@@ -1572,6 +1575,7 @@
       "day": 9,
       "name": "The Dedication of the Lateran Basilica",
       "rank": "feast",
+      "feast_of_lord": true,
       "source_page": 12
     },
     {

@@ -12,6 +12,8 @@ struct FixedCelebration
 	std::chrono::month_day date;
 	std::string name;
 	std::optional<CelebrationRank> rank;
+std::string rankSourceCalendar = "general_roman";
+bool feastOfLord = false;
 };
 
 #endif

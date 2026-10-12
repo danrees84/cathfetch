@@ -20,6 +20,9 @@ void applyRankOverrides(
     nlohmann::json overlay;
     overlayFile >> overlay;
 
+std::string sourceCalendar =
+    overlay.at("calendar").get<std::string>();
+
     for (const auto& overrideEntry : overlay.at("overrides"))
     {
         std::string id =
@@ -35,6 +38,7 @@ CelebrationRank newRank = parseCelebrationRank(
             if (celebration.id == id)
             {
                 celebration.rank = newRank;
+		celebration.rankSourceCalendar = sourceCalendar;
                 found = true;
                 break;
             }
@@ -62,6 +66,9 @@ void applyAdditions(
 
     nlohmann::json overlay;
     overlayFile >> overlay;
+
+    std::string sourceCalendar =
+    overlay.at("calendar").get<std::string>();
 
     for (const auto& entry : overlay.at("additions"))
     {
@@ -103,7 +110,7 @@ void applyAdditions(
             id,
             date,
             entry.at("name").get<std::string>(),
-            rank
+            rank, sourceCalendar
         };
 
         celebrations.push_back(celebration);

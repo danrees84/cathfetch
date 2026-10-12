@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-void printLiturgicalDay(std::chrono::year_month_day date, bool showCross)
+void printLiturgicalDay(std::chrono::year_month_day date, bool showCross, const std::optional<FixedCelebration>& observance)
 {
 	auto period = getLiturgicalPeriod(date);
 	auto colour = seasonalColour(period);
@@ -37,22 +37,29 @@ void printLiturgicalDay(std::chrono::year_month_day date, bool showCross)
 	}
 
 	bool ordinaryTime = (period == LiturgicalPeriod::OrdinaryTime);
+	bool hasDescription = observance.has_value() || ordinaryTime;
 
-	if (ordinaryTime)
+	if (hasDescription)
 	{
-		int week = calculateOrdinaryTimeWeek(date);
-
 		if (showCross)
 		{
 			std::cout << "          ███          ";
 		}
 
-		std::cout << formatOrdinaryTimeDay(date, week) << "\n";
+		if (observance.has_value())
+		{
+			std::cout << observance->name << "\n";
+		}
+		else
+		{
+			int week = calculateOrdinaryTimeWeek(date);
+			std::cout << formatOrdinaryTimeDay(date, week) << "\n";
+		}
 	}
 
 	if (showCross)
 	{
-		int remainingRows = ordinaryTime ? 4 : 5;
+		int remainingRows = hasDescription ? 4 : 5;
 
 		for (int i = 0; i < remainingRows; ++i)
 		{

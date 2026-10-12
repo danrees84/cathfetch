@@ -47,7 +47,9 @@ auto europeanMatches = findFixedCelebrations(
 for (const auto& celebration : europeanMatches)
 {
     std::cout << "Europe: " << celebration.name << ": "
-              << celebrationRankName(celebration.rank) << "\n";
+              << celebrationRankName(celebration.rank)
+    << " (rank from "
+              << celebration.rankSourceCalendar << ")\n";
 }
 
 auto englandWalesCelebrations = europeanCelebrations;
@@ -97,7 +99,10 @@ for (const auto& celebration : welshMatches)
 {
     std::cout << "Wales: "
               << celebration.name << ": "
-              << celebrationRankName(celebration.rank) << "\n";
+              << celebrationRankName(celebration.rank)
+	       << " (rank from "
+              << celebration.rankSourceCalendar << ")\n";
+
 }
 
 
@@ -117,6 +122,29 @@ for (const auto& celebration : findFixedCelebrations(
     std::cout << "Wales (selected): " << celebration.name << " — "
               <<  celebrationRankName(celebration.rank) << "\n";
 }
+
+auto transfiguration = findFixedCelebrations(
+    celebrations,
+    std::chrono::August / std::chrono::day{6});
+
+auto stLawrence = findFixedCelebrations(
+    celebrations,
+    std::chrono::August / std::chrono::day{10});
+
+if (transfiguration.size() != 1 || stLawrence.size() != 1)
+{
+    std::cerr << "Feast lookup failed\n";
+    return 1;
+}
+
+if (!transfiguration.front().feastOfLord ||
+    stLawrence.front().feastOfLord)
+{
+    std::cerr << "Feast classification failed\n";
+    return 1;
+}
+
+std::cout << "Feast classification test passed\n";
 
     return 0;
 }
