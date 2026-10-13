@@ -2,7 +2,9 @@
 #include "calendar_lookup.h"
 #include "liturgical_precedence.h"
 #include "liturgical_format.h"
-
+#include "movable_observances.h"
+#include "observance_candidate.h"
+#include <string>
 #include <stdexcept>
 
 LiturgicalDay resolveLiturgicalDay(
@@ -17,18 +19,75 @@ LiturgicalDay resolveLiturgicalDay(
 
 	LiturgicalPeriod season = getLiturgicalPeriod(date, calendarName);
 
-	if (season != LiturgicalPeriod::OrdinaryTime &&
-			season != LiturgicalPeriod::Advent)
-	{
-		throw std::logic_error(
-				"Resolution for this season not yet implemented");
-	}
+if (season != LiturgicalPeriod::OrdinaryTime &&
+    season != LiturgicalPeriod::Advent &&
+    season != LiturgicalPeriod::Christmas)
+{
+    throw std::logic_error(
+        "Resolution for this season not yet implemented");
+}
+
+	bool isChristmasDay =
+    season == LiturgicalPeriod::Christmas &&
+    date.month() == std::chrono::December &&
+    date.day() == std::chrono::day{25};
+
+if (season != LiturgicalPeriod::OrdinaryTime &&
+    season != LiturgicalPeriod::Advent &&
+    season != LiturgicalPeriod::Christmas)
+{
+    throw std::logic_error(
+        "Resolution for this season not yet implemented");
+}
+
 
 	PrecedenceLevel baseline =
 		temporalBaselinePrecedence(date, calendarName);
 
-	auto candidates = findFixedCelebrations(
+	auto fixedCelebrations = findFixedCelebrations(
 			celebrations, date.month() / date.day());
+
+std::vector<ObservanceCandidate> candidates =
+    findMovableObservances(date, calendarName);
+
+for (const auto& celebration : celebrations)
+{
+    bool isEpiphany =
+        celebration.id == "grc-01-06-the-epiphany-of-the-lord";
+
+    std::chrono::month_day observedDate = celebration.date;
+
+    if (isEpiphany)
+    {
+        auto epiphanyDate = calculateEpiphany(
+            int(date.year()), calendarName);
+
+        observedDate = epiphanyDate.month() / epiphanyDate.day();
+    }
+
+    if (observedDate != date.month() / date.day())
+    {
+        continue;
+    }
+
+    PrecedenceLevel precedence =
+        fixedCelebrationPrecedence(celebration);
+
+    if (isEpiphany)
+    {
+        precedence = PrecedenceLevel::HighestDays;
+    }
+
+    ObservanceCandidate candidate{
+        celebration.id,
+        celebration.name,
+        celebration.rank,
+        precedence,
+        celebration.rank == CelebrationRank::OptionalMemorial
+    };
+
+    candidates.push_back(candidate);
+}
 
 	// Handle solemnities displaced by an Advent Sunday,
 	// where the following Monday is available.
@@ -51,32 +110,65 @@ LiturgicalDay resolveLiturgicalDay(
 			if (candidate.rank == CelebrationRank::Solemnity)
 			{
 				PrecedenceLevel sundayPrecedence =
-					temporalBaselinePrecedence(previousDate);
+					temporalBaselinePrecedence(previousDate, calendarName);
 
 				PrecedenceLevel solemnityPrecedence =
 					fixedCelebrationPrecedence(candidate);
 
+
 				if (outranks(sundayPrecedence, solemnityPrecedence))
 				{
-					candidates.push_back(candidate);
+					ObservanceCandidate transferredCandidate{
+						candidate.id,
+							candidate.name,
+							candidate.rank,
+							solemnityPrecedence,
+							false
+					};
+
+					candidates.push_back(transferredCandidate);
 				}
+
+
 			}
 		}
 	}
 
-	std::optional<FixedCelebration> selectedCelebration;
-	PrecedenceLevel bestPrecedence = baseline;
-	bool tied = false;
+std::optional<ObservanceCandidate> selectedCelebration;
+PrecedenceLevel bestPrecedence = baseline;
+bool tied = false;
+
+if (isChristmasDay)
+{
+    for (const auto& candidate : candidates)
+    {
+        if (candidate.id ==
+            "grc-12-25-the-nativity-of-the-lord-christmas")
+        {
+            selectedCelebration = candidate;
+            selectedCelebration.value().precedence = baseline;
+            break;
+        }
+    }
+
+    if (!selectedCelebration.has_value())
+    {
+        throw std::logic_error(
+            "Nativity of the Lord missing from calendar data");
+    }
+}
+
+
 
 	for (const auto& candidate : candidates)
 	{
-		if (candidate.rank == CelebrationRank::OptionalMemorial)
+		if (candidate.optional)
 		{
 			continue;
 		}
 
-		PrecedenceLevel candidatePrecedence =
-			fixedCelebrationPrecedence(candidate);
+		PrecedenceLevel candidatePrecedence = candidate.precedence;
+
 
 		if (outranks(candidatePrecedence, bestPrecedence))
 		{
@@ -108,18 +200,24 @@ LiturgicalDay resolveLiturgicalDay(
 		};
 	}
 
-	std::string temporalName;
 
-	if (season == LiturgicalPeriod::Advent)
-	{
-		temporalName = formatAdventDay(
-				date, calculateAdventWeek(date));
-	}
-	else
-	{
-		temporalName = formatOrdinaryTimeDay(
-				date, calculateOrdinaryTimeWeek(date, calendarName));
-	}
+std::string temporalName;
+
+if (season == LiturgicalPeriod::Advent)
+{
+    temporalName = formatAdventDay(
+        date, calculateAdventWeek(date));
+}
+else if (season == LiturgicalPeriod::Christmas)
+{
+    temporalName = formatChristmasDay(date, calendarName);
+}
+else
+{
+    temporalName = formatOrdinaryTimeDay(
+        date, calculateOrdinaryTimeWeek(date, calendarName));
+}
+
 
 	return LiturgicalDay{
 		date,

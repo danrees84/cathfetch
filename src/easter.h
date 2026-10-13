@@ -1,5 +1,5 @@
-#ifndef HORARIUM_EASTER_H
-#define HORARIUM_EASTER_H
+#ifndef CATHFETCH_EASTER_H
+#define CATHFETCH_EASTER_H
 
 #include <chrono>
 

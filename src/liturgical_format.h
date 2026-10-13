@@ -5,6 +5,7 @@
 #include "temporal_calendar.h"
 #include "liturgical_colour.h"
 #include <chrono>
+#include <string_view>
 
 std::string liturgicalPeriodName(LiturgicalPeriod period);
 std::string liturgicalColourName(LiturgicalColour colour);
@@ -15,5 +16,9 @@ std::string formatOrdinaryTimeDay(
 std::string formatAdventDay(
     std::chrono::year_month_day date,
     int week);
+
+std::string formatChristmasDay(
+    std::chrono::year_month_day date,
+    std::string_view calendarName);
 
 #endif
