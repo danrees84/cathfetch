@@ -125,6 +125,8 @@ int main()
         require(reference(resolve(2026y/August/25), "gospel") == "Mt 23:23-26", "OT21 annual Gospel");
         require(reference(resolve(2025y/November/29), "first") == "Dn 7:15-27", "Final OT Saturday I");
         require(reference(resolve(2026y/November/28), "first") == "Rv 22:1-7", "Final OT Saturday II");
+        require(reference(resolve(2026y/October/18), "second") == "1 Thess 1:1–5b",
+                "OT29 A endpoint independently corroborated by Hallam and Universalis");
         for (int week = 21; week <= 34; ++week)
             for (int weekday = 1; weekday <= 6; ++weekday)
                 for (std::string cycle : {"I", "II"})

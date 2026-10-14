@@ -12,6 +12,29 @@ The Hallam 2025–26 ordo explicitly identifies the first reading as proper for 
 
 New feast coverage includes the apostles, Lawrence, Marian feasts, European patrons, George in England, Patrick in England/Wales, Augustine of Canterbury and Gregory the Great in England, English Martyrs, Walsingham, Newman, John Fisher and Thomas More, and Thomas Becket. The same identity may remain a memorial outside the territory where it is a feast. Its national feast set does not replace that territory’s weekday default. George’s selected Common set is explicitly accommodated, not uniquely mandatory.
 
+## Universalis reconciliation — 14 October 2026
+
+At the user’s request, [Universalis’s public Birmingham calendar](https://universalis.com/europe.england.birmingham/calendar-2026.htm) has been reconciled with Cathfetch’s England calendar. The [stored report](data/lectionary/universalis_reconciliation_2026.json) contains all 365 dates and citation headings from the nine accessible Mass pages, 13–21 October 2026. No Scripture text is stored. The scraper uses the Python standard library, makes sequential requests one second apart, checks returned dates/URLs and never works around the date limit.
+
+The source independently places the First Sunday of Advent on **29 November 2026**. All 365 dates agree with Cathfetch’s liturgical-year grouping: 332 dates in the year ending 2026 and 33 in the year ending 2027. All nine available Mass pages independently agree with A/II. Cathfetch supplies B/I after Advent; those future Mass-page labels were not accessible for independent Universalis verification. There are 317 normalised-name or temporal-week matches and 48 name/local-proper review items; those review items are not automatically errors.
+
+Birmingham includes diocesan celebrations absent from the national selection, including Wulstan, Chad, the cathedral dedication, Dominic Barberi, Edmund Campion and Birinus. It also supplies an anniversary of dedication for consecrated churches. These have not been imported into England’s national calendar. Naming variants and optional-memorial choices also require interpretation; the report preserves them instead of forcing identity matches.
+
+All nine first readings and Gospels agree after expanding abbreviations. The report separately identifies psalm/verse differences, missing acclamation slots and memorial reading alternatives. **Do not merge repeated roles:** Universalis can publish both feria and memorial sets on one page. The parser retains all citation headings in order; the comparison of the first published set does not declare the later set mandatory or certify all options.
+
+One confirmed correction was made: the second reading for Ordinary Time Sunday 29 A ends at **1 Thessalonians 1:5b**, corroborated both by Universalis’s 18 October Mass page and the official Hallam ordo. The record and independent audit ledger retain that evidence. Other differences remain review items: for example, Universalis omits Psalm 100 verse 4 on 19 October while Hallam’s compressed range reads 1–5. This is not sufficient evidence to silently impose a global correction. Current-edition verification remains pending.
+
+Universalis [explicitly limits public reading pages](https://universalis.com/n-otherdates.htm) to yesterday, today and the week ahead. The requested 19 October page is available, but 29 November redirects to that notice. The full public yearly calendar is accessible; **a complete year of Mass references cannot currently be scraped from these public dated pages**. No paid access was purchased or bypassed. The existing three national reading gaps therefore remain.
+
+```sh
+# Snapshot collected on 14 October 2026; use the current public window for a later fetch.
+python3 tools/universalis_audit.py fetch --year 2026 --mass-start 2026-10-13 --output /tmp/universalis-facts.json
+python3 tools/universalis_audit.py reconcile /tmp/universalis-facts.json --calendar england --output /tmp/universalis-report.json
+python3 tests/universalis_audit_test.py
+```
+
+The year diagnostic now includes the explicit ending `liturgical_year` alongside A/B/C and I/II. Six Python tests cover citation-only extraction, retained options, access notices, date/name comparisons, subverse differences and the complete source-year reconciliation against the live engine. These tests are included in `make test`.
+
 ## Coverage measured, not inferred
 
 The [coverage report](data/lectionary/coverage_2024_2030.tsv) contains 28 complete civil-year sweeps: 2024–2030 in all four calendars, totalling 10,228 date/calendar pairs. There are 10,176 available provisional sets, 24 missing assignments, 28 Holy Saturdays without a daytime Mass and no unresolved calendar days. There are 83 selections of a permitted alternative/default accommodated set, and 5,282 days with alternatives available. These last two metrics overlap with availability; they are not extra days.
@@ -37,7 +60,7 @@ These are explicit missing-data results, not invented Common selections. Holy Sa
 
 The [audit ledger](data/lectionary/reference_audit.json) accounts for all 804 records, including all original 600. **It is an audit triage ledger, not a completed independent textual audit.** The French bishops’ 2023–2025 guides provide partial independent passage comparisons for 619 records; 185 lack a usable comparison. Of the original 600, 453 have partial comparisons and 147 remain without a usable independent comparison.
 
-Across the selected comparisons, 1,172 slots match after book-abbreviation and punctuation normalisation, 799 require collation, and 423 are absent or ambiguous in the comparison source. These numbers are neither verified assignments nor confirmed errors. Differences include source verse/psalm numbering, optional forms, and transcription defects in the comparison sources themselves. No verse numbering is converted by the comparison. No reference is changed merely to improve the match count.
+Across the selected comparisons, 1,173 slots match after book-abbreviation and punctuation normalisation, 798 require collation, and 423 are absent or ambiguous in the comparison source. These numbers are neither verified assignments nor confirmed errors. Differences include source verse/psalm numbering, optional forms, and transcription defects in the comparison sources themselves. No verse numbering is converted by the comparison. No reference is changed merely to improve the match count.
 
 The ledger records an example date, independent URL/page, stored citation, comparison citation and result for each comparable slot. Dates are selected through Cathfetch; this is **not** independent proof of the date-selection rules. Only daytime sets are compared, and a first-reading or Gospel match is required to avoid treating a foreign national schedule or a different Mass form as the same provision. Unmatched records, acclamations, alternatives and precise subverses remain openly pending. The ledger cannot certify the 2024 England and Wales edition or all options from daily French ordos.
 
@@ -77,6 +100,6 @@ python3 tools/lectionary_audit.py
 ./build/lectionary_year 2026 england > /tmp/lectionary-2026.tsv
 ```
 
-The application is rebuilt in `build/cathfetch`. All eleven C++ test executables and both CLI suites pass. The lectionary test performs **44,340 checks across 14,612 date/calendar pairs** (2008, 2022, 2024–2030 and 2038, all four calendars), including reversed assignment order: 14,536 available, 36 explicit gaps and 40 Holy Saturdays. The calendar regression performs 450,238 checks across 64,284 date/calendar pairs, each resolved in both candidate orders. Reading and calendar CLI tests include 120, 100, 80, 60 and 40 columns, with/without the cross and redirected output. The 168 late Ordinary Time selectors, independent literal reference cases, proper-slot/weekday combinations, national versus general ranks and verification-evidence validation have dedicated checks.
+The application is rebuilt in `build/cathfetch`. All eleven C++ test executables and both CLI suites pass. The lectionary test performs **44,343 checks across 14,612 date/calendar pairs** (2008, 2022, 2024–2030 and 2038, all four calendars), including reversed assignment order: 14,536 available, 36 explicit gaps and 40 Holy Saturdays. The calendar regression performs 450,238 checks across 64,284 date/calendar pairs, each resolved in both candidate orders. Reading and calendar CLI tests include 120, 100, 80, 60 and 40 columns, with/without the cross and redirected output. The 168 late Ordinary Time selectors, independent literal reference cases, proper-slot/weekday combinations, national versus general ranks and verification-evidence validation have dedicated checks.
 
 These are implementation, coverage and selected reference checks, **not independent verification of every reading over complete liturgical years**. Completing that final audit requires the authoritative material described above.

@@ -17429,9 +17429,9 @@
           },
           {
             "role": "second",
-            "stored": "1 Thess 1:1-5",
+            "stored": "1 Thess 1:1–5b",
             "independent": "1 Thessalonians 1:1-5b",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "acclamation",

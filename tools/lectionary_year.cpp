@@ -30,7 +30,7 @@ int main(int argc, char** argv)
         int dates = 0;
         std::cout << "date\tobservance\tsunday_cycle\tweekday_cycle\tstatus\tkey\tmass\treadings\tdiagnostic"
                      "\tverification\tpermitted_alternative_selected\talternatives_available\tsource\tsource_note"
-                     "\tverification_sources\tverification_scope\n";
+                     "\tverification_sources\tverification_scope\tliturgical_year\n";
         for (sys_days date{std::chrono::year{year}/January/1};
              date < sys_days{std::chrono::year{year+1}/January/1}; date += days{1})
         {
@@ -76,7 +76,7 @@ int main(int argc, char** argv)
                 for (const auto& source : readings.selected->verificationSources) std::cout << source << "; ";
             std::cout << '\t';
             if (readings.selected) std::cout << readings.selected->verificationNote;
-            std::cout << '\n';
+            std::cout << '\t' << readings.cycles.liturgicalYear << '\n';
         }
         std::cerr << year << ' ' << calendar << ": " << dates << " dates; "
                   << counts[ReadingStatus::Available] << " with references; " << verified

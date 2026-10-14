@@ -21140,7 +21140,7 @@
         },
         {
           "role": "second",
-          "reference": "1 Thess 1:1-5",
+          "reference": "1 Thess 1:1–5b",
           "alternatives": []
         },
         {
@@ -21160,8 +21160,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/OT5Sunday.shtml#OT29",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
-      "verification": "published_table"
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. The second reading endpoint is clarified to 1 Thessalonians 1:1–5b against Hallam 2025–26 and the public Universalis Mass page for 18 October 2026; original table omitted the subverse.",
+      "verification": "published_table",
+      "verification_sources": [
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=122",
+        "https://universalis.com/europe.england.birmingham/20261018/mass.htm"
+      ],
+      "verification_note": "Second-reading endpoint 5b independently corroborated by the current Hallam ordo and Universalis. This is slot-level corroboration, not complete current-edition verification of this set or its alternatives."
     },
     {
       "id": "temporal:ordinary:29:0:B:day",

@@ -24,6 +24,7 @@ test: $(TESTS) all
 	@set -e; for test in $(TESTS); do $$test; done
 	@sh tests/cli_test.sh
 	@sh tests/lectionary_cli_test.sh
+	@python3 tests/universalis_audit_test.py
 clean:
 	rm -rf build
 -include $(wildcard build/*.d)
