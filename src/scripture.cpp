@@ -94,6 +94,7 @@ Bible loadBible(const std::string& filename)
         BibleBook book;
         book.name = entry.at("name");
         book.numbering = entry.at("numbering");
+        book.requiresExplicitMapping = entry.value("requires_explicit_mapping", false);
         book.nativeChapters = entry.value("native_chapters", std::set<int>{});
         for (const auto& [chapter, verses] : entry.at("chapters").items())
             for (const auto& [verse, text] : verses.items())
@@ -278,6 +279,8 @@ ScripturePassage lookupPassage(const Bible& bible, std::string_view reference,
                     const auto mapped = bible.verseMappings.find(chapterKey + ":" + std::to_string(v));
                     std::vector<std::array<int, 2>> addresses{{c, v}};
                     if (mapped != bible.verseMappings.end()) addresses = mapped->second;
+                    else if (!nativeMapping && book.requiresExplicitMapping)
+                        throw std::invalid_argument("No verified Douay–Rheims correspondence for this " + book.name + " passage");
                     if (addresses.empty())
                     {
                         if (!bible.omittedVerses.contains(chapterKey + ":" + std::to_string(v)))

@@ -38,7 +38,8 @@ assert 'Word was God' not in run('--date=25122026')
 assert christmas == run('--date=25122026', '--readings', '--full-verses')
 assert christmas == run('--date=25122026', '--full-verses', '--readings')
 assert 'No daytime Mass' in run('--date=04042026', '--full-verses')
-assert 'assignment not yet verified' in run('--date=02032026', '--calendar=wales', '--full-verses')
+assert 'Text unavailable' not in run('--date=02032026', '--calendar=wales', '--full-verses')
+assert 'assignment not yet verified' in run('--date=25102025', '--calendar=wales', '--full-verses')
 assert 'Text unavailable:' not in run('--date=20102026', '--full-verses')
 assert 'Have mercy on me' in run('--date=18022026', '--full-verses')
 assert 'I will take the chalice' in run('--date=02042026', '--mass=evening', '--full-verses')
@@ -46,5 +47,8 @@ for date in ['12072025', '31082025']:
     text = run('--date='+date, '--full-verses')
     assert 'Text unavailable' not in text
     assert 'Cited verses absent from the Douay–Rheims text are omitted.' in ' '.join(text.split())
+for date in ['08062023', '09062023', '10062023']:
+    text = run('--date='+date, '--calendar=england', '--full-verses', width=120)
+    assert 'No verified Douay–Rheims correspondence for this Tobit passage' in ' '.join(text.split())
 print('Full-verse CLI, alternatives and wrapping tests passed')
 PY

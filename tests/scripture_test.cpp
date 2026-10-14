@@ -67,7 +67,7 @@ int main()
         require(lookupScripture(bible, "Wisdom 3:1–9").verses.size() == 9, "Deuterocanonical reading text");
         for (const auto& ref : {"John 1:0", "John 1:999", "John 999:1", "John 1:18-1", "John 1:1,",
                                 "John 1:1 or 2:1", "Unknown 1:1", "John 1:99999999999999999",
-                                "Ps 50:3-4", "John 1:1 7", "John 1:1 rubbish", "Sirach 3:19"})
+                                "Ps 50:3-4", "John 1:1 7", "John 1:1 rubbish", "Sirach 3:19", "Tobit 11:5-17", "Tobit 12:1,5-15,20"})
         {
             const auto result = lookupScripture(bible, ref);
             require(!result.diagnostic.empty() && result.verses.empty(), "Unsupported lookup fails atomically with a diagnostic");
@@ -129,7 +129,13 @@ int main()
         {
             const auto passage = lookupScripture(bible, reference, numbering);
             if (!passage.diagnostic.empty())
-                throw std::runtime_error(reference + ": " + passage.diagnostic);
+            {
+                require((reference.starts_with("Tobit ") || reference.starts_with("Tb ")) &&
+                        passage.diagnostic.find("No verified Douay") != std::string::npos && passage.verses.empty(),
+                        "Only the documented unverified Tobit correspondences may fail");
+                availability[{reference, numbering}] = false;
+                return false;
+            }
             require(!passage.verses.empty(), "Stored reading returns text");
             availability[{reference, numbering}] = true;
             return passage.omitsAbsentVerses;
@@ -139,15 +145,19 @@ int main()
             {
                 if (reading.role == "acclamation") continue;
                 omitted += checkPassage(reading.reference, reading.psalmNumbering);
-                ++available;
+                if (availability.at({reading.reference, reading.psalmNumbering})) ++available;
+                else ++unavailable;
                 for (const auto& alternative : reading.alternatives)
                 {
                     checkPassage(alternative.reference, reading.psalmNumbering);
+                    require(availability.at({alternative.reference, reading.psalmNumbering}),
+                            "Stored alternative reading must have an available text correspondence");
                     ++alternatives;
                 }
             }
-        require(available == 2655 && omitted == 2, "All primary citations map; two contain explicitly absent verses");
-        int dates = 0, selected = 0;
+        require(available == 2659 && unavailable == 6 && omitted == 2,
+                "Primary citations resolve except six explicitly guarded Tobit passages; two absent-verse notices");
+        int dates = 0, selected = 0, textUnavailableDays = 0;
         using namespace std::chrono;
         for (const auto calendar : {"grc", "europe", "england", "wales"})
         {
@@ -160,14 +170,20 @@ int main()
                     const auto readings = resolveMassReadings(day, lectionary, calendar);
                     if (!readings.selected) continue; // Explicitly missing assignments remain a separate concern.
                     ++selected;
+                    bool textUnavailable = false;
                     for (const auto& reading : readings.selected->readings)
                         if (reading.role != "acclamation")
+                        {
                             require(availability.contains({reading.reference, reading.psalmNumbering}),
-                                    "Every selected daily passage has a tested text mapping");
+                                    "Every selected daily passage has a tested text mapping or documented failure");
+                            textUnavailable |= !availability.at({reading.reference, reading.psalmNumbering});
+                        }
+                    textUnavailableDays += textUnavailable;
                 }
         }
         std::cout << "Scripture year sweep: " << dates << " dates; " << selected << " selected assignments; "
-                  << alternatives << " alternative citations checked; " << omitted << " absent-verse notices\n";
+                  << alternatives << " alternative citations checked; " << omitted << " absent-verse notices; "
+                  << textUnavailableDays << " dates with guarded text correspondences\n";
         std::cout << "Scripture: " << checks << " checks; " << verses << " source verses; "
                   << available << " stored citations available, " << unavailable << " explicitly unavailable\n";
     }

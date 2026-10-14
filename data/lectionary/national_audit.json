@@ -1,0 +1,51 @@
+{
+  "scope": "Reference facts and national default choices reviewed 14 October 2026; not full current-edition certification. No liturgical or modern Scripture text is stored.",
+  "sources": [
+    {
+      "url": "https://www.rcadcschools.org/Ordo%20Advent%202022-Jan%202025.pdf",
+      "access": "Indexed diocesan PDF excerpts retrieved by web search; direct PDF currently returns HTTP 403.",
+      "locators": [
+        "1 March 2023: suggested Isaiah 61:1-3,10-11 before the national set; alternative Luke 2:41-51a.",
+        "8 November 2023: use the All Saints readings.",
+        "25 October 2023: proper readings at older Lectionary volume II p1363 and BG p373; citations not supplied."
+      ]
+    },
+    {
+      "url": "https://stgregorys.org.uk/2025/03/01/saint-david-bishop/",
+      "access": "Public English Catholic parish reading headings; supports Philippians/Psalm 1/Matthew and restores the truncated older psalm reference."
+    },
+    {
+      "url": "https://www.liturgyoffice.org.uk/Resources/Rites/LM-Introduction.pdf",
+      "access": "Paragraph 84: three readings for proper solemnities; two for feasts; Common choices remain choices."
+    }
+  ],
+  "results": [
+    {
+      "day_id": "ew-03-01-st-david",
+      "calendar": "england",
+      "status": "suggested_default_available",
+      "assignment": "ew-03-01-st-david:england:day",
+      "qualification": "Accommodated Common selection; not a claim of unique mandatory readings."
+    },
+    {
+      "day_id": "ew-03-01-st-david",
+      "calendar": "wales",
+      "status": "suggested_default_available",
+      "assignment": "ew-03-01-st-david:wales:day",
+      "qualification": "Diocesan suggested Isaiah first reading added before Philippians; not a unique mandatory Common set."
+    },
+    {
+      "day_id": "wal-11-08-all-saints-of-wales",
+      "calendar": "wales",
+      "status": "directed_selection_available",
+      "assignment": "wal-11-08-all-saints-of-wales:wales:day",
+      "qualification": "Two-reading feast default from the directed All Saints provision, with apostolic first-reading alternative under LM84(c). Exact current proper uncollated."
+    },
+    {
+      "day_id": "wal-10-25-six-welsh-martyrs-and-companions",
+      "calendar": "wales",
+      "status": "missing_authoritative_citation_set",
+      "qualification": "The diocesan ordo establishes a proper set, so an invented Common set is not substituted. Third-party references are leads, not sufficient authority to import the set. Current proper citations/number required."
+    }
+  ]
+}

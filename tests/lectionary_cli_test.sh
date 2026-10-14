@@ -34,7 +34,8 @@ assert 'Readings:\nIsa 2:1-5;' in run('--date=30112025', '--readings', width=120
 assert 'Luke 2:1-14' in run('--date=25122026', '--mass=night', width=120)
 assert 'No daytime Mass' in run('--date=04042026', '--readings', width=120)
 assert 'Readings:\nGal 5:18-25;' in run('--date=14102026', '--readings', width=120)
-assert 'assignment not yet verified' in run('--date=02032026', '--calendar=wales', '--readings', width=120)
+assert 'Isaiah 61:1-3, 10-11' in run('--date=02032026', '--calendar=wales', '--readings', width=120)
+assert 'assignment not yet verified' in run('--date=25102025', '--calendar=wales', '--readings', width=120)
 assert 'with references;' in subprocess.run(['./build/lectionary_year', '2026', 'grc'],
     text=True, capture_output=True, check=True).stderr
 assert 'Readings' not in run('--date=08122026', width=120)

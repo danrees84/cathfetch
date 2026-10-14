@@ -261,6 +261,90 @@
       "reference": null,
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/OT3.shtml#Week12",
       "note": "Removed malformed purported shorter form. It changes chapter from the appointed Genesis 15 passage and reverses its range. No independently confirmed replacement supplied; not silently reconstructed."
+    },
+    {
+      "id": "temporal:advent:1:6:any:day",
+      "role": "gospel",
+      "previous": "Matthew 9:35–10:1.6–8",
+      "reference": "Matthew 9:35–10:1, 5a, 6–8",
+      "sources": [
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=8",
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=25"
+      ],
+      "note": "Independent citation audit correction; annual Ordinary Time Gospel applies to both weekday cycles. Full current-edition verification remains pending."
+    },
+    {
+      "id": "temporal:holy_week:2:any:day",
+      "role": "gospel",
+      "previous": "John 13:21-33. 33-38",
+      "reference": "John 13:21-33, 36-38",
+      "sources": [
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=40",
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=61"
+      ],
+      "note": "Independent citation audit correction; annual Ordinary Time Gospel applies to both weekday cycles. Full current-edition verification remains pending."
+    },
+    {
+      "id": "temporal:ordinary:12:2:I:day",
+      "role": "gospel",
+      "previous": "Matthew 7:26. 12-14",
+      "reference": "Matthew 7:6, 12-14",
+      "sources": [
+        "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/30-ORDO-2022_2023-Annee-A.pdf#page=55"
+      ],
+      "note": "Independent citation audit correction; annual Ordinary Time Gospel applies to both weekday cycles. Full current-edition verification remains pending."
+    },
+    {
+      "id": "temporal:ordinary:12:2:II:day",
+      "role": "gospel",
+      "previous": "Matthew 7:26. 12-14",
+      "reference": "Matthew 7:6, 12-14",
+      "sources": [
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=85"
+      ],
+      "note": "Independent citation audit correction; annual Ordinary Time Gospel applies to both weekday cycles. Full current-edition verification remains pending."
+    },
+    {
+      "id": "temporal:ordinary:19:2:II:day",
+      "role": "psalm",
+      "previous": "PS 118:14. 24. 72. 103. 11. 131. r.103",
+      "reference": "Ps 118:14, 24, 72, 103, 111, 131 r.103",
+      "sources": [
+        "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=68",
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=104"
+      ],
+      "note": "Independent citation audit correction; annual Ordinary Time Gospel applies to both weekday cycles. Full current-edition verification remains pending."
+    },
+    {
+      "id": "temporal:ordinary:20:3:II:day",
+      "role": "gospel",
+      "previous": "Matthew 20:1-6",
+      "reference": "Matthew 20:1-16",
+      "sources": [
+        "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=70",
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=106"
+      ],
+      "note": "Independent citation audit correction; annual Ordinary Time Gospel applies to both weekday cycles. Full current-edition verification remains pending."
+    },
+    {
+      "id": "temporal:ordinary:8:5:I:day",
+      "role": "gospel",
+      "previous": "Mark 11:11–26",
+      "reference": "Mark 11:11-25",
+      "sources": [
+        "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/30-ORDO-2022_2023-Annee-A.pdf#page=50"
+      ],
+      "note": "Independent citation audit correction; annual Ordinary Time Gospel applies to both weekday cycles. Full current-edition verification remains pending."
+    },
+    {
+      "id": "temporal:ordinary:8:5:II:day",
+      "role": "gospel",
+      "previous": "Mark 11:11–26",
+      "reference": "Mark 11:11-25",
+      "sources": [
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=85"
+      ],
+      "note": "Independent citation audit correction; annual Ordinary Time Gospel applies to both weekday cycles. Full current-edition verification remains pending."
     }
   ]
 }

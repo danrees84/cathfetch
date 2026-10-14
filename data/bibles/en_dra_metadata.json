@@ -411,7 +411,8 @@
         "Tob",
         "Tobit"
       ],
-      "numbering": "greek"
+      "numbering": "greek",
+      "requires_explicit_mapping": true
     },
     "JDT": {
       "name": "Judith",
@@ -985,6 +986,11 @@
       "scope": "Catholic Daniel 3 prayer and canticle",
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/OT7.shtml",
       "note": "Traditional Greek additions retain native Catholic verse numbers; the furnace narrative uses explicit mappings to DRA 91ff."
+    },
+    {
+      "scope": "Tobit: unlisted addresses cannot assume identity across recensions",
+      "source": "https://bible.usccb.org/bible/tobit/6",
+      "note": "Modern Catholic long-recension passages and the shorter Vulgate/DRA differ in text as well as verse division. The commented-out TVTMS Tobit sections are not verified conversion data. Missing correspondences now fail explicitly; successful address lookup alone does not establish a valid passage."
     }
   ]
 }

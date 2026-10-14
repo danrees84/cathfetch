@@ -3,7 +3,9 @@
   "sources": [
     "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf",
     "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/30-ORDO-2022_2023-Annee-A.pdf",
-    "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf"
+    "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf",
+    "https://www.rcadcschools.org/Ordo%20Advent%202022-Jan%202025.pdf",
+    "https://stgregorys.org.uk/2025/03/01/saint-david-bishop/"
   ],
   "entries": [
     {
@@ -2385,9 +2387,10 @@
           },
           {
             "role": "gospel",
-            "stored": "Matthew 9:35–10:1.6–8",
+            "stored": "Matthew 9:35–10:1, 5a, 6–8",
             "independent": "Matthew 9:35–10:1.5a.6-8",
-            "result": "requires_collation"
+            "result": "requires_collation",
+            "previous_stored": "Matthew 9:35–10:1.6–8"
           }
         ]
       }
@@ -6169,9 +6172,10 @@
           },
           {
             "role": "gospel",
-            "stored": "John 13:21-33. 33-38",
+            "stored": "John 13:21-33, 36-38",
             "independent": "John 13:21-33.36-38",
-            "result": "requires_collation"
+            "result": "requires_collation",
+            "previous_stored": "John 13:21-33. 33-38"
           }
         ]
       }
@@ -9104,9 +9108,10 @@
           },
           {
             "role": "gospel",
-            "stored": "Matthew 7:26. 12-14",
+            "stored": "Matthew 7:6, 12-14",
             "independent": "Matthew 7:6.12-14",
-            "result": "requires_collation"
+            "result": "requires_collation",
+            "previous_stored": "Matthew 7:26. 12-14"
           }
         ]
       }
@@ -12686,9 +12691,10 @@
           },
           {
             "role": "psalm",
-            "stored": "PS 118:14. 24. 72. 103. 11. 131. r.103",
+            "stored": "Ps 118:14, 24, 72, 103, 111, 131 r.103",
             "independent": "Psalm 118:14.24, 72.103, 111.131",
-            "result": "requires_collation"
+            "result": "requires_collation",
+            "previous_stored": "PS 118:14. 24. 72. 103. 11. 131. r.103"
           },
           {
             "role": "acclamation",
@@ -13641,9 +13647,10 @@
           },
           {
             "role": "gospel",
-            "stored": "Matthew 20:1-6",
+            "stored": "Matthew 20:1-16",
             "independent": "Matthew 20:1-16",
-            "result": "requires_collation"
+            "result": "requires_collation",
+            "previous_stored": "Matthew 20:1-6"
           }
         ]
       }
@@ -23454,9 +23461,10 @@
           },
           {
             "role": "gospel",
-            "stored": "Mark 11:11–26",
+            "stored": "Mark 11:11-25",
             "independent": "Mark 11:11-25",
-            "result": "requires_collation"
+            "result": "requires_collation",
+            "previous_stored": "Mark 11:11–26"
           }
         ]
       }
@@ -23918,6 +23926,47 @@
       "current_edition_verified": false,
       "assignment_source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/OT2Solemnities.shtml#Trinity",
       "evidence": null
+    },
+    {
+      "id": "ew-03-01-st-david:england:day",
+      "original_600": false,
+      "status": "independent_comparison_unavailable",
+      "current_edition_verified": false,
+      "assignment_source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/OT2Solemnities.shtml#David",
+      "evidence": null,
+      "national_direction_sources": [
+        "https://www.rcadcschools.org/Ordo%20Advent%202022-Jan%202025.pdf",
+        "https://stgregorys.org.uk/2025/03/01/saint-david-bishop/",
+        "https://www.liturgyoffice.org.uk/Resources/Rites/LM-Introduction.pdf"
+      ],
+      "remaining": "Suggested national Common selection, corroborated by diocesan 2023 directions and an English parish in March 2025. Not complete printed 2024-edition verification; all Common options remain outside this set."
+    },
+    {
+      "id": "ew-03-01-st-david:wales:day",
+      "original_600": false,
+      "status": "independent_comparison_unavailable",
+      "current_edition_verified": false,
+      "assignment_source": "https://www.rcadcschools.org/Ordo%20Advent%202022-Jan%202025.pdf",
+      "evidence": null,
+      "national_direction_sources": [
+        "https://www.rcadcschools.org/Ordo%20Advent%202022-Jan%202025.pdf",
+        "https://stgregorys.org.uk/2025/03/01/saint-david-bishop/",
+        "https://www.liturgyoffice.org.uk/Resources/Rites/LM-Introduction.pdf"
+      ],
+      "remaining": "Suggested national Common selection, corroborated by diocesan 2023 directions and an English parish in March 2025. Not complete printed 2024-edition verification; all Common options remain outside this set."
+    },
+    {
+      "id": "wal-11-08-all-saints-of-wales:wales:day",
+      "original_600": false,
+      "status": "independent_comparison_unavailable",
+      "current_edition_verified": false,
+      "assignment_source": "https://www.rcadcschools.org/Ordo%20Advent%202022-Jan%202025.pdf",
+      "evidence": null,
+      "national_direction_sources": [
+        "https://www.liturgyoffice.org.uk/Resources/Rites/LM-Introduction.pdf",
+        "https://www.liturgyoffice.org.uk/Calendar/Sunday/OT2Solemnities.shtml#AllSaints"
+      ],
+      "remaining": "Diocesan direction to the All Saints readings, adapted to the two-reading feast provision of LM 84(c). Exact current national proper remains uncollated."
     }
   ],
   "remaining": "All entries still require complete current England and Wales 2024 edition collation, including exact verses, psalm numbering, acclamations and options. Citation differences are review items, not automatically errors."

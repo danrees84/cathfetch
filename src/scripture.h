@@ -13,6 +13,7 @@ struct BibleBook
     std::string name;
     std::map<int, std::map<int, std::string>> chapters;
     std::string numbering;
+    bool requiresExplicitMapping = false;
     std::set<int> nativeChapters;
 };
 

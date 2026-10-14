@@ -139,7 +139,23 @@ int main()
                     require(entry->verification == ReferenceVerification::PublishedTable,
                             "Foreign or older tables must not imply current England/Wales verification");
                 }
-        require(resolve(2026y/March/2, "wales").status == ReadingStatus::MissingData, "Unverified David solemnity is explicit gap");
+        require(reference(resolve(2026y/March/2, "wales"), "first") == "Isaiah 61:1-3, 10-11", "Transferred David retains Welsh suggested first reading");
+        require(reference(resolve(2026y/March/2, "wales"), "second") == "Philippians 3:8-14", "Welsh solemnity has three readings");
+        require(resolve(2026y/March/2, "wales").selected->use == ReadingUse::Accommodated,
+                "Suggested David set is an explicit Common choice");
+        require(reference(resolve(2025y/March/1, "england"), "first") == "Philippians 3:8-14", "English David feast starts with Philippians");
+        require(std::ranges::none_of(resolve(2025y/March/1, "england").selected->readings,
+                    [](const auto& r) { return r.role == "second"; }), "English feast has two readings");
+        require(reference(resolve(2025y/November/8, "wales"), "first") == "Rev 7:2-4,9-14", "All Saints of Wales uses directed All Saints selection");
+        require(std::ranges::none_of(resolve(2025y/November/8, "wales").selected->readings,
+                    [](const auto& r) { return r.role == "second"; }), "Welsh feast has two readings");
+        require(resolve(2026y/November/8, "wales").key.starts_with("temporal:ordinary:"), "Welsh saints feast cannot displace Sunday");
+        require(resolve(2025y/November/8, "england").key.starts_with("temporal:ordinary:"), "Welsh feast readings stay regional");
+        require(resolve(2025y/October/25, "wales").status == ReadingStatus::MissingData, "Unverified Welsh martyrs proper remains explicit gap");
+        require(reference(resolve(2026y/March/31), "gospel") == "John 13:21-33, 36-38", "Holy Tuesday discontinuity independently corrected");
+        require(reference(resolve(2026y/June/23), "gospel") == "Matthew 7:6, 12-14", "OT12 Tuesday corrected Gospel");
+        require(reference(resolve(2026y/August/19), "gospel") == "Matthew 20:1-16", "Whole appointed vineyard parable");
+        require(reference(resolve(2026y/May/29), "gospel") == "Mark 11:11-25", "OT8 Friday corrected endpoint");
         require(resolve(2026y/March/2, "england").key.starts_with("temporal:lent:"), "Omitted David has no festal readings");
 
         const auto christmas = resolve(2026y/December/25);
@@ -178,6 +194,8 @@ int main()
         auto minimal = document;
         minimal["entries"] = nlohmann::json::array({document["entries"][0]});
         minimal["memorials"] = nlohmann::json::array();
+        minimal["entries"][0].erase("verification_sources");
+        minimal["entries"][0].erase("verification_note");
         auto invalid = [&](auto mutate) { auto value = minimal; mutate(value); rejects([&] { parseLectionary(value); }); };
         invalid([](auto& j) { j["schema_version"] = 2; });
         invalid([](auto& j) { j["entries"][0]["cycle"] = "D"; });

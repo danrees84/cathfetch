@@ -1,6 +1,6 @@
 # Cathfetch lectionary engine status
 
-As of 14 October 2026, Cathfetch has **804 reference sets and 214 explicit memorial policies**. Ordinary Time weeks 1–34 are populated in both weekday cycles. The calendar and lectionary remain separate; `--readings` remains opt-in. **Complete verification against the England and Wales Lectionary introduced in Advent 2024 is blocked by the absence of an accessible complete current-edition citation index.** No supplied set claims that verification. Reference availability must not be read as certification.
+As of 14 October 2026, Cathfetch has **807 reference sets and 214 explicit memorial policies**. Ordinary Time weeks 1–34 are populated in both weekday cycles. The calendar and lectionary remain separate; `--readings` remains opt-in. **Complete verification against the England and Wales Lectionary introduced in Advent 2024 is blocked by the absence of an accessible complete current-edition citation index.** No supplied set claims that verification. Reference availability must not be read as certification.
 
 ## Offline full-verse display
 
@@ -8,11 +8,35 @@ As of 14 October 2026, Cathfetch has **804 reference sets and 214 explicit memor
 
 The originally suggested GitHub XML has only 66 books, so the bundled normalised XML uses the complete public-domain copy of the same edition from eBible.org. See [Bible provenance, commands and limitations](data/bibles/README.md). Partial-verse references display whole verses with an explicit notice; shorter forms remain reference alternatives.
 
-The follow-up mapping fix replaces blanket book/chapter restrictions with source-backed whole-verse correspondences, including psalm splits/merges, titles, Sirach, Tobit, Daniel and New Testament verse divisions. **All 2,655 stored primary non-acclamation citations return text.** Two contain a cited verse absent from Douay–Rheims (Genesis 49:32 and Sirach 3:19); these display the available passage with an explicit omission notice. Malformed references exposed by text validation have been corrected, with provenance and previous values in [the correction ledger](data/lectionary/scripture_corrections.json). This does not certify the underlying assignments against the current Lectionary.
+The mapping implementation uses source-backed whole-verse correspondences, including psalm splits/merges, titles and differing verse divisions. **The independent follow-up audit supersedes the earlier claim that all stored passages were safely mapped.** Tobit has substantial recension differences; an in-range address is not proof of correspondence. Unlisted Tobit addresses now require an explicit map. Of **2,665 primary non-acclamation citations, 2,659 return text and six explicitly report an unverified correspondence**. The affected Tobit readings/canticles are in Ordinary Time weeks 9 and 25, cycle I. Two other passages contain a cited verse absent from Douay–Rheims (Genesis 49:32 and Sirach 3:19); available text is shown with an omission notice. All 119 stored alternative non-acclamation citations are checked separately.
 
-Regression coverage includes stored primary and alternative passages, literal text/address checks, and selected daily passages for all 10,228 date/calendar combinations in 2024–2030. The existing national assignment gaps remain explicit; text lookup cannot supply an assignment that is missing from the lectionary data. CLI tests cover Mass forms, alternatives and wrapping at 120/100/80/60/40 columns with and without the cross. The scripture suite passes 35,276 checks, including 116 alternative citations. All twelve C++ suites, three CLI suites, six Universalis Python tests and five versification-import Python tests pass, alongside the complete application build. The reference-comparison ledger freshness check and byte-for-byte versification regeneration also pass.
+Regression coverage includes literal text/address checks, every stored citation and selected daily passages for all 10,228 date/calendar combinations in 2024–2030. An explicit unavailable correspondence is tested as such, never counted as verified text. Final validation passes: `make -j4 all test`, both audit freshness checks, and byte-for-byte current-ordo report reproduction from the cached official PDF. The scripture suite performs 35,471 checks; its 10,228-date sweep finds 31 date/calendar selections with guarded Tobit text correspondences. All 119 alternative references resolve. All twelve C++ suites, three CLI suites and 15 Python audit/import tests pass, including terminal widths 120/100/80/60/40.
 
-## This data milestone
+## Independent audit update — 14 October 2026
+
+Added three national default sets after consulting Welsh diocesan directions and national/parish sources:
+
+- St David in England: Philippians, Psalm 1 and Matthew, with the published Luke alternative. The truncated old psalm citation is repaired using St Gregory's Catholic parish headings for 1 March 2025.
+- St David in Wales: the diocesan ordo's suggested Isaiah 61:1–3,10–11 before the national Philippians provision, retaining three readings for the solemnity. Transfers retain this identity and set.
+- All Saints of Wales: the diocesan ordo directs use of the All Saints readings. Under Lectionary Introduction 84(c), the feast default has two readings; Revelation is selected and 1 John retained as an alternative first reading.
+
+These are explicit accommodated selections, **not uniquely mandatory Common sets or fully verified 2024-edition assignments**. [National audit evidence and remaining gap](data/lectionary/national_audit.json) records exact source scope and access limitations. The indexed diocesan PDF supplied the directions; its direct download currently returns HTTP 403. The Six Welsh Martyrs remain missing: the diocesan ordo points to a proper set without giving its citations. A third-party transcription is insufficient authority to substitute an invented Common set.
+
+The new [current diocesan ordo audit](data/lectionary/current_ordo_audit.json) checks all 807 records against 328 complete citation blocks extracted from the official Hallam 2025–26 ordo. It finds 289 partial two-anchor comparisons, 13 single-anchor review leads and 505 records without a matching block. Across the recorded comparisons, 707 slots match literally after book/punctuation normalisation, 252 require collation and 209 are unsupplied. Matching first-reading/Gospel anchors locates evidence; it does not verify dates, omitted subverses, options or a complete current-edition set. The report retains exact source citations and PDF page/line locators. No Scripture or liturgical prose is stored.
+
+Confirmed corrections include Holy Tuesday John 13:21–33,36–38; Ordinary Time week 12 Tuesday Matthew 7:6,12–14 in both cycles; week 20 Wednesday II Matthew 20:1–16; week 8 Friday Mark 11:11–25 in both cycles; the missing Matthew 10:5a on Advent week 1 Saturday; and Psalm 118:111 in week 19 Tuesday II. Their previous values and source evidence remain in [the correction ledger](data/lectionary/scripture_corrections.json). Other differences remain review items, since the ordo itself contains clipped/inconsistent entries.
+
+The year diagnostic exposes the partial current-ordo audit scope through `verification_scope` and its evidence through `verification_sources`. Every supplied set still has `verification=published_table`; none is promoted to `current_edition`. The compact terminal display is unchanged.
+
+```sh
+# Reproduce citation-only extraction from an authorised copy of the public PDF:
+pdftotext -layout HALLAM-ORDO-2025-26.pdf /tmp/hallam-layout.txt
+python3 tools/current_lectionary_audit.py extract /tmp/hallam-layout.txt /tmp/hallam-facts.json
+python3 tools/current_lectionary_audit.py compare /tmp/hallam-facts.json /tmp/current-ordo-audit.json
+python3 tools/current_lectionary_audit.py check data/lectionary/current_ordo_audit.json
+```
+
+## Earlier data milestone
 
 Added 204 sets to the original 600: 168 Ordinary Time weekday sets for weeks 21–34, six partial mandatory memorial provisions and 30 general, European or national feast sets. Added ten memorial policies. Calendar calculations, precedence and terminal layout are unchanged.
 
@@ -34,7 +58,7 @@ All nine first readings and Gospels agree after expanding abbreviations. The rep
 
 One confirmed correction was made: the second reading for Ordinary Time Sunday 29 A ends at **1 Thessalonians 1:5b**, corroborated both by Universalis’s 18 October Mass page and the official Hallam ordo. The record and independent audit ledger retain that evidence. Other differences remain review items: for example, Universalis omits Psalm 100 verse 4 on 19 October while Hallam’s compressed range reads 1–5. This is not sufficient evidence to silently impose a global correction. Current-edition verification remains pending.
 
-Universalis [explicitly limits public reading pages](https://universalis.com/n-otherdates.htm) to yesterday, today and the week ahead. The requested 19 October page is available, but 29 November redirects to that notice. The full public yearly calendar is accessible; **a complete year of Mass references cannot currently be scraped from these public dated pages**. No paid access was purchased or bypassed. The existing three national reading gaps therefore remain.
+Universalis [explicitly limits public reading pages](https://universalis.com/n-otherdates.htm) to yesterday, today and the week ahead. The requested 19 October page is available, but 29 November redirects to that notice. The full public yearly calendar is accessible; **a complete year of Mass references cannot currently be scraped from these public dated pages**. No paid access was purchased or bypassed. The earlier Universalis collection did not resolve the national reading gaps; the subsequent diocesan-source work above supplies explicit defaults for St David and All Saints of Wales.
 
 ```sh
 # Snapshot collected on 14 October 2026; use the current public window for a later fetch.
@@ -47,7 +71,7 @@ The year diagnostic now includes the explicit ending `liturgical_year` alongside
 
 ## Coverage measured, not inferred
 
-The [coverage report](data/lectionary/coverage_2024_2030.tsv) contains 28 complete civil-year sweeps: 2024–2030 in all four calendars, totalling 10,228 date/calendar pairs. There are 10,176 available provisional sets, 24 missing assignments, 28 Holy Saturdays without a daytime Mass and no unresolved calendar days. There are 83 selections of a permitted alternative/default accommodated set, and 5,282 days with alternatives available. These last two metrics overlap with availability; they are not extra days.
+The [coverage report](data/lectionary/coverage_2024_2030.tsv) contains 28 complete civil-year sweeps: 2024–2030 in all four calendars, totalling 10,228 date/calendar pairs. There are 10,194 available provisional sets, six missing assignments, 28 Holy Saturdays without a daytime Mass and no unresolved calendar days. There are 101 selections of a permitted alternative/default accommodated set, and 5,300 days with alternatives available. These last two metrics overlap with availability; they are not extra days.
 
 For 2026:
 
@@ -56,19 +80,13 @@ For 2026:
 | GRC | 364 | 0 | 364 | 0 | 1 | 2 |
 | Europe | 364 | 0 | 364 | 0 | 1 | 2 |
 | England | 364 | 0 | 364 | 0 | 1 | 3 |
-| Wales | 363 | 0 | 363 | 1 | 1 | 2 |
+| Wales | 364 | 0 | 364 | 0 | 1 | 3 |
 
-The remaining observed-day gaps across these sweeps are:
-
-- **St David:** England’s feast and Wales’s solemnity. The public Liturgy Office summary gives a selection from Commons but leaves the additional solemnity reading unspecified; it is not a complete current-edition set.
-- **Six Welsh Martyrs and their Companions:** Wales, 25 October when not impeded.
-- **All Saints of Wales:** Wales, 8 November when not impeded.
-
-These are explicit missing-data results, not invented Common selections. Holy Saturday’s absent daytime Mass is a separate status, not a data gap. An explicit Easter Vigil request is supported.
+The remaining observed-day gap is **Six Welsh Martyrs and their Companions**, Wales, 25 October when not impeded. It accounts for all six missing assignments in the 2024–2030 sweep. Holy Saturday's absent daytime Mass is a separate status; an explicit Easter Vigil request is supported. Reference availability is independent of the six guarded Tobit full-text correspondences.
 
 ## Independent audit: exact scope
 
-The [audit ledger](data/lectionary/reference_audit.json) accounts for all 804 records, including all original 600. **It is an audit triage ledger, not a completed independent textual audit.** The French bishops’ 2023–2025 guides provide partial independent passage comparisons for 619 records; 185 lack a usable comparison. Of the original 600, 453 have partial comparisons and 147 remain without a usable independent comparison.
+The [audit ledger](data/lectionary/reference_audit.json) accounts for all 807 records, including all original 600. **It is an audit triage ledger, not a completed independent textual audit.** The French bishops’ 2023–2025 guides provide partial independent passage comparisons for 619 records; 188 lack a usable comparison. Of the original 600, 453 have partial comparisons and 147 remain without a usable independent comparison.
 
 Across the selected comparisons, 1,173 slots match after book-abbreviation and punctuation normalisation, 798 require collation, and 423 are absent or ambiguous in the comparison source. These numbers are neither verified assignments nor confirmed errors. Differences include source verse/psalm numbering, optional forms, and transcription defects in the comparison sources themselves. No verse numbering is converted by the comparison. No reference is changed merely to improve the match count.
 
@@ -89,7 +107,7 @@ The year diagnostic now separates `status=available` from `verification=publishe
 - Existing [Sunday](https://www.liturgyoffice.org.uk/Calendar/Sunday/AdventSunday.shtml), [weekday](https://www.liturgyoffice.org.uk/Calendar/Weekday/Advent.shtml), [solemnity](https://www.liturgyoffice.org.uk/Calendar/Sunday/OT2Solemnities.shtml) and [feasts of the Lord](https://www.liturgyoffice.org.uk/Calendar/Sunday/Feasts.shtml) tables remain the sources of the original 600. Earlier independently checked corrections are retained in their source notes.
 - User-supplied [Lectionary.com full year](https://lectionary.com/catholic/full-year): inspected, but no current England/Wales authority or complete daily coverage established. No data was imported from this third-party table. The displayed St Joseph date of 20 March 2026 also requires correction/clarification before using it as a date authority.
 
-The remaining blocker is access to a complete authoritative citation index/current volumes, not Scripture translation text. The public sources checked cannot establish complete exact-verse, acclamation and option verification, nor the three unresolved national provisions above. No copyrighted Scripture, Missal texts, biographies or publisher database has been imported. No full ecclesiastical or historical accuracy is claimed.
+The remaining blockers are a complete authoritative current-edition citation index/current volumes, the Welsh Martyrs proper, and independently verified Tobit correspondences across textual recensions. The public sources checked cannot establish complete exact-verse, acclamation and option verification, nor the remaining Welsh Martyrs proper. No copyrighted Scripture, Missal texts, biographies or publisher database has been imported. No full ecclesiastical or historical accuracy is claimed.
 
 ## API and existing policies
 
@@ -97,7 +115,7 @@ The remaining blocker is access to a complete authoritative citation index/curre
 
 `loadLectionary()` validates identities, selectors, calendars, citations, forms, alternatives, provenance and ambiguous defaults atomically. `resolveMassReadings(LiturgicalDay, data, calendarName, mass)` consumes the resolved calendar identity; transfers and national schedules retain that identity’s readings. It does not resolve precedence or move celebrations. Partial proper memorial sets require an available weekday set, retaining both sources and the weaker verification status. There is one resolver.
 
-The default is daytime Mass. Christmas has Vigil/Night/Dawn/Day; Easter has Vigil/Day; Pentecost has simple and extended Vigil/Day. Holy Thursday defaults to evening and Good Friday to its Passion liturgy, explicitly labelled. This date-only engine is not an anticipated-Mass/first-Vespers scheduler. Easter Vigil retains all seven Old Testament reading/psalm pairs; pastoral omissions are not automated. All Souls’ suggested set is accommodated. Optional memorials retain the calendar’s temporal default; the CLI does not choose optional saints. Common selections and all possible ritual/votive forms remain incomplete. Citations are display strings, not parsed Bible-address objects.
+The default is daytime Mass. Christmas has Vigil/Night/Dawn/Day; Easter has Vigil/Day; Pentecost has simple and extended Vigil/Day. Holy Thursday defaults to evening and Good Friday to its Passion liturgy, explicitly labelled. This date-only engine is not an anticipated-Mass/first-Vespers scheduler. Easter Vigil retains all seven Old Testament reading/psalm pairs; pastoral omissions are not automated. All Souls’ suggested set is accommodated. Optional memorials retain the calendar’s temporal default; the CLI does not choose optional saints. Common selections and all possible ritual/votive forms remain incomplete. Lectionary citations remain display strings; the separate Scripture lookup parses supported addresses with explicit correspondence policies.
 
 ## Build and validation
 
@@ -110,6 +128,6 @@ python3 tools/lectionary_audit.py
 ./build/lectionary_year 2026 england > /tmp/lectionary-2026.tsv
 ```
 
-The application is rebuilt in `build/cathfetch`. All twelve C++ test executables, all three CLI suites and the six Universalis Python tests pass. The lectionary test performs **44,344 checks across 14,612 date/calendar pairs** (2008, 2022, 2024–2030 and 2038, all four calendars), including reversed assignment order: 14,536 available, 36 explicit gaps and 40 Holy Saturdays. The calendar regression performs 450,238 checks across 64,284 date/calendar pairs, each resolved in both candidate orders. Reading and calendar CLI tests include 120, 100, 80, 60 and 40 columns, with/without the cross and redirected output. The 168 late Ordinary Time selectors, independent literal reference cases, proper-slot/weekday combinations, national versus general ranks and verification-evidence validation have dedicated checks.
+The application is rebuilt in `build/cathfetch`. All twelve C++ test executables, all three CLI suites and the six Universalis Python tests pass. The lectionary test performs **14,612 date/calendar pairs** (2008, 2022, 2024–2030 and 2038, all four calendars), including reversed assignment order: 14,563 available, nine explicit gaps and 40 Holy Saturdays. The calendar regression performs 450,238 checks across 64,284 date/calendar pairs, each resolved in both candidate orders. Reading and calendar CLI tests include 120, 100, 80, 60 and 40 columns, with/without the cross and redirected output. The 168 late Ordinary Time selectors, independent literal reference cases, proper-slot/weekday combinations, national versus general ranks and verification-evidence validation have dedicated checks.
 
 These are implementation, coverage and selected reference checks, **not independent verification of every reading over complete liturgical years**. Completing that final audit requires the authoritative material described above.

@@ -29,6 +29,7 @@ test: $(TESTS) all
 	@sh tests/lectionary_cli_test.sh
 	@python3 tests/universalis_audit_test.py
 	@python3 tests/bible_mapping_data_test.py
+	@python3 tests/current_lectionary_audit_test.py
 	@sh tests/full_verses_cli_test.sh
 clean:
 	rm -rf build
