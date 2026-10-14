@@ -75,15 +75,15 @@ int main()
         require(reference(resolve(2026y/November/29), "gospel") == "Mark 13:33-37", "Advent B Gospel");
         require(reference(resolve(2024y/December/1), "gospel") == "Luke 21:25-28, 34-36", "Advent C Gospel");
         require(reference(resolve(2025y/December/1), "first") == "Isaiah 4:2–6", "Advent Monday A conditional reading");
-        require(resolve(2026y/November/30, "england").status == ReadingStatus::MissingData,
-                "St Andrew is a missing proper, not a temporal substitution");
+        require(reference(resolve(2026y/November/30, "england"), "gospel") == "Matthew 4:18-22",
+                "St Andrew uses the feast Gospel, not an Advent weekday");
         const auto adventMondayB = resolveMassReadings(resolveLiturgicalDay(2026y/November/30, {}), data);
         require(reference(adventMondayB, "first") == "Isaiah 2:1–5", "Advent Monday B without an observed feast");
         require(reference(resolve(2026y/April/27), "gospel") == "John 10:11–18", "Easter Monday Gospel conditional on Year A");
         require(reference(resolve(2025y/April/7), "gospel") == "John 8:12-20", "Lent Monday Gospel conditional on Year C");
         require(reference(resolve(2026y/April/6), "first") == "Acts 2:14, 22–33", "Easter Octave independently checked endpoint");
         require(reference(resolve(2026y/April/13), "first") == "Acts 4:23–31", "Missing source chapter independently restored");
-        require(resolve(2026y/July/11, "europe").status == ReadingStatus::MissingData,
+        require(reference(resolve(2026y/July/11, "europe"), "gospel") == "Matthew 19:27–29",
                 "European Benedict feast cannot inherit Roman memorial weekday policy");
         require(resolve(2026y/July/11).status == ReadingStatus::Available, "Roman Benedict memorial retains weekday readings");
         require(resolve(2026y/May/28, "wales").selected->dayId == "eternal_high_priest", "National proper feast");
@@ -106,7 +106,37 @@ int main()
         require(resolve(2026y/January/2).key == "temporal:christmas:january:2", "Basil retains weekday readings");
         require(reference(resolve(2026y/July/29), "gospel") == "John 11:19–27", "Martha proper Gospel");
         require(resolve(2026y/July/29).selected->readings.size() >= 3, "Partial proper merged with weekday");
-        require(resolve(2026y/January/26).status == ReadingStatus::MissingData, "Unknown proper provision is not assumed weekday");
+        require(reference(resolve(2026y/January/26), "first") == "2 Timothy 1:1–8", "Timothy and Titus proper first reading");
+        require(reference(resolve(2026y/January/26), "gospel") == "Mark 3:22–30", "Timothy and Titus retain weekday Gospel");
+        require(reference(resolve(2026y/June/11), "first") == "Acts 11:21b–26; 13:1–3", "Barnabas proper first reading");
+        require(reference(resolve(2024y/June/8), "gospel") == "Luke 2:41–51", "Immaculate Heart proper Gospel");
+        require(resolve(2026y/June/13).key.starts_with("temporal:ordinary:"),
+                "Immaculate Heart collision reduced to optional memorial does not impose proper readings");
+        require(reference(resolve(2026y/August/29), "gospel") == "Mark 6:17–29", "John Baptist proper Gospel");
+        require(reference(resolve(2026y/September/15), "gospel") == "John 19:25–27", "Sorrows proper Gospel");
+        require(reference(resolve(2026y/October/2), "gospel") == "Matthew 18:1–5, 10", "Guardian Angels proper Gospel");
+        require(resolve(2026y/August/22).key.starts_with("temporal:ordinary:"), "Queenship normally retains weekday readings");
+        require(reference(resolve(2026y/April/23, "england"), "gospel") == "Luke 9:23–26", "George solemnity: correct saint identity");
+        require(reference(resolve(2026y/September/24, "england"), "gospel") == "Luke 1:26–38", "Walsingham obligatory feast readings");
+        require(reference(resolve(2026y/October/9, "wales"), "first") == "2 Timothy 4:1–5", "National Newman feast");
+        require(resolve(2026y/October/9).key.starts_with("temporal:ordinary:"), "Roman optional Newman does not impose national feast readings");
+        // Published diocesan ordos independently supply these literal weekday references.
+        require(reference(resolve(2026y/August/25), "first") == "2 Thes 2:1-3a,14-17", "OT21 II first reading");
+        require(reference(resolve(2026y/August/25), "gospel") == "Mt 23:23-26", "OT21 annual Gospel");
+        require(reference(resolve(2025y/November/29), "first") == "Dn 7:15-27", "Final OT Saturday I");
+        require(reference(resolve(2026y/November/28), "first") == "Rv 22:1-7", "Final OT Saturday II");
+        for (int week = 21; week <= 34; ++week)
+            for (int weekday = 1; weekday <= 6; ++weekday)
+                for (std::string cycle : {"I", "II"})
+                {
+                    const auto key = "temporal:ordinary:" + std::to_string(week) + ":" + std::to_string(weekday);
+                    const auto entry = std::ranges::find_if(data.entries, [&](const auto& set) {
+                        return set.dayId == key && set.cycle == cycle;
+                    });
+                    require(entry != data.entries.end(), "All 168 late Ordinary Time weekday sets exist");
+                    require(entry->verification == ReferenceVerification::PublishedTable,
+                            "Foreign or older tables must not imply current England/Wales verification");
+                }
         require(resolve(2026y/March/2, "wales").status == ReadingStatus::MissingData, "Unverified David solemnity is explicit gap");
         require(resolve(2026y/March/2, "england").key.starts_with("temporal:lent:"), "Omitted David has no festal readings");
 
@@ -150,6 +180,14 @@ int main()
         invalid([](auto& j) { j["schema_version"] = 2; });
         invalid([](auto& j) { j["entries"][0]["cycle"] = "D"; });
         invalid([](auto& j) { j["entries"][0]["verification"] = "guessed"; });
+        invalid([](auto& j) { j["entries"][0]["verification"] = "current_edition"; });
+        auto evidenced = minimal;
+        evidenced["entries"][0]["verification"] = "current_edition";
+        evidenced["entries"][0]["verification_sources"] = {"https://example.org/current-edition"};
+        evidenced["entries"][0]["verification_note"] = "Synthetic loader test evidence, not supplied data";
+        require(parseLectionary(evidenced).entries[0].verification == ReferenceVerification::CurrentEdition,
+                "Verification evidence round-trips");
+        invalid([](auto& j) { j["entries"][0]["verification_sources"] = {"not-a-source"}; });
         invalid([](auto& j) { j["schema_version"] = 1.0; });
         invalid([](auto& j) { j["entries"][0]["source"] = ""; });
         invalid([](auto& j) { j["entries"][0]["readings"][0]["reference"] = "invented text"; });

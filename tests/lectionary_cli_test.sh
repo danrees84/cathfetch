@@ -28,7 +28,10 @@ assert 'collation pending' in run('--date=08122026', '--readings', width=120)
 assert 'First: Isa 2:1-5' in run('--date=30112025', '--readings', width=120)
 assert 'Night Mass' in run('--date=25122026', '--mass=night', width=120)
 assert 'No daytime Mass' in run('--date=04042026', '--readings', width=120)
-assert 'assignment not yet verified' in run('--date=14102026', '--readings', width=120)
+assert 'collation pending' in run('--date=14102026', '--readings', width=120)
+assert 'assignment not yet verified' in run('--date=02032026', '--calendar=wales', '--readings', width=120)
+assert 'with references;' in subprocess.run(['./build/lectionary_year', '2026', 'grc'],
+    text=True, capture_output=True, check=True).stderr
 assert 'Readings' not in run('--date=08122026', width=120)
 print('Lectionary CLI and wrapping tests passed')
 PY

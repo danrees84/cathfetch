@@ -62,6 +62,11 @@ void validateLectionary(const Lectionary& data)
         if (entry.partial && entry.use != ReadingUse::Proper)
             throw std::invalid_argument("Only proper readings may replace weekday slots");
         validateCalendars(entry.calendars);
+        if (entry.verification == ReferenceVerification::CurrentEdition &&
+            (entry.verificationSources.empty() || !nonBlank(entry.verificationNote)))
+            throw std::invalid_argument("Current-edition verification requires evidence and scope: " + entry.id);
+        for (const auto& source : entry.verificationSources)
+            if (!sourceUrl(source)) throw std::invalid_argument("Invalid verification source: " + entry.id);
         std::set<std::string> roles;
         for (const auto& reading : entry.readings)
         {
@@ -139,10 +144,13 @@ Lectionary parseLectionary(const nlohmann::json& document)
         entry.use = parseUse(value.at("use"));
         entry.partial = value.value("partial", false);
         entry.alternativeOnly = value.value("alternative_only", false);
+        entry.permittedAlternative = value.value("permitted_alternative", false);
         const std::string verification = value.at("verification");
         if (verification == "published_table") entry.verification = ReferenceVerification::PublishedTable;
         else if (verification == "current_edition") entry.verification = ReferenceVerification::CurrentEdition;
         else throw std::invalid_argument("Unknown reading-reference verification status");
+        entry.verificationSources = value.value("verification_sources", std::vector<std::string>{});
+        entry.verificationNote = value.value("verification_note", std::string{});
         entry.source = value.at("source"); entry.sourceNote = value.at("source_note");
         if (!value.at("readings").is_array()) throw std::invalid_argument("Readings must be an array");
         for (const auto& item : value.at("readings"))

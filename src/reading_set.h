@@ -43,7 +43,10 @@ struct ReadingSet
     ReadingUse use = ReadingUse::Proper;
     bool partial = false; // Proper memorial reading(s) replacing weekday slots.
     bool alternativeOnly = false; // Permitted set, never the deterministic default.
+    bool permittedAlternative = false; // This selected set is itself an optional provision.
     ReferenceVerification verification = ReferenceVerification::PublishedTable;
+    std::vector<std::string> verificationSources;
+    std::string verificationNote;
     std::vector<ReadingReference> readings;
     std::string source;
     std::string sourceNote;
