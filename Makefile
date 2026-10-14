@@ -10,7 +10,7 @@ build:
 	mkdir -p build
 build/%.o: src/%.cpp | build
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -MMD -MP -c $< -o $@
-build/en_dra.json: data/bibles/en_dra.xml data/bibles/en_dra_metadata.json tools/bible_data.py | build
+build/en_dra.json: data/bibles/en_dra.xml data/bibles/en_dra_metadata.json data/bibles/en_dra_versification.json tools/bible_data.py | build
 	python3 tools/bible_data.py index data/bibles/en_dra.xml data/bibles/en_dra_metadata.json $@
 build/cathfetch: build/main.o build/terminal_display.o build/terminal_format.o $(ENGINE_OBJECTS) | build/en_dra.json
 	$(CXX) $(CXXFLAGS) $^ -o $@
@@ -28,6 +28,7 @@ test: $(TESTS) all
 	@sh tests/cli_test.sh
 	@sh tests/lectionary_cli_test.sh
 	@python3 tests/universalis_audit_test.py
+	@python3 tests/bible_mapping_data_test.py
 	@sh tests/full_verses_cli_test.sh
 clean:
 	rm -rf build

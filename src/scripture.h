@@ -6,14 +6,14 @@
 #include <string>
 #include <string_view>
 #include <vector>
+#include <array>
 
 struct BibleBook
 {
     std::string name;
     std::map<int, std::map<int, std::string>> chapters;
-    bool requiresMapping = false;
-    std::set<int> unmappedChapters;
-    std::map<int, std::set<int>> unmappedVerses;
+    std::string numbering;
+    std::set<int> nativeChapters;
 };
 
 struct Bible
@@ -21,9 +21,10 @@ struct Bible
     std::string translation;
     std::map<std::string, BibleBook> books;
     std::map<std::string, std::string> aliases;
-    std::set<int> verifiedPsalms;
     std::map<std::string, std::string> passageMappings;
-    std::map<std::string, std::map<int, int>> psalmVerseMappings;
+    std::map<std::string, std::vector<std::array<int, 2>>> verseMappings;
+    std::map<std::string, int> chapterEnds;
+    std::set<std::string> omittedVerses;
 };
 
 struct ScriptureVerse
@@ -37,6 +38,7 @@ struct ScripturePassage
 {
     std::vector<ScriptureVerse> verses;
     bool includesWholeVerses = false;
+    bool omitsAbsentVerses = false;
     std::string numberingNote;
     std::string diagnostic; // Nonempty means no text is returned for this passage.
 };

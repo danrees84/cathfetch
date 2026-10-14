@@ -29,20 +29,30 @@ The book IDs use USFM codes and modern English book identities. For example, mod
 
 The parser supports book aliases, comma/dot-separated selections, semicolon chapter changes, cross-chapter ranges and subverse suffixes. **Subverse cuts are not reconstructed.** A reference such as `21b` displays the entire numbered verse and explicitly says so. Repeated selections such as `3a, 3b–4` coalesce the overlapping whole verse. A malformed, missing or unverified mapping produces `Text unavailable: ...` for that passage, atomically; no truncated or unrelated passage is substituted.
 
-## Numbering limitations — material, not exceptional
+## Verse correspondence and measured coverage
 
-A complete Bible text does not establish a complete mapping from Cathfetch’s mixed-source lectionary citations. **Full-text lookup currently has partial coverage.** The regression sweep of 2,655 stored default non-acclamation citations resolves 1,684; 971 are explicitly unavailable. These are citation-record counts, not unique passages or calendar-day coverage.
+All **2,655 stored primary non-acclamation citations** now return text. Two passages contain a cited verse absent from this translation: Genesis 49:32 and Sirach 3:19. Their available verses are displayed with an explicit omission notice; the missing text is never invented. These counts describe stored citations, not unique passages or independently verified lectionary assignments.
 
-- Most psalm references remain unmapped. The four checked Vulgate psalms (1, 2, 97 and 116) and a specific Hebrew Psalm 100 verse map are supported. Chapter subtraction alone is insufficient: Douay Psalm 99 verse 1 is a title, and verse 2 combines the text commonly numbered as Hebrew Psalm 100 verses 1–2. This mapping displays whole Douay verses with an explicit note.
-- `psalm_numbering` on a reading slot records `lxx`, `hebrew` or `unspecified`. Provenance establishes the newly added French/Hyderabad conventions; Christmas Day’s and the Immaculate Conception’s older Liturgy Office Psalm 97 are explicitly identified (the latter table prints the response “Sing a new song to the Lord”). Other legacy tables are not silently assigned a convention. Checked dual-number forms such as `98(97)` are recognised, but do not bypass unverified verse alignment.
-- Some Old Testament books and passages have substantial numbering differences, particularly Sirach, Tobit, Esther and Daniel. Conservative metadata guards keep uncollated passages unavailable. Specific verified Daniel 3 mappings distinguish the inserted prayer/canticle from modern references to the king seeing the three men in the furnace. They do not apply one blanket offset to the chapter.
-- Additional numeric guards identify differing Hebrew/English/Latin verse addresses using the [STEPBible TVTMS table](https://github.com/STEPBible/STEPBible-Data/tree/master/Versification), created by STEPBible/Tyndale House Cambridge, **CC BY 4.0** ([licence](https://creativecommons.org/licenses/by/4.0/)). The precise source URL and hash are in `guard_source`. The adaptation expands simple numeric differences into conservative unavailable-verse guards; it does not claim to implement TVTMS’s complete conditional reversification algorithm. Complex cases retain book-level guards. Partial/merged verse differences are not inferred as exact text cuts.
+The mappings use the main Hebrew, Greek and Latin traditions in the [STEPBible TVTMS table](https://github.com/STEPBible/STEPBible-Data/tree/master/Versification), created by STEPBible/Tyndale House Cambridge, **CC BY 4.0** ([licence](https://creativecommons.org/licenses/by/4.0/)). The precise source URL and SHA-256 are recorded in `versification_source` in the metadata. `en_dra_versification.json` records whole-verse correspondences, source line evidence, chapter ends, known absences and rejected/conditional rows. Unlisted ordinary addresses retain their numbers. Unrepresentable known correspondences fail explicitly. This is a targeted adaptation, not TVTMS's complete conditional reversification algorithm or a general conversion service for every biblical edition.
 
-To reproduce these numeric guards from the pinned TVTMS text:
+Source Hebrew numbering applies to the Old Testament, and main Greek numbering to the deuterocanonical books and New Testament. Psalms require an explicit `lxx` or `hebrew` convention, or recognised dual numbering. Mapping handles titles, split and combined psalms, and whole-verse unions where divisions differ. It never reconstructs an exact subverse cut. Lettered psalms 9B, 113A and 113B in the older tables are recognised.
+
+Edition/source exceptions remain structured metadata, with provenance in `exception_sources`:
+
+- Douay Psalm 99 verse 1 is a title, while verse 2 combines the text commonly numbered as Hebrew Psalm 100 verses 1–2.
+- Some older Liturgy Office Psalm 115/147 citations use LXX chapter labels with unsplit Hebrew verse numbers. Exact passage overrides are scoped to that convention; they do not alter Hebrew citations or French native LXX verse citations.
+- Traditional Daniel 3 canticle/prayer citations retain their Catholic numbers. Modern furnace narrative citations map around the Greek additions. Daniel 13–14 and appended Esther 11–16 retain their native Catholic chapter numbers.
+- The bundled Douay text combines verses in 1 Thessalonians 4 and 2 Thessalonians 2; subsequent verses shift accordingly.
+
+To reproduce the derived table from the exact pinned TVTMS source:
 
 ```sh
-python3 tools/bible_data.py guards /path/to/TVTMS.txt data/bibles/en_dra_metadata.json /tmp/en_dra_metadata.json
-cmp data/bibles/en_dra_metadata.json /tmp/en_dra_metadata.json
+python3 tools/bible_versification.py /path/to/TVTMS.txt data/bibles/en_dra_metadata.json data/bibles/en_dra.xml /tmp/en_dra_versification.json
+cmp data/bibles/en_dra_versification.json /tmp/en_dra_versification.json
 ```
 
-Further mappings need explicit provenance and literal passage tests. Do not remove guards merely to increase coverage. Text lookup does not certify the underlying lectionary assignment, and the Douay–Rheims wording is not the ESV–CE/Abbey text used in the current England and Wales Lectionary. Existing assignment-verification qualifications remain in the engine and diagnostic data.
+The scripture regression test checks all 2,655 primary and 116 alternative non-acclamation citations, literal passage identities and all selected daily passages across 2024–2030 in all four calendars. CLI tests retain wrapping checks at 120/100/80/60/40 columns. Corrections to malformed reference-table citations are recorded in [the correction ledger](../lectionary/scripture_corrections.json); the independent comparison ledger remains conservatively qualified.
+
+The chapter-only Isaiah 12 alternative retains its source qualification that exact verses were not specified; a whole-chapter lookup does not certify that the whole chapter is appointed.
+
+Text lookup does not certify the underlying lectionary assignment. Douay–Rheims wording is not the ESV–CE/Abbey text used in the current England and Wales Lectionary. Current-edition verification and the documented missing national assignments remain separate limitations. The pinned electronic Bible transcription is not independently proofread. Unstored or ambiguous references can still return an explicit unavailable result.

@@ -1,0 +1,266 @@
+{
+  "scope": "Citation corrections exposed by offline full-verse validation. Reference-only checks; not certification of all 2024-edition options.",
+  "corrections": [
+    {
+      "id": "temporal:advent:3:3:any:day",
+      "role": "first",
+      "previous": "Isaiah 45:6–8. 18. 21–26",
+      "reference": "Isaiah 45:6b–8. 18. 21b–25",
+      "source": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/30-ORDO-2022_2023-Annee-A.pdf#page=10",
+      "note": "Endpoint 25 independently confirmed; verse 18 retained from the Liturgy Office table."
+    },
+    {
+      "id": "temporal:christmas:january:2:any:day",
+      "role": "first",
+      "previous": "1 John",
+      "reference": "1 John 2:22-28",
+      "source": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=14"
+    },
+    {
+      "id": "temporal:christmas:january:3:any:day",
+      "role": "first",
+      "previous": "John 2:29–3:6",
+      "reference": "1 John 2:29–3:6",
+      "source": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=14"
+    },
+    {
+      "id": "temporal:easter:2:4:any:day",
+      "role": "gospel",
+      "previous": "John 3:31–26",
+      "reference": "John 3:31–36",
+      "source": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=47"
+    },
+    {
+      "id": "temporal:lent:2:0:C:day",
+      "role": "second",
+      "previous": "Phil 3:17–4:1 or",
+      "reference": "Phil 3:17–4:1",
+      "source": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=31"
+    },
+    {
+      "id": "temporal:ordinary:10:2:II:day",
+      "role": "first",
+      "previous": "1 Kings 17:17–16",
+      "reference": "1 Kings 17:7–16",
+      "source": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=89"
+    },
+    {
+      "id": "temporal:ordinary:11:1:II:day",
+      "role": "first",
+      "previous": "Kings 21:1-16",
+      "reference": "1 Kings 21:1-16",
+      "source": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=56"
+    },
+    {
+      "id": "temporal:ordinary:11:2:II:day",
+      "role": "first",
+      "previous": "Kings 21:17-29",
+      "reference": "1 Kings 21:17-29",
+      "source": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=56"
+    },
+    {
+      "id": "temporal:ordinary:12:3:I:day",
+      "role": "first",
+      "previous": "Genesis 15:1-12. 17-18 2. 15-16",
+      "reference": "Genesis 15:1-12. 17-18",
+      "source": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=60"
+    },
+    {
+      "id": "temporal:ordinary:12:3:II:day",
+      "role": "first",
+      "previous": "2 Kings 2:8-13; 23:1-3",
+      "reference": "2 Kings 22:8-13; 23:1-3",
+      "source": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=58"
+    },
+    {
+      "id": "temporal:ordinary:18:2:I:day",
+      "role": "first",
+      "previous": "Numbers 12:1-13:",
+      "reference": "Numbers 12:1-13",
+      "source": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=70"
+    },
+    {
+      "id": "temporal:ordinary:18:2:II:day",
+      "role": "psalm",
+      "previous": "Ps 101:16-21. 29. 22-3. r.17",
+      "reference": "Ps 101:16-21. 29. 22-23 r.17",
+      "source": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf"
+    },
+    {
+      "id": "temporal:ordinary:1:4:II:day",
+      "role": "psalm",
+      "previous": "Ps 42:10–11. 14–15. 24–25 r.27",
+      "reference": "Ps 43:10–11. 14–15. 24–25 r.27",
+      "source": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=16"
+    },
+    {
+      "id": "temporal:ordinary:20:2:I:day",
+      "role": "psalm",
+      "previous": "Ps 8:9. 11-14. r.9",
+      "reference": "Ps 84:9. 11-14 r.9",
+      "source": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=73"
+    },
+    {
+      "id": "temporal:ordinary:20:3:I:day",
+      "role": "psalm",
+      "previous": "Ps 202-7. r.2",
+      "reference": "Ps 20:2-7 r.2",
+      "source": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=73"
+    },
+    {
+      "id": "temporal:ordinary:28:0:B:day",
+      "role": "psalm",
+      "previous": "Ps 89: 12-18 r.14",
+      "reference": "Ps 89:12-17 r.14",
+      "source": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=81"
+    },
+    {
+      "id": "temporal:ordinary:2:2:I:day",
+      "role": "psalm",
+      "previous": "Ps 100:1–2. 4–5. 9. 10 r.5",
+      "reference": "Ps 110:1–2. 4–5. 9. 10 r.5",
+      "source": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=18"
+    },
+    {
+      "id": "temporal:ordinary:7:3:I:day",
+      "role": "psalm",
+      "previous": "Ps 118:165. 168. 171–2. 174–5 r.165",
+      "reference": "Ps 118:165. 168. 171–172. 174–175 r.165",
+      "source": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=26"
+    },
+    {
+      "id": "temporal:ordinary:9:0:B:day",
+      "role": "psalm",
+      "previous": "Ps 810:3-8. 10-11 r. 2",
+      "reference": "Ps 80:3-8. 10-11 r.2",
+      "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/OT1Sunday.shtml#OT9",
+      "note": "Editorial repair of the printed 810 psalm label to LXX 80 (Hebrew 81), consistent with the assigned passage. Current-edition collation remains pending."
+    },
+    {
+      "id": "temporal:ordinary:25:5:I:day",
+      "role": "first",
+      "previous": "Hg 2:1-9; Hg 1:15–2:9",
+      "reference": "Hg 1:15–2:9",
+      "source": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf"
+    },
+    {
+      "id": "temporal:ordinary:27:1:I:day",
+      "role": "first",
+      "previous": "Jon 1:1 — 2:1-2, 11",
+      "reference": "Jon 1:1–2:1, 11",
+      "source": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=83"
+    },
+    {
+      "id": "baptism_of_lord:C:day:sunday",
+      "role": "psalm",
+      "previous": "Ps 103:1b-2, 3-4, 24-25, 27-30 4. 1",
+      "reference": "Ps 103:1b-2, 3-4, 24-25, 27-30 r. 1",
+      "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/ChristmasSunday.shtml#Baptism",
+      "note": "Normalise omitted separators; Baptism trailing table artefact becomes response marker."
+    },
+    {
+      "id": "baptism_of_lord:C:day:sunday:common-readings",
+      "role": "psalm",
+      "previous": "Ps 28:1-2. 3-4. 9-10 r. 11",
+      "reference": "Ps 103:1b-2, 3-4, 24-25, 27-30 r. 1",
+      "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/ChristmasSunday.shtml#Baptism",
+      "note": "Normalise omitted separators; Baptism trailing table artefact becomes response marker."
+    },
+    {
+      "id": "baptism_of_lord:C:day:weekday",
+      "role": "psalm",
+      "previous": "Ps 103:1b-2, 3-4, 24-25, 27-30 4. 1",
+      "reference": "Ps 103:1b-2, 3-4, 24-25, 27-30 r. 1",
+      "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/ChristmasSunday.shtml#Baptism",
+      "note": "Normalise omitted separators; Baptism trailing table artefact becomes response marker."
+    },
+    {
+      "id": "baptism_of_lord:C:day:weekday:common-readings",
+      "role": "psalm",
+      "previous": "Ps 28:1-2. 3-4. 9-10 r. 11",
+      "reference": "Ps 103:1b-2, 3-4, 24-25, 27-30 r. 1",
+      "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/ChristmasSunday.shtml#Baptism",
+      "note": "Normalise omitted separators; Baptism trailing table artefact becomes response marker."
+    },
+    {
+      "id": "temporal:advent:2:3:any:day",
+      "role": "psalm",
+      "previous": "Ps 102: 1–4 8. 10 r.1",
+      "reference": "Ps 102: 1–4, 8. 10 r.1",
+      "source": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=9",
+      "note": "Normalise omitted separators; Baptism trailing table artefact becomes response marker."
+    },
+    {
+      "id": "temporal:ash_wednesday:any:day",
+      "role": "psalm",
+      "previous": "Ps 50: 3-6. 12-14 17 r. 3",
+      "reference": "Ps 50: 3-6. 12-14, 17 r. 3",
+      "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Lent.shtml#AshWed",
+      "note": "Normalise omitted separators; Baptism trailing table artefact becomes response marker."
+    },
+    {
+      "id": "temporal:christmas:december:31:any:day",
+      "role": "psalm",
+      "previous": "Ps 95: 1–2 11–13 r. 11",
+      "reference": "Ps 95: 1–2, 11–13 r. 11",
+      "source": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=13",
+      "note": "Normalise omitted separators; Baptism trailing table artefact becomes response marker."
+    },
+    {
+      "id": "temporal:lent:1:0:A:day",
+      "role": "psalm",
+      "previous": "Ps 50:3-6, 12-14 17 r. 3",
+      "reference": "Ps 50:3-6, 12-14, 17 r. 3",
+      "source": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/30-ORDO-2022_2023-Annee-A.pdf#page=26",
+      "note": "Normalise omitted separators; Baptism trailing table artefact becomes response marker."
+    },
+    {
+      "id": "temporal:ordinary:13:0:C:day",
+      "role": "psalm",
+      "previous": "Ps 15:1-2.5 7-11 r. 5",
+      "reference": "Ps 15:1-2.5, 7-11 r. 5",
+      "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/OT3Sunday.shtml#OT13",
+      "note": "Normalise omitted separators; Baptism trailing table artefact becomes response marker."
+    },
+    {
+      "id": "temporal:ordinary:13:5:I:day",
+      "role": "first",
+      "previous": "Genesis 23:1-4 19; 24:1-8. 62-67",
+      "reference": "Genesis 23:1-4, 19; 24:1-8. 62-67",
+      "source": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=62",
+      "note": "Normalise omitted separators; Baptism trailing table artefact becomes response marker."
+    },
+    {
+      "id": "temporal:ordinary:17:0:A:day",
+      "role": "psalm",
+      "previous": "Ps 118: 57. 72 76-77. 127-130 r.97",
+      "reference": "Ps 118: 57. 72, 76-77. 127-130 r.97",
+      "source": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/30-ORDO-2022_2023-Annee-A.pdf#page=61",
+      "note": "Normalise omitted separators; Baptism trailing table artefact becomes response marker."
+    },
+    {
+      "id": "temporal:ordinary:24:0:C:day",
+      "role": "psalm",
+      "previous": "Ps 50: 3-4. 12-13. 17. 19. R.Luke 15:18",
+      "reference": "Ps 50: 3-4. 12-13. 17. 19. R.Luke, 15:18",
+      "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/OT4Sunday.shtml#OT24",
+      "note": "Normalise omitted separators; Baptism trailing table artefact becomes response marker."
+    },
+    {
+      "id": "temporal:ordinary:31:3:I:day",
+      "role": "psalm",
+      "previous": "Ps 112:1-2, 4-5 9",
+      "reference": "Ps 112:1-2, 4-5, 9",
+      "source": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=90",
+      "note": "Normalise omitted separators; Baptism trailing table artefact becomes response marker."
+    },
+    {
+      "id": "temporal:ordinary:12:3:I:day",
+      "role": "first_alternative",
+      "previous": "Genesis 16:6-1",
+      "reference": null,
+      "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/OT3.shtml#Week12",
+      "note": "Removed malformed purported shorter form. It changes chapter from the appointed Genesis 15 passage and reverses its range. No independently confirmed replacement supplied; not silently reconstructed."
+    }
+  ]
+}

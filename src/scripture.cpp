@@ -22,22 +22,26 @@ void replaceAll(std::string& text, const std::string& from, const std::string& t
         text.replace(at, from.size(), to);
 }
 
-int vulgatePsalm(int hebrew)
+bool psalmPair(const Bible& bible, int hebrew, int latin)
 {
-    if (hebrew < 1 || hebrew > 150) throw std::invalid_argument("Invalid psalm number");
-    if (hebrew <= 9 || hebrew >= 148) return hebrew;
-    if (hebrew <= 113) return hebrew - 1;
-    if (hebrew <= 115) return 113;
-    if (hebrew == 116) return -1;
-    if (hebrew <= 146) return hebrew - 1;
-    return -1;
+    if (hebrew < 1 || hebrew > 150 || latin < 1 || latin > 150) return false;
+    const auto prefix = "hebrew:PSA:" + std::to_string(hebrew) + ":";
+    auto mapping = bible.verseMappings.lower_bound(prefix);
+    bool mapped = false;
+    for (; mapping != bible.verseMappings.end() && mapping->first.starts_with(prefix); ++mapping)
+    {
+        mapped = true;
+        for (const auto& target : mapping->second)
+            if (target[0] == latin) return true;
+    }
+    return !mapped && hebrew == latin;
 }
 
 struct Address { int chapter; int verse; bool partial; };
 
 Address endpoint(std::string& text, int chapter)
 {
-    static const std::regex pattern{R"(^\s*([0-9]+)(?:\s*:\s*([0-9]+))?([a-e]*))"};
+    static const std::regex pattern{R"(^\s*([0-9]+)(?:\s*:\s*([0-9]+))?([a-z]*))"};
     std::smatch match;
     if (!std::regex_search(text, match, pattern)) throw std::invalid_argument("Unsupported Scripture reference syntax");
     Address result{chapter, std::stoi(match[1]), !match[3].str().empty()};
@@ -62,28 +66,35 @@ Bible loadBible(const std::string& filename)
     if (data.at("schema_version") != 1) throw std::invalid_argument("Unsupported Bible index schema");
     Bible bible;
     bible.translation = data.at("translation");
-    bible.verifiedPsalms = data.at("verified_psalms").get<std::set<int>>();
+    bible.omittedVerses = data.at("versification").at("omitted_verses").get<std::set<std::string>>();
     bible.passageMappings = data.value("passage_mappings", std::map<std::string, std::string>{});
-    if (data.contains("psalm_verse_mappings"))
-        for (const auto& [key, mappings] : data["psalm_verse_mappings"].items())
-            for (const auto& [source, target] : mappings.items())
-                bible.psalmVerseMappings[key][std::stoi(source)] = target.get<int>();
+    for (const auto& [scheme, mappings] : data.at("versification").at("maps").items())
+        for (const auto& [source, targets] : mappings.items())
+        {
+            bible.verseMappings.try_emplace(scheme + ":" + source);
+            for (const auto& target : targets)
+            {
+                const auto book = source.substr(0, source.find(':'));
+                if (target.at(0).get<std::string>() != book)
+                    throw std::invalid_argument("Cross-book Bible mapping requires an explicit passage provision");
+                bible.verseMappings[scheme + ":" + source].push_back({target.at(1).get<int>(), target.at(2).get<int>()});
+            }
+        }
+    for (const auto& [source, targets] : data.at("verse_overrides").items())
+    {
+        auto& mapping = bible.verseMappings[source];
+        mapping.clear();
+        for (const auto& target : targets) mapping.push_back({target.at(1).get<int>(), target.at(2).get<int>()});
+    }
+    for (const auto& [scheme, chapters] : data.at("versification").at("chapter_ends").items())
+        for (const auto& [chapter, length] : chapters.items())
+            bible.chapterEnds[scheme + ":" + chapter] = length.get<int>();
     for (const auto& [id, entry] : data.at("books").items())
     {
         BibleBook book;
         book.name = entry.at("name");
-        if (entry.contains("unmapped_chapters"))
-        {
-            if (entry["unmapped_chapters"].is_string())
-            {
-                if (entry["unmapped_chapters"] != "all") throw std::invalid_argument("Invalid Bible mapping policy");
-                book.requiresMapping = true;
-            }
-            else book.unmappedChapters = entry["unmapped_chapters"].get<std::set<int>>();
-        }
-        if (entry.contains("unmapped_verses"))
-            for (const auto& [chapter, verses] : entry["unmapped_verses"].items())
-                book.unmappedVerses[std::stoi(chapter)] = verses.get<std::set<int>>();
+        book.numbering = entry.at("numbering");
+        book.nativeChapters = entry.value("native_chapters", std::set<int>{});
         for (const auto& [chapter, verses] : entry.at("chapters").items())
             for (const auto& [verse, text] : verses.items())
             {
@@ -102,6 +113,23 @@ Bible loadBible(const std::string& filename)
         if (book.chapters.empty()) throw std::invalid_argument("Empty Bible book");
         bible.books.emplace(id, std::move(book));
     }
+    std::map<std::string, int> mappedEnds;
+    for (const auto& [key, targets] : bible.verseMappings)
+    {
+        const auto separator = key.rfind(':');
+        const auto chapterKey = key.substr(0, separator);
+        auto& length = mappedEnds[chapterKey];
+        length = std::max(length, std::stoi(key.substr(separator + 1)));
+    }
+    for (const auto& [chapterKey, mappedEnd] : mappedEnds)
+    {
+        const auto first = chapterKey.find(':');
+        const auto last = chapterKey.rfind(':');
+        const auto& book = bible.books.at(chapterKey.substr(first + 1, last - first - 1));
+        const auto chapter = book.chapters.find(std::stoi(chapterKey.substr(last + 1)));
+        const int nativeEnd = chapter == book.chapters.end() ? 0 : chapter->second.rbegin()->first;
+        bible.chapterEnds.try_emplace(chapterKey, std::max(mappedEnd, nativeEnd));
+    }
     if (bible.books.size() != 73) throw std::invalid_argument("Offline Bible must contain all 73 books");
     return bible;
 }
@@ -118,12 +146,61 @@ ScripturePassage lookupPassage(const Bible& bible, std::string_view reference,
         for (const auto& dash : {"–", "—", "−"}) replaceAll(text, dash, "-");
         replaceAll(text, " ", " ");
         replaceAll(text, " and ", ", ");
+        static const std::regex volumeReference{R"(\s+\[[IVX]+:[0-9]+\]$)"};
+        text = std::regex_replace(text, volumeReference, "");
         // The responsorial refrain is not another passage to look up.
-        static const std::regex response{R"(\s+[rR]\.\s*|\s*℟)"};
+        static const std::regex response{R"([rR]\.\s*|\s*℟)"};
         std::smatch match;
         if (std::regex_search(text, match, response)) text.erase(match.position());
-        text = std::regex_replace(text, std::regex{R"(^Ps\s+(?=[A-Za-z]))"}, "");
-        static const std::regex heading{R"(^\s*((?:[1-3]\s*)?[A-Za-z]+(?:\s+[A-Za-z]+)*)\s*([0-9]+)(?:\(([0-9]+)\))?\s*:\s*(.*)$)"};
+        static const std::regex canticlePrefix{R"(^[Pp][Ss]\s+(?=(?:[1-3]\s*)?[A-Za-z]))"};
+        text = std::regex_replace(text, canticlePrefix, "");
+        while (!text.empty() && (std::isspace(static_cast<unsigned char>(text.back())) ||
+                                text.back() == '.' || text.back() == ';')) text.pop_back();
+        // Traditional tables sometimes cite a complete psalm, or omit the
+        // chapter colon. Single-chapter letters also omit their chapter.
+        static const std::regex wholePsalm{R"(^\s*(Ps|Psalm)\s*([0-9]+)$)", std::regex::icase};
+        if (std::regex_match(text, match, wholePsalm))
+        {
+            const auto c = std::stoi(match[2]);
+            const auto scheme = psalmNumbering == "hebrew" ? "hebrew" : "greek";
+            const auto end = bible.chapterEnds.find(std::string{scheme} + ":PSA:" + std::to_string(c));
+            const auto& contents = bible.books.at("PSA").chapters;
+            const int length = end != bible.chapterEnds.end() ? end->second : contents.at(c).rbegin()->first;
+            text = "Ps " + std::to_string(c) + ":1-" + std::to_string(length);
+        }
+        static const std::regex missingPsalmColon{R"(^((?:Ps|Psalm)\s*[0-9]+)\s+([0-9]))", std::regex::icase};
+        text = std::regex_replace(text, missingPsalmColon, "$1:$2");
+        static const std::regex singleChapter{R"(^\s*((?:[1-3]\s*)?[A-Za-z]+(?:\s+[A-Za-z]+)*)\s+([0-9]+.*)$)"};
+        if (text.find(':') == std::string::npos && std::regex_match(text, match, singleChapter))
+        {
+            const auto alias = bible.aliases.find(aliasKey(match[1].str()));
+            if (alias != bible.aliases.end() && bible.books.at(alias->second).chapters.size() == 1)
+                text = match[1].str() + " 1:" + match[2].str();
+        }
+        static const std::regex wholeChapter{R"(^\s*((?:[1-3]\s*)?[A-Za-z]+(?:\s+[A-Za-z]+)*)\s+([0-9]+)$)"};
+        if (std::regex_match(text, match, wholeChapter))
+        {
+            const auto alias = bible.aliases.find(aliasKey(match[1].str()));
+            if (alias != bible.aliases.end())
+            {
+                const auto& book = bible.books.at(alias->second);
+                const int c = std::stoi(match[2]);
+                const auto end = bible.chapterEnds.find(book.numbering + ":" + alias->second + ":" + std::to_string(c));
+                const int length = end != bible.chapterEnds.end() ? end->second : book.chapters.at(c).rbegin()->first;
+                text += ":1-" + std::to_string(length);
+            }
+        }
+        // Older Catholic tables split the combined LXX psalms into A/B.
+        static const std::regex splitPsalm{R"(^\s*(?:Ps|Psalm)\s*(113[AaBb]|9[Bb])\s*:(.*)$)", std::regex::icase};
+        if (std::regex_match(text, match, splitPsalm))
+        {
+            const auto label = match[1].str();
+            const int hebrew = label == "113A" || label == "113a" ? 114 :
+                               label == "113B" || label == "113b" ? 115 : 10;
+            text = "Ps " + std::to_string(hebrew) + ":" + match[2].str();
+            psalmNumbering = "hebrew";
+        }
+        static const std::regex heading{R"(^\s*((?:[1-3]\s*)?[A-Za-z]+(?:\s+[A-Za-z]+)*)\s*:?\s*([0-9]+)(?:\s*\(([0-9]+)\))?\s*:\s*(.*)$)"};
         if (!std::regex_match(text, match, heading)) throw std::invalid_argument("Unsupported Scripture reference syntax");
         const auto alias = bible.aliases.find(aliasKey(match[1].str()));
         if (alias == bible.aliases.end()) throw std::invalid_argument("Book name is not recognised");
@@ -133,13 +210,6 @@ ScripturePassage lookupPassage(const Bible& bible, std::string_view reference,
         std::string key = alias->second + std::to_string(chapter) + ":" + match[4].str();
         key.erase(std::remove_if(key.begin(), key.end(), [](unsigned char c) { return std::isspace(c); }), key.end());
         replaceAll(key, ".", ",");
-        if (!nativeMapping)
-            if (const auto mapped = bible.passageMappings.find(key); mapped != bible.passageMappings.end())
-            {
-                auto passage = lookupPassage(bible, mapped->second, "lxx", true);
-                if (passage.diagnostic.empty()) passage.numberingNote = "Douay–Rheims numbering is used below.";
-                return passage;
-            }
         if (psalmNumbering != "unspecified" && psalmNumbering != "lxx" && psalmNumbering != "hebrew")
             throw std::invalid_argument("Unknown psalm numbering convention");
         if (match[3].matched)
@@ -148,10 +218,17 @@ ScripturePassage lookupPassage(const Bible& bible, std::string_view reference,
             const int other = std::stoi(match[3]);
             // Common H(LXX) and LXX(H) notations are both accepted, only when
             // the pair can be verified. Verse alignment still needs a policy.
-            if (vulgatePsalm(chapter) == other) psalmNumbering = "hebrew";
-            else if (vulgatePsalm(other) == chapter) psalmNumbering = "lxx";
+            if (psalmPair(bible, chapter, other)) psalmNumbering = "hebrew";
+            else if (psalmPair(bible, other, chapter)) psalmNumbering = "lxx";
             else throw std::invalid_argument("Unrecognised dual psalm numbering");
         }
+        if (!nativeMapping)
+            if (const auto mapped = bible.passageMappings.find(psalm ? std::string{psalmNumbering} + ":" + key : key); mapped != bible.passageMappings.end())
+            {
+                auto passage = lookupPassage(bible, mapped->second, "lxx", true);
+                if (passage.diagnostic.empty()) passage.numberingNote = "Douay–Rheims numbering is used below.";
+                return passage;
+            }
         text = match[4];
         std::set<std::pair<int, int>> seen;
         while (!text.empty())
@@ -163,7 +240,14 @@ ScripturePassage lookupPassage(const Bible& bible, std::string_view reference,
             if (!text.empty() && text.front() == '-')
             {
                 text.erase(0, 1);
-                last = endpoint(text, chapter);
+                trimLeft(text);
+                if (!text.empty() && text.front() >= 'a' && text.front() <= 'z')
+                {
+                    // 1b–e means parts of verse 1, rather than a new verse.
+                    last.partial = true;
+                    text.erase(0, text.find_first_not_of("abcdefghijklmnopqrstuvwxyz"));
+                }
+                else last = endpoint(text, chapter);
                 chapter = last.chapter;
             }
             if (last.chapter < first.chapter ||
@@ -172,42 +256,46 @@ ScripturePassage lookupPassage(const Bible& bible, std::string_view reference,
             result.includesWholeVerses |= first.partial || last.partial;
             for (int c = first.chapter; c <= last.chapter; ++c)
             {
-                int native = c;
-                const auto verseMapping = bible.psalmVerseMappings.find(
-                    std::string{psalmNumbering} + ":" + std::to_string(c));
-                if (psalm)
+                std::string scheme = nativeMapping || book.nativeChapters.contains(c) ? "latin" : book.numbering;
+                if (psalm && !nativeMapping)
                 {
-                    if (psalmNumbering == "hebrew") native = vulgatePsalm(c);
-                    else if (psalmNumbering == "unspecified" && c > 2)
+                    if (psalmNumbering == "unspecified")
                         throw std::invalid_argument("Psalm numbering has not been identified for this reference");
-                    if (!nativeMapping && !bible.verifiedPsalms.contains(native) && verseMapping == bible.psalmVerseMappings.end())
-                        throw std::invalid_argument("Psalm verse numbering has not yet been mapped to Douay–Rheims");
-                    if (native != c) result.numberingNote = "Douay–Rheims psalm numbering is used below.";
+                    scheme = psalmNumbering == "hebrew" ? "hebrew" : "greek";
                 }
-                if (!nativeMapping && (book.requiresMapping || book.unmappedChapters.contains(native)))
-                    throw std::invalid_argument("Verse numbering for this passage has not yet been mapped to Douay–Rheims");
-                const auto found = book.chapters.find(native);
-                if (found == book.chapters.end()) throw std::invalid_argument("Chapter is absent from the offline Bible");
+                const auto chapterKey = scheme + ":" + alias->second + ":" + std::to_string(c);
+                const auto sourceEnd = bible.chapterEnds.find(chapterKey);
+                const auto sameChapter = book.chapters.find(c);
+                const int length = sourceEnd != bible.chapterEnds.end() ? sourceEnd->second :
+                    sameChapter != book.chapters.end() ? sameChapter->second.rbegin()->first : 0;
                 const int start = c == first.chapter ? first.verse : 1;
-                const int end = c == last.chapter ? last.verse : found->second.rbegin()->first;
-                if (end - start > 2000) throw std::invalid_argument("Excessive Scripture range");
+                const int end = c == last.chapter ? last.verse : length;
+                if (length == 0 || start > length || end > length)
+                    throw std::invalid_argument("Verse is absent from the source numbering scheme");
+                if (end < start || end - start > 2000) throw std::invalid_argument("Invalid or excessive Scripture range");
                 for (int v = start; v <= end; ++v)
                 {
-                    if (!nativeMapping)
-                        if (const auto guarded = book.unmappedVerses.find(c);
-                            guarded != book.unmappedVerses.end() && guarded->second.contains(v))
-                            throw std::invalid_argument("Verse numbering for this passage has not yet been mapped to Douay–Rheims");
-                    int nativeVerse = v;
-                    if (psalm && verseMapping != bible.psalmVerseMappings.end())
+                    const auto mapped = bible.verseMappings.find(chapterKey + ":" + std::to_string(v));
+                    std::vector<std::array<int, 2>> addresses{{c, v}};
+                    if (mapped != bible.verseMappings.end()) addresses = mapped->second;
+                    if (addresses.empty())
                     {
-                        const auto mapped = verseMapping->second.find(v);
-                        if (mapped == verseMapping->second.end()) throw std::invalid_argument("Psalm verse mapping is unavailable");
-                        nativeVerse = mapped->second;
-                        if (nativeVerse != v) result.numberingNote = "Whole Douay–Rheims verses shown where verse divisions differ.";
+                        if (!bible.omittedVerses.contains(chapterKey + ":" + std::to_string(v)))
+                            throw std::invalid_argument("Verse mapping is unavailable");
+                        result.omitsAbsentVerses = true;
+                        continue;
                     }
-                    const auto verse = found->second.find(nativeVerse);
-                    if (verse == found->second.end()) throw std::invalid_argument("Verse is absent from the offline Bible");
-                    if (seen.emplace(native, nativeVerse).second) result.verses.push_back({native, nativeVerse, verse->second});
+                    if (addresses.size() != 1 || addresses.front() != std::array<int, 2>{c, v})
+                        result.numberingNote = "Whole Douay–Rheims verses shown where numbering or verse divisions differ.";
+                    for (const auto& address : addresses)
+                    {
+                        const auto chapterFound = book.chapters.find(address[0]);
+                        if (chapterFound == book.chapters.end()) throw std::invalid_argument("Mapped chapter is absent from the offline Bible");
+                        const auto verse = chapterFound->second.find(address[1]);
+                        if (verse == chapterFound->second.end()) throw std::invalid_argument("Mapped verse is absent from the offline Bible");
+                        if (seen.emplace(address[0], address[1]).second)
+                            result.verses.push_back({address[0], address[1], verse->second});
+                    }
                 }
             }
             trimLeft(text);
@@ -220,6 +308,9 @@ ScripturePassage lookupPassage(const Bible& bible, std::string_view reference,
                 if (text.empty()) throw std::invalid_argument("Incomplete Scripture reference");
             }
         }
+        if (result.omitsAbsentVerses)
+            result.numberingNote += (result.numberingNote.empty() ? "" : " ") +
+                std::string{"Cited verses absent from the Douay–Rheims text are omitted."};
         if (result.verses.empty()) throw std::invalid_argument("No verses were selected");
     }
     catch (const std::invalid_argument& error) { result = {}; result.diagnostic = error.what(); }
