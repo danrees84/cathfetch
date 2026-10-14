@@ -3,6 +3,7 @@
 
 #include <optional>
 #include <string>
+#include "liturgical_colour.h"
 
 #include "celebration_rank.h"
 #include "liturgical_precedence.h"
@@ -14,6 +15,9 @@ struct ObservanceCandidate
     std::optional<CelebrationRank> rank;
     PrecedenceLevel precedence;
     bool optional = false;
+    bool namesTemporalBaseline = false;
+    std::optional<LiturgicalColour> colour;
+    std::optional<std::chrono::year_month_day> transferredFrom;
 };
 
 #endif

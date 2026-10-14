@@ -1,4 +1,5 @@
 #include "calendar_overlay.h"
+#include "calendar_loader.h"
 #include <fstream>
 #include <stdexcept>
 #include <nlohmann/json.hpp>
@@ -28,8 +29,7 @@ std::string sourceCalendar =
         std::string id =
             overrideEntry.at("id").get<std::string>();
 
-CelebrationRank newRank = parseCelebrationRank(
-    overrideEntry.at("changes").at("rank").get<std::string>());
+
 
 	bool found = false;
 
@@ -37,8 +37,7 @@ CelebrationRank newRank = parseCelebrationRank(
         {
             if (celebration.id == id)
             {
-                celebration.rank = newRank;
-		celebration.rankSourceCalendar = sourceCalendar;
+                updateCelebrationMetadata(celebration, overrideEntry.at("changes"), sourceCalendar);
                 found = true;
                 break;
             }
@@ -83,35 +82,7 @@ void applyAdditions(
             }
         }
 
-        int month = entry.at("month").get<int>();
-        int day = entry.at("day").get<int>();
-
-        std::chrono::month_day date{
-            std::chrono::month{unsigned(month)} /
-            std::chrono::day{unsigned(day)}
-        };
-
-        if (!date.ok())
-        {
-            throw std::runtime_error(
-                "Invalid calendar addition date: " + id);
-        }
-
-	std::optional<CelebrationRank> rank;
-
-
-        if (!entry.at("rank").is_null())
-        {
-            rank = parseCelebrationRank(
-    entry.at("rank").get<std::string>());
-        }
-
-        FixedCelebration celebration{
-            id,
-            date,
-            entry.at("name").get<std::string>(),
-            rank, sourceCalendar
-        };
+        auto celebration = parseFixedCelebration(entry, sourceCalendar);
 
         celebrations.push_back(celebration);
     }
@@ -174,7 +145,10 @@ void applyCalendarOverlay(
     std::vector<FixedCelebration>& celebrations,
     const std::string& filename)
 {
-    applyAdditions(celebrations, filename);
-    applyRankOverrides(celebrations, filename);
-    applyDateReassignments(celebrations, filename);
+    auto updated = celebrations;
+    applyAdditions(updated, filename);
+    applyRankOverrides(updated, filename);
+    applyDateReassignments(updated, filename);
+    validateCalendar(updated);
+    celebrations = std::move(updated);
 }

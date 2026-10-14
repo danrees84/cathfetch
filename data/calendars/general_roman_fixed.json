@@ -50,7 +50,10 @@
       "day": 6,
       "name": "The Epiphany of the Lord",
       "rank": "solemnity",
-      "source_page": 2
+      "source_page": 2,
+      "precedence": 2,
+      "date_rule": "epiphany",
+      "names_temporal_baseline": true
     },
     {
       "id": "grc-01-07-st-raymond-of-penyafort-priest",
@@ -1551,7 +1554,8 @@
       "name": "The Commemoration of All the Faithful Departed (All Souls’ Day)",
       "rank": null,
       "source_page": 12,
-      "note": "The source lists this as a commemoration, not as an optional memorial; resolve using its special liturgical rules."
+      "note": "The source lists this as a commemoration, not as an optional memorial; resolve using its special liturgical rules.",
+      "precedence": 3
     },
     {
       "id": "grc-11-03-st-martin-de-porres-religious",
@@ -1812,7 +1816,9 @@
       "day": 25,
       "name": "The Nativity of the Lord (Christmas)",
       "rank": "solemnity",
-      "source_page": 13
+      "source_page": 13,
+      "precedence": 2,
+      "names_temporal_baseline": true
     },
     {
       "id": "grc-12-26-st-stephen-the-first-martyr",

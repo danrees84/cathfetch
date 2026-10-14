@@ -40,6 +40,11 @@ PrecedenceLevel temporalBaselinePrecedence(
 		throw std::invalid_argument("Invalid calendar date");
 	}
 
+	if (date == calculateEpiphany(int(date.year()), calendarName))
+    {
+        return PrecedenceLevel::HighestDays;
+    }
+
 	if (isTriduum(date))
 {
     return PrecedenceLevel::Triduum;
@@ -161,6 +166,12 @@ if (isChristmas(date, calendarName))
 PrecedenceLevel fixedCelebrationPrecedence(
 		const FixedCelebration& celebration)
 {
+
+	if (celebration.precedence.has_value())
+{
+    return *celebration.precedence;
+}
+
 	if (!celebration.rank.has_value())
 	{
 		throw std::invalid_argument(
@@ -213,14 +224,7 @@ PrecedenceLevel fixedCelebrationPrecedence(
 			return PrecedenceLevel::GeneralFeast;
 		}
 
-		// TODO (post-v1.0): Replace calendar-specific precedence
-		// assumptions with explicit classifications in JSON,
-		// allowing new jurisdictions without C++ changes.
-
-		if (celebration.rankSourceCalendar == "europe")
-		{
-			return PrecedenceLevel::ProperFeast;
-		}
+        return PrecedenceLevel::ProperFeast;
 	}
 
 	throw std::logic_error(

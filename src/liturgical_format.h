@@ -21,4 +21,9 @@ std::string formatChristmasDay(
     std::chrono::year_month_day date,
     std::string_view calendarName);
 
+std::string formatEasterDay(
+    std::chrono::year_month_day date);
+
+std::string formatLentenDay(std::chrono::year_month_day date);
+
 #endif

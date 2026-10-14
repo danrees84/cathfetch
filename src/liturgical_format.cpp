@@ -4,6 +4,8 @@
 #include <array>
 #include <string_view>
 #include "temporal_calendar.h"
+#include "easter.h"
+#include <stdexcept>
 
 std::string liturgicalPeriodName(LiturgicalPeriod period)
 {
@@ -165,6 +167,8 @@ if (date.month() == std::chrono::December)
     }
 }
 
+
+
 	auto epiphanyDate = calculateEpiphany(
 			int(date.year()), calendarName);
 
@@ -182,4 +186,90 @@ if (date.month() == std::chrono::December)
 			unsigned(date.day()),
 			date.month()
 			);
+}
+
+std::string formatEasterDay(
+    std::chrono::year_month_day date)
+{
+    std::chrono::sys_days calendarDay{date};
+
+    std::chrono::sys_days easterSunday{
+        calculateEaster(int(date.year()))
+    };
+
+    if (calendarDay > easterSunday &&
+        calendarDay < easterSunday + std::chrono::days{7})
+    {
+        return std::format(
+            "{:%A} within the Octave of Easter",
+            calendarDay);
+    }
+
+    std::chrono::days daysSinceEaster =
+    calendarDay - easterSunday;
+
+    std::chrono::weekday dayOfWeek{calendarDay};
+
+    constexpr std::array<std::string_view, 6> weekNames{
+        "Second",
+        "Third",
+        "Fourth",
+        "Fifth",
+        "Sixth",
+        "Seventh"
+    };
+
+    int weekNumber = int(daysSinceEaster.count() / 7) + 1;
+
+    if (dayOfWeek == std::chrono::Sunday &&
+        daysSinceEaster >= std::chrono::days{7} &&
+        daysSinceEaster <= std::chrono::days{42})
+    {
+        std::string_view weekName =
+            weekNames.at(weekNumber - 2);
+
+        if (weekNumber == 2)
+        {
+            return "Second Sunday of Easter (or of Divine Mercy)";
+        }
+
+        return std::format("{} Sunday of Easter", weekName);
+    }
+
+    if (dayOfWeek != std::chrono::Sunday &&
+        daysSinceEaster >= std::chrono::days{8} &&
+        daysSinceEaster <= std::chrono::days{48})
+    {
+        std::string_view weekName =
+            weekNames.at(weekNumber - 2);
+
+        return std::format(
+            "{:%A} of the {} Week of Easter",
+            calendarDay,
+            weekName);
+    }
+
+    throw std::logic_error(
+        "Easter day formatting not yet implemented");
+}
+
+std::string formatLentenDay(std::chrono::year_month_day date)
+{
+    using namespace std::chrono;
+    const sys_days day{date};
+    const sys_days easter{calculateEaster(int(date.year()))};
+    const auto offset = (day - easter).count();
+    if (offset == -46) return "Ash Wednesday";
+    if (offset < -42) return std::format("{:%A} after Ash Wednesday", day);
+    if (offset == -7) return "Palm Sunday of the Passion of the Lord";
+    if (offset == -3) return "Holy Thursday";
+    if (offset == -2) return "Good Friday";
+    if (offset == -1) return "Holy Saturday";
+    if (offset > -7) return std::format("{:%A} of Holy Week", day);
+    constexpr std::array<std::string_view, 5> weeks{
+        "First", "Second", "Third", "Fourth", "Fifth"};
+    const auto week = (offset + 42) / 7;
+    if (weekday{day} == Sunday)
+        return std::format("{} Sunday of Lent", weeks.at(week));
+    return std::format("{:%A} of the {} Week of Lent", day, weeks.at(week));
 }

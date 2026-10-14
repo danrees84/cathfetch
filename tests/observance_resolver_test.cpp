@@ -410,6 +410,192 @@ if (corpusChristiNotEnglishThursday.observanceName ==
     return 1;
 }
 
+auto sacredHeartDay = resolveLiturgicalDay(
+    std::chrono::year{2026} / std::chrono::June / 12,
+    celebrations,
+    "grc");
+
+if (sacredHeartDay.observanceName !=
+        "The Most Sacred Heart of Jesus" ||
+    sacredHeartDay.rank != CelebrationRank::Solemnity ||
+    sacredHeartDay.precedence !=
+        PrecedenceLevel::GeneralSolemnityOrAllSouls)
+{
+    std::cerr << "Sacred Heart resolution test failed\n";
+    return 1;
+}
+
+auto sacredHeart2025 = resolveLiturgicalDay(
+    std::chrono::year{2025} / std::chrono::June / 27,
+    celebrations,
+    "grc");
+
+if (sacredHeart2025.observanceName !=
+        "The Most Sacred Heart of Jesus" ||
+    sacredHeart2025.rank != CelebrationRank::Solemnity ||
+    sacredHeart2025.precedence !=
+        PrecedenceLevel::GeneralSolemnityOrAllSouls)
+{
+    std::cerr << "Sacred Heart 2025 test failed\n";
+    return 1;
+}
+
+auto christTheKing2026 = resolveLiturgicalDay(
+    std::chrono::year{2026} / std::chrono::November / 22,
+    celebrations,
+    "grc");
+
+if (christTheKing2026.observanceName !=
+        "Our Lord Jesus Christ, King of the Universe" ||
+    christTheKing2026.rank != CelebrationRank::Solemnity ||
+    christTheKing2026.precedence !=
+        PrecedenceLevel::GeneralSolemnityOrAllSouls)
+{
+    std::cerr << "Christ the King 2026 test failed\n";
+    return 1;
+}
+
+auto christTheKing2025 = resolveLiturgicalDay(
+    std::chrono::year{2025} / std::chrono::November / 23,
+    celebrations,
+    "grc");
+
+if (christTheKing2025.observanceName !=
+        "Our Lord Jesus Christ, King of the Universe" ||
+    christTheKing2025.rank != CelebrationRank::Solemnity ||
+    christTheKing2025.precedence !=
+        PrecedenceLevel::GeneralSolemnityOrAllSouls)
+{
+    std::cerr << "Christ the King 2025 test failed\n";
+    return 1;
+}
+
+auto allSoulsSunday = resolveLiturgicalDay(
+    std::chrono::year{2025} / std::chrono::November / 2,
+    celebrations,
+    "grc");
+
+if (allSoulsSunday.observanceName.find("Faithful Departed") ==
+        std::string::npos ||
+    allSoulsSunday.rank.has_value() ||
+    allSoulsSunday.precedence !=
+        PrecedenceLevel::GeneralSolemnityOrAllSouls)
+{
+    std::cerr << "All Souls Sunday test failed\n";
+    return 1;
+}
+
+auto pentecostDay = resolveLiturgicalDay(
+    std::chrono::year{2026} / std::chrono::May / 24,
+    celebrations,
+    "grc");
+
+if (pentecostDay.observanceName != "Pentecost Sunday" ||
+    pentecostDay.rank != CelebrationRank::Solemnity ||
+    pentecostDay.precedence != PrecedenceLevel::HighestDays)
+{
+    std::cerr << "Pentecost resolution test failed\n";
+    return 1;
+}
+
+auto ascensionDay = resolveLiturgicalDay(
+    std::chrono::year{2026} / std::chrono::May / 14,
+    celebrations,
+    "grc");
+
+if (ascensionDay.observanceName !=
+        "The Ascension of the Lord" ||
+    ascensionDay.rank != CelebrationRank::Solemnity ||
+    ascensionDay.precedence != PrecedenceLevel::HighestDays)
+{
+    std::cerr << "Ascension resolution test failed\n";
+    return 1;
+}
+
+auto easterSunday2026 = resolveLiturgicalDay(
+    std::chrono::year{2026} / std::chrono::April / 5,
+    celebrations,
+    "grc");
+
+if (easterSunday2026.observanceName !=
+        "Easter Sunday of the Resurrection of the Lord" ||
+    easterSunday2026.rank != CelebrationRank::Solemnity ||
+    easterSunday2026.precedence != PrecedenceLevel::Triduum)
+{
+    std::cerr << "Easter Sunday resolution test failed\n";
+    return 1;
+}
+
+auto easterMonday2026 = resolveLiturgicalDay(
+    std::chrono::year{2026} / std::chrono::April / 6,
+    celebrations,
+    "grc");
+
+if (easterMonday2026.observanceName !=
+        "Monday within the Octave of Easter" ||
+    easterMonday2026.season != LiturgicalPeriod::Easter ||
+    easterMonday2026.precedence != PrecedenceLevel::HighestDays)
+{
+    std::cerr << "Easter Monday resolution test failed\n";
+    return 1;
+}
+
+auto secondSundayOfEaster = resolveLiturgicalDay(
+    std::chrono::year{2026} / std::chrono::April / 12,
+    celebrations,
+    "grc");
+
+if (secondSundayOfEaster.observanceName !=
+        "Second Sunday of Easter (or of Divine Mercy)" ||
+    secondSundayOfEaster.season != LiturgicalPeriod::Easter ||
+    secondSundayOfEaster.precedence != PrecedenceLevel::HighestDays)
+{
+    std::cerr << "Second Sunday of Easter test failed\n";
+    return 1;
+}
+
+auto sixthSundayOfEaster = resolveLiturgicalDay(
+    std::chrono::year{2025} / std::chrono::May / 25,
+    celebrations,
+    "grc");
+
+if (sixthSundayOfEaster.observanceName !=
+        "Sixth Sunday of Easter" ||
+    sixthSundayOfEaster.season != LiturgicalPeriod::Easter ||
+    sixthSundayOfEaster.precedence != PrecedenceLevel::HighestDays)
+{
+    std::cerr << "Sixth Sunday of Easter test failed\n";
+    return 1;
+}
+
+auto secondWeekMonday = resolveLiturgicalDay(
+    std::chrono::year{2026} / std::chrono::April / 13,
+    celebrations,
+    "grc");
+
+if (secondWeekMonday.observanceName !=
+        "Monday of the Second Week of Easter" ||
+    secondWeekMonday.season != LiturgicalPeriod::Easter ||
+    secondWeekMonday.precedence != PrecedenceLevel::OtherWeekday)
+{
+    std::cerr << "Second Week of Easter weekday test failed\n";
+    return 1;
+}
+
+auto lastEasterWeekday = resolveLiturgicalDay(
+    std::chrono::year{2026} / std::chrono::May / 23,
+    celebrations,
+    "grc");
+
+if (lastEasterWeekday.observanceName !=
+        "Saturday of the Seventh Week of Easter" ||
+    lastEasterWeekday.season != LiturgicalPeriod::Easter ||
+    lastEasterWeekday.precedence != PrecedenceLevel::OtherWeekday)
+{
+    std::cerr << "Last Easter weekday test failed\n";
+    return 1;
+}
+
 std::cout << "Observance resolver tests passed\n";
 	return 0;
 }

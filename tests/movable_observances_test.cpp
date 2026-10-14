@@ -76,6 +76,76 @@ if (!englandJanuary7.empty())
     return 1;
 }
 
+auto ascensionCandidates = findMovableObservances(
+    std::chrono::year{2026} / std::chrono::May / 14,
+    "grc");
+
+bool ascensionFound = false;
+
+for (const auto& candidate : ascensionCandidates)
+{
+    if (candidate.id == "ascension")
+    {
+        ascensionFound =
+            candidate.name == "The Ascension of the Lord" &&
+            candidate.rank == CelebrationRank::Solemnity &&
+            candidate.precedence == PrecedenceLevel::HighestDays;
+    }
+}
+
+if (!ascensionFound)
+{
+    std::cerr << "Ascension movable observance test failed\n";
+    return 1;
+}
+
+auto pentecostCandidates = findMovableObservances(
+    std::chrono::year{2026} / std::chrono::May / 24,
+    "grc");
+
+bool pentecostFound = false;
+
+for (const auto& candidate : pentecostCandidates)
+{
+    if (candidate.id == "pentecost")
+    {
+        pentecostFound =
+            candidate.name == "Pentecost Sunday" &&
+            candidate.rank == CelebrationRank::Solemnity &&
+            candidate.precedence == PrecedenceLevel::HighestDays;
+    }
+}
+
+if (!pentecostFound)
+{
+    std::cerr << "Pentecost movable observance test failed\n";
+    return 1;
+}
+
+auto easterCandidates = findMovableObservances(
+    std::chrono::year{2026} / std::chrono::April / 5,
+    "grc");
+
+bool easterFound = false;
+
+for (const auto& candidate : easterCandidates)
+{
+    if (candidate.id == "easter_sunday")
+    {
+        easterFound =
+            candidate.name ==
+                "Easter Sunday of the Resurrection of the Lord" &&
+            candidate.rank == CelebrationRank::Solemnity &&
+            candidate.precedence == PrecedenceLevel::Triduum &&
+            candidate.namesTemporalBaseline;
+    }
+}
+
+if (!easterFound)
+{
+    std::cerr << "Easter Sunday movable observance test failed\n";
+    return 1;
+}
 
     std::cout << "Movable observance tests passed\n";
     return 0;
