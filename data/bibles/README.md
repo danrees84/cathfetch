@@ -58,3 +58,9 @@ The scripture regression test checks all 2,665 primary and 119 alternative non-a
 The chapter-only Isaiah 12 alternative retains its source qualification that exact verses were not specified; a whole-chapter lookup does not certify that the whole chapter is appointed.
 
 Text lookup does not certify the underlying lectionary assignment. Douay–Rheims wording is not the ESV–CE/Abbey text used in the current England and Wales Lectionary. Current-edition verification and the documented missing national assignments remain separate limitations. The pinned electronic Bible transcription is not independently proofread. Unstored or ambiguous references can still return an explicit unavailable result.
+
+## Reviewed Tobit correspondences
+
+[The passage audit](tobit_correspondence_audit.json) compares all six previously guarded selections with the bundled text and the USCCB modern Catholic Bible, recording reference facts and paraphrased findings only. Two whole-passage overrides recover Tobit 1:3;2:1–8 and 12:1,5–15,20. The former needs native 1:2–3 for the introductory verse; the latter covers shifts within its selected continuous range. These provisions do not enable general identity fallback in Tobit.
+
+Four stored citations remain unavailable because the textual traditions differ materially: Tobit 6:10–11;7:1,9–14;8:4–9, 11:5–17, 13:2,6–8 and 13:2–8. Metadata supplies specific explanations. No approximate counterpart is presented as a complete appointed passage. Text availability is now 2,661 of 2,665 primary non-acclamation citations, plus all 119 alternatives; this measures stored citations, not independent Lectionary verification. Two other citations retain explicit absent-verse notices.

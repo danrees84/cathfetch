@@ -764,7 +764,9 @@
     "lxx:PSA115:10-11,15-18": "PSA 115:1;115:2;115:6;115:7;115:8;115:9",
     "lxx:PSA147:12,15": "PSA 147:1;147:4",
     "lxx:PSA115:12-19": "PSA 115:3;115:4;115:5;115:6;115:7;115:8;115:9;115:10",
-    "lxx:PSA115:12-15,18-19": "PSA 115:3;115:4;115:5;115:6;115:9;115:10"
+    "lxx:PSA115:12-15,18-19": "PSA 115:3;115:4;115:5;115:6;115:9;115:10",
+    "TOB1:3;2:1-8": "TOB1:2-3;2:1-8",
+    "TOB12:1,5-15,20": "TOB12:1,5-15,20"
   },
   "mapping_sources": [
     "https://ebible.org/engDRA/",
@@ -991,6 +993,17 @@
       "scope": "Tobit: unlisted addresses cannot assume identity across recensions",
       "source": "https://bible.usccb.org/bible/tobit/6",
       "note": "Modern Catholic long-recension passages and the shorter Vulgate/DRA differ in text as well as verse division. The commented-out TVTMS Tobit sections are not verified conversion data. Missing correspondences now fail explicitly; successful address lookup alone does not establish a valid passage."
+    },
+    {
+      "scope": "Reviewed Tobit whole-passage correspondences and retained textual differences",
+      "source": "https://bible.usccb.org/bible/tobit/12",
+      "note": "See tobit_correspondence_audit.json for six reviewed passages, modern/native source locators and the two scoped mappings. These are whole-passage correspondences, not identical wording or current England and Wales Lectionary certification."
     }
-  ]
+  ],
+  "passage_diagnostics": {
+    "TOB6:10-11;7:1,9-14;8:4-9": "No verified Douay–Rheims correspondence for this Tobit passage: the marriage narrative and prayer differ between textual traditions.",
+    "TOB11:5-17": "No verified Douay–Rheims correspondence for this Tobit passage: the arrival narrative differs, including material absent from this translation.",
+    "TOB13:2,6-8": "No verified Douay–Rheims correspondence for this Tobit passage: the canticle differs in both verse divisions and content.",
+    "TOB13:2-8": "No verified Douay–Rheims correspondence for this Tobit passage: the canticle differs in both verse divisions and content."
+  }
 }

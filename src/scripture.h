@@ -23,6 +23,7 @@ struct Bible
     std::map<std::string, BibleBook> books;
     std::map<std::string, std::string> aliases;
     std::map<std::string, std::string> passageMappings;
+    std::map<std::string, std::string> passageDiagnostics;
     std::map<std::string, std::vector<std::array<int, 2>>> verseMappings;
     std::map<std::string, int> chapterEnds;
     std::set<std::string> omittedVerses;

@@ -2,6 +2,7 @@
 """Offline tests for the versification data import, without downloading a Bible."""
 import hashlib
 import importlib.util
+import json
 from pathlib import Path
 import sys
 import tempfile
@@ -16,6 +17,29 @@ spec.loader.exec_module(module)
 
 
 class VersificationImportTests(unittest.TestCase):
+    def test_tobit_review_evidence_tracks_the_runtime_provisions(self):
+        metadata = json.loads((ROOT / 'data/bibles/en_dra_metadata.json').read_text())
+        audit = json.loads((ROOT / 'data/bibles/tobit_correspondence_audit.json').read_text())
+        reviewed = set()
+        for passage in audit['passages']:
+            key = passage['key']
+            self.assertNotIn(key, reviewed)
+            reviewed.add(key)
+            self.assertTrue(passage['note'])
+            self.assertTrue(any(url.startswith('https://bible.usccb.org/') for url in passage['sources']))
+            self.assertTrue(any(url.startswith('https://ebible.org/engDRA/') for url in passage['sources']))
+            if passage['status'] == 'mapped':
+                self.assertEqual(metadata['passage_mappings'][key], passage['native_reference'])
+                self.assertNotIn(key, metadata['passage_diagnostics'])
+            else:
+                self.assertEqual(passage['status'], 'textual_difference')
+                self.assertIsNone(passage['native_reference'])
+                self.assertIn(key, metadata['passage_diagnostics'])
+                self.assertNotIn(key, metadata['passage_mappings'])
+        provisions = {key for key in metadata['passage_mappings'] if key.startswith('TOB')}
+        provisions.update(key for key in metadata['passage_diagnostics'] if key.startswith('TOB'))
+        self.assertEqual(reviewed, provisions)
+
     def derive(self, table):
         with tempfile.TemporaryDirectory() as directory:
             source = Path(directory) / 'table.txt'

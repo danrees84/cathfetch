@@ -8,9 +8,20 @@ As of 14 October 2026, Cathfetch has **807 reference sets and 214 explicit memor
 
 The originally suggested GitHub XML has only 66 books, so the bundled normalised XML uses the complete public-domain copy of the same edition from eBible.org. See [Bible provenance, commands and limitations](data/bibles/README.md). Partial-verse references display whole verses with an explicit notice; shorter forms remain reference alternatives.
 
-The mapping implementation uses source-backed whole-verse correspondences, including psalm splits/merges, titles and differing verse divisions. **The independent follow-up audit supersedes the earlier claim that all stored passages were safely mapped.** Tobit has substantial recension differences; an in-range address is not proof of correspondence. Unlisted Tobit addresses now require an explicit map. Of **2,665 primary non-acclamation citations, 2,659 return text and six explicitly report an unverified correspondence**. The affected Tobit readings/canticles are in Ordinary Time weeks 9 and 25, cycle I. Two other passages contain a cited verse absent from Douay–Rheims (Genesis 49:32 and Sirach 3:19); available text is shown with an omission notice. All 119 stored alternative non-acclamation citations are checked separately.
+The mapping implementation uses source-backed whole-verse correspondences, including psalm splits/merges, titles and differing verse divisions. **The independent follow-up audit supersedes the earlier claim that all stored passages were safely mapped.** Tobit has substantial recension differences; an in-range address is not proof of correspondence. Unlisted Tobit addresses now require an explicit map. Of **2,665 primary non-acclamation citations, 2,661 return text and four explicitly report an unavailable complete correspondence**. The affected Tobit readings/canticles are in Ordinary Time weeks 9 and 25, cycle I. Two other passages contain a cited verse absent from Douay–Rheims (Genesis 49:32 and Sirach 3:19); available text is shown with an omission notice. All 119 stored alternative non-acclamation citations are checked separately.
 
-Regression coverage includes literal text/address checks, every stored citation and selected daily passages for all 10,228 date/calendar combinations in 2024–2030. An explicit unavailable correspondence is tested as such, never counted as verified text. Final validation passes: `make -j4 all test`, both audit freshness checks, and byte-for-byte current-ordo report reproduction from the cached official PDF. The scripture suite performs 35,471 checks; its 10,228-date sweep finds 31 date/calendar selections with guarded Tobit text correspondences. All 119 alternative references resolve. All twelve C++ suites, three CLI suites and 15 Python audit/import tests pass, including terminal widths 120/100/80/60/40.
+Regression coverage includes literal text/address checks, every stored citation and selected daily passages for all 10,228 date/calendar combinations in 2024–2030. An explicit unavailable correspondence is tested as such, never counted as verified text. Final validation passes: `make -j4 all test`, both audit freshness checks, and byte-for-byte current-ordo report reproduction from the cached official PDF. The scripture suite performs 35,478 checks; its 10,228-date sweep finds 27 date/calendar selections with guarded Tobit text correspondences. All 119 alternative references resolve. All twelve C++ suites, three CLI suites and 16 Python audit/import tests pass, including terminal widths 120/100/80/60/40.
+
+## Tobit follow-up — 14 October 2026
+
+Reviewed all six previously guarded passages against the bundled text and the USCCB modern Catholic Bible. The [passage audit](data/bibles/tobit_correspondence_audit.json) records individual source locators and conclusions; it contains no modern Scripture text. Two scoped whole-passage mappings are now available:
+
+- Tobit 1:3;2:1–8 uses native 1:2–3;2:1–8, retaining both fidelity and charity in the introduction.
+- Tobit 12:1,5–15,20 uses the same native range as a whole; details shift within the selected continuous 5–15 section. This does not enable identity fallback for individual verses.
+
+The other four stored citations (the marriage narrative/prayer, the healing/arrival narrative and two canticle selections) have material differences between textual traditions. They remain unavailable as complete readings in this translation, with specific terminal explanations. For example, the modern account of Tobit meeting Sarah outside the city is not supplied by a simple verse shift in the Douay–Rheims. A related passage is not silently substituted. These gaps require a separately sourced translation containing the corresponding textual tradition, or an explicitly designed partial-text policy; more address renumbering alone cannot complete them.
+
+Literal wording/address tests and CLI checks cover the recovered passages and retained omissions. The audit freshness test checks that runtime mappings and unavailable provisions retain matching source evidence. The national proper and complete current-edition collation remain blocked as described below; this follow-up does not certify those assignments.
 
 ## Independent audit update — 14 October 2026
 
@@ -82,7 +93,7 @@ For 2026:
 | England | 364 | 0 | 364 | 0 | 1 | 3 |
 | Wales | 364 | 0 | 364 | 0 | 1 | 3 |
 
-The remaining observed-day gap is **Six Welsh Martyrs and their Companions**, Wales, 25 October when not impeded. It accounts for all six missing assignments in the 2024–2030 sweep. Holy Saturday's absent daytime Mass is a separate status; an explicit Easter Vigil request is supported. Reference availability is independent of the six guarded Tobit full-text correspondences.
+The remaining observed-day gap is **Six Welsh Martyrs and their Companions**, Wales, 25 October when not impeded. It accounts for all six missing assignments in the 2024–2030 sweep. Holy Saturday's absent daytime Mass is a separate status; an explicit Easter Vigil request is supported. Reference availability is independent of the four guarded Tobit full-text correspondences.
 
 ## Independent audit: exact scope
 
@@ -107,7 +118,7 @@ The year diagnostic now separates `status=available` from `verification=publishe
 - Existing [Sunday](https://www.liturgyoffice.org.uk/Calendar/Sunday/AdventSunday.shtml), [weekday](https://www.liturgyoffice.org.uk/Calendar/Weekday/Advent.shtml), [solemnity](https://www.liturgyoffice.org.uk/Calendar/Sunday/OT2Solemnities.shtml) and [feasts of the Lord](https://www.liturgyoffice.org.uk/Calendar/Sunday/Feasts.shtml) tables remain the sources of the original 600. Earlier independently checked corrections are retained in their source notes.
 - User-supplied [Lectionary.com full year](https://lectionary.com/catholic/full-year): inspected, but no current England/Wales authority or complete daily coverage established. No data was imported from this third-party table. The displayed St Joseph date of 20 March 2026 also requires correction/clarification before using it as a date authority.
 
-The remaining blockers are a complete authoritative current-edition citation index/current volumes, the Welsh Martyrs proper, and independently verified Tobit correspondences across textual recensions. The public sources checked cannot establish complete exact-verse, acclamation and option verification, nor the remaining Welsh Martyrs proper. No copyrighted Scripture, Missal texts, biographies or publisher database has been imported. No full ecclesiastical or historical accuracy is claimed.
+The remaining blockers are a complete authoritative current-edition citation index/current volumes, the Welsh Martyrs proper, and the four Tobit selections without a complete Douay–Rheims counterpart. The public sources checked cannot establish complete exact-verse, acclamation and option verification, nor the remaining Welsh Martyrs proper. No copyrighted Scripture, Missal texts, biographies or publisher database has been imported. No full ecclesiastical or historical accuracy is claimed.
 
 ## API and existing policies
 

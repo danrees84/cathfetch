@@ -68,6 +68,10 @@ Bible loadBible(const std::string& filename)
     bible.translation = data.at("translation");
     bible.omittedVerses = data.at("versification").at("omitted_verses").get<std::set<std::string>>();
     bible.passageMappings = data.value("passage_mappings", std::map<std::string, std::string>{});
+    bible.passageDiagnostics = data.value("passage_diagnostics", std::map<std::string, std::string>{});
+    for (const auto& [key, diagnostic] : bible.passageDiagnostics)
+        if (diagnostic.empty() || bible.passageMappings.contains(key))
+            throw std::invalid_argument("Conflicting or empty Bible passage diagnostic");
     for (const auto& [scheme, mappings] : data.at("versification").at("maps").items())
         for (const auto& [source, targets] : mappings.items())
         {
@@ -230,6 +234,9 @@ ScripturePassage lookupPassage(const Bible& bible, std::string_view reference,
                 if (passage.diagnostic.empty()) passage.numberingNote = "Douay–Rheims numbering is used below.";
                 return passage;
             }
+        if (!nativeMapping)
+            if (const auto diagnostic = bible.passageDiagnostics.find(key); diagnostic != bible.passageDiagnostics.end())
+                throw std::invalid_argument(diagnostic->second);
         text = match[4];
         std::set<std::pair<int, int>> seen;
         while (!text.empty())

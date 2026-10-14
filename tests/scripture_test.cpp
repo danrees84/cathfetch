@@ -67,7 +67,7 @@ int main()
         require(lookupScripture(bible, "Wisdom 3:1–9").verses.size() == 9, "Deuterocanonical reading text");
         for (const auto& ref : {"John 1:0", "John 1:999", "John 999:1", "John 1:18-1", "John 1:1,",
                                 "John 1:1 or 2:1", "Unknown 1:1", "John 1:99999999999999999",
-                                "Ps 50:3-4", "John 1:1 7", "John 1:1 rubbish", "Sirach 3:19", "Tobit 11:5-17", "Tobit 12:1,5-15,20"})
+                                "Ps 50:3-4", "John 1:1 7", "John 1:1 rubbish", "Sirach 3:19", "Tobit 11:5-17", "Tobit 12:1"})
         {
             const auto result = lookupScripture(bible, ref);
             require(!result.diagnostic.empty() && result.verses.empty(), "Unsupported lookup fails atomically with a diagnostic");
@@ -79,6 +79,31 @@ int main()
 
         // Literal passage checks cover changes in text identity, rather than
         // merely accepting any in-range chapter/verse returned by the map.
+        const auto charity = lookupScripture(bible, "Tobit 1:3; 2:1–8");
+        require(charity.diagnostic.empty() && charity.verses.size() == 10 &&
+                charity.verses[0].chapter == 1 && charity.verses[0].verse == 2 &&
+                charity.verses[0].text.find("way of truth") != std::string::npos &&
+                charity.verses[1].text.starts_with("But every day gave"),
+                "Tobit's fidelity and charity require both native introductory verses");
+        require(charity.verses.back().chapter == 2 && charity.verses.back().verse == 8 &&
+                charity.verses.back().text.find("bury the dead") != std::string::npos &&
+                !charity.numberingNote.empty(), "Tobit burial narrative and native numbering notice");
+        const auto raphael = lookupScripture(bible, "Tobit 12:1. 5–15. 20");
+        require(raphael.diagnostic.empty() && raphael.verses.size() == 13 &&
+                raphael.verses[11].verse == 15 &&
+                raphael.verses[11].text.starts_with("For I am the angel Raphael") &&
+                raphael.verses.back().verse == 20 &&
+                raphael.verses.back().text.find("publish all his wonderful works") != std::string::npos,
+                "Whole Raphael passage retains revelation and departure without importing intervening verses");
+        const std::set<std::string> guardedReferences{
+            "Tobit 6:10–11; 7:1. 9–14; 8:4–9", "Tobit 11:5–17",
+            "Tobit 13:2. 6–8 r.1", "Tb 13:2-8"};
+        for (const auto& ref : guardedReferences)
+        {
+            const auto passage = lookupScripture(bible, ref);
+            require(passage.verses.empty() && passage.diagnostic.find(": ") != std::string::npos,
+                    "Reviewed textual differences retain an explanatory atomic failure");
+        }
         const auto mercy = lookupScripture(bible, "Ps 51:3-4", "hebrew");
         require(mercy.verses.size() == 2 && mercy.verses[0].chapter == 50 &&
                 mercy.verses[0].text.starts_with("Have mercy on me"), "Hebrew psalm titles retain verse alignment");
@@ -130,7 +155,7 @@ int main()
             const auto passage = lookupScripture(bible, reference, numbering);
             if (!passage.diagnostic.empty())
             {
-                require((reference.starts_with("Tobit ") || reference.starts_with("Tb ")) &&
+                require(guardedReferences.contains(reference) &&
                         passage.diagnostic.find("No verified Douay") != std::string::npos && passage.verses.empty(),
                         "Only the documented unverified Tobit correspondences may fail");
                 availability[{reference, numbering}] = false;
@@ -155,8 +180,8 @@ int main()
                     ++alternatives;
                 }
             }
-        require(available == 2659 && unavailable == 6 && omitted == 2,
-                "Primary citations resolve except six explicitly guarded Tobit passages; two absent-verse notices");
+        require(available == 2661 && unavailable == 4 && omitted == 2,
+                "Primary citations resolve except four reviewed Tobit differences; two absent-verse notices");
         int dates = 0, selected = 0, textUnavailableDays = 0;
         using namespace std::chrono;
         for (const auto calendar : {"grc", "europe", "england", "wales"})

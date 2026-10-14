@@ -50,5 +50,11 @@ for date in ['12072025', '31082025']:
 for date in ['08062023', '09062023', '10062023']:
     text = run('--date='+date, '--calendar=england', '--full-verses', width=120)
     assert 'No verified Douay–Rheims correspondence for this Tobit passage' in ' '.join(text.split())
+charity = run('--date=05062023', '--calendar=england', '--full-verses')
+assert 'Text unavailable' not in charity
+assert 'way of truth' in ' '.join(charity.split()) and 'But every day gave' in charity
+raphael = run('--date=10062023', '--calendar=england', '--full-verses')
+assert 'For I am the angel Raphael' in raphael
+assert 'canticle differs in both verse divisions and content' in ' '.join(raphael.split())
 print('Full-verse CLI, alternatives and wrapping tests passed')
 PY

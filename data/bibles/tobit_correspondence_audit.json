@@ -1,0 +1,78 @@
+{
+  "reviewed": "2026-10-14",
+  "scope": "Manual whole-passage comparison with the bundled public-domain Douay–Rheims text and USCCB modern Catholic Bible. This checks text identity, not current England and Wales Lectionary assignment or authorised liturgical use. No modern Scripture text is stored.",
+  "passages": [
+    {
+      "key": "TOB1:3;2:1-8",
+      "reference": "Tobit 1:3; 2:1–8",
+      "status": "mapped",
+      "native_reference": "TOB1:2-3;2:1-8",
+      "sources": [
+        "https://bible.usccb.org/bible/tobit/1",
+        "https://ebible.org/engDRA/TOB01.htm",
+        "https://bible.usccb.org/bible/tobit/2",
+        "https://ebible.org/engDRA/TOB02.htm"
+      ],
+      "note": "Modern 1:3 combines fidelity and charity, covered by native 1:2-3. The selected 2:1-8 narrative corresponds as a whole. Whole native verses are retained; this is not word-for-word equivalence."
+    },
+    {
+      "key": "TOB6:10-11;7:1,9-14;8:4-9",
+      "reference": "Tobit 6:10–11; 7:1. 9–14; 8:4–9",
+      "status": "textual_difference",
+      "native_reference": null,
+      "sources": [
+        "https://bible.usccb.org/bible/tobit/6",
+        "https://ebible.org/engDRA/TOB06.htm",
+        "https://bible.usccb.org/bible/tobit/7",
+        "https://ebible.org/engDRA/TOB07.htm",
+        "https://bible.usccb.org/bible/tobit/8",
+        "https://ebible.org/engDRA/TOB08.htm"
+      ],
+      "note": "Modern 7:9-14 spans native 7:9-17. The chapter 6 journey and chapter 8 marriage prayer also differ in content. A chapter/verse shift cannot supply an equivalent complete selection."
+    },
+    {
+      "key": "TOB11:5-17",
+      "reference": "Tobit 11:5–17",
+      "status": "textual_difference",
+      "native_reference": null,
+      "sources": [
+        "https://bible.usccb.org/bible/tobit/11",
+        "https://ebible.org/engDRA/TOB11.htm"
+      ],
+      "note": "The healing narrative changes verse divisions. Modern 11:16-17 describes Tobit meeting Sarah outside the city; native 11:18 places her arrival later. A contiguous native range would add unrelated material and still omit source content."
+    },
+    {
+      "key": "TOB12:1,5-15,20",
+      "reference": "Tobit 12:1. 5–15. 20",
+      "status": "mapped",
+      "native_reference": "TOB12:1,5-15,20",
+      "sources": [
+        "https://bible.usccb.org/bible/tobit/12",
+        "https://ebible.org/engDRA/TOB12.htm"
+      ],
+      "note": "The wages, exhortation, revelation and departure correspond across the selected whole passage. Details move within 12:12-14, all included in the selected continuous 5-15 range. This does not authorise identity fallback for individual Tobit verses."
+    },
+    {
+      "key": "TOB13:2,6-8",
+      "reference": "Tobit 13:2. 6–8 r.1",
+      "status": "textual_difference",
+      "native_reference": null,
+      "sources": [
+        "https://bible.usccb.org/bible/tobit/13",
+        "https://ebible.org/engDRA/TOB13.htm"
+      ],
+      "note": "Native 13:2,6-10 is a related canticle, but not a complete equivalent of modern 13:2,6-8. Modern 13:6 includes material absent from the native selection. The commented TVTMS row alone cannot verify this conversion."
+    },
+    {
+      "key": "TOB13:2-8",
+      "reference": "Tb 13:2-8",
+      "status": "textual_difference",
+      "native_reference": null,
+      "sources": [
+        "https://bible.usccb.org/bible/tobit/13",
+        "https://ebible.org/engDRA/TOB13.htm"
+      ],
+      "note": "Native 13:2-10 is a related canticle with different divisions and content, not a verified complete equivalent of modern 13:2-8."
+    }
+  ]
+}
