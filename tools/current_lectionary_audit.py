@@ -155,6 +155,38 @@ def check(report, assignments):
     print(counts)
 
 
+def check_precision(ledger, assignments):
+    """Keep manual collation evidence attached to the exact live citations."""
+    entries = {entry['id']: entry for entry in assignments['entries']}
+    seen = set()
+    for row in ledger['corrections']:
+        key = (row['id'], row['role'])
+        if key in seen:
+            raise ValueError('Duplicate precision correction: ' + str(key))
+        seen.add(key)
+        entry = entries[row['id']]
+        slot = next(r for r in entry['readings'] if r['role'] == row['role'])
+        if slot['reference'] != row['reference'] or row['previous'] == row['reference']:
+            raise ValueError('Precision correction is stale: ' + str(key))
+        sources = row['sources']
+        if len(sources) < 2 or len({source['url'] for source in sources}) != len(sources):
+            raise ValueError('Independent precision evidence required: ' + str(key))
+        if not any(source['url'].startswith(SOURCE + '#page=') for source in sources):
+            raise ValueError('Current national ordo evidence required: ' + str(key))
+        for source in sources:
+            if (canonical(row['reference']) is None or
+                    source['url'] not in entry['verification_sources'] or
+                    canonical(source['reference']) != canonical(row['reference'])):
+                raise ValueError('Precision evidence differs from the citation: ' + str(key))
+    for row in ledger['retained_differences']:
+        entry = entries[row['id']]
+        slot = next(r for r in entry['readings'] if r['role'] == row['role'])
+        if slot['reference'] != row['reference']:
+            raise ValueError('Retained source difference needs re-collation: ' + row['id'])
+    print(f"{len(seen)} collated citation limits; "
+          f"{len(ledger['retained_differences'])} retained source differences; no full-set certification")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('operation', choices=['extract', 'compare', 'check'])
@@ -164,6 +196,8 @@ def main():
     assignments = json.loads((ROOT / 'data/lectionary/roman_references.json').read_text())
     if args.operation == 'check':
         check(json.loads(args.input.read_text()), assignments)
+        precision = ROOT / 'data/lectionary/citation_precision_audit.json'
+        check_precision(json.loads(precision.read_text()), assignments)
         return
     if args.output is None:
         parser.error('extract and compare require an output file')

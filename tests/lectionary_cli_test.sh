@@ -31,6 +31,8 @@ for removed in ['collation pending', 'Sunday B /', 'Day Mass', 'First:', 'Gospel
                 'Other reading sets', 'Acclamation:']:
     assert removed not in christmas
 assert 'Readings:\nIsa 2:1-5;' in run('--date=30112025', '--readings', width=120)
+assert 'Matt 1:16, 18-21, 24a' in ' '.join(run('--date=19032026', '--readings').split())
+assert 'Acts 10:34a, 37-43' in ' '.join(run('--date=05042026', '--readings').split())
 assert 'Luke 2:1-14' in run('--date=25122026', '--mass=night', width=120)
 assert 'No daytime Mass' in run('--date=04042026', '--readings', width=120)
 assert 'Readings:\nGal 5:18-25;' in run('--date=14102026', '--readings', width=120)

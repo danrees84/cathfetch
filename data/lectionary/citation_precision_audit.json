@@ -1,0 +1,804 @@
+{
+  "reviewed": "2026-10-14",
+  "scope": "Targeted subverse collation, not complete current-edition certification. Changes require the same limits in the current England and Wales diocesan ordo and an independent bishops’ reading page. Psalm stanzas, acclamations, options and regional differences are not inferred from American provisions. Whole Douay–Rheims verses remain explicitly labelled in full-text mode.",
+  "corrections": [
+    {
+      "id": "easter_sunday:any:day",
+      "role": "first",
+      "previous": "Acts 10: 34. 37-43",
+      "reference": "Acts 10:34a, 37-43",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=69",
+          "line": 3,
+          "reference": "Acts 10:34a, 37-43"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/033124.cfm",
+          "reference": "Acts 10:34a, 37-43"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "grc-03-19-st-joseph-spouse-of-the-blessed-virgin-mary:any:day",
+      "role": "first",
+      "previous": "2 Sam 7:4-5, 12-14, 16",
+      "reference": "2 Sam 7:4-5a, 12-14a, 16",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=56",
+          "line": 52,
+          "reference": "2 Sam 7:4-5a, 12-14a, 16"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/031926.cfm",
+          "reference": "2 Sam 7:4-5a, 12-14a, 16"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "grc-03-19-st-joseph-spouse-of-the-blessed-virgin-mary:any:day",
+      "role": "gospel",
+      "previous": "Matt 1:16, 18-21, 24",
+      "reference": "Matt 1:16, 18-21, 24a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=56",
+          "line": 52,
+          "reference": "Mt 1:16, 18-21, 24a"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/031926.cfm",
+          "reference": "Matt 1:16, 18-21, 24a"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "grc-11-01-all-saints:any:day",
+      "role": "gospel",
+      "previous": "Matt 5:1-12",
+      "reference": "Matt 5:1-12a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=126",
+          "line": 9,
+          "reference": "Mt 5:1-12a"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/110125.cfm",
+          "reference": "Matt 5:1-12a"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "wal-11-08-all-saints-of-wales:wales:day",
+      "role": "gospel",
+      "previous": "Matt 5:1-12",
+      "reference": "Matt 5:1-12a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=126",
+          "line": 9,
+          "reference": "Mt 5:1-12a"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/110125.cfm",
+          "reference": "Matt 5:1-12a"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "pentecost:A:day",
+      "role": "second",
+      "previous": "1 Cor 12:3-7, 12-13",
+      "reference": "1 Cor 12:3b-7, 12-13",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=83",
+          "line": 28,
+          "reference": "1 Cor 12:3b-7, 12-13"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/052823-Day.cfm",
+          "reference": "1 Cor 12:3b-7, 12-13"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "pentecost:B:day",
+      "role": "second",
+      "previous": "1 Cor 12:3-7, 12-13",
+      "reference": "1 Cor 12:3b-7, 12-13",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=83",
+          "line": 28,
+          "reference": "1 Cor 12:3b-7, 12-13"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/052823-Day.cfm",
+          "reference": "1 Cor 12:3b-7, 12-13"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "pentecost:C:day",
+      "role": "second",
+      "previous": "1 Cor 12:3-7, 12-13",
+      "reference": "1 Cor 12:3b-7, 12-13",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=83",
+          "line": 28,
+          "reference": "1 Cor 12:3b-7, 12-13"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/052823-Day.cfm",
+          "reference": "1 Cor 12:3b-7, 12-13"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "temporal:lent:2:0:A:day",
+      "role": "first",
+      "previous": "Gen 12:1-4",
+      "reference": "Gen 12:1-4a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=52",
+          "line": 20,
+          "reference": "Gen 12:1-4a"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/030126.cfm",
+          "reference": "Gen 12:1-4a"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "temporal:lent:2:0:A:day",
+      "role": "second",
+      "previous": "2 Tim 1:8-10",
+      "reference": "2 Tim 1:8b-10",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=52",
+          "line": 20,
+          "reference": "2 Tim 1:8b-10"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/030126.cfm",
+          "reference": "2 Tim 1:8b-10"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "temporal:lent:4:0:A:day",
+      "role": "first",
+      "previous": "1 Sam 16:1, 6-7, 10-13",
+      "reference": "1 Sam 16:1b, 6-7, 10-13a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=55",
+          "line": 28,
+          "reference": "1 Sam 16:1b, 6-7, 10-13a"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/032628-YearA.cfm",
+          "reference": "1 Sam 16:1b, 6-7, 10-13a"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "temporal:lent:4:0:A:day:alternative-in-B",
+      "role": "first",
+      "previous": "1 Sam 16:1, 6-7, 10-13",
+      "reference": "1 Sam 16:1b, 6-7, 10-13a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=55",
+          "line": 28,
+          "reference": "1 Sam 16:1b, 6-7, 10-13a"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/032628-YearA.cfm",
+          "reference": "1 Sam 16:1b, 6-7, 10-13a"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "temporal:lent:4:0:A:day:alternative-in-C",
+      "role": "first",
+      "previous": "1 Sam 16:1, 6-7, 10-13",
+      "reference": "1 Sam 16:1b, 6-7, 10-13a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=55",
+          "line": 28,
+          "reference": "1 Sam 16:1b, 6-7, 10-13a"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/032628-YearA.cfm",
+          "reference": "1 Sam 16:1b, 6-7, 10-13a"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "temporal:after_ashes:5:any:day",
+      "role": "first",
+      "previous": "Isaiah 58:1-9",
+      "reference": "Isaiah 58:1-9a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=50",
+          "line": 28,
+          "reference": "Isa 58:1-9a"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/022026.cfm",
+          "reference": "Isaiah 58:1-9a"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "temporal:after_ashes:6:any:day",
+      "role": "first",
+      "previous": "Isaiah 58:9-14",
+      "reference": "Isaiah 58:9b-14",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=50",
+          "line": 35,
+          "reference": "Isa 58:9b-14"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/021327.cfm",
+          "reference": "Isaiah 58:9b-14"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "temporal:advent:1:3:any:day",
+      "role": "first",
+      "previous": "Isaiah 25:6–10",
+      "reference": "Isaiah 25:6–10a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=24",
+          "line": 40,
+          "reference": "Isa 25:6-10a"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/120226.cfm",
+          "reference": "Isaiah 25:6–10a"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "temporal:lent:2:1:any:day",
+      "role": "first",
+      "previous": "Daniel 9:4-10",
+      "reference": "Daniel 9:4b-10",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=52",
+          "line": 39,
+          "reference": "Dan 9:4b-10"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/030226.cfm",
+          "reference": "Daniel 9:4b-10"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "temporal:lent:4:5:any:day",
+      "role": "first",
+      "previous": "Wisdom 2:1. 12-22",
+      "reference": "Wisdom 2:1a, 12-22",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=57",
+          "line": 10,
+          "reference": "Wis 2:1a, 12-22"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/040425.cfm",
+          "reference": "Wisdom 2:1a, 12-22"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "grc-08-15-the-assumption-of-the-blessed-virgin-mary:any:day",
+      "role": "first",
+      "previous": "Rev 11:19; 12:1-6; 10",
+      "reference": "Rev 11:19a; 12:1-6a, 10ab",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=106",
+          "line": 16,
+          "reference": "Rev 11:19a; 12:1-6a, 10ab"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/081527-Day.cfm",
+          "reference": "Rev 11:19a; 12:1-6a, 10ab"
+        }
+      ],
+      "note": "Selected passage limits collated; this does not verify the full reading set, options or numbering of other slots."
+    },
+    {
+      "id": "temporal:advent:3:1:any:day",
+      "role": "first",
+      "previous": "Numbers 24:2–7. 15–17",
+      "reference": "Numbers 24:2-7.15-17a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=28",
+          "line": 21,
+          "reference": "Num 24:2-7, 15-17a"
+        },
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=10",
+          "date": "2024-12-16",
+          "reference": "Numbers 24:2-7.15-17a"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:advent:december:19:any:day",
+      "role": "first",
+      "previous": "Judges 13:2–7. 24–25",
+      "reference": "Judges 13:2-7.24-25a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=29",
+          "line": 3,
+          "reference": "Jdg 13:2-7, 24-25a"
+        },
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=10",
+          "date": "2024-12-19",
+          "reference": "Judges 13:2-7.24-25a"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:advent:december:24:any:day",
+      "role": "first",
+      "previous": "2 Samuel 7:1–5. 8–12. 14. 16",
+      "reference": "2 Samuel 7:1-5.8b-12.14a.16",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=30",
+          "line": 16,
+          "reference": "2 Sam 7:1-5, 8b-12, 14a, 16"
+        },
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=11",
+          "date": "2024-12-24",
+          "reference": "2 Samuel 7:1-5.8b-12.14a.16"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:easter:3:0:A:day",
+      "role": "first",
+      "previous": "Acts 2:14, 22-33",
+      "reference": "Acts 2:14.22b-33",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=73",
+          "line": 51,
+          "reference": "Acts 2:14, 22b-33"
+        },
+        {
+          "url": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/30-ORDO-2022_2023-Annee-A.pdf#page=41",
+          "date": "2023-04-23",
+          "reference": "Acts 2:14.22b-33"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:easter:3:2:any:day",
+      "role": "first",
+      "previous": "Acts 7:51–8:1",
+      "reference": "Acts 7:51–8:1a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=74",
+          "line": 18,
+          "reference": "Acts 7:51–8:1a"
+        },
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=48",
+          "date": "2025-05-06",
+          "reference": "Acts 7:51–8:1a"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:easter:3:3:any:day",
+      "role": "first",
+      "previous": "Acts 8:1–8",
+      "reference": "Acts 8:1b-8",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=74",
+          "line": 31,
+          "reference": "Acts 8:1b-8"
+        },
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=48",
+          "date": "2025-05-07",
+          "reference": "Acts 8:1b-8"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:easter:5:2:any:day",
+      "role": "gospel",
+      "previous": "John 14:27–31",
+      "reference": "John 14:27-31a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=78",
+          "line": 12,
+          "reference": "Jn 14:27-31a"
+        },
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=51",
+          "date": "2025-05-20",
+          "reference": "John 14:27-31a"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:easter:6:1:any:day",
+      "role": "gospel",
+      "previous": "John 15:26 – 16:4",
+      "reference": "John 15:26–16:4a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=79",
+          "line": 22,
+          "reference": "Jn 15:26–16:4a"
+        },
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=52",
+          "date": "2025-05-26",
+          "reference": "John 15:26–16:4a"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:easter:6:5:any:day",
+      "role": "gospel",
+      "previous": "John 16:20–23",
+      "reference": "John 16:20-23a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=80",
+          "line": 29,
+          "reference": "Jn 16:20-23a"
+        },
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=53",
+          "date": "2025-05-30",
+          "reference": "John 16:20-23a"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:easter:6:6:any:day",
+      "role": "gospel",
+      "previous": "John 16:23–28",
+      "reference": "John 16:23b-28",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=80",
+          "line": 38,
+          "reference": "Jn 16:23b-28"
+        },
+        {
+          "url": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=48",
+          "date": "2024-05-11",
+          "reference": "John 16:23b-28"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:easter:7:2:any:day",
+      "role": "gospel",
+      "previous": "John 17:1–11",
+      "reference": "John 17:1-11a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=81",
+          "line": 27,
+          "reference": "Jn 17:1-11a"
+        },
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=54",
+          "date": "2025-06-03",
+          "reference": "John 17:1-11a"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:easter:7:3:any:day",
+      "role": "gospel",
+      "previous": "John 17:11–19",
+      "reference": "John 17:11b-19",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=81",
+          "line": 41,
+          "reference": "Jn 17:11b-19"
+        },
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=54",
+          "date": "2025-06-04",
+          "reference": "John 17:11b-19"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:holy_week:3:any:day",
+      "role": "first",
+      "previous": "Isaiah 50:4-9",
+      "reference": "Isaiah 50:4-9a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=62",
+          "line": 6,
+          "reference": "Isa 50:4-9a"
+        },
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=40",
+          "date": "2025-04-16",
+          "reference": "Isaiah 50:4-9a"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:lent:2:5:any:day",
+      "role": "first",
+      "previous": "Genesis 37:3-4. 12-13. 17-28",
+      "reference": "Genesis 37:3-4.12-13a.17b-28",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=53",
+          "line": 31,
+          "reference": "Gen 37:3-4, 12-13a, 17b-28"
+        },
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=33",
+          "date": "2025-03-21",
+          "reference": "Genesis 37:3-4.12-13a.17b-28"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:lent:3:1:any:day",
+      "role": "first",
+      "previous": "2 Kings 5:1-15",
+      "reference": "2 Kings 5:1-15a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=54",
+          "line": 38,
+          "reference": "2 Kgs 5:1-15a"
+        },
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=33",
+          "date": "2025-03-24",
+          "reference": "2 Kings 5:1-15a"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:ordinary:11:0:A:day",
+      "role": "first",
+      "previous": "Exod 19:2-6",
+      "reference": "Exodus 19:2-6a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=91",
+          "line": 4,
+          "reference": "Ex 19:2-6a"
+        },
+        {
+          "url": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/30-ORDO-2022_2023-Annee-A.pdf#page=53",
+          "date": "2023-06-18",
+          "reference": "Exodus 19:2-6a"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:ordinary:14:4:II:day",
+      "role": "first",
+      "previous": "Hosea 11:1-4. 8-9",
+      "reference": "Hosea 11:1-4.8c-9",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=97",
+          "line": 3,
+          "reference": "Hos 11:1-4, 8c-9"
+        },
+        {
+          "url": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=61",
+          "date": "2024-07-11",
+          "reference": "Hosea 11:1-4.8c-9"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:ordinary:19:0:A:day",
+      "role": "first",
+      "previous": "1 Kgs 19:9, 11-13",
+      "reference": "1 Kings 19:9a.11-13a",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=104",
+          "line": 26,
+          "reference": "1 Kgs 19:9a, 11-13a"
+        },
+        {
+          "url": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/30-ORDO-2022_2023-Annee-A.pdf#page=64",
+          "date": "2023-08-13",
+          "reference": "1 Kings 19:9a.11-13a"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:ordinary:19:6:II:day",
+      "role": "first",
+      "previous": "Ezekiel 18:1-10. 13. 30-32",
+      "reference": "Ezekiel 18:1-10.13b.30-32",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=105",
+          "line": 37,
+          "reference": "Ezk 18:1-10, 13b, 30-32"
+        },
+        {
+          "url": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=69",
+          "date": "2024-08-17",
+          "reference": "Ezekiel 18:1-10.13b.30-32"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:ordinary:3:2:II:day",
+      "role": "first",
+      "previous": "2 Samuel 6:12–15. 17–19",
+      "reference": "2 Samuel 6:12b-15.17-19",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=44",
+          "line": 18,
+          "reference": "2 Sam 6:12b-15, 17-19"
+        },
+        {
+          "url": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=18",
+          "date": "2024-01-23",
+          "reference": "2 Samuel 6:12b-15.17-19"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:ordinary:3:6:II:day",
+      "role": "first",
+      "previous": "2 Samuel 12:1–7. 10–17",
+      "reference": "2 Samuel 12:1-7a.10-17",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=44",
+          "line": 52,
+          "reference": "2 Sam 12:1-7a, 10-17"
+        },
+        {
+          "url": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=19",
+          "date": "2024-01-27",
+          "reference": "2 Samuel 12:1-7a.10-17"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    },
+    {
+      "id": "temporal:ordinary:9:4:II:day",
+      "role": "gospel",
+      "previous": "Mark 12:28–34",
+      "reference": "Mark 12:28b-34",
+      "sources": [
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=87",
+          "line": 41,
+          "reference": "Mk 12:28b-34"
+        },
+        {
+          "url": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=54",
+          "date": "2024-06-06",
+          "reference": "Mark 12:28b-34"
+        }
+      ],
+      "note": "The current English diocesan ordo and the French bishops’ general Roman reading provision agree on these passage limits. No foreign national dates, psalm numbers or options are imported. Full current-edition set remains unverified."
+    }
+  ],
+  "retained_differences": [
+    {
+      "id": "ascension:A:day",
+      "role": "second",
+      "reference": "Eph 1:17-23",
+      "differing_reference": "Eph 1:16-23",
+      "sources": [
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=80",
+        "https://www.liturgyoffice.org.uk/Calendar/Sunday/EasterSunday.shtml#Ascension",
+        "https://bible.usccb.org/bible/readings/051726-Ascension"
+      ],
+      "note": "Hallam begins at 16; both the Liturgy Office source and the independent bishops’ page begin at 17. Retain 17 rather than imposing the discrepant ordo endpoint."
+    },
+    {
+      "id": "temporal:easter:3:0:A:day",
+      "role": "second",
+      "reference": "1 Pet 1:17-21",
+      "differing_reference": "1 Pet 1:7-21",
+      "sources": [
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=73",
+        "https://www.liturgyoffice.org.uk/Calendar/Sunday/EasterSunday.shtml#Easter3",
+        "https://bible.usccb.org/bible/readings/041926.cfm"
+      ],
+      "note": "Hallam prints 1 Peter 1:7-21; the Liturgy Office source and independent bishops’ page have 1:17-21. Retain the existing passage."
+    },
+    {
+      "id": "temporal:advent:1:0:A:day",
+      "role": "second",
+      "reference": "Rom 13:11-14",
+      "differing_reference": "Rom 13:11-14a",
+      "sources": [
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=24",
+        "https://www.liturgyoffice.org.uk/Calendar/Sunday/AdventSunday.shtml#AdventSunday1",
+        "https://bible.usccb.org/bible/readings/113025.cfm"
+      ],
+      "note": "Hallam ends at 14a, whereas the older Liturgy Office and independent US bishops’ page cite 14. This may reflect an edition or regional limit. Retain the sourced reference pending the printed current England and Wales provision; do not import American limits as national authority."
+    }
+  ]
+}

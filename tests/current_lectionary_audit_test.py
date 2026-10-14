@@ -48,6 +48,19 @@ class CurrentAuditTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             audit.check(report, changed)
 
+    def test_collated_limits_keep_exact_evidence_and_reject_stale_citations(self):
+        assignments = json.loads((ROOT / 'data/lectionary/roman_references.json').read_text())
+        ledger = json.loads((ROOT / 'data/lectionary/citation_precision_audit.json').read_text())
+        audit.check_precision(ledger, assignments)
+        changed = copy.deepcopy(ledger)
+        changed['corrections'][0]['sources'][1]['reference'] = 'Acts 10:34, 37-43'
+        with self.assertRaises(ValueError):
+            audit.check_precision(changed, assignments)
+        changed = copy.deepcopy(ledger)
+        changed['retained_differences'][0]['reference'] = 'Eph 1:16-23'
+        with self.assertRaises(ValueError):
+            audit.check_precision(changed, assignments)
+
 
 if __name__ == '__main__':
     unittest.main()

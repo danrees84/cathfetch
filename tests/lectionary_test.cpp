@@ -83,6 +83,27 @@ int main()
         require(reference(resolve(2025y/April/7), "gospel") == "John 8:12-20", "Lent Monday Gospel conditional on Year C");
         require(reference(resolve(2026y/April/6), "first") == "Acts 2:14, 22–33", "Easter Octave independently checked endpoint");
         require(reference(resolve(2026y/April/13), "first") == "Acts 4:23–31", "Missing source chapter independently restored");
+        require(reference(resolve(2026y/March/19), "first") == "2 Sam 7:4-5a, 12-14a, 16" &&
+                reference(resolve(2026y/March/19), "gospel") == "Matt 1:16, 18-21, 24a",
+                "St Joseph retains independently collated subverse limits");
+        require(reference(resolve(2026y/April/5), "first") == "Acts 10:34a, 37-43",
+                "Easter daytime first reading has a partial introductory verse");
+        require(reference(resolve(2026y/May/24), "second") == "1 Cor 12:3b-7, 12-13",
+                "Pentecost starts with the selected part of verse three");
+        require(reference(resolve(2026y/March/1), "first") == "Gen 12:1-4a" &&
+                reference(resolve(2026y/March/1), "second") == "2 Tim 1:8b-10",
+                "Lent A uses collated partial first and second readings");
+        require(reference(resolve(2026y/February/20), "first") == "Isaiah 58:1-9a" &&
+                reference(resolve(2026y/February/21), "first") == "Isaiah 58:9b-14",
+                "Successive weekdays divide Isaiah verse nine rather than repeating its whole text");
+        require(reference(resolve(2025y/November/8, "wales"), "gospel") == "Matt 5:1-12a",
+                "Welsh All Saints default retains the general provision's Gospel endpoint");
+        require(reference(resolve(2026y/April/21), "first") == "Acts 7:51–8:1a" &&
+                reference(resolve(2026y/April/22), "first") == "Acts 8:1b-8",
+                "Successive Easter weekdays retain the division within Acts eight verse one");
+        require(reference(resolve(2026y/May/19), "gospel") == "John 17:1-11a" &&
+                reference(resolve(2026y/May/20), "gospel") == "John 17:11b-19",
+                "Successive Easter Gospels retain the division within John seventeen verse eleven");
         require(reference(resolve(2026y/July/11, "europe"), "gospel") == "Matthew 19:27–29",
                 "European Benedict feast cannot inherit Roman memorial weekday policy");
         require(resolve(2026y/July/11).status == ReadingStatus::Available, "Roman Benedict memorial retains weekday readings");

@@ -1353,7 +1353,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Acts 10: 34. 37-43",
+          "reference": "Acts 10:34a, 37-43",
           "alternatives": []
         },
         {
@@ -1389,12 +1389,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/Triduum.shtml#Sunday",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=69"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=69",
+        "https://bible.usccb.org/bible/readings/033124.cfm"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 4 literal matches, 0 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "eternal_high_priest:A:day",
@@ -1761,7 +1762,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "2 Sam 7:4-5, 12-14, 16",
+          "reference": "2 Sam 7:4-5a, 12-14a, 16",
           "alternatives": []
         },
         {
@@ -1783,7 +1784,7 @@
         },
         {
           "role": "gospel",
-          "reference": "Matt 1:16, 18-21, 24",
+          "reference": "Matt 1:16, 18-21, 24a",
           "alternatives": [
             {
               "reference": "Luke 2:41-51a",
@@ -1793,12 +1794,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/OT2Solemnities.shtml#Joseph",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=56"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=56",
+        "https://bible.usccb.org/bible/readings/031926.cfm"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 4 literal matches, 0 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first, gospel. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "grc-03-25-the-annunciation-of-the-lord:any:day",
@@ -2423,7 +2425,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Rev 11:19; 12:1-6; 10",
+          "reference": "Rev 11:19a; 12:1-6a, 10ab",
           "alternatives": []
         },
         {
@@ -2444,12 +2446,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/OT2Solemnities.shtml#Assumption",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=106"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=106",
+        "https://bible.usccb.org/bible/readings/081527-Day.cfm"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 2 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 1 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "grc-08-15-the-assumption-of-the-blessed-virgin-mary:any:vigil",
@@ -2627,17 +2630,18 @@
         },
         {
           "role": "gospel",
-          "reference": "Matt 5:1-12",
+          "reference": "Matt 5:1-12a",
           "alternatives": []
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/OT2Solemnities.shtml#AllSaints",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=126"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=126",
+        "https://bible.usccb.org/bible/readings/110125.cfm"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 2 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 2 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: gospel. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "grc-11-02-the-commemoration-of-all-the-faithful-departed-all-souls-day:any:day",
@@ -3732,7 +3736,7 @@
         },
         {
           "role": "second",
-          "reference": "1 Cor 12:3-7, 12-13",
+          "reference": "1 Cor 12:3b-7, 12-13",
           "alternatives": []
         },
         {
@@ -3742,12 +3746,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/EasterSunday.shtml#Pentecost",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=83"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=83",
+        "https://bible.usccb.org/bible/readings/052823-Day.cfm"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 2 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 1 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: second. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "pentecost:B:day",
@@ -3777,7 +3782,7 @@
         },
         {
           "role": "second",
-          "reference": "1 Cor 12:3-7, 12-13",
+          "reference": "1 Cor 12:3b-7, 12-13",
           "alternatives": [
             {
               "reference": "Gal 5:16-25",
@@ -3797,12 +3802,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/EasterSunday.shtml#Pentecost",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=83"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=83",
+        "https://bible.usccb.org/bible/readings/052823-Day.cfm"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 2 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 1 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: second. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "pentecost:C:day",
@@ -3832,7 +3838,7 @@
         },
         {
           "role": "second",
-          "reference": "1 Cor 12:3-7, 12-13",
+          "reference": "1 Cor 12:3b-7, 12-13",
           "alternatives": [
             {
               "reference": "Rom 8:8-17",
@@ -3852,12 +3858,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/EasterSunday.shtml#Pentecost",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Year C optional Gospel start corrected against https://bible.usccb.org/bible/readings/051516-pentecost-day.cfm .",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Year C optional Gospel start corrected against https://bible.usccb.org/bible/readings/051516-pentecost-day.cfm . Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=83"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=83",
+        "https://bible.usccb.org/bible/readings/052823-Day.cfm"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 2 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 1 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: second. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "pentecost:any:vigil",
@@ -4483,7 +4490,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Isaiah 25:6–10",
+          "reference": "Isaiah 25:6–10a",
           "alternatives": []
         },
         {
@@ -4504,12 +4511,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Advent.shtml#Week1",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=24"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=24",
+        "https://bible.usccb.org/bible/readings/120226.cfm"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:advent:1:4:any:day",
@@ -5188,7 +5196,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Numbers 24:2–7. 15–17",
+          "reference": "Numbers 24:2-7.15-17a",
           "alternatives": []
         },
         {
@@ -5204,12 +5212,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Advent.shtml#Week3",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=28"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=28",
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=10"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:advent:3:2:any:day",
@@ -5618,7 +5627,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Judges 13:2–7. 24–25",
+          "reference": "Judges 13:2-7.24-25a",
           "alternatives": []
         },
         {
@@ -5634,12 +5643,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Advent.shtml#",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=29"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=29",
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=10"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:advent:december:20:any:day",
@@ -5811,7 +5821,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "2 Samuel 7:1–5. 8–12. 14. 16",
+          "reference": "2 Samuel 7:1-5.8b-12.14a.16",
           "alternatives": []
         },
         {
@@ -5827,12 +5837,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Advent.shtml#",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=30"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=30",
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=11"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 0 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:after_ashes:4:any:day",
@@ -5902,7 +5913,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Isaiah 58:1-9",
+          "reference": "Isaiah 58:1-9a",
           "alternatives": []
         },
         {
@@ -5929,12 +5940,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Lent.shtml#AfterAW",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=50"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=50",
+        "https://bible.usccb.org/bible/readings/022026.cfm"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:after_ashes:6:any:day",
@@ -5953,7 +5965,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Isaiah 58:9-14",
+          "reference": "Isaiah 58:9b-14",
           "alternatives": []
         },
         {
@@ -5980,12 +5992,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Lent.shtml#AfterAW",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=50"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=50",
+        "https://bible.usccb.org/bible/readings/021327.cfm"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 0 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:after_epiphany:1:any:day",
@@ -7448,7 +7461,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Acts 2:14, 22-33",
+          "reference": "Acts 2:14.22b-33",
           "alternatives": []
         },
         {
@@ -7474,12 +7487,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/EasterSunday.shtml#Easter3",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=73"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=73",
+        "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/30-ORDO-2022_2023-Annee-A.pdf#page=41"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 3 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:easter:3:0:B:day",
@@ -7645,7 +7659,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Acts 7:51–8:1",
+          "reference": "Acts 7:51–8:1a",
           "alternatives": []
         },
         {
@@ -7671,12 +7685,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Easter.shtml#Week3",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=74"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=74",
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=48"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:easter:3:3:any:day",
@@ -7695,7 +7710,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Acts 8:1–8",
+          "reference": "Acts 8:1b-8",
           "alternatives": []
         },
         {
@@ -7721,12 +7736,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Easter.shtml#Week3",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=74"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=74",
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=48"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:easter:3:4:any:day",
@@ -8574,17 +8590,18 @@
         },
         {
           "role": "gospel",
-          "reference": "John 14:27–31",
+          "reference": "John 14:27-31a",
           "alternatives": []
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Easter.shtml#Week5",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=78"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=78",
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=51"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: gospel. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:easter:5:3:any:day",
@@ -8946,17 +8963,18 @@
         },
         {
           "role": "gospel",
-          "reference": "John 15:26 – 16:4",
+          "reference": "John 15:26–16:4a",
           "alternatives": []
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Easter.shtml#Week6",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=79"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=79",
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=52"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: gospel. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:easter:6:2:any:day",
@@ -9128,17 +9146,18 @@
         },
         {
           "role": "gospel",
-          "reference": "John 16:20–23",
+          "reference": "John 16:20-23a",
           "alternatives": []
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Easter.shtml#Week6",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=80"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=80",
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=53"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 0 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: gospel. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:easter:6:6:any:day",
@@ -9178,17 +9197,18 @@
         },
         {
           "role": "gospel",
-          "reference": "John 16:23–28",
+          "reference": "John 16:23b-28",
           "alternatives": []
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Easter.shtml#Week6",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=80"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=80",
+        "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=48"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 0 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: gospel. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:easter:7:0:A:day",
@@ -9420,17 +9440,18 @@
         },
         {
           "role": "gospel",
-          "reference": "John 17:1–11",
+          "reference": "John 17:1-11a",
           "alternatives": []
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Easter.shtml#Week7",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=81"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=81",
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=54"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 0 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: gospel. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:easter:7:3:any:day",
@@ -9470,17 +9491,18 @@
         },
         {
           "role": "gospel",
-          "reference": "John 17:11–19",
+          "reference": "John 17:11b-19",
           "alternatives": []
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Easter.shtml#Week7",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=81"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=81",
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=54"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: gospel. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:easter:7:4:any:day",
@@ -9901,7 +9923,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Isaiah 50:4-9",
+          "reference": "Isaiah 50:4-9a",
           "alternatives": []
         },
         {
@@ -9917,12 +9939,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Lent.shtml#Week6",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=62"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=62",
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=40"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:holy_week:4:any:evening",
@@ -10476,7 +10499,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Gen 12:1-4",
+          "reference": "Gen 12:1-4a",
           "alternatives": []
         },
         {
@@ -10487,7 +10510,7 @@
         },
         {
           "role": "second",
-          "reference": "2 Tim 1:8-10",
+          "reference": "2 Tim 1:8b-10",
           "alternatives": []
         },
         {
@@ -10502,12 +10525,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/LentSunday.shtml#Lent2",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=52"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=52",
+        "https://bible.usccb.org/bible/readings/030126.cfm"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 3 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first, second. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:lent:2:0:B:day",
@@ -10623,7 +10647,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Daniel 9:4-10",
+          "reference": "Daniel 9:4b-10",
           "alternatives": []
         },
         {
@@ -10639,12 +10663,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Lent.shtml#Week2",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=52"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=52",
+        "https://bible.usccb.org/bible/readings/030226.cfm"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 0 differences, 0 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:lent:2:2:any:day",
@@ -10813,7 +10838,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Genesis 37:3-4. 12-13. 17-28",
+          "reference": "Genesis 37:3-4.12-13a.17b-28",
           "alternatives": []
         },
         {
@@ -10834,12 +10859,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Lent.shtml#Week2",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=53"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=53",
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=33"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 0 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:lent:2:6:any:day",
@@ -11174,7 +11200,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "2 Kings 5:1-15",
+          "reference": "2 Kings 5:1-15a",
           "alternatives": []
         },
         {
@@ -11201,12 +11227,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Lent.shtml#Week3",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=54"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=54",
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=33"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:lent:3:2:any:day",
@@ -11453,7 +11480,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "1 Sam 16:1, 6-7, 10-13",
+          "reference": "1 Sam 16:1b, 6-7, 10-13a",
           "alternatives": []
         },
         {
@@ -11484,12 +11511,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/LentSunday.shtml#Lent4",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=55"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=55",
+        "https://bible.usccb.org/bible/readings/032628-YearA.cfm"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:lent:4:0:A:day:alternative-in-B",
@@ -11508,7 +11536,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "1 Sam 16:1, 6-7, 10-13",
+          "reference": "1 Sam 16:1b, 6-7, 10-13a",
           "alternatives": []
         },
         {
@@ -11539,14 +11567,15 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/LentSunday.shtml#Lent4",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Year A set permitted in Year B.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Year A set permitted in Year B. Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "alternative_only": true,
       "verification": "published_table",
       "permitted_alternative": true,
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=55"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=55",
+        "https://bible.usccb.org/bible/readings/032628-YearA.cfm"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:lent:4:0:A:day:alternative-in-C",
@@ -11565,7 +11594,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "1 Sam 16:1, 6-7, 10-13",
+          "reference": "1 Sam 16:1b, 6-7, 10-13a",
           "alternatives": []
         },
         {
@@ -11596,14 +11625,15 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/LentSunday.shtml#Lent4",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Year A set permitted in Year C.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Year A set permitted in Year C. Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "alternative_only": true,
       "verification": "published_table",
       "permitted_alternative": true,
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=55"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=55",
+        "https://bible.usccb.org/bible/readings/032628-YearA.cfm"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:lent:4:0:B:day",
@@ -11903,7 +11933,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Wisdom 2:1. 12-22",
+          "reference": "Wisdom 2:1a, 12-22",
           "alternatives": []
         },
         {
@@ -11929,12 +11959,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Lent.shtml#",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=57"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=57",
+        "https://bible.usccb.org/bible/readings/040425.cfm"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:lent:4:6:any:day",
@@ -13376,7 +13407,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Exod 19:2-6",
+          "reference": "Exodus 19:2-6a",
           "alternatives": []
         },
         {
@@ -13407,12 +13438,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/OT3Sunday.shtml#OT11",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=91"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=91",
+        "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/30-ORDO-2022_2023-Annee-A.pdf#page=53"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 2 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 2 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:ordinary:11:0:B:day",
@@ -16024,7 +16056,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Hosea 11:1-4. 8-9",
+          "reference": "Hosea 11:1-4.8c-9",
           "alternatives": []
         },
         {
@@ -16051,12 +16083,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/OT3.shtml#Week14",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=97"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=97",
+        "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=61"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:ordinary:14:5:I:day",
@@ -19139,7 +19172,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "1 Kgs 19:9, 11-13",
+          "reference": "1 Kings 19:9a.11-13a",
           "alternatives": []
         },
         {
@@ -19171,12 +19204,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/OT4Sunday.shtml#OT19",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=104"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=104",
+        "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/30-ORDO-2022_2023-Annee-A.pdf#page=64"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 2 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 2 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:ordinary:19:0:B:day",
@@ -19827,7 +19861,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Ezekiel 18:1-10. 13. 30-32",
+          "reference": "Ezekiel 18:1-10.13b.30-32",
           "alternatives": []
         },
         {
@@ -19853,12 +19887,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/OT4.shtml#Week19",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=105"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=105",
+        "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=69"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 0 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:ordinary:1:1:I:day",
@@ -22480,7 +22515,7 @@
         "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=122",
         "https://universalis.com/europe.england.birmingham/20261018/mass.htm"
       ],
-      "verification_note": "Second-reading endpoint 5b independently corroborated by the current Hallam ordo and Universalis. This is slot-level corroboration, not complete current-edition verification of this set or its alternatives. Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
     },
     {
       "id": "temporal:ordinary:29:0:B:day",
@@ -24247,7 +24282,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "2 Samuel 6:12–15. 17–19",
+          "reference": "2 Samuel 6:12b-15.17-19",
           "alternatives": []
         },
         {
@@ -24274,12 +24309,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/OT1.shtml#Week3",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=44"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=44",
+        "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=18"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 0 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:ordinary:3:3:I:day",
@@ -24621,7 +24657,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "2 Samuel 12:1–7. 10–17",
+          "reference": "2 Samuel 12:1-7a.10-17",
           "alternatives": []
         },
         {
@@ -24647,12 +24683,13 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/OT1.shtml#Week3",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=44"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=44",
+        "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=19"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 3 literal matches, 0 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: first. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:ordinary:4:0:A:day",
@@ -28731,17 +28768,18 @@
         },
         {
           "role": "gospel",
-          "reference": "Mark 12:28–34",
+          "reference": "Mark 12:28b-34",
           "alternatives": []
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/OT2.shtml#Week9",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Selected subverse limits collated against Hallam 2025–26 and the French bishops’ general Roman provision; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "verification_sources": [
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=87"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=87",
+        "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=54"
       ],
-      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: gospel. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     },
     {
       "id": "temporal:ordinary:9:5:I:day",
@@ -36803,20 +36841,21 @@
         },
         {
           "role": "gospel",
-          "reference": "Matt 5:1-12",
+          "reference": "Matt 5:1-12a",
           "alternatives": []
         }
       ],
       "source": "https://www.rcadcschools.org/Ordo%20Advent%202022-Jan%202025.pdf",
-      "source_note": "The Welsh diocesan ordo (8 November 2023) directs use of the All Saints readings. Following Lectionary Introduction 84(c), this feast has two readings: Revelation is the deterministic first selection; 1 John is retained as an alternative. Not a claim that this is the sole mandatory selection or a complete 2024-edition collation.",
+      "source_note": "The Welsh diocesan ordo (8 November 2023) directs use of the All Saints readings. Following Lectionary Introduction 84(c), this feast has two readings: Revelation is the deterministic first selection; 1 John is retained as an alternative. Not a claim that this is the sole mandatory selection or a complete 2024-edition collation. All Saints Gospel endpoint follows the same collated general provision. Selected subverse limits collated against Hallam 2025–26 and an independent bishops’ reference; see citation_precision_audit.json. Full current-edition set remains unverified.",
       "verification": "published_table",
       "permitted_alternative": true,
       "verification_sources": [
         "https://www.liturgyoffice.org.uk/Resources/Rites/LM-Introduction.pdf",
         "https://www.liturgyoffice.org.uk/Calendar/Sunday/OT2Solemnities.shtml#AllSaints",
-        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=126"
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=126",
+        "https://bible.usccb.org/bible/readings/110125.cfm"
       ],
-      "verification_note": "Diocesan direction to the All Saints readings, adapted to the two-reading feast provision of LM 84(c). Exact current national proper remains uncollated. Hallam 2025–26 citation audit (partial_current_ordo_comparison): 1 literal matches, 2 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified."
+      "verification_note": "Hallam 2025–26 citation audit (partial_current_ordo_comparison): 2 literal matches, 1 differences, 1 unsupplied slots. Partial ordo comparison only; dates, alternatives and complete current-edition verification remain unverified. Independently collated subverse limits: gospel. Evidence: citation_precision_audit.json; other slots and options remain unverified."
     }
   ],
   "memorials": [

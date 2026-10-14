@@ -1344,9 +1344,9 @@
           },
           {
             "role": "gospel",
-            "stored": "Matt 5:1-12",
+            "stored": "Matt 5:1-12a",
             "independent": "Matthew 5:1-12a",
-            "result": "requires_collation"
+            "result": "citation_match"
           }
         ]
       }
@@ -2258,9 +2258,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Isaiah 25:6–10",
+            "stored": "Isaiah 25:6–10a",
             "independent": "Isaiah 25:6-10a",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -2788,9 +2788,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Numbers 24:2–7. 15–17",
+            "stored": "Numbers 24:2-7.15-17a",
             "independent": "Numbers 24:2-7.15-17a",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -2972,9 +2972,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Judges 13:2–7. 24–25",
+            "stored": "Judges 13:2-7.24-25a",
             "independent": "Judges 13:2-7.24-25a",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -3127,9 +3127,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "2 Samuel 7:1–5. 8–12. 14. 16",
+            "stored": "2 Samuel 7:1-5.8b-12.14a.16",
             "independent": "2 Samuel 7:1-5.8b-12.14a.16",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -3195,9 +3195,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Isaiah 58:1-9",
+            "stored": "Isaiah 58:1-9a",
             "independent": "Isaiah 58:1-9a",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -3232,9 +3232,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Isaiah 58:9-14",
+            "stored": "Isaiah 58:9b-14",
             "independent": "Isaiah 58:9b-14",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -4358,9 +4358,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Acts 2:14, 22-33",
+            "stored": "Acts 2:14.22b-33",
             "independent": "Acts 2:14.22b-33",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -4489,9 +4489,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Acts 7:51–8:1",
+            "stored": "Acts 7:51–8:1a",
             "independent": "Acts 7:51–8:1a",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -4526,9 +4526,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Acts 8:1–8",
+            "stored": "Acts 8:1b-8",
             "independent": "Acts 8:1b-8",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -5195,9 +5195,9 @@
           },
           {
             "role": "gospel",
-            "stored": "John 14:27–31",
+            "stored": "John 14:27-31a",
             "independent": "John 14:27-31a",
-            "result": "requires_collation"
+            "result": "citation_match"
           }
         ]
       }
@@ -5497,9 +5497,9 @@
           },
           {
             "role": "gospel",
-            "stored": "John 15:26 – 16:4",
+            "stored": "John 15:26–16:4a",
             "independent": "John 15:26–16:4a",
-            "result": "requires_collation"
+            "result": "citation_match"
           }
         ]
       }
@@ -5610,9 +5610,9 @@
           },
           {
             "role": "gospel",
-            "stored": "John 16:20–23",
+            "stored": "John 16:20-23a",
             "independent": "John 16:20-23a",
-            "result": "requires_collation"
+            "result": "citation_match"
           }
         ]
       }
@@ -5647,9 +5647,9 @@
           },
           {
             "role": "gospel",
-            "stored": "John 16:23–28",
+            "stored": "John 16:23b-28",
             "independent": "John 16:23b-28",
-            "result": "requires_collation"
+            "result": "citation_match"
           }
         ]
       }
@@ -5815,9 +5815,9 @@
           },
           {
             "role": "gospel",
-            "stored": "John 17:1–11",
+            "stored": "John 17:1-11a",
             "independent": "John 17:1-11a",
-            "result": "requires_collation"
+            "result": "citation_match"
           }
         ]
       }
@@ -5852,9 +5852,9 @@
           },
           {
             "role": "gospel",
-            "stored": "John 17:11–19",
+            "stored": "John 17:11b-19",
             "independent": "John 17:11b-19",
-            "result": "requires_collation"
+            "result": "citation_match"
           }
         ]
       }
@@ -6192,9 +6192,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Isaiah 50:4-9",
+            "stored": "Isaiah 50:4-9a",
             "independent": "Isaiah 50:4-9a",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -6527,9 +6527,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Gen 12:1-4",
+            "stored": "Gen 12:1-4a",
             "independent": "Genesis 12:1-4a",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -6539,9 +6539,9 @@
           },
           {
             "role": "second",
-            "stored": "2 Tim 1:8-10",
+            "stored": "2 Tim 1:8b-10",
             "independent": "2 Timothy 1:8b-10",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "acclamation",
@@ -6657,9 +6657,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Daniel 9:4-10",
+            "stored": "Daniel 9:4b-10",
             "independent": "Daniel 9:4-10",
-            "result": "citation_match"
+            "result": "requires_collation"
           },
           {
             "role": "psalm",
@@ -6799,9 +6799,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Genesis 37:3-4. 12-13. 17-28",
+            "stored": "Genesis 37:3-4.12-13a.17b-28",
             "independent": "Genesis 37:3-4.12-13a.17b-28",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -7018,9 +7018,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "2 Kings 5:1-15",
+            "stored": "2 Kings 5:1-15a",
             "independent": "2 Kings 5:1-15a",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -7457,9 +7457,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Wisdom 2:1. 12-22",
+            "stored": "Wisdom 2:1a, 12-22",
             "independent": "Wisdom 2:1a.12-22",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -8446,9 +8446,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Exod 19:2-6",
+            "stored": "Exodus 19:2-6a",
             "independent": "Exodus 19:2-6a",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -10204,9 +10204,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Hosea 11:1-4. 8-9",
+            "stored": "Hosea 11:1-4.8c-9",
             "independent": "Hosea 11:1-4.8c-9",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -12445,9 +12445,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "1 Kgs 19:9, 11-13",
+            "stored": "1 Kings 19:9a.11-13a",
             "independent": "1 Kings 19:9a.11-13a",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -12953,9 +12953,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Ezekiel 18:1-10. 13. 30-32",
+            "stored": "Ezekiel 18:1-10.13b.30-32",
             "independent": "Ezekiel 18:1-10.13b.30-32",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -20793,9 +20793,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "2 Samuel 6:12–15. 17–19",
+            "stored": "2 Samuel 6:12b-15.17-19",
             "independent": "2 Samuel 6:12b-15.17-19",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -21031,9 +21031,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "2 Samuel 12:1–7. 10–17",
+            "stored": "2 Samuel 12:1-7a.10-17",
             "independent": "2 Samuel 12:1-7a.10-17",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -23806,9 +23806,9 @@
           },
           {
             "role": "gospel",
-            "stored": "Mark 12:28–34",
+            "stored": "Mark 12:28b-34",
             "independent": "Mark 12:28b-34",
-            "result": "requires_collation"
+            "result": "citation_match"
           }
         ]
       }
