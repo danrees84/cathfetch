@@ -2659,7 +2659,8 @@
         {
           "role": "psalm",
           "reference": "Ps 97:1-4 r.1",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "second",
@@ -2749,7 +2750,8 @@
         {
           "role": "psalm",
           "reference": "Ps 97:1, 2-3a, 3b-4, 5-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "second",
@@ -27575,7 +27577,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 116:1, 2",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -27674,7 +27677,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 22:1-2ab, 2c-3, 4, 5, 6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -27780,7 +27784,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 88:2-3, 6-7, 16-17",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -27849,7 +27854,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 18:2-3, 4-5ab",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -27884,7 +27890,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 112:1-2, 3-4, 5-6, 7-8",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -27956,7 +27963,8 @@
         {
           "role": "psalm",
           "reference": "Isaiah 12:2-3, 4abcd, 4c-5, 6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -28049,7 +28057,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 116:1, 2",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -28152,7 +28161,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 125:1-2ab, 2cd-3, 4-5, 6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -28186,7 +28196,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 44:11–12, 14–15a, 15b–16, 17",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -28221,7 +28232,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 111:1-2, 5-6, 7-8, 4b.9",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -28256,7 +28268,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 144:10-11, 12-13ab, 17-18",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -28353,7 +28366,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 12:6ab, 6cd",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -28423,7 +28437,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 18:2-3, 4-5ab",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -28463,7 +28478,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 137:1-2a, 2bc-3, 4-5",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -28556,7 +28572,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 144:10-11, 12-13ab, 17-18",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -28591,7 +28608,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 18:2-3, 4-5ab",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -28626,7 +28644,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 18:2-3, 4-5ab",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -28719,7 +28738,8 @@
         {
           "role": "psalm",
           "reference": "Ps 149:1-6, 9",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -28754,7 +28774,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 95:1-2a, 2b-3, 4-5",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -28789,7 +28810,8 @@
         {
           "role": "psalm",
           "reference": "Ps 139:1-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -28824,7 +28846,8 @@
         {
           "role": "psalm",
           "reference": "Ps 96: 10, 11-12a, 12b-13",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -28859,7 +28882,8 @@
         {
           "role": "psalm",
           "reference": "Ps 139:7-12",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -28894,7 +28918,8 @@
         {
           "role": "psalm",
           "reference": "Ps 128: 1-2, 4-5",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -28929,7 +28954,8 @@
         {
           "role": "psalm",
           "reference": "Ps 90:3-5, 12-14, 17",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -28964,7 +28990,8 @@
         {
           "role": "psalm",
           "reference": "Ps 145: 2-3, 4-5, 6-7",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -28999,7 +29026,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 96:1-2, 5-6, 11-12",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -29034,7 +29062,8 @@
         {
           "role": "psalm",
           "reference": "Ps 33: 1-2, 4-5, 10-11",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29069,7 +29098,8 @@
         {
           "role": "psalm",
           "reference": "Ps 98:1, 7-9",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29104,7 +29134,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 32:12-13, 18-19, 20-21",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -29139,7 +29170,8 @@
         {
           "role": "psalm",
           "reference": "Ps 96:1, 3-5, 11-13",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29174,7 +29206,8 @@
         {
           "role": "psalm",
           "reference": "Ps 119: 97, 98, 99, 100, 101, 102",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29209,7 +29242,8 @@
         {
           "role": "psalm",
           "reference": "Ps 27:1, 4, 13-14",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29244,7 +29278,8 @@
         {
           "role": "psalm",
           "reference": "Ps 145: 8-9, 10-11, 12-13ab, 13cd-14",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29279,7 +29314,8 @@
         {
           "role": "psalm",
           "reference": "Ps 52:10-11",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29314,7 +29350,8 @@
         {
           "role": "psalm",
           "reference": "Ps 33: 12-13, 14-15, 20-21",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29349,7 +29386,8 @@
         {
           "role": "psalm",
           "reference": "Ps 98:2-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29384,7 +29422,8 @@
         {
           "role": "psalm",
           "reference": "Ps 24: 1-2, 3-4ab, 5-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29419,7 +29458,8 @@
         {
           "role": "psalm",
           "reference": "Ps 100:1-5",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29454,7 +29494,8 @@
         {
           "role": "psalm",
           "reference": "Ps 37: 3-4, 5-6, 27-28, 39-40",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29489,7 +29530,8 @@
         {
           "role": "psalm",
           "reference": "Ps 54:3-4, 6, 8",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29524,7 +29566,8 @@
         {
           "role": "psalm",
           "reference": "Ps 145:17-18, 19-20, 21",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29559,7 +29602,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 61:6-7, 9",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -29594,7 +29638,8 @@
         {
           "role": "psalm",
           "reference": "Ps 5: 5-6, 7, 12",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29629,7 +29674,8 @@
         {
           "role": "psalm",
           "reference": "Ps 145:1-2, 8-11",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29664,7 +29710,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 149:1-2, 3-4, 5-6a.9b",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -29699,7 +29746,8 @@
         {
           "role": "psalm",
           "reference": "Ps 145:2-3, 10-13",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29734,7 +29782,8 @@
         {
           "role": "psalm",
           "reference": "Ps 45: 11-12, 14-15, 16-17",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29769,7 +29818,8 @@
         {
           "role": "psalm",
           "reference": "Ps 150:1-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29804,7 +29854,8 @@
         {
           "role": "psalm",
           "reference": "Ps 139: 1-3, 13-14ab, 23-24",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29839,7 +29890,8 @@
         {
           "role": "psalm",
           "reference": "Ps 16:1-2, 5, 7-8, 11",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29874,7 +29926,8 @@
         {
           "role": "psalm",
           "reference": "Ps 84: 3, 4, 5-6, 12",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29909,7 +29962,8 @@
         {
           "role": "psalm",
           "reference": "Ps 113:1-7",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29944,7 +29998,8 @@
         {
           "role": "psalm",
           "reference": "Ps 116: 12-13, 17-18",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -29979,7 +30034,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 27:1ab.2, 7, 8-9",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -30014,7 +30070,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 39:7-8a, 8b-9, 10, 17",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -30049,7 +30106,8 @@
         {
           "role": "psalm",
           "reference": "Ps 101:1-3, 5-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30084,7 +30142,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 99:1-2, 3, 4, 5",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -30119,7 +30178,8 @@
         {
           "role": "psalm",
           "reference": "Ps 111:1-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30154,7 +30214,8 @@
         {
           "role": "psalm",
           "reference": "Ps 33: 2-3, 4-5, 12 and 22",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30189,7 +30250,8 @@
         {
           "role": "psalm",
           "reference": "Ps 111:7-10",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30224,7 +30286,8 @@
         {
           "role": "psalm",
           "reference": "Ps 118: 1-2, 15c-17, 28",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30259,7 +30322,8 @@
         {
           "role": "psalm",
           "reference": "Ps 49:6-10, 17-20",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30294,7 +30358,8 @@
         {
           "role": "psalm",
           "reference": "Ps 17: 1, 6-7, 8 and 15",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30329,7 +30394,8 @@
         {
           "role": "psalm",
           "reference": "Ps 100:1-5",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30364,7 +30430,8 @@
         {
           "role": "psalm",
           "reference": "Ps 56: 10, 11-12, 13-14",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30399,7 +30466,8 @@
         {
           "role": "psalm",
           "reference": "Ps 126:1-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30434,7 +30502,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 14:1a.2, 3bc-4ab, 4d-5",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -30469,7 +30538,8 @@
         {
           "role": "psalm",
           "reference": "Ps 122:1-5",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30504,7 +30574,8 @@
         {
           "role": "psalm",
           "reference": "Ps 119: 1, 27, 30, 34, 35, 44",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30539,7 +30610,8 @@
         {
           "role": "psalm",
           "reference": "Tb 13:2-8",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30574,7 +30646,8 @@
         {
           "role": "psalm",
           "reference": "Ps 119: 29, 72, 89, 101, 104,163",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30609,7 +30682,8 @@
         {
           "role": "psalm",
           "reference": "Ps 149:1-6, 9",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30644,7 +30718,8 @@
         {
           "role": "psalm",
           "reference": "Ps 90: 3-4, 5-6, 12-13, 14 and 17",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30679,7 +30754,8 @@
         {
           "role": "psalm",
           "reference": "Ps 43:1-4",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30714,7 +30790,8 @@
         {
           "role": "psalm",
           "reference": "Ps 144: 1a and 2abc, 3-4",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30749,7 +30826,8 @@
         {
           "role": "psalm",
           "reference": "Ps Jer 31:10-13",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30784,7 +30862,8 @@
         {
           "role": "psalm",
           "reference": "Ps 90: 3-4, 5-6, 12-13, 14 and 17",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30819,7 +30898,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 101:16-18, 19-21, 29.22-23",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -30854,7 +30934,8 @@
         {
           "role": "psalm",
           "reference": "Ps 17: 1, 2-3, 6-7",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30889,7 +30970,8 @@
         {
           "role": "psalm",
           "reference": "Ps 87:1-7",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -30924,7 +31006,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 87:2-3, 4-5, 6, 7-8",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -30959,7 +31042,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 136:1-2, 3, 4-5, 6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -30994,7 +31078,8 @@
         {
           "role": "psalm",
           "reference": "Ps 88:10bc-11, 12-13, 14-15",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31029,7 +31114,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 18:8, 9, 10, 11",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -31064,7 +31150,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 26:7-8ab, 8c.9abc, 13-14",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -31099,7 +31186,8 @@
         {
           "role": "psalm",
           "reference": "Ps 79:1-5, 8-9",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31134,7 +31222,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 138:1-3, 7-8, 9-10, 13-14ab",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -31169,7 +31258,8 @@
         {
           "role": "psalm",
           "reference": "Ps 69:33-37",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31204,7 +31294,8 @@
         {
           "role": "psalm",
           "reference": "Ps 119: 66, 71, 75, 91, 125, 130",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31239,7 +31330,8 @@
         {
           "role": "psalm",
           "reference": "Ps Jon 2:3-5, 8",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31274,7 +31366,8 @@
         {
           "role": "psalm",
           "reference": "Ps 111: 1b-2, 7-8, 9 and 10c",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31309,7 +31402,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 129:1-2, 3-7, 7bc-8",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -31344,7 +31438,8 @@
         {
           "role": "psalm",
           "reference": "Ps 139: 1-3, 13-14, 15",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31379,7 +31474,8 @@
         {
           "role": "psalm",
           "reference": "Ps 86:3-6, 9-10",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31414,7 +31510,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 116:1, 2",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -31449,7 +31546,8 @@
         {
           "role": "psalm",
           "reference": "Ps 1:1-4, 6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31484,7 +31582,8 @@
         {
           "role": "psalm",
           "reference": "Lk 1: 69-70, 71-72, 73-75",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31519,7 +31618,8 @@
         {
           "role": "psalm",
           "reference": "Ps 9:2-3, 6, 8-9, 16",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31554,7 +31654,8 @@
         {
           "role": "psalm",
           "reference": "Ps 111: 1b-2, 3-4, 5-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31589,7 +31690,8 @@
         {
           "role": "psalm",
           "reference": "Ps 97:1-2, 5-6, 11-12",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31624,7 +31726,8 @@
         {
           "role": "psalm",
           "reference": "Ps 105: 2-3, 4-5, 6-7",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31659,7 +31762,8 @@
         {
           "role": "psalm",
           "reference": "Ps 98:1-4",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31694,7 +31798,8 @@
         {
           "role": "psalm",
           "reference": "Ps 113: 1b-2, 3-4, 5a and 6-7",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31729,7 +31834,8 @@
         {
           "role": "psalm",
           "reference": "Ps 19:2-5",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31764,7 +31870,8 @@
         {
           "role": "psalm",
           "reference": "Ps 119: 41, 43, 44, 45, 47, 48",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31799,7 +31906,8 @@
         {
           "role": "psalm",
           "reference": "Ps 62:2-3, 6-7, 9",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31834,7 +31942,8 @@
         {
           "role": "psalm",
           "reference": "Ps 1: 1-2, 3, 4 and 6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31869,7 +31978,8 @@
         {
           "role": "psalm",
           "reference": "Ps 130:1-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31904,7 +32014,8 @@
         {
           "role": "psalm",
           "reference": "Ps 98: 1, 2-3ab, 3cd-4, 5-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31939,7 +32050,8 @@
         {
           "role": "psalm",
           "reference": "Ps 32:1-2, 5, 11",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -31974,7 +32086,8 @@
         {
           "role": "psalm",
           "reference": "Ps 33: 1-2, 4-5, 12-13",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32009,7 +32122,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 104:6-7, 8-9, 42-43",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -32044,7 +32158,8 @@
         {
           "role": "psalm",
           "reference": "Ps 8:2-3a, 4-5, 6-7",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32079,7 +32194,8 @@
         {
           "role": "psalm",
           "reference": "Ps Lk 1:69-75",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32114,7 +32230,8 @@
         {
           "role": "psalm",
           "reference": "Ps 100: 1-2, 3, 4, 5",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32149,7 +32266,8 @@
         {
           "role": "psalm",
           "reference": "Ps 40:7-10, 17",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32184,7 +32302,8 @@
         {
           "role": "psalm",
           "reference": "Ps 85: 9ab-10, 11-12, 13-14",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32219,7 +32338,8 @@
         {
           "role": "psalm",
           "reference": "Ps 124:1-8",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32254,7 +32374,8 @@
         {
           "role": "psalm",
           "reference": "Is 12: 2-3, 4bcde, 5-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32289,7 +32410,8 @@
         {
           "role": "psalm",
           "reference": "Ps 1:1-4, 6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32324,7 +32446,8 @@
         {
           "role": "psalm",
           "reference": "Ps 33:1-2, 4-5, 11-12, 18-19",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32359,7 +32482,8 @@
         {
           "role": "psalm",
           "reference": "Ps 119:66, 68, 76-77, 93-94",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32394,7 +32518,8 @@
         {
           "role": "psalm",
           "reference": "Ps 24: 1-2, 3-4ab, 5-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32429,7 +32554,8 @@
         {
           "role": "psalm",
           "reference": "Ps 24:1-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32464,7 +32590,8 @@
         {
           "role": "psalm",
           "reference": "Ps 122: 1-2, 3-4ab, 4cd-5",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32499,7 +32626,8 @@
         {
           "role": "psalm",
           "reference": "Ps 68:2, 4, 6-7, 20-21",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32534,7 +32662,8 @@
         {
           "role": "psalm",
           "reference": "Ps 1: 1-2, 3, 4 and 6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32569,7 +32698,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 125:1-2ab, 2cd-3, 4-5, 6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -32604,7 +32734,8 @@
         {
           "role": "psalm",
           "reference": "Ps 128: 1-2, 3, 4-5",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32639,7 +32770,8 @@
         {
           "role": "psalm",
           "reference": "Ps 13:4-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32674,7 +32806,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 144:10-11, 12-13ab, 13cd-14",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -32709,7 +32842,8 @@
         {
           "role": "psalm",
           "reference": "Ps 109:21-22, 26-27. 30-31",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32744,7 +32878,8 @@
         {
           "role": "psalm",
           "reference": "Ps 144: 1, 2, 9-10",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32779,7 +32914,8 @@
         {
           "role": "psalm",
           "reference": "Ps 147:12-15, 19-20",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32814,7 +32950,8 @@
         {
           "role": "psalm",
           "reference": "Ps 111: 1b-2, 3-4, 5-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32849,7 +32986,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 93:12-13, 14-15, 17-18",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -32884,7 +33022,8 @@
         {
           "role": "psalm",
           "reference": "Ps 42: 2, 3, 5cdefg",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32919,7 +33058,8 @@
         {
           "role": "psalm",
           "reference": "Ps 69:30-31, 33-34, 36-37",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -32954,7 +33094,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 130:1, 2, 3",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -32989,7 +33130,8 @@
         {
           "role": "psalm",
           "reference": "Ps 131:1-3",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33024,7 +33166,8 @@
         {
           "role": "psalm",
           "reference": "Ps 22: 26b-27, 28-30, 30, 31-32",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33059,7 +33202,8 @@
         {
           "role": "psalm",
           "reference": "Ps 112:1-2, 4-5 9",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33094,7 +33238,8 @@
         {
           "role": "psalm",
           "reference": "Ps 27: 1, 4, 13-14",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33129,7 +33274,8 @@
         {
           "role": "psalm",
           "reference": "Ps 27:1, 4, 13-14",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33164,7 +33310,8 @@
         {
           "role": "psalm",
           "reference": "Ps 105: 2-3, 4-5, 6-7",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33199,7 +33346,8 @@
         {
           "role": "psalm",
           "reference": "Ps 98:1-4",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33234,7 +33382,8 @@
         {
           "role": "psalm",
           "reference": "Ps 122: 1-2, 3-4ab, 4cd-5",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33269,7 +33418,8 @@
         {
           "role": "psalm",
           "reference": "Ps 145:2-5, 10-11",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33304,7 +33454,8 @@
         {
           "role": "psalm",
           "reference": "Ps 112: 1b-2, 5-6, 8a and 9",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33339,7 +33490,8 @@
         {
           "role": "psalm",
           "reference": "Ps 139:1-10",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33374,7 +33526,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 23:1-2, 3-4ab, 5-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -33409,7 +33562,8 @@
         {
           "role": "psalm",
           "reference": "Ps 34:2-3, 16-19",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33444,7 +33598,8 @@
         {
           "role": "psalm",
           "reference": "Ps 37: 3-4, 18 and 23, 27 and 29",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33479,7 +33634,8 @@
         {
           "role": "psalm",
           "reference": "Ps 82:3-4, 6-7",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33514,7 +33670,8 @@
         {
           "role": "psalm",
           "reference": "Ps 23: 1-3a, 3b-4, 5, 6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33549,7 +33706,8 @@
         {
           "role": "psalm",
           "reference": "Ps 119:89-91,130,135,175",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33584,7 +33742,8 @@
         {
           "role": "psalm",
           "reference": "Ps 146: 6c-7, 8-9a, 9bc-10",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33619,7 +33778,8 @@
         {
           "role": "psalm",
           "reference": "Ps 19:2-5",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33654,7 +33814,8 @@
         {
           "role": "psalm",
           "reference": "Ps 119: 1, 2, 10, 11, 17, 18",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33689,7 +33850,8 @@
         {
           "role": "psalm",
           "reference": "Ps 105:2-3, 36-37, 42-43",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33724,7 +33886,8 @@
         {
           "role": "psalm",
           "reference": "Ps 112: 1-2, 3-4, 5-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33759,7 +33922,8 @@
         {
           "role": "psalm",
           "reference": "Ps 119:53, 61,134,150, 155, 158",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33794,7 +33958,8 @@
         {
           "role": "psalm",
           "reference": "Ps 1: 1-2, 3, 4 and 6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33829,7 +33994,8 @@
         {
           "role": "psalm",
           "reference": "Ps 3:2-7",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33864,7 +34030,8 @@
         {
           "role": "psalm",
           "reference": "Ps 15:2-3a, 3bc-4ab, 5",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33899,7 +34066,8 @@
         {
           "role": "psalm",
           "reference": "Ps 17:1, 5-6, 8, 15",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33934,7 +34102,8 @@
         {
           "role": "psalm",
           "reference": "Ps 150:1b-2, 3-4, 5-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -33969,7 +34138,8 @@
         {
           "role": "psalm",
           "reference": "Ps 50:1-2, 5-6, 14-15",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -34004,7 +34174,8 @@
         {
           "role": "psalm",
           "reference": "Ps 149:1b-2, 3-4, 5-6a and 9bc",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -34039,7 +34210,8 @@
         {
           "role": "psalm",
           "reference": "1 Chronicles 29:10, 11abc, 11de-12a, 12bcd",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -34074,7 +34246,8 @@
         {
           "role": "psalm",
           "reference": "Ps 119:14, 24, 72, 103, 111, 131",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -34109,7 +34282,8 @@
         {
           "role": "psalm",
           "reference": "Ps 9:2-4, 6, 16, 19",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -34144,7 +34318,8 @@
         {
           "role": "psalm",
           "reference": "Psalm 143:1, 2, 9-10",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "lxx"
         },
         {
           "role": "gospel",
@@ -34179,7 +34354,8 @@
         {
           "role": "psalm",
           "reference": "Dn 3:52-56",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -34214,7 +34390,8 @@
         {
           "role": "psalm",
           "reference": "Ps 24:1-2, 3-4ab, 5-6",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -34249,7 +34426,8 @@
         {
           "role": "psalm",
           "reference": "Dn 3:57-61",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -34284,7 +34462,8 @@
         {
           "role": "psalm",
           "reference": "Ps 96:10, 11-12, 13",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -34319,7 +34498,8 @@
         {
           "role": "psalm",
           "reference": "Dn 3:62-67",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -34354,7 +34534,8 @@
         {
           "role": "psalm",
           "reference": "Ps 98:1, 2-3ab, 7-8, 9",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -34389,7 +34570,8 @@
         {
           "role": "psalm",
           "reference": "Dn 3:68-74",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -34424,7 +34606,8 @@
         {
           "role": "psalm",
           "reference": "Ps 100:1-2, 3, 4, 5",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -34459,7 +34642,8 @@
         {
           "role": "psalm",
           "reference": "Dn 3:75-81",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -34494,7 +34678,8 @@
         {
           "role": "psalm",
           "reference": "Ps 84:3, 4, 5-6a and 8a",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -34529,7 +34714,8 @@
         {
           "role": "psalm",
           "reference": "Dn 3:82-87",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",
@@ -34564,7 +34750,8 @@
         {
           "role": "psalm",
           "reference": "Ps 95:1-2, 3-5, 6-7abc",
-          "alternatives": []
+          "alternatives": [],
+          "psalm_numbering": "hebrew"
         },
         {
           "role": "gospel",

@@ -5,12 +5,14 @@ ENGINE_SOURCES := $(filter-out src/main.cpp src/terminal_display.cpp src/termina
 ENGINE_OBJECTS := $(ENGINE_SOURCES:src/%.cpp=build/%.o)
 TESTS := $(patsubst tests/%.cpp,build/%,$(wildcard tests/*_test.cpp))
 .PHONY: all test clean
-all: build/cathfetch build/calendar_year build/lectionary_year
+all: build/cathfetch build/calendar_year build/lectionary_year build/en_dra.json
 build:
 	mkdir -p build
 build/%.o: src/%.cpp | build
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -MMD -MP -c $< -o $@
-build/cathfetch: build/main.o build/terminal_display.o build/terminal_format.o $(ENGINE_OBJECTS)
+build/en_dra.json: data/bibles/en_dra.xml data/bibles/en_dra_metadata.json tools/bible_data.py | build
+	python3 tools/bible_data.py index data/bibles/en_dra.xml data/bibles/en_dra_metadata.json $@
+build/cathfetch: build/main.o build/terminal_display.o build/terminal_format.o $(ENGINE_OBJECTS) | build/en_dra.json
 	$(CXX) $(CXXFLAGS) $^ -o $@
 build/calendar_year: tools/calendar_year.cpp $(ENGINE_OBJECTS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
@@ -18,6 +20,7 @@ build/lectionary_year: tools/lectionary_year.cpp $(ENGINE_OBJECTS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
 build/terminal_render_test: tests/terminal_render_test.cpp build/terminal_display.o build/terminal_format.o $(ENGINE_OBJECTS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
+build/scripture_test: | build/en_dra.json
 build/%_test: tests/%_test.cpp $(ENGINE_OBJECTS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
 test: $(TESTS) all
@@ -25,6 +28,7 @@ test: $(TESTS) all
 	@sh tests/cli_test.sh
 	@sh tests/lectionary_cli_test.sh
 	@python3 tests/universalis_audit_test.py
+	@sh tests/full_verses_cli_test.sh
 clean:
 	rm -rf build
 -include $(wildcard build/*.d)

@@ -70,6 +70,9 @@ void validateLectionary(const Lectionary& data)
         std::set<std::string> roles;
         for (const auto& reading : entry.readings)
         {
+            if (reading.psalmNumbering != "unspecified" && reading.psalmNumbering != "lxx" &&
+                reading.psalmNumbering != "hebrew")
+                throw std::invalid_argument("Unknown psalm numbering: " + entry.id);
             const auto& role = reading.role;
             const bool recognised = role == "first" || role == "psalm" || role == "second" ||
                 role == "acclamation" || role == "gospel" || role == "procession_gospel" ||
@@ -156,6 +159,7 @@ Lectionary parseLectionary(const nlohmann::json& document)
         for (const auto& item : value.at("readings"))
         {
             ReadingReference reading{item.at("role"), item.at("reference"), {}};
+            reading.psalmNumbering = item.value("psalm_numbering", std::string{"unspecified"});
             if (item.contains("alternatives"))
             {
                 if (!item.at("alternatives").is_array()) throw std::invalid_argument("Alternatives must be an array");

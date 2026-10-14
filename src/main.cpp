@@ -42,6 +42,7 @@ int main(int argc, char* argv[])
 
 	bool showCross = false;
     bool showReadings = false;
+    bool fullVerses = false;
     std::string_view mass = "default";
     bool massSpecified = false;
 	auto selectedDate = getCurrentLocalDate();
@@ -68,6 +69,11 @@ int main(int argc, char* argv[])
         {
             if (showReadings) { std::cerr << "Duplicate option: --readings\n"; return 1; }
             showReadings = true;
+        }
+        else if (arg == "--full-verses")
+        {
+            if (fullVerses) { std::cerr << "Duplicate option: --full-verses\n"; return 1; }
+            fullVerses = true;
         }
         else if (arg.starts_with("--mass="))
         {
@@ -171,11 +177,16 @@ int main(int argc, char* argv[])
     {
         const auto celebrations = loadSelectedCalendar(selectedCalendar);
         const auto day = resolveLiturgicalDay(selectedDate, celebrations, selectedCalendar);
-        if (showReadings || massSpecified)
+        if (showReadings || massSpecified || fullVerses)
         {
             const auto data = loadLectionary();
             const auto readings = resolveMassReadings(day, data, selectedCalendar, mass);
-            printLiturgicalDay(day, showCross, &readings);
+            if (fullVerses && readings.status == ReadingStatus::Available)
+            {
+                const auto bible = loadBible();
+                printLiturgicalDay(day, showCross, &readings, &bible);
+            }
+            else printLiturgicalDay(day, showCross, &readings);
         }
         else printLiturgicalDay(day, showCross);
     }

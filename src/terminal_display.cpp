@@ -21,7 +21,7 @@ std::string colourDot(LiturgicalColour colour)
 }
 
 std::vector<std::string> informationRows(const LiturgicalDay& day, std::size_t columns,
-                                        const LectionaryDay* readings)
+                                        const LectionaryDay* readings, const Bible* bible)
 {
     auto rows = wrapTerminalText(formatCalendarDate(day.date), columns);
     const auto seasonColour = seasonalColour(day.season);
@@ -45,11 +45,34 @@ std::vector<std::string> informationRows(const LiturgicalDay& day, std::size_t c
             append("Readings · assignment not yet verified for this day or Mass form", false);
         else
         {
-            append("Readings:", false);
+            append(bible ? "Readings · " + bible->translation : "Readings:", false);
             std::string references;
             for (const auto& reading : readings->selected->readings)
             {
                 if (reading.role == "acclamation") continue;
+                if (bible)
+                {
+                    rows.emplace_back();
+                    append(reading.reference, false);
+                    const auto passage = lookupScripture(*bible, reading.reference, reading.psalmNumbering);
+                    if (!passage.diagnostic.empty())
+                        append("Text unavailable: " + passage.diagnostic, false);
+                    else
+                    {
+                        if (passage.includesWholeVerses) append("Whole verses shown for partial-verse references.", false);
+                        if (!passage.numberingNote.empty()) append(passage.numberingNote, false);
+                        for (const auto& verse : passage.verses)
+                            append(std::to_string(verse.chapter) + ":" + std::to_string(verse.verse) +
+                                   " " + verse.text, false);
+                    }
+                    for (const auto& option : reading.alternatives)
+                    {
+                        std::string alternative = "Alternative: " + option.reference;
+                        if (option.condition != "or") alternative += " (" + option.condition + ")";
+                        append(std::move(alternative), false);
+                    }
+                    continue;
+                }
                 if (!references.empty()) references += "; ";
                 references += reading.reference;
                 for (const auto& option : reading.alternatives)
@@ -58,7 +81,7 @@ std::vector<std::string> informationRows(const LiturgicalDay& day, std::size_t c
                     if (option.condition != "or") references += " (" + option.condition + ")";
                 }
             }
-            append(std::move(references), false);
+            if (!bible) append(std::move(references), false);
         }
     }
     return rows;
@@ -66,7 +89,7 @@ std::vector<std::string> informationRows(const LiturgicalDay& day, std::size_t c
 } // namespace
 
 std::string renderLiturgicalDay(const LiturgicalDay& day, bool showCross, std::size_t columns,
-                               const LectionaryDay* readings)
+                               const LectionaryDay* readings, const Bible* bible)
 {
     if (columns == 0) throw std::invalid_argument("Terminal width must be positive");
     if (!day.unresolvedReason.empty())
@@ -80,7 +103,7 @@ std::string renderLiturgicalDay(const LiturgicalDay& day, bool showCross, std::s
     constexpr std::size_t textColumn = artworkWidth + gap;
     constexpr std::size_t minimumTextWidth = 32;
     const bool sideBySide = showCross && columns >= textColumn + minimumTextWidth;
-    const auto rows = informationRows(day, sideBySide ? columns - textColumn : columns, readings);
+    const auto rows = informationRows(day, sideBySide ? columns - textColumn : columns, readings, bible);
     std::string output;
     if (sideBySide)
     {
@@ -117,7 +140,7 @@ std::string renderLiturgicalDay(const LiturgicalDay& day, bool showCross, std::s
     return output;
 }
 
-void printLiturgicalDay(const LiturgicalDay& day, bool showCross, const LectionaryDay* readings)
+void printLiturgicalDay(const LiturgicalDay& day, bool showCross, const LectionaryDay* readings, const Bible* bible)
 {
-    std::cout << renderLiturgicalDay(day, showCross, terminalColumns(), readings);
+    std::cout << renderLiturgicalDay(day, showCross, terminalColumns(), readings, bible);
 }

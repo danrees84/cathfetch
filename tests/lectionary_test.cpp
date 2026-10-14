@@ -190,6 +190,7 @@ int main()
         require(parseLectionary(evidenced).entries[0].verification == ReferenceVerification::CurrentEdition,
                 "Verification evidence round-trips");
         invalid([](auto& j) { j["entries"][0]["verification_sources"] = {"not-a-source"}; });
+        invalid([](auto& j) { j["entries"][0]["readings"][0]["psalm_numbering"] = "guessed"; });
         invalid([](auto& j) { j["schema_version"] = 1.0; });
         invalid([](auto& j) { j["entries"][0]["source"] = ""; });
         invalid([](auto& j) { j["entries"][0]["readings"][0]["reference"] = "invented text"; });

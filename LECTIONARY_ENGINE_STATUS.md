@@ -2,6 +2,14 @@
 
 As of 14 October 2026, Cathfetch has **804 reference sets and 214 explicit memorial policies**. Ordinary Time weeks 1–34 are populated in both weekday cycles. The calendar and lectionary remain separate; `--readings` remains opt-in. **Complete verification against the England and Wales Lectionary introduced in Advent 2024 is blocked by the absence of an accessible complete current-edition citation index.** No supplied set claims that verification. Reference availability must not be read as certification.
 
+## Offline full-verse display
+
+`--full-verses` now implies reading selection and displays the selected passages using a locally bundled, complete 73-book Douay–Rheims (1899) text. `--readings` retains the requested compact template. Calendar selection and Mass forms remain unchanged. The scripture lookup is a separate native C++ component; an offline build-time index is generated from the XML using Python’s standard library. No network access or Python runtime is used by Cathfetch.
+
+The originally suggested GitHub XML has only 66 books, so the bundled normalised XML uses the complete public-domain copy of the same edition from eBible.org. See [Bible provenance, commands and limitations](data/bibles/README.md). Partial-verse references display whole verses with an explicit notice; shorter forms remain reference alternatives. Numbering differences are guarded, not guessed: **1,684 of 2,655 stored default non-acclamation citations currently resolve to full text; 971 explicitly report text unavailable**. Most psalm mappings and several Old Testament mappings remain uncollated. The availability of a complete Bible must not be confused with complete citation mapping or current-edition verification.
+
+The scripture test performs 2,696 checks, including the full stored-reference sweep, source integrity counts, aliases, cross-chapter and discontinuous selections, subverses, Catholic additions, checked psalm/Daniel mappings and atomic failures. Additional CLI tests cover the new flag, Mass forms, alternatives, missing assignments and wrapping at 120/100/80/60/40 columns with and without the cross. All twelve C++ suites, the existing two CLI suites, six Universalis Python tests and the new full-verse CLI suite pass.
+
 ## This data milestone
 
 Added 204 sets to the original 600: 168 Ordinary Time weekday sets for weeks 21–34, six partial mandatory memorial provisions and 30 general, European or national feast sets. Added ten memorial policies. Calendar calculations, precedence and terminal layout are unchanged.
@@ -100,6 +108,6 @@ python3 tools/lectionary_audit.py
 ./build/lectionary_year 2026 england > /tmp/lectionary-2026.tsv
 ```
 
-The application is rebuilt in `build/cathfetch`. All eleven C++ test executables and both CLI suites pass. The lectionary test performs **44,343 checks across 14,612 date/calendar pairs** (2008, 2022, 2024–2030 and 2038, all four calendars), including reversed assignment order: 14,536 available, 36 explicit gaps and 40 Holy Saturdays. The calendar regression performs 450,238 checks across 64,284 date/calendar pairs, each resolved in both candidate orders. Reading and calendar CLI tests include 120, 100, 80, 60 and 40 columns, with/without the cross and redirected output. The 168 late Ordinary Time selectors, independent literal reference cases, proper-slot/weekday combinations, national versus general ranks and verification-evidence validation have dedicated checks.
+The application is rebuilt in `build/cathfetch`. All twelve C++ test executables, all three CLI suites and the six Universalis Python tests pass. The lectionary test performs **44,344 checks across 14,612 date/calendar pairs** (2008, 2022, 2024–2030 and 2038, all four calendars), including reversed assignment order: 14,536 available, 36 explicit gaps and 40 Holy Saturdays. The calendar regression performs 450,238 checks across 64,284 date/calendar pairs, each resolved in both candidate orders. Reading and calendar CLI tests include 120, 100, 80, 60 and 40 columns, with/without the cross and redirected output. The 168 late Ordinary Time selectors, independent literal reference cases, proper-slot/weekday combinations, national versus general ranks and verification-evidence validation have dedicated checks.
 
 These are implementation, coverage and selected reference checks, **not independent verification of every reading over complete liturgical years**. Completing that final audit requires the authoritative material described above.

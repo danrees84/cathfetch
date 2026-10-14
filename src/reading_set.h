@@ -26,6 +26,7 @@ struct ReadingReference
     std::string role; // first, psalm, second, acclamation, gospel; numbered at vigils.
     std::string reference;
     std::vector<ReadingOption> alternatives;
+    std::string psalmNumbering = "unspecified"; // lxx or hebrew only when established by provenance.
 };
 
 enum class ReadingUse { Proper, Accommodated, Weekday };
