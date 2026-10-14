@@ -20,17 +20,6 @@ std::string colourDot(LiturgicalColour colour)
     return terminalColourCode(colour) + "●\033[0m ";
 }
 
-std::string massLabel(std::string_view mass)
-{
-    if (mass == "passion") return "Passion liturgy";
-    if (mass == "evening") return "Evening Mass";
-    if (mass == "night") return "Night Mass";
-    if (mass == "dawn") return "Dawn Mass";
-    if (mass == "vigil") return "Vigil Mass";
-    if (mass == "vigil-extended") return "Extended Vigil Mass";
-    return "Day Mass";
-}
-
 std::vector<std::string> informationRows(const LiturgicalDay& day, std::size_t columns,
                                         const LectionaryDay* readings)
 {
@@ -56,27 +45,20 @@ std::vector<std::string> informationRows(const LiturgicalDay& day, std::size_t c
             append("Readings · assignment not yet verified for this day or Mass form", false);
         else
         {
-            append("Readings · Sunday " + std::string{cycleName(readings->cycles.sunday)} +
-                " / Weekday " + std::string{cycleName(readings->cycles.weekday)} + " · " +
-                massLabel(readings->selected->mass), false);
-            if (readings->selected->verification == ReferenceVerification::PublishedTable)
-                append("Published reference tables · 2024 edition collation pending", false);
-            if (readings->selected->use == ReadingUse::Accommodated)
-                append("Suggested selection · other permitted readings may be chosen", false);
+            append("Readings:", false);
+            std::string references;
             for (const auto& reading : readings->selected->readings)
             {
-                std::string label = reading.role == "first" ? "First" : reading.role == "psalm" ? "Psalm" :
-                    reading.role == "second" ? "Second" : reading.role == "gospel" ? "Gospel" :
-                    reading.role == "acclamation" ? "Acclamation" : reading.role == "epistle" ? "Epistle" :
-                    reading.role == "procession_gospel" ? "Procession Gospel" : reading.role;
-                if (label.starts_with("reading_")) label = "Reading " + label.substr(8);
-                if (label.starts_with("psalm_")) label = "Psalm " + label.substr(6);
-                append(label + ": " + reading.reference, false);
+                if (reading.role == "acclamation") continue;
+                if (!references.empty()) references += "; ";
+                references += reading.reference;
                 for (const auto& option : reading.alternatives)
-                    append("  or " + option.reference + " (" + option.condition + ")", false);
+                {
+                    references += " or " + option.reference;
+                    if (option.condition != "or") references += " (" + option.condition + ")";
+                }
             }
-            if (!readings->alternatives.empty())
-                append("Other reading sets or Mass forms: " + std::to_string(readings->alternatives.size()), false);
+            append(std::move(references), false);
         }
     }
     return rows;
