@@ -19,7 +19,7 @@ int main(int argc, char** argv)
         const auto celebrations = loadSelectedCalendar(calendar);
         using namespace std::chrono;
         const year yearValue{value};
-        std::cout << "date\tseason\tprecedence\trank\tcolour\tid\tobservance\ttransferred_from\tscheduled_from\talternatives\tdiagnostic\n";
+        std::cout << "date\tseason\tprecedence\trank\tcolour\tid\tobservance\ttransferred_from\tscheduled_from\talternatives\tdiagnostic\tprovisional_transfer\ttransfer_note\tdisplaced_observances\n";
         for (sys_days date{yearValue/January/1}; date < sys_days{(yearValue+years{1})/January/1}; date += days{1})
         {
             const auto day = resolveLiturgicalDay(year_month_day{date}, celebrations, calendar);
@@ -41,6 +41,14 @@ int main(int argc, char** argv)
             }
             std::cout << '\t' << day.unresolvedReason;
             for (const auto& conflict : day.conflictingObservances) std::cout << "; " << conflict.name;
+            std::cout << '\t' << (day.provisionalTransfer ? "yes" : "no") << '\t' << day.transferNote << '\t';
+            for (const auto& displaced : day.displacedObservances)
+            {
+                std::cout << displaced.name << " -> ";
+                if (displaced.transferredTo) std::cout << *displaced.transferredTo;
+                if (displaced.provisionalTransfer) std::cout << " (provisional)";
+                std::cout << "; ";
+            }
             std::cout << '\n';
         }
     }

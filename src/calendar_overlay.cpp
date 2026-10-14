@@ -34,7 +34,7 @@ std::string sourceCalendar =
             throw std::invalid_argument("Duplicate calendar override ID: " + id);
         const std::set<std::string> allowedChanges{
             "rank", "name", "feast_of_lord", "precedence", "names_temporal_baseline",
-            "date_rule", "transfer_rule", "colour"};
+            "date_rule", "transfer_rule", "colour", "subject", "principal_patron"};
         for (const auto& [key, value] : overrideEntry.at("changes").items())
         {
             (void)value;

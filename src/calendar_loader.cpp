@@ -18,6 +18,15 @@ void updateCelebrationMetadata(FixedCelebration& celebration,
     }
     if (changes.contains("name")) celebration.name = changes.at("name");
     if (changes.contains("feast_of_lord")) celebration.feastOfLord = changes.at("feast_of_lord");
+    if (changes.contains("principal_patron")) celebration.principalPatron = changes.at("principal_patron");
+    if (changes.contains("subject"))
+    {
+        const std::string subject = changes.at("subject");
+        if (subject == "lord") celebration.subject = CelebrationSubject::Lord;
+        else if (subject == "saint") celebration.subject = CelebrationSubject::Saint;
+        else if (subject == "other") celebration.subject = CelebrationSubject::Other;
+        else throw std::invalid_argument("Unknown celebration subject: " + subject);
+    }
     if (changes.contains("precedence"))
     {
         const int level = changes.at("precedence");
@@ -41,7 +50,7 @@ void updateCelebrationMetadata(FixedCelebration& celebration,
         if (rule == "saint_joseph") celebration.transferRule = SolemnityTransferRule::SaintJoseph;
         else if (rule == "annunciation") celebration.transferRule = SolemnityTransferRule::Annunciation;
         else if (rule == "after_easter_octave") celebration.transferRule = SolemnityTransferRule::AfterEasterOctave;
-        else if (rule == "before_sacred_heart") celebration.transferRule = SolemnityTransferRule::BeforeSacredHeart;
+        else if (rule == "before_sacred_heart" || rule == "anticipate_before_lord") celebration.transferRule = SolemnityTransferRule::AnticipateBeforeLord;
         else if (rule == "general") celebration.transferRule = SolemnityTransferRule::General;
         else throw std::invalid_argument("Unknown transfer rule: " + rule);
     }

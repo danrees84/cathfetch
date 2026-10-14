@@ -28,6 +28,7 @@ Each fixed entry has a stable ID, nominal month/day, name and rank. All Souls ha
 | `names_temporal_baseline` | Give an existing temporal day its celebration identity without changing its class. |
 | `date_rule` | Annual national scheduling, separate from displacement by an impediment. |
 | `transfer_rule` | A verified exception to the general solemnity transfer search. |
+| `subject`, `principal_patron` | Distinguish Lord/saint occurrence priority within class 3 and preserve the patronal exception without changing rank or numerical class. |
 | `colour` | The celebration's colour, independent of the underlying season. |
 | `source_page`, `amendment`, `source_id`, `rule_source` | Trace the factual definition or exception to its authority. |
 
@@ -43,4 +44,4 @@ The Welsh optional memorials of Asaph, John Jones, Philip Evans and John Lloyd, 
 
 The original [universal baseline](https://www.liturgyoffice.org.uk/Calendar/Info/General-Roman-Calendar.pdf) predates several amendments. Per-entry Holy See decree references record those updates. Existing IDs remain stable when designations change; Irenaeus now includes Doctor of the Church without changing his identity.
 
-Movable celebrations, optional choice policy, seasonal boundaries, impediments and suppression are implemented in C++. See [calendar engine status](../../CALENDAR_ENGINE_STATUS.md) for the full rule authorities, validation results, computational range, date-only conventions and unresolved 2038 Corpus Christi occurrence.
+Movable celebrations, optional choice policy, seasonal boundaries, impediments and suppression are implemented in C++. See [calendar engine status](../../CALENDAR_ENGINE_STATUS.md) for the full rule authorities, validation results, computational range, date-only conventions and provisional anticipation of John the Baptist in the resolved 2038 Corpus Christi occurrence.

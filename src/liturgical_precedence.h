@@ -22,6 +22,9 @@ enum class PrecedenceLevel : int
     OtherWeekday = 13
 };
 
+struct ObservanceCandidate;
+bool observanceOutranks(const ObservanceCandidate& candidate, const ObservanceCandidate& current);
+
 bool outranks(PrecedenceLevel candidate, PrecedenceLevel current);
 
 PrecedenceLevel ordinaryTimeBaselinePrecedence(

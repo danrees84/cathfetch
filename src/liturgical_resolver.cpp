@@ -77,7 +77,35 @@ ObservanceCandidate fixedCandidate(const FixedCelebration& celebration)
     candidate.optional = celebration.rank == CelebrationRank::OptionalMemorial;
     candidate.namesTemporalBaseline = celebration.namesTemporalBaseline;
     candidate.colour = celebration.colour;
+    candidate.subject = celebration.subject;
+    candidate.principalPatron = celebration.principalPatron;
     return candidate;
+}
+
+// The 2022 CDW patronal exception reverses the anticipation. It is not a
+// general permission to move Corpus Christi in an unspecified local calendar.
+std::vector<ObservanceCandidate> scheduledMovables(year_month_day date,
+    const std::vector<FixedCelebration>& celebrations, std::string_view calendar)
+{
+    auto candidates = findMovableObservances(date, calendar);
+    const sys_days sacredHeart{sys_days{calculatePentecost(int(date.year()))} + days{19}};
+    const bool patronalOccurrence = std::ranges::any_of(celebrations, [&](const auto& definition) {
+        return definition.principalPatron &&
+               definition.transferRule == SolemnityTransferRule::AnticipateBeforeLord &&
+               scheduledDate(definition, int(date.year()), calendar) == year_month_day{sacredHeart};
+    });
+    if (!patronalOccurrence) return candidates;
+    if (sys_days{date} == sacredHeart)
+        std::erase_if(candidates, [](const auto& c) { return c.id == "sacred_heart"; });
+    else if (sys_days{date} == sacredHeart - days{1})
+        for (auto candidate : findMovableObservances(year_month_day{sacredHeart}, calendar))
+            if (candidate.id == "sacred_heart")
+            {
+                candidate.transferredFrom = year_month_day{sacredHeart};
+                candidate.transferNote = "Patronal exception to the 2022 CDW anticipation disposition";
+                candidates.push_back(std::move(candidate));
+            }
+    return candidates;
 }
 
 struct ScheduledCelebration
@@ -86,6 +114,8 @@ struct ScheduledCelebration
     year_month_day scheduled;
     year_month_day observed;
     std::string unresolvedReason;
+    bool provisionalTransfer = false;
+    std::string transferNote = {};
 };
 
 // Construct a schedule for this call: no global cache that could mix calendar overlays
@@ -113,14 +143,16 @@ std::vector<ScheduledCelebration> fixedSchedule(int year,
         if (previous.definition->rank == CelebrationRank::Solemnity &&
             current.definition->rank == CelebrationRank::Solemnity &&
             previous.scheduled == current.scheduled &&
-            fixedCelebrationPrecedence(*previous.definition) == fixedCelebrationPrecedence(*current.definition))
+            fixedCelebrationPrecedence(*previous.definition) == fixedCelebrationPrecedence(*current.definition) &&
+            !observanceOutranks(fixedCandidate(*previous.definition), fixedCandidate(*current.definition)) &&
+            !observanceOutranks(fixedCandidate(*current.definition), fixedCandidate(*previous.definition)))
             throw std::logic_error("Coinciding fixed solemnities require a disposition: " +
                                    previous.definition->id + " / " + current.definition->id);
     }
     const sys_days easter{calculateEaster(year)};
     const auto blockingPrecedence = [&](year_month_day date, const ScheduledCelebration* self) {
         auto best = temporalBaselinePrecedence(date, calendar);
-        for (const auto& movable : findMovableObservances(date, calendar))
+        for (const auto& movable : scheduledMovables(date, celebrations, calendar))
             if (!movable.optional && movable.precedence < best) best = movable.precedence;
         for (const auto& fixed : schedule)
             if (&fixed != self && fixed.observed == date)
@@ -141,30 +173,66 @@ std::vector<ScheduledCelebration> fixedSchedule(int year,
             return blockingPrecedence(year_month_day{day}, &fixed) > PrecedenceLevel::ProperFeast;
         };
         std::optional<sys_days> destination;
-        // The Sacred Heart / Baptist occurrence has an explicit CDW disposition (2022).
-        if (definition.transferRule == SolemnityTransferRule::BeforeSacredHeart &&
-            original == easter + days{68})
-            destination = original - days{1};
-        else if (blocker > precedence) continue;
-        else if (blocker == precedence)
+        if (blocker > precedence) continue;
+        if (definition.principalPatron && definition.transferRule == SolemnityTransferRule::AnticipateBeforeLord &&
+            blocker >= PrecedenceLevel::GeneralSolemnityOrAllSouls &&
+            std::ranges::any_of(scheduledMovables(fixed.scheduled, celebrations, calendar), [](const auto& rival) {
+                return rival.subject == CelebrationSubject::Lord && rival.rank == CelebrationRank::Solemnity &&
+                       rival.precedence == PrecedenceLevel::GeneralSolemnityOrAllSouls;
+            }))
         {
-            fixed.unresolvedReason = "Equal-precedence solemnities require an authoritative disposition";
+            fixed.unresolvedReason = "Local patronal occurrence requires its own authoritative disposition";
             continue;
         }
-        else if (definition.transferRule == SolemnityTransferRule::SaintJoseph &&
-                 original >= easter - days{7} && original < easter)
-            destination = easter - days{8};
-        else if ((definition.transferRule == SolemnityTransferRule::Annunciation ||
-                  definition.transferRule == SolemnityTransferRule::AfterEasterOctave) &&
-                 original >= easter - days{7} && original <= easter + days{7})
-            destination = easter + days{8};
-        else if (weekday{original} == Sunday &&
-                 (isLent(fixed.scheduled) || isAdvent(fixed.scheduled) || isEaster(fixed.scheduled)))
-            destination = original + days{1}; // UNLYC 5: following Monday.
+        if (blocker == precedence)
+        {
+            const auto self = fixedCandidate(definition);
+            std::vector<ObservanceCandidate> rivals = scheduledMovables(fixed.scheduled, celebrations, calendar);
+            for (const auto& other : schedule)
+                if (&other != &fixed && other.observed == fixed.scheduled)
+                    rivals.push_back(fixedCandidate(*other.definition));
+            ObservanceCandidate temporal;
+            temporal.precedence = temporalBaselinePrecedence(fixed.scheduled, calendar);
+            rivals.push_back(temporal);
+            bool impeded = false;
+            bool ambiguous = false;
+            for (const auto& rival : rivals)
+                if (!rival.optional && rival.precedence == precedence)
+                {
+                    impeded |= observanceOutranks(rival, self);
+                    ambiguous |= !observanceOutranks(rival, self) && !observanceOutranks(self, rival);
+                }
+            if (!impeded)
+            {
+                if (ambiguous) fixed.unresolvedReason = "Equal-precedence solemnities require an authoritative disposition";
+                continue;
+            }
+            if (definition.transferRule == SolemnityTransferRule::AnticipateBeforeLord)
+            {
+                destination = original - days{1};
+                fixed.provisionalTransfer = original != easter + days{68};
+                if (fixed.provisionalTransfer)
+                    fixed.transferNote = "Provisional anticipation by analogy with the 2022 CDW disposition; transfer date awaits authoritative confirmation";
+            }
+        }
+        if (!destination)
+        {
+            if (definition.transferRule == SolemnityTransferRule::SaintJoseph &&
+                     original >= easter - days{7} && original < easter)
+                destination = easter - days{8};
+            else if ((definition.transferRule == SolemnityTransferRule::Annunciation ||
+                      definition.transferRule == SolemnityTransferRule::AfterEasterOctave) &&
+                     original >= easter - days{7} && original <= easter + days{7})
+                destination = easter + days{8};
+            else if (weekday{original} == Sunday &&
+                     (isLent(fixed.scheduled) || isAdvent(fixed.scheduled) || isEaster(fixed.scheduled)))
+                destination = original + days{1}; // UNLYC 5: following Monday.
+        }
         if (destination)
         {
             // An already transferred solemnity can occupy the first free Monday.
-            while (!available(*destination)) *destination += days{1};
+            while (!available(*destination))
+                *destination += days{*destination < original ? -1 : 1};
         }
         else
         {
@@ -182,13 +250,23 @@ std::vector<ScheduledCelebration> fixedSchedule(int year,
 }
 
 std::vector<ObservanceCandidate> dayCandidates(year_month_day date,
-    const std::vector<FixedCelebration>& celebrations, std::string_view calendar)
+    const std::vector<FixedCelebration>& celebrations, std::string_view calendar,
+    std::vector<ObservanceCandidate>& displaced)
 {
-    auto candidates = findMovableObservances(date, calendar);
+    auto candidates = scheduledMovables(date, celebrations, calendar);
     for (const auto& fixed : fixedSchedule(int(date.year()), celebrations, calendar))
     {
-        if (fixed.observed != date) continue;
+        if (fixed.observed != date && fixed.scheduled != date) continue;
         auto candidate = fixedCandidate(*fixed.definition);
+        candidate.provisionalTransfer = fixed.provisionalTransfer;
+        candidate.transferNote = fixed.transferNote;
+        if (fixed.observed != date)
+        {
+            candidate.transferredFrom = fixed.scheduled;
+            candidate.transferredTo = fixed.observed;
+            displaced.push_back(std::move(candidate));
+            continue;
+        }
         candidate.unresolvedReason = fixed.unresolvedReason;
         if (fixed.observed != fixed.scheduled) candidate.transferredFrom = fixed.scheduled;
         const year_month_day nominal{date.year() / fixed.definition->date};
@@ -244,40 +322,43 @@ LiturgicalDay selectDay(year_month_day date, std::vector<ObservanceCandidate> ca
             candidate.optional = true;
         }
 
-    std::ranges::sort(candidates, [](const auto& left, const auto& right) {
-        if (left.precedence != right.precedence) return left.precedence < right.precedence;
-        if (left.prevailsOnEqualPrecedence != right.prevailsOnEqualPrecedence)
-            return left.prevailsOnEqualPrecedence;
-        return left.id < right.id;
-    });
-    const ObservanceCandidate* selected = nullptr;
+    // ID order stabilises diagnostics and alternatives, never liturgical priority.
+    std::ranges::sort(candidates, {}, &ObservanceCandidate::id);
+    std::vector<const ObservanceCandidate*> winners;
     for (const auto& candidate : candidates)
+        if (!candidate.optional && !std::ranges::any_of(candidates, [&](const auto& rival) {
+                return !rival.optional && observanceOutranks(rival, candidate);
+            })) winners.push_back(&candidate);
+    // A principal-patron exception needs jurisdiction-specific authority even
+    // when the patron's proper class differs numerically from the general class.
+    const bool localDisposition = std::ranges::any_of(candidates, [](const auto& candidate) {
+        return candidate.principalPatron && !candidate.unresolvedReason.empty();
+    });
+    if (localDisposition)
     {
-        if (candidate.optional) continue;
-        if (!selected) selected = &candidate;
-        else if (candidate.precedence == selected->precedence)
-        {
-            // Explicit dispositions: Mother of the Church (CDW 138/18) and
-            // Eternal High Priest / Augustine (England and Wales Calendar Notes 2021).
-            if (selected->prevailsOnEqualPrecedence && !candidate.prevailsOnEqualPrecedence &&
-                candidate.rank == selected->rank) continue;
-            if (!selected->unresolvedReason.empty() || !candidate.unresolvedReason.empty())
-            {
-                LiturgicalDay unresolved;
-                unresolved.date = date;
-                unresolved.season = getLiturgicalPeriod(date, calendar);
-                unresolved.precedence = selected->precedence;
-                unresolved.unresolvedReason = "Equal-precedence solemnities require an authoritative disposition";
-                unresolved.observanceName = "Unresolved liturgical occurrence";
-                for (const auto& rival : candidates)
-                    if (!rival.optional && rival.precedence == selected->precedence)
-                        unresolved.conflictingObservances.push_back(rival);
-                return unresolved;
-            }
-            throw std::logic_error("Equal-precedence celebrations: " + selected->id + " / " + candidate.id);
-        }
-        else break;
+        winners.clear();
+        for (const auto& candidate : candidates)
+            if (candidate.rank == CelebrationRank::Solemnity &&
+                candidate.precedence <= PrecedenceLevel::ProperSolemnity) winners.push_back(&candidate);
     }
+    if (winners.size() != 1)
+    {
+        const bool requiresDisposition = std::ranges::any_of(winners, [](const auto* candidate) {
+            return !candidate->unresolvedReason.empty();
+        });
+        if (!requiresDisposition) throw std::logic_error("Equal-precedence celebrations require an explicit disposition");
+        LiturgicalDay unresolved;
+        unresolved.date = date;
+        unresolved.season = getLiturgicalPeriod(date, calendar);
+        unresolved.precedence = winners.front()->precedence;
+        unresolved.unresolvedReason = localDisposition
+            ? "Local patronal occurrence requires its own authoritative disposition"
+            : "Equal-precedence solemnities require an authoritative disposition";
+        unresolved.observanceName = "Unresolved liturgical occurrence";
+        for (const auto* winner : winners) unresolved.conflictingObservances.push_back(*winner);
+        return unresolved;
+    }
+    const auto* selected = winners.front();
     LiturgicalDay result;
     result.date = date;
     result.season = getLiturgicalPeriod(date, calendar);
@@ -288,6 +369,8 @@ LiturgicalDay selectDay(year_month_day date, std::vector<ObservanceCandidate> ca
     result.colour = selected->colour;
     result.transferredFrom = selected->transferredFrom;
     result.scheduledFrom = selected->scheduledFrom;
+    result.provisionalTransfer = selected->provisionalTransfer;
+    result.transferNote = selected->transferNote;
     if (result.precedence == PrecedenceLevel::PrivilegedWeekday ||
         result.precedence == PrecedenceLevel::OtherWeekday)
         for (const auto& candidate : candidates)
@@ -310,6 +393,9 @@ LiturgicalDay resolveLiturgicalDay(std::chrono::year_month_day date,
         calendarName != "england" && calendarName != "wales")
         throw std::invalid_argument("Unknown liturgical calendar");
     validateCalendar(celebrations);
-    auto candidates = dayCandidates(date, celebrations, calendarName);
-    return selectDay(date, std::move(candidates), calendarName);
+    std::vector<ObservanceCandidate> displaced;
+    auto candidates = dayCandidates(date, celebrations, calendarName, displaced);
+    auto result = selectDay(date, std::move(candidates), calendarName);
+    result.displacedObservances = std::move(displaced);
+    return result;
 }

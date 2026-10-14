@@ -23,6 +23,7 @@ void printLiturgicalDay(const LiturgicalDay& day, bool showCross)
     if (showCross) std::cout << "          ███          ";
     std::cout << day.observanceName;
     if (day.rank) std::cout << " · " << celebrationRankName(day.rank);
+    if (day.provisionalTransfer) std::cout << " (provisional transfer)";
     std::cout << '\n';
     if (showCross)
         for (int i = 0; i < 4; ++i) std::cout << "          ███\n";

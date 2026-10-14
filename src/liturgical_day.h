@@ -22,9 +22,12 @@ struct LiturgicalDay
     std::optional<LiturgicalColour> colour = std::nullopt;
     std::optional<std::chrono::year_month_day> transferredFrom = std::nullopt;
     std::optional<std::chrono::year_month_day> scheduledFrom = std::nullopt;
+    bool provisionalTransfer = false;
+    std::string transferNote = {};
     // An occurrence needing an authoritative disposition has no selected identity.
     std::string unresolvedReason;
     std::vector<ObservanceCandidate> conflictingObservances;
+    std::vector<ObservanceCandidate> displacedObservances;
     // Optional memorials or restricted commemorations; the temporal day is default.
     std::vector<ObservanceCandidate> alternatives;
 };

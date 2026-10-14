@@ -20,7 +20,12 @@ expect_failure --calendar=grc --calendar=wales
 expect_failure --date=14102026 --date=15102026
 expect_failure --cross --cross
 expect_failure --unknown
-expect_failure --date=24062038
+"$app" --date=24062038 >"$tmp_dir/output"
+rg -q 'Body and Blood' "$tmp_dir/output"
+"$app" --date=23062038 >"$tmp_dir/output"
+rg -q 'Nativity of St John.*provisional transfer' "$tmp_dir/output"
+"$app" --date=25062038 >"$tmp_dir/output"
+rg -q 'Friday.*Ordinary Time' "$tmp_dir/output"
 "$app" --date=03042026 >"$tmp_dir/output"
 rg -q 'Good Friday' "$tmp_dir/output"
 if rg -q 'Fixed-date candidate|Ordinary Time' "$tmp_dir/output"; then exit 1; fi

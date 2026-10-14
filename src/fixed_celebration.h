@@ -9,8 +9,10 @@
 
 enum class PrecedenceLevel : int;
 
+enum class CelebrationSubject { Other, Lord, Saint };
+
 enum class FixedDateRule { Nominal, Epiphany, AdjacentSunday, AllSouls };
-enum class SolemnityTransferRule { General, SaintJoseph, Annunciation, AfterEasterOctave, BeforeSacredHeart };
+enum class SolemnityTransferRule { General, SaintJoseph, Annunciation, AfterEasterOctave, AnticipateBeforeLord };
 
 struct FixedCelebration
 {
@@ -20,6 +22,8 @@ struct FixedCelebration
     std::optional<CelebrationRank> rank = std::nullopt;
     std::string rankSourceCalendar = "general_roman";
     bool feastOfLord = false;
+    CelebrationSubject subject = CelebrationSubject::Other;
+    bool principalPatron = false;
     std::optional<PrecedenceLevel> precedence = std::nullopt;
     bool namesTemporalBaseline = false;
     FixedDateRule dateRule = FixedDateRule::Nominal;

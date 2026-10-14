@@ -58,7 +58,8 @@
       "date_rule": "epiphany",
       "names_temporal_baseline": true,
       "colour": "white",
-      "precedence_source": "https://www.liturgyoffice.org.uk/Calendar/Info/Days.shtml"
+      "precedence_source": "https://www.liturgyoffice.org.uk/Calendar/Info/Days.shtml",
+      "subject": "lord"
     },
     {
       "id": "grc-01-07-st-raymond-of-penyafort-priest",
@@ -380,7 +381,8 @@
       "source_page": 4,
       "colour": "white",
       "transfer_rule": "saint_joseph",
-      "rule_source": "https://liturgyoffice.org.uk/Calendar/Info/Ordo2008.pdf"
+      "rule_source": "https://liturgyoffice.org.uk/Calendar/Info/Ordo2008.pdf",
+      "subject": "saint"
     },
     {
       "id": "grc-03-23-st-turibius-of-mogrovejo-bishop",
@@ -400,7 +402,8 @@
       "source_page": 4,
       "colour": "white",
       "transfer_rule": "annunciation",
-      "rule_source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/OT2Solemnities.shtml"
+      "rule_source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/OT2Solemnities.shtml",
+      "subject": "lord"
     },
     {
       "id": "grc-04-02-st-francis-of-paola-hermit",
@@ -832,8 +835,10 @@
       "rank": "solemnity",
       "source_page": 7,
       "colour": "white",
-      "transfer_rule": "before_sacred_heart",
-      "rule_source": "https://www.liturgyoffice.org.uk/Calendar/2022/Ordo-2022.pdf"
+      "transfer_rule": "anticipate_before_lord",
+      "rule_source": "https://www.liturgyoffice.org.uk/Calendar/2022/Ordo-2022.pdf",
+      "subject": "saint",
+      "transfer_policy_note": "The 2022 Sacred Heart anticipation is the precedent. Anticipation for Corpus Christi is provisional pending confirmation of the transfer date; principal-patron calendars require their own disposition."
     },
     {
       "id": "grc-06-27-st-cyril-of-alexandria-bishop-and-doctor-of-the-church",
@@ -861,7 +866,8 @@
       "name": "Sts Peter and Paul, Apostles",
       "rank": "solemnity",
       "source_page": 7,
-      "colour": "red"
+      "colour": "red",
+      "subject": "saint"
     },
     {
       "id": "grc-06-30-the-first-martyrs-of-the-holy-roman-church",
@@ -1737,7 +1743,8 @@
       "name": "All Saints",
       "rank": "solemnity",
       "source_page": 12,
-      "colour": "white"
+      "colour": "white",
+      "subject": "saint"
     },
     {
       "id": "grc-11-02-the-commemoration-of-all-the-faithful-departed-all-souls-day",
@@ -2045,7 +2052,8 @@
       "precedence": 2,
       "names_temporal_baseline": true,
       "colour": "white",
-      "precedence_source": "https://www.liturgyoffice.org.uk/Calendar/Info/Days.shtml"
+      "precedence_source": "https://www.liturgyoffice.org.uk/Calendar/Info/Days.shtml",
+      "subject": "lord"
     },
     {
       "id": "grc-12-26-st-stephen-the-first-martyr",

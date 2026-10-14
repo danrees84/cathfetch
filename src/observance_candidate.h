@@ -14,11 +14,16 @@ struct ObservanceCandidate
     std::string name;
     std::optional<CelebrationRank> rank = std::nullopt;
     PrecedenceLevel precedence;
+    CelebrationSubject subject = CelebrationSubject::Other;
+    bool principalPatron = false;
+    std::optional<std::chrono::year_month_day> transferredTo = std::nullopt;
     bool optional = false;
     bool namesTemporalBaseline = false;
     std::optional<LiturgicalColour> colour = std::nullopt;
     std::optional<std::chrono::year_month_day> transferredFrom = std::nullopt;
     std::optional<std::chrono::year_month_day> scheduledFrom = std::nullopt;
+    bool provisionalTransfer = false;
+    std::string transferNote = {};
     std::string unresolvedReason = {};
     bool restrictedCommemoration = false;
     bool prevailsOnEqualPrecedence = false;

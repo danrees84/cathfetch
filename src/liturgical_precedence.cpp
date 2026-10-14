@@ -1,6 +1,7 @@
 #include "liturgical_precedence.h"
 #include "temporal_calendar.h"
 #include "easter.h"
+#include "observance_candidate.h"
 
 #include <stdexcept>
 
@@ -84,4 +85,17 @@ PrecedenceLevel fixedCelebrationPrecedence(const FixedCelebration& celebration)
             return PrecedenceLevel::OptionalMemorial;
     }
     throw std::invalid_argument("Unknown celebration rank: " + celebration.id);
+}
+
+// Occurrence priority leaves the thirteen numerical table classes unchanged.
+bool observanceOutranks(const ObservanceCandidate& candidate, const ObservanceCandidate& current)
+{
+    if (candidate.precedence != current.precedence)
+        return outranks(candidate.precedence, current.precedence);
+    if (candidate.precedence == PrecedenceLevel::GeneralSolemnityOrAllSouls &&
+        candidate.rank == CelebrationRank::Solemnity && current.rank == CelebrationRank::Solemnity &&
+        candidate.subject == CelebrationSubject::Lord && current.subject == CelebrationSubject::Saint &&
+        !current.principalPatron) return true;
+    return candidate.prevailsOnEqualPrecedence && !current.prevailsOnEqualPrecedence &&
+           candidate.rank == current.rank;
 }

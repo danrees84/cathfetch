@@ -213,21 +213,14 @@ int main()
                         const auto day = resolveLiturgicalDay(year_month_day{date}, definitions, calendar);
                         const auto other = resolveLiturgicalDay(year_month_day{date}, reversed, calendar);
                         ++dates;
-                        if (!day.unresolvedReason.empty())
-                        {
-                            require((value == 1943 || value == 2038) &&
-                                    (calendar == "grc" || calendar == "europe") &&
-                                    year_month_day{date} == y/June/24, "Only the documented latest-Easter occurrence is unresolved");
-                            require(day.observanceId.empty() && !day.rank && day.conflictingObservances.size() == 2,
-                                    "Unresolved occurrence preserves rivals without inventing an observance");
-                            require(other.unresolvedReason == day.unresolvedReason, "Unresolved occurrence independent of order");
-                            continue;
-                        }
+                        require(day.unresolvedReason.empty(), "Every tested calendar date resolves");
                         require(!day.observanceName.empty() && !day.observanceId.empty(), "Every date has identity");
                         require(day.observanceId == other.observanceId && day.precedence == other.precedence &&
                                 day.rank == other.rank && day.colour == other.colour &&
                                 day.transferredFrom == other.transferredFrom && day.scheduledFrom == other.scheduledFrom &&
-                                day.alternatives.size() == other.alternatives.size(), "Candidate order independence");
+                                day.alternatives.size() == other.alternatives.size() &&
+                                day.provisionalTransfer == other.provisionalTransfer && day.transferNote == other.transferNote &&
+                                day.displacedObservances.size() == other.displacedObservances.size(), "Candidate order independence");
                         for (std::size_t i = 0; i < day.alternatives.size(); ++i)
                             require(day.alternatives[i].id == other.alternatives[i].id, "Alternative order independence");
                         require(day.alternatives.empty() || day.precedence == PrecedenceLevel::PrivilegedWeekday ||
@@ -255,10 +248,7 @@ int main()
                 for (const auto& definition : definitions)
                     if (definition.rank == CelebrationRank::Solemnity)
                     {
-                        const bool pending = (value == 1943 || value == 2038) &&
-                            (calendar == "grc" || calendar == "europe") &&
-                            definition.transferRule == SolemnityTransferRule::BeforeSacredHeart;
-                        require(occurrences[definition.id] == (pending ? 0 : 1), "Annual fixed solemnity coverage: " + definition.id);
+                        require(occurrences[definition.id] == 1, "Annual fixed solemnity coverage: " + definition.id);
                     }
                 require(occurrences["easter_sunday"] == 1 && occurrences["pentecost"] == 1 &&
                         occurrences["ascension"] == 1, "Annual principal movable coverage");

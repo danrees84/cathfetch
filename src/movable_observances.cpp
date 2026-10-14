@@ -21,6 +21,7 @@ std::vector<ObservanceCandidate> findMovableObservances(
         candidate.id = std::move(id);
         candidate.name = std::move(name);
         candidate.rank = rank;
+        if (rank == CelebrationRank::Solemnity) candidate.subject = CelebrationSubject::Lord;
         candidate.precedence = precedence;
         candidate.optional = rank == CelebrationRank::OptionalMemorial;
         candidate.namesTemporalBaseline = namesTemporalBaseline;
