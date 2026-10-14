@@ -13,6 +13,8 @@
 #include "calendar_selection.h"
 #include "liturgical_resolver.h"
 #include "celebration_rank.h"
+#include "lectionary_loader.h"
+#include "lectionary_resolver.h"
 
 std::chrono::year_month_day getCurrentLocalDate()
 {
@@ -39,6 +41,9 @@ int main(int argc, char* argv[])
 {
 
 	bool showCross = false;
+    bool showReadings = false;
+    std::string_view mass = "default";
+    bool massSpecified = false;
 	auto selectedDate = getCurrentLocalDate();
 	bool dateSpecified = false;
 	std::string_view selectedCalendar = "grc";
@@ -59,6 +64,22 @@ int main(int argc, char* argv[])
 			showCross = true;
 		}
 
+        else if (arg == "--readings")
+        {
+            if (showReadings) { std::cerr << "Duplicate option: --readings\n"; return 1; }
+            showReadings = true;
+        }
+        else if (arg.starts_with("--mass="))
+        {
+            if (massSpecified) { std::cerr << "Duplicate option: --mass\n"; return 1; }
+            mass = arg.substr(7);
+            if (!isMassForm(mass))
+            {
+                std::cerr << "Unknown Mass form: " << mass << '\n';
+                return 1;
+            }
+            massSpecified = true;
+        }
 		else if (arg.starts_with("--date="))
 		{
 			if (dateSpecified)
@@ -149,7 +170,14 @@ int main(int argc, char* argv[])
     try
     {
         const auto celebrations = loadSelectedCalendar(selectedCalendar);
-        printLiturgicalDay(resolveLiturgicalDay(selectedDate, celebrations, selectedCalendar), showCross);
+        const auto day = resolveLiturgicalDay(selectedDate, celebrations, selectedCalendar);
+        if (showReadings || massSpecified)
+        {
+            const auto data = loadLectionary();
+            const auto readings = resolveMassReadings(day, data, selectedCalendar, mass);
+            printLiturgicalDay(day, showCross, &readings);
+        }
+        else printLiturgicalDay(day, showCross);
     }
     catch (const std::exception& error)
     {

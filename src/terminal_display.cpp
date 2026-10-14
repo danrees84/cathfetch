@@ -20,7 +20,19 @@ std::string colourDot(LiturgicalColour colour)
     return terminalColourCode(colour) + "●\033[0m ";
 }
 
-std::vector<std::string> informationRows(const LiturgicalDay& day, std::size_t columns)
+std::string massLabel(std::string_view mass)
+{
+    if (mass == "passion") return "Passion liturgy";
+    if (mass == "evening") return "Evening Mass";
+    if (mass == "night") return "Night Mass";
+    if (mass == "dawn") return "Dawn Mass";
+    if (mass == "vigil") return "Vigil Mass";
+    if (mass == "vigil-extended") return "Extended Vigil Mass";
+    return "Day Mass";
+}
+
+std::vector<std::string> informationRows(const LiturgicalDay& day, std::size_t columns,
+                                        const LectionaryDay* readings)
 {
     auto rows = wrapTerminalText(formatCalendarDate(day.date), columns);
     const auto seasonColour = seasonalColour(day.season);
@@ -35,11 +47,44 @@ std::vector<std::string> informationRows(const LiturgicalDay& day, std::size_t c
     if (day.rank) observance += " · " + std::string{celebrationRankName(day.rank)};
     if (day.provisionalTransfer) observance += " (provisional transfer)";
     append(std::move(observance), hasDot);
+    if (readings)
+    {
+        rows.emplace_back();
+        if (readings->status == ReadingStatus::NoDaytimeMass)
+            append("No daytime Mass · Easter Vigil available with --mass=vigil", false);
+        else if (readings->status != ReadingStatus::Available || !readings->selected)
+            append("Readings · assignment not yet verified for this day or Mass form", false);
+        else
+        {
+            append("Readings · Sunday " + std::string{cycleName(readings->cycles.sunday)} +
+                " / Weekday " + std::string{cycleName(readings->cycles.weekday)} + " · " +
+                massLabel(readings->selected->mass), false);
+            if (readings->selected->verification == ReferenceVerification::PublishedTable)
+                append("Published reference tables · 2024 edition collation pending", false);
+            if (readings->selected->use == ReadingUse::Accommodated)
+                append("Suggested selection · other permitted readings may be chosen", false);
+            for (const auto& reading : readings->selected->readings)
+            {
+                std::string label = reading.role == "first" ? "First" : reading.role == "psalm" ? "Psalm" :
+                    reading.role == "second" ? "Second" : reading.role == "gospel" ? "Gospel" :
+                    reading.role == "acclamation" ? "Acclamation" : reading.role == "epistle" ? "Epistle" :
+                    reading.role == "procession_gospel" ? "Procession Gospel" : reading.role;
+                if (label.starts_with("reading_")) label = "Reading " + label.substr(8);
+                if (label.starts_with("psalm_")) label = "Psalm " + label.substr(6);
+                append(label + ": " + reading.reference, false);
+                for (const auto& option : reading.alternatives)
+                    append("  or " + option.reference + " (" + option.condition + ")", false);
+            }
+            if (!readings->alternatives.empty())
+                append("Other reading sets or Mass forms: " + std::to_string(readings->alternatives.size()), false);
+        }
+    }
     return rows;
 }
 } // namespace
 
-std::string renderLiturgicalDay(const LiturgicalDay& day, bool showCross, std::size_t columns)
+std::string renderLiturgicalDay(const LiturgicalDay& day, bool showCross, std::size_t columns,
+                               const LectionaryDay* readings)
 {
     if (columns == 0) throw std::invalid_argument("Terminal width must be positive");
     if (!day.unresolvedReason.empty())
@@ -53,7 +98,7 @@ std::string renderLiturgicalDay(const LiturgicalDay& day, bool showCross, std::s
     constexpr std::size_t textColumn = artworkWidth + gap;
     constexpr std::size_t minimumTextWidth = 32;
     const bool sideBySide = showCross && columns >= textColumn + minimumTextWidth;
-    const auto rows = informationRows(day, sideBySide ? columns - textColumn : columns);
+    const auto rows = informationRows(day, sideBySide ? columns - textColumn : columns, readings);
     std::string output;
     if (sideBySide)
     {
@@ -90,7 +135,7 @@ std::string renderLiturgicalDay(const LiturgicalDay& day, bool showCross, std::s
     return output;
 }
 
-void printLiturgicalDay(const LiturgicalDay& day, bool showCross)
+void printLiturgicalDay(const LiturgicalDay& day, bool showCross, const LectionaryDay* readings)
 {
-    std::cout << renderLiturgicalDay(day, showCross, terminalColumns());
+    std::cout << renderLiturgicalDay(day, showCross, terminalColumns(), readings);
 }

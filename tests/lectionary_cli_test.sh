@@ -1,0 +1,34 @@
+#!/bin/sh
+set -eu
+python3 - <<'PY'
+import os
+import re
+import subprocess
+import unicodedata
+
+app = './build/cathfetch'
+def run(*args, width=80):
+    return subprocess.check_output([app, *args], text=True, env=dict(os.environ, COLUMNS=str(width)))
+
+for args in [('--readings', '--readings'), ('--mass=day', '--mass=night'), ('--mass=invalid',)]:
+    result = subprocess.run([app, *args], text=True, capture_output=True)
+    assert result.returncode and result.stderr
+for width in [120, 100, 80, 60, 40]:
+    for cross in [[], ['--cross']]:
+        for date, mass in [('08122026', []), ('04042026', ['--mass=vigil']), ('14102026', [])]:
+            text = run('--date='+date, '--readings', *mass, *cross, width=width)
+            text = re.sub(r'\x1b\[[0-?]*[ -/]*[@-~]', '', text)
+            for line in text.splitlines():
+                cells = sum(0 if unicodedata.combining(c) else
+                            2 if unicodedata.east_asian_width(c) in ('W', 'F') else 1 for c in line)
+                assert cells <= width, (width, line)
+            assert 'Readings' in text
+assert 'Luke 1:26-38' in run('--date=08122026', '--readings', width=120)
+assert 'collation pending' in run('--date=08122026', '--readings', width=120)
+assert 'First: Isa 2:1-5' in run('--date=30112025', '--readings', width=120)
+assert 'Night Mass' in run('--date=25122026', '--mass=night', width=120)
+assert 'No daytime Mass' in run('--date=04042026', '--readings', width=120)
+assert 'assignment not yet verified' in run('--date=14102026', '--readings', width=120)
+assert 'Readings' not in run('--date=08122026', width=120)
+print('Lectionary CLI and wrapping tests passed')
+PY

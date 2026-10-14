@@ -2,6 +2,8 @@
 
 As of 14 October 2026, the engine implements the contemporary General Roman Calendar and the supplied European, English and Welsh overlays. Every date in 2024–2030 resolves to an observed day in all four calendars. Corpus Christi also resolves on 24 June 2038, with the Nativity of John the Baptist provisionally anticipated to 23 June; only the transfer date awaits authoritative confirmation. This is a contemporary calendar snapshot, not a historical or diocesan ordo.
 
+A separate reference-only lectionary engine now consumes these resolved identities. Its opt-in `--readings` display and year diagnostic are implemented; daily reference coverage and current-edition collation remain incomplete. See [the lectionary status](LECTIONARY_ENGINE_STATUS.md). No calendar calculations or precedence rules were changed for this addition.
+
 ## Resolution and coverage
 
 `resolveLiturgicalDay(date, celebrations, calendarName)` validates the input, constructs the fixed observance schedule, gathers movable candidates, and selects against one temporal candidate. Rank and precedence remain distinct. General and proper classifications cover all thirteen levels, including proper feasts in England and Wales and All Souls without an ordinary rank.

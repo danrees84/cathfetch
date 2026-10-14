@@ -2,6 +2,8 @@
 #include "terminal_format.h"
 #include "calendar_selection.h"
 #include "liturgical_resolver.h"
+#include "lectionary_loader.h"
+#include "lectionary_resolver.h"
 
 #include <array>
 #include <iostream>
@@ -37,6 +39,21 @@ int main()
         const auto calendar = loadSelectedCalendar("grc");
         const auto immaculate = resolveLiturgicalDay(2026y/December/8, calendar);
         const auto basil = resolveLiturgicalDay(2026y/January/2, calendar);
+        const auto lectionary = loadLectionary();
+        for (const auto date : {2026y/December/8, 2026y/April/4, 2026y/April/5, 2026y/October/14})
+        {
+            const auto day = resolveLiturgicalDay(date, calendar);
+            const auto readings = resolveMassReadings(day, lectionary, "grc",
+                date == 2026y/April/4 ? "vigil" : "default");
+            for (auto width : {120u, 100u, 80u, 60u, 40u})
+                for (bool cross : {true, false})
+                {
+                    const auto output = renderLiturgicalDay(day, cross, width, &readings);
+                    for (const auto& row : lines(output))
+                        require(visibleTerminalWidth(row) <= width, "Reading references respect layout width");
+                    require(plain(output).find("Readings") != std::string::npos, "Readings section rendered");
+                }
+        }
         const std::array<std::string, 8> cross{
             "          ███", "          ███", "      ███████████", "          ███",
             "          ███", "          ███", "          ███", "          ███"};

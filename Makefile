@@ -5,7 +5,7 @@ ENGINE_SOURCES := $(filter-out src/main.cpp src/terminal_display.cpp src/termina
 ENGINE_OBJECTS := $(ENGINE_SOURCES:src/%.cpp=build/%.o)
 TESTS := $(patsubst tests/%.cpp,build/%,$(wildcard tests/*_test.cpp))
 .PHONY: all test clean
-all: build/cathfetch build/calendar_year
+all: build/cathfetch build/calendar_year build/lectionary_year
 build:
 	mkdir -p build
 build/%.o: src/%.cpp | build
@@ -14,6 +14,8 @@ build/cathfetch: build/main.o build/terminal_display.o build/terminal_format.o $
 	$(CXX) $(CXXFLAGS) $^ -o $@
 build/calendar_year: tools/calendar_year.cpp $(ENGINE_OBJECTS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
+build/lectionary_year: tools/lectionary_year.cpp $(ENGINE_OBJECTS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
 build/terminal_render_test: tests/terminal_render_test.cpp build/terminal_display.o build/terminal_format.o $(ENGINE_OBJECTS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
 build/%_test: tests/%_test.cpp $(ENGINE_OBJECTS)
@@ -21,6 +23,7 @@ build/%_test: tests/%_test.cpp $(ENGINE_OBJECTS)
 test: $(TESTS) all
 	@set -e; for test in $(TESTS); do $$test; done
 	@sh tests/cli_test.sh
+	@sh tests/lectionary_cli_test.sh
 clean:
 	rm -rf build
 -include $(wildcard build/*.d)
