@@ -228,6 +228,9 @@ bool isLent(std::chrono::year_month_day date)
 }
 
 
+// Date-only convention: Thursday remains Lent; Friday and Saturday are Triduum.
+// Easter Sunday belongs to Easter Time and retains Triduum precedence.
+// Evening transitions require a time-aware layer (UNLYC 19, 22, 28).
 bool isTriduum(std::chrono::year_month_day date)
 {
 

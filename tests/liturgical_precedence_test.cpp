@@ -182,10 +182,10 @@ auto davidLewisPrecedence =
 auto augustWeekday = ordinaryTimeBaselinePrecedence(
     std::chrono::year{2026} / std::chrono::August / 26);
 
-if (davidLewisPrecedence != PrecedenceLevel::ProperMemorial ||
+if (davidLewisPrecedence != PrecedenceLevel::OptionalMemorial ||
     !outranks(davidLewisPrecedence, augustWeekday))
 {
-    std::cerr << "Proper memorial precedence test failed\n";
+    std::cerr << "Welsh optional memorial precedence test failed\n";
     return 1;
 }
 

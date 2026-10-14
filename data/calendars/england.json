@@ -3,8 +3,8 @@
   "calendar": "england",
   "inherits": "england_wales",
   "scope": "fixed_nominal_sanctoral_calendar_only",
-  "status": "draft_independently_structured_facts_review_before_production",
-  "as_of": "2026-10-11",
+  "status": "contemporary_snapshot_with_audited_rules_see_README",
+  "as_of": "2026-10-14",
   "description": "England-specific sanctoral facts layered over the shared England/Wales and European calendars.",
   "sources": [
     {
@@ -19,7 +19,7 @@
     },
     {
       "id": "walsingham",
-      "url": "https://www.liturgyoffice.org.uk/Calendar/National/England1.shtml",
+      "url": "https://www.cbcew.org.uk/our-lady-of-walsingham-now-a-feast-in-dioceses-of-england/",
       "title": "Liturgy Office — National Calendar England: Our Lady of Walsingham (feast)"
     }
   ],
@@ -30,7 +30,8 @@
       "day": 12,
       "name": "St Aelred of Rievaulx, Abbot",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-01-19-st-wulstan",
@@ -38,7 +39,8 @@
       "day": 19,
       "name": "St Wulstan, Bishop",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-05-04-english-martyrs",
@@ -46,7 +48,8 @@
       "day": 4,
       "name": "The English Martyrs",
       "rank": "feast",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "red"
     },
     {
       "id": "eng-05-19-st-dunstan",
@@ -54,7 +57,8 @@
       "day": 19,
       "name": "St Dunstan, Bishop",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-06-09-st-columba",
@@ -62,7 +66,8 @@
       "day": 9,
       "name": "St Columba, Abbot",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-06-16-st-richard-of-chichester",
@@ -70,7 +75,8 @@
       "day": 16,
       "name": "St Richard of Chichester, Bishop",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-06-20-st-alban",
@@ -78,7 +84,8 @@
       "day": 20,
       "name": "St Alban, Martyr",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "red"
     },
     {
       "id": "eng-06-23-st-etheldreda",
@@ -86,7 +93,8 @@
       "day": 23,
       "name": "St Etheldreda (Audrey), Abbess",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-07-01-st-oliver-plunkett",
@@ -94,7 +102,8 @@
       "day": 1,
       "name": "St Oliver Plunkett, Bishop and Martyr",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "red"
     },
     {
       "id": "eng-08-26-bl-dominic-barberi",
@@ -102,7 +111,8 @@
       "day": 26,
       "name": "Blessed Dominic of the Mother of God Barberi, Priest",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-08-30-sts-margaret-clitherow-anne-line-margaret-ward",
@@ -110,7 +120,8 @@
       "day": 30,
       "name": "Sts Margaret Clitherow, Anne Line and Margaret Ward, Martyrs",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "red"
     },
     {
       "id": "eng-08-31-st-aidan-and-saints-of-lindisfarne",
@@ -118,7 +129,8 @@
       "day": 31,
       "name": "St Aidan, Bishop, and the Saints of Lindisfarne",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-09-04-st-cuthbert",
@@ -126,7 +138,8 @@
       "day": 4,
       "name": "St Cuthbert, Bishop",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-09-19-st-theodore-of-canterbury",
@@ -134,7 +147,8 @@
       "day": 19,
       "name": "St Theodore of Canterbury, Bishop",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-09-24-our-lady-of-walsingham",
@@ -142,7 +156,8 @@
       "day": 24,
       "name": "Our Lady of Walsingham",
       "rank": "feast",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-10-10-st-paulinus-of-york",
@@ -150,7 +165,8 @@
       "day": 10,
       "name": "St Paulinus of York, Bishop",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-10-12-st-wilfrid",
@@ -158,7 +174,8 @@
       "day": 12,
       "name": "St Wilfrid, Bishop",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-10-13-st-edward-the-confessor",
@@ -166,7 +183,8 @@
       "day": 13,
       "name": "St Edward the Confessor",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-10-26-sts-chad-and-cedd",
@@ -174,7 +192,8 @@
       "day": 26,
       "name": "Sts Chad and Cedd, Bishops",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-11-07-st-willibrord",
@@ -182,7 +201,8 @@
       "day": 7,
       "name": "St Willibrord, Bishop",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-11-16-st-edmund-of-abingdon",
@@ -190,7 +210,8 @@
       "day": 16,
       "name": "St Edmund of Abingdon, Bishop",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-11-17-st-hilda",
@@ -198,7 +219,8 @@
       "day": 17,
       "name": "St Hilda, Abbess",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     },
     {
       "id": "eng-11-17-st-hugh-of-lincoln",
@@ -206,7 +228,8 @@
       "day": 17,
       "name": "St Hugh of Lincoln, Bishop",
       "rank": "optional_memorial",
-      "source_id": "england"
+      "source_id": "england",
+      "colour": "white"
     }
   ],
   "overrides": [
@@ -220,9 +243,11 @@
     {
       "id": "grc-04-23-st-george-martyr",
       "changes": {
-        "rank": "solemnity"
+        "rank": "solemnity",
+        "transfer_rule": "after_easter_octave"
       },
-      "source_id": "england"
+      "source_id": "england",
+      "rule_source": "https://www.liturgyoffice.org.uk/Calendar/Sunday/OT2Solemnities.shtml"
     },
     {
       "id": "grc-05-25-st-bede-the-venerable-priest-and-doctor-of-the-church",
@@ -258,6 +283,14 @@
         "rank": "feast"
       },
       "source_id": "england"
+    },
+    {
+      "id": "grc-11-17-st-elizabeth-of-hungary-religious",
+      "changes": {
+        "rank": "optional_memorial"
+      },
+      "source_id": "england",
+      "note": "England allows a choice with St Hilda or St Hugh of Lincoln."
     }
   ],
   "date_reassignments": [
@@ -278,7 +311,8 @@
   ],
   "counts": {
     "additions": 23,
-    "overrides": 7,
+    "overrides": 8,
     "date_reassignments": 1
-  }
+  },
+  "colour_source": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20030317_ordinamento-messale_en.html#VI._The_Requisites_for_the_Celebration_of_Mass"
 }

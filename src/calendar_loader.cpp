@@ -30,6 +30,7 @@ void updateCelebrationMetadata(FixedCelebration& celebration,
     {
         const std::string rule = changes.at("date_rule");
         if (rule == "epiphany") celebration.dateRule = FixedDateRule::Epiphany;
+        else if (rule == "all_souls") celebration.dateRule = FixedDateRule::AllSouls;
         else if (rule == "adjacent_sunday") celebration.dateRule = FixedDateRule::AdjacentSunday;
         else if (rule == "nominal") celebration.dateRule = FixedDateRule::Nominal;
         else throw std::invalid_argument("Unknown date rule: " + rule);
@@ -39,6 +40,7 @@ void updateCelebrationMetadata(FixedCelebration& celebration,
         const std::string rule = changes.at("transfer_rule");
         if (rule == "saint_joseph") celebration.transferRule = SolemnityTransferRule::SaintJoseph;
         else if (rule == "annunciation") celebration.transferRule = SolemnityTransferRule::Annunciation;
+        else if (rule == "after_easter_octave") celebration.transferRule = SolemnityTransferRule::AfterEasterOctave;
         else if (rule == "before_sacred_heart") celebration.transferRule = SolemnityTransferRule::BeforeSacredHeart;
         else if (rule == "general") celebration.transferRule = SolemnityTransferRule::General;
         else throw std::invalid_argument("Unknown transfer rule: " + rule);
@@ -64,7 +66,7 @@ FixedCelebration parseFixedCelebration(const nlohmann::json& entry,
     result.id = entry.at("id");
     result.name = entry.at("name");
     result.date = std::chrono::month{unsigned(month)} / std::chrono::day{unsigned(day)};
-    entry.at("rank"); // Required even for a special observance without ordinary rank.
+    (void)entry.at("rank"); // Required even for a special observance without ordinary rank.
     updateCelebrationMetadata(result, entry, sourceCalendar);
     return result;
 }

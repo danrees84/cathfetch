@@ -3,8 +3,8 @@
   "calendar": "england_wales",
   "inherits": "europe",
   "scope": "fixed_nominal_sanctoral_calendar_only",
-  "status": "draft_independently_structured_facts_review_before_production",
-  "as_of": "2026-10-11",
+  "status": "contemporary_snapshot_with_audited_rules_see_README",
+  "as_of": "2026-10-14",
   "description": "Fixed-date additions and overrides shared by the national calendars of England and Wales.",
   "sources": [
     {
@@ -26,6 +26,16 @@
       "id": "calendar2026",
       "url": "https://www.liturgyoffice.org.uk/Calendar/2026/Calendar-2026.pdf",
       "title": "Liturgy Office — 2026 liturgical calendar (year-specific validation)"
+    },
+    {
+      "id": "holydays",
+      "url": "https://liturgyoffice.org/News/holydays/",
+      "title": "Bishops’ Conference scheduling from Advent 2017"
+    },
+    {
+      "id": "calendar2025",
+      "url": "https://www.liturgyoffice.org.uk/Calendar/2025/Ordo-2025.pdf",
+      "title": "Calendar Notes 2025: All Saints 2 November, All Souls 3 November"
     }
   ],
   "additions": [
@@ -36,7 +46,8 @@
       "name": "St David, Bishop, Patron of Wales",
       "rank": "feast",
       "source_id": "england",
-      "note": "England: feast. Wales elevates this shared entry to solemnity in the Wales overlay."
+      "note": "England: feast. Wales elevates this shared entry to solemnity in the Wales overlay.",
+      "colour": "white"
     },
     {
       "id": "ew-11-03-st-winefride",
@@ -45,7 +56,8 @@
       "name": "St Winefride, Virgin",
       "rank": "optional_memorial",
       "source_id": "wales",
-      "note": "The England summary spells the name Winifride; the Wales detail page spells it Winefride."
+      "note": "The England summary spells the name Winifride; the Wales detail page spells it Winefride.",
+      "colour": "white"
     }
   ],
   "overrides": [
@@ -56,6 +68,35 @@
       },
       "source_id": "decree_newman",
       "note": "2020 decree explicitly applies to both England and Wales; general calendar remains optional memorial."
+    },
+    {
+      "id": "grc-06-29-sts-peter-and-paul-apostles",
+      "changes": {
+        "date_rule": "adjacent_sunday"
+      },
+      "source_id": "holydays"
+    },
+    {
+      "id": "grc-08-15-the-assumption-of-the-blessed-virgin-mary",
+      "changes": {
+        "date_rule": "adjacent_sunday"
+      },
+      "source_id": "holydays"
+    },
+    {
+      "id": "grc-11-01-all-saints",
+      "changes": {
+        "date_rule": "adjacent_sunday"
+      },
+      "source_id": "holydays"
+    },
+    {
+      "id": "grc-11-02-the-commemoration-of-all-the-faithful-departed-all-souls-day",
+      "changes": {
+        "date_rule": "all_souls"
+      },
+      "source_id": "calendar2025",
+      "note": "All Souls follows the nationally scheduled All Saints when 2 November is Sunday."
     }
   ],
   "date_reassignments": [
@@ -83,7 +124,8 @@
   ],
   "counts": {
     "additions": 2,
-    "overrides": 1,
+    "overrides": 5,
     "date_reassignments": 2
-  }
+  },
+  "colour_source": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20030317_ordinamento-messale_en.html#VI._The_Requisites_for_the_Celebration_of_Mass"
 }

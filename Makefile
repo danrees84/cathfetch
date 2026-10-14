@@ -16,8 +16,9 @@ build/calendar_year: tools/calendar_year.cpp $(ENGINE_OBJECTS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
 build/%_test: tests/%_test.cpp $(ENGINE_OBJECTS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
-test: $(TESTS)
+test: $(TESTS) all
 	@set -e; for test in $(TESTS); do $$test; done
+	@sh tests/cli_test.sh
 clean:
 	rm -rf build
 -include $(wildcard build/*.d)

@@ -3,8 +3,8 @@
   "calendar": "wales",
   "inherits": "england_wales",
   "scope": "fixed_nominal_sanctoral_calendar_only",
-  "status": "draft_independently_structured_facts_review_before_production",
-  "as_of": "2026-10-11",
+  "status": "contemporary_snapshot_with_audited_rules_see_README",
+  "as_of": "2026-10-14",
   "description": "Wales-specific nominal celebrations and rank changes layered over shared England/Wales and Europe.",
   "sources": [
     {
@@ -30,7 +30,8 @@
       "day": 9,
       "name": "St Teilo, Bishop",
       "rank": "optional_memorial",
-      "source_id": "wales"
+      "source_id": "wales",
+      "colour": "white"
     },
     {
       "id": "wal-04-20-st-beuno",
@@ -38,15 +39,18 @@
       "day": 20,
       "name": "St Beuno, Abbot",
       "rank": "optional_memorial",
-      "source_id": "wales"
+      "source_id": "wales",
+      "colour": "white"
     },
     {
       "id": "wal-05-05-st-asaph",
       "month": 5,
       "day": 5,
       "name": "St Asaph, Bishop",
-      "rank": "memorial",
-      "source_id": "wales_detail"
+      "rank": "optional_memorial",
+      "source_id": "wales",
+      "colour": "white",
+      "note": "Rank corrected against national summary and 2026 published calendar; older detailed page is superseded."
     },
     {
       "id": "wal-06-20-sts-alban-julius-and-aaron",
@@ -54,23 +58,28 @@
       "day": 20,
       "name": "Sts Alban, Julius and Aaron, Martyrs",
       "rank": "optional_memorial",
-      "source_id": "wales"
+      "source_id": "wales",
+      "colour": "red"
     },
     {
       "id": "wal-07-12-st-john-jones",
       "month": 7,
       "day": 12,
       "name": "St John Jones, Priest and Martyr",
-      "rank": "memorial",
-      "source_id": "wales_detail"
+      "rank": "optional_memorial",
+      "source_id": "wales",
+      "colour": "red",
+      "note": "Rank corrected against national summary and 2026 published calendar; older detailed page is superseded."
     },
     {
       "id": "wal-07-23-sts-philip-evans-and-john-lloyd",
       "month": 7,
       "day": 23,
       "name": "Sts Philip Evans and John Lloyd, Martyrs",
-      "rank": "memorial",
-      "source_id": "wales_detail"
+      "rank": "optional_memorial",
+      "source_id": "wales",
+      "colour": "red",
+      "note": "Rank corrected against national summary and 2026 published calendar; older detailed page is superseded."
     },
     {
       "id": "wal-08-03-st-germanus-of-auxerre",
@@ -78,15 +87,18 @@
       "day": 3,
       "name": "St Germanus of Auxerre, Bishop",
       "rank": "optional_memorial",
-      "source_id": "wales"
+      "source_id": "wales",
+      "colour": "white"
     },
     {
       "id": "wal-08-26-st-david-lewis",
       "month": 8,
       "day": 26,
       "name": "St David Lewis, Priest and Martyr",
-      "rank": "memorial",
-      "source_id": "wales_detail"
+      "rank": "optional_memorial",
+      "source_id": "wales",
+      "colour": "red",
+      "note": "Rank corrected against national summary and 2026 published calendar; older detailed page is superseded."
     },
     {
       "id": "wal-09-11-st-deiniol",
@@ -94,7 +106,8 @@
       "day": 11,
       "name": "St Deiniol, Bishop",
       "rank": "optional_memorial",
-      "source_id": "wales"
+      "source_id": "wales",
+      "colour": "white"
     },
     {
       "id": "wal-10-16-st-richard-gwyn",
@@ -102,7 +115,8 @@
       "day": 16,
       "name": "St Richard Gwyn, Martyr",
       "rank": "optional_memorial",
-      "source_id": "wales"
+      "source_id": "wales",
+      "colour": "red"
     },
     {
       "id": "wal-10-25-six-welsh-martyrs-and-companions",
@@ -110,7 +124,8 @@
       "day": 25,
       "name": "Six Welsh Martyrs and their Companions",
       "rank": "feast",
-      "source_id": "wales"
+      "source_id": "wales",
+      "colour": "red"
     },
     {
       "id": "wal-11-06-st-illtud",
@@ -118,7 +133,8 @@
       "day": 6,
       "name": "St Illtud, Abbot",
       "rank": "optional_memorial",
-      "source_id": "wales"
+      "source_id": "wales",
+      "colour": "white"
     },
     {
       "id": "wal-11-08-all-saints-of-wales",
@@ -126,7 +142,8 @@
       "day": 8,
       "name": "All Saints of Wales",
       "rank": "feast",
-      "source_id": "wales"
+      "source_id": "wales",
+      "colour": "white"
     },
     {
       "id": "wal-11-14-st-dyfrig",
@@ -134,15 +151,18 @@
       "day": 14,
       "name": "St Dyfrig, Bishop",
       "rank": "optional_memorial",
-      "source_id": "wales"
+      "source_id": "wales",
+      "colour": "white"
     },
     {
       "id": "wal-12-10-st-john-roberts",
       "month": 12,
       "day": 10,
       "name": "St John Roberts, Priest and Martyr",
-      "rank": "memorial",
-      "source_id": "wales_detail"
+      "rank": "optional_memorial",
+      "source_id": "wales",
+      "colour": "red",
+      "note": "Rank corrected against national summary and 2026 published calendar; older detailed page is superseded."
     }
   ],
   "overrides": [
@@ -160,12 +180,13 @@
     "Calendar overlays describe nominal celebrations; they do not determine what is observed on a particular year/date.",
     "Do not infer colour, readings, holy-day obligation, or precedence solely from the rank in these records.",
     "Retain all candidates on a date; a separate precedence engine selects the applicable observance.",
-    "The detailed Wales descriptions explicitly call St Asaph, St John Jones, St Philip Evans and John Lloyd, St David Lewis, and St John Roberts memorials, despite blank ranks in the summary. These should be reconfirmed against current liturgical books.",
-    "On 23 July, the feast of St Bridget (European overlay) coincides nominally with a Welsh memorial; retain both candidates and let precedence resolve."
+    "On 23 July, the feast of St Bridget (European overlay) coincides nominally with a Welsh memorial; retain both candidates and let precedence resolve.",
+    "The five memorial ranks formerly inferred from the older descriptive page are optional memorials in the national summary and 2026 calendar; those current sources govern this snapshot."
   ],
   "counts": {
     "additions": 15,
     "overrides": 1,
     "date_reassignments": 0
-  }
+  },
+  "colour_source": "https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20030317_ordinamento-messale_en.html#VI._The_Requisites_for_the_Celebration_of_Mass"
 }

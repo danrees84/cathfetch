@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <nlohmann/json.hpp>
 #include <optional>
+#include <set>
 #include "celebration_rank.h"
 
 void applyRankOverrides(
@@ -24,10 +25,21 @@ void applyRankOverrides(
 std::string sourceCalendar =
     overlay.at("calendar").get<std::string>();
 
+    std::set<std::string> overriddenIds;
     for (const auto& overrideEntry : overlay.at("overrides"))
     {
         std::string id =
             overrideEntry.at("id").get<std::string>();
+        if (!overriddenIds.insert(id).second)
+            throw std::invalid_argument("Duplicate calendar override ID: " + id);
+        const std::set<std::string> allowedChanges{
+            "rank", "name", "feast_of_lord", "precedence", "names_temporal_baseline",
+            "date_rule", "transfer_rule", "colour"};
+        for (const auto& [key, value] : overrideEntry.at("changes").items())
+        {
+            (void)value;
+            if (!allowedChanges.contains(key)) throw std::invalid_argument("Unknown overlay change: " + key);
+        }
 
 
 
@@ -103,13 +115,18 @@ void applyDateReassignments(
     nlohmann::json overlay;
     overlayFile >> overlay;
 
+    std::set<std::string> reassignedIds;
     for (const auto& reassignment : overlay.at("date_reassignments"))
     {
         std::string id = reassignment.at("id").get<std::string>();
+        if (!reassignedIds.insert(id).second)
+            throw std::invalid_argument("Duplicate date reassignment ID: " + id);
 
         int month = reassignment.at("new_month").get<int>();
         int day = reassignment.at("new_day").get<int>();
 
+        if (month < 1 || month > 12 || day < 1 || day > 31)
+            throw std::invalid_argument("Invalid reassignment date for: " + id);
         std::chrono::month_day newDate{
             std::chrono::month{unsigned(month)} /
             std::chrono::day{unsigned(day)}

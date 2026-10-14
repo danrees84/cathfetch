@@ -16,11 +16,15 @@ struct LiturgicalDay
     std::chrono::year_month_day date;
     LiturgicalPeriod season;
     std::string observanceName;
-    std::optional<CelebrationRank> rank;
+    std::optional<CelebrationRank> rank = std::nullopt;
     PrecedenceLevel precedence;
     std::string observanceId;
-    std::optional<LiturgicalColour> colour;
-    std::optional<std::chrono::year_month_day> transferredFrom;
+    std::optional<LiturgicalColour> colour = std::nullopt;
+    std::optional<std::chrono::year_month_day> transferredFrom = std::nullopt;
+    std::optional<std::chrono::year_month_day> scheduledFrom = std::nullopt;
+    // An occurrence needing an authoritative disposition has no selected identity.
+    std::string unresolvedReason;
+    std::vector<ObservanceCandidate> conflictingObservances;
     // Optional memorials or restricted commemorations; the temporal day is default.
     std::vector<ObservanceCandidate> alternatives;
 };

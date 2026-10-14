@@ -11,7 +11,7 @@
 #include <string_view>
 #include <algorithm>
 #include "calendar_selection.h"
-#include "calendar_lookup.h"
+#include "liturgical_resolver.h"
 #include "celebration_rank.h"
 
 std::chrono::year_month_day getCurrentLocalDate()
@@ -146,21 +146,15 @@ int main(int argc, char* argv[])
 
 
 
-auto celebrations = loadSelectedCalendar(selectedCalendar);
-	printLiturgicalDay(selectedDate, showCross);
-
-	auto candidates = findFixedCelebrations(
-    celebrations,
-    selectedDate.month() / selectedDate.day());
-
-for (const auto& candidate : candidates)
-{
-    std::cout << "Fixed-date candidate: "
-              << candidate.name << " ("
-              << celebrationRankName(candidate.rank)
-              << ")\n";
+    try
+    {
+        const auto celebrations = loadSelectedCalendar(selectedCalendar);
+        printLiturgicalDay(resolveLiturgicalDay(selectedDate, celebrations, selectedCalendar), showCross);
+    }
+    catch (const std::exception& error)
+    {
+        std::cerr << error.what() << '\n';
+        return 1;
+    }
+    return 0;
 }
-
-	return 0;
-}
-

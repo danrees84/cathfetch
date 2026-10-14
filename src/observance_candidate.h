@@ -12,12 +12,17 @@ struct ObservanceCandidate
 {
     std::string id;
     std::string name;
-    std::optional<CelebrationRank> rank;
+    std::optional<CelebrationRank> rank = std::nullopt;
     PrecedenceLevel precedence;
     bool optional = false;
     bool namesTemporalBaseline = false;
-    std::optional<LiturgicalColour> colour;
-    std::optional<std::chrono::year_month_day> transferredFrom;
+    std::optional<LiturgicalColour> colour = std::nullopt;
+    std::optional<std::chrono::year_month_day> transferredFrom = std::nullopt;
+    std::optional<std::chrono::year_month_day> scheduledFrom = std::nullopt;
+    std::string unresolvedReason = {};
+    bool restrictedCommemoration = false;
+    bool prevailsOnEqualPrecedence = false;
+    bool reducesMemorialCollision = false;
 };
 
 #endif

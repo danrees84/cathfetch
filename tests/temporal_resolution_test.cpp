@@ -34,11 +34,12 @@ int main()
     FixedCelebration intruder;
     intruder.id = "conflicting-highest-day";
     intruder.name = "Conflicting highest day";
-    intruder.date = December/25;
+    intruder.date = May/14;
     intruder.rank = CelebrationRank::Solemnity;
     intruder.precedence = PrecedenceLevel::HighestDays;
     conflicting.push_back(intruder);
-    try { resolveLiturgicalDay(2026y/December/25, conflicting); return 1; }
-    catch (const std::logic_error&) {}
+    const auto unresolved = resolveLiturgicalDay(2026y/May/14, conflicting);
+    if (unresolved.unresolvedReason.empty() || !unresolved.observanceId.empty() ||
+        unresolved.conflictingObservances.size() != 2) return 1;
     std::cout << "Temporal resolution tests passed\n";
 }

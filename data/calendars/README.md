@@ -1,12 +1,10 @@
-# Horarium / Cathfetch — England and Wales calendar overlays (draft)
+# Cathfetch calendar data
 
-**As-of:** 11 October 2026  
-**Status:** independently structured nominal fixed-date facts; **not a complete resolved liturgical calendar**.  
-**Base:** `general_roman_fixed.json` (the previously prepared 222-entry General Roman Calendar, transcription review still pending).
+These files contain the contemporary nominal fixed facts used by the engine. They are a snapshot as of 14 October 2026. The resolver applies the same snapshot to every accepted year; these files do not reconstruct historical calendars.
 
-## Files and inheritance
+## Inheritance
 
-```
+```text
 general_roman_fixed.json
     └── europe.json
           └── england_wales.json
@@ -14,50 +12,35 @@ general_roman_fixed.json
                 └── wales.json
 ```
 
-Use `england` *or* `wales` as the top layer, **not both**. Load every ancestor once. Each layer contains only differences, so existing universal celebrations are not duplicated.
+Select `grc`, `europe`, `england` or `wales`. The engine loads each ancestor once. England and Wales inherit the five feast dates of Europe's six co-patrons, then their shared and separate national definitions. The universal base contains 222 fixed celebrations.
 
-## Data operations
+## Data fields and operations
 
-- **`additions`**: new fixed nominal celebrations (`id`, month, day, name, rank).
-- **`overrides`**: partial `changes` to the named inherited entry. Changes are merged by key; do not replace the entire entry.
-- **`date_reassignments`**: change the nominal calendar date of an inherited entry **for this jurisdiction**; this does not move it in its parent calendar.
-- **`sources` / `source_id`**: links back to the Liturgy Office, including the 2020 Holy See decree for Newman.
+Each fixed entry has a stable ID, nominal month/day, name and rank. All Souls has a null rank and explicit precedence. `rankSourceCalendar` in C++ records the layer that establishes the current rank, so national scheduling alone does not turn a general solemnity into a proper solemnity.
 
-**Overlay application** is not precedence resolution. Resolve calendar candidates first; then independently apply universal liturgical precedence, optional memorial selection, jurisdiction-specific transfers and year-dependent impediments. No colours, Mass readings, copyrighted text or biography are stored here.
+| Field or operation | Purpose |
+| --- | --- |
+| `additions` | Add an identity absent from ancestors. Duplicate IDs are errors. |
+| `overrides` / `changes` | Change inherited rank, name, colour or rule metadata while retaining identity. |
+| `date_reassignments` | Permanently change an inherited nominal date for that jurisdiction. |
+| `feast_of_lord` | Classify a general feast of the Lord for level 5. |
+| `precedence` | Explicit exceptional table class, used for Christmas, Epiphany and All Souls. |
+| `names_temporal_baseline` | Give an existing temporal day its celebration identity without changing its class. |
+| `date_rule` | Annual national scheduling, separate from displacement by an impediment. |
+| `transfer_rule` | A verified exception to the general solemnity transfer search. |
+| `colour` | The celebration's colour, independent of the underlying season. |
+| `source_page`, `amendment`, `source_id`, `rule_source` | Trace the factual definition or exception to its authority. |
 
-## Key examples
+Colours follow [GIRM 346](https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20030317_ordinamento-messale_en.html), with explicit white for the Conversion of Paul, Chair of Peter, John on 27 December and church dedications. Colour is stored as a fact, never inferred from a name by the runtime engine.
 
-- **Europe**: the five feast dates of Europe's six co-patron saints are rank overrides on General Roman Calendar entries.
-- **1 March**: St David is a *feast* in England and a *solemnity* in Wales. He is added in `england_wales.json` at rank feast; `wales.json` overrides that shared entry to solemnity.
-- **9 October**: St John Henry Newman is a *feast in both England and Wales* under the 6 August 2020 decree (prot. 353/19), though his General Roman Calendar rank is optional memorial. That decree also assigns St Denis and St John Leonardi to **10 October** in both national calendars. This is a fixed national-date reassignment, not a generic precedence transfer. The underlying General Roman Calendar date remains 9 October.
-- **23/24 April**: St George is a solemnity in England; St Adalbert is assigned to 24 April in England, but keeps 23 April in the universal/Welsh layers. A separate precedence engine still needs to handle years in which St George is impeded.
-- **3 November**: St Winefride is shared by England and Wales, so she is added only once.
-- **23 July in Wales**: St Bridget of Sweden is a European feast, while St Philip Evans and St John Lloyd are Welsh memorials on the same fixed date. Keep both candidates; resolve via precedence.
+Full overlay application is transactional. Invalid dates, duplicate additions, duplicate override/reassignment targets, unknown targets and unknown change fields are rejected. Annual lookup retains candidates; rank and precedence determine which is observed.
 
-## Sources
+## Audited national distinctions
 
-- Universal baseline: https://www.liturgyoffice.org.uk/Calendar/Info/General-Roman-Calendar.pdf
-- Liturgy Office national summary, England: https://www.liturgyoffice.org.uk/Calendar/National/England1.shtml
-- Liturgy Office national summary, Wales: https://www.liturgyoffice.org.uk/Calendar/National/Wales1.shtml
-- Further descriptions and some additional rank labels, Wales: https://www.liturgyoffice.org.uk/Calendar/National/Wales2.shtml
-- Regional patrons: https://www.liturgyoffice.org.uk/Calendar/Info/background2.shtml
-- Holy See decree for England and Wales, St John Henry Newman and October 10 reassignments: https://www.liturgyoffice.org.uk/Calendar/National/October/SJHN-CDW-Decrees.pdf
-- 2026 cross-check: https://www.liturgyoffice.org.uk/Calendar/2026/Calendar-2026.pdf
+David is a feast in England and a solemnity in Wales. George is a solemnity in England. Newman is a national feast under the [2020 decree](https://www.liturgyoffice.org.uk/Calendar/National/October/SJHN-CDW-Decrees.pdf); Denis and Leonardi are reassigned to 10 October in those calendars. Adalbert is reassigned to 24 April in England. Walsingham is a feast in England under the [2024 decision](https://www.cbcew.org.uk/our-lady-of-walsingham-now-a-feast-in-dioceses-of-england/). Elizabeth of Hungary is optional alongside Hilda and Hugh in England, remaining obligatory in Wales.
 
-## Known limits and review tasks
+The Welsh optional memorials of Asaph, John Jones, Philip Evans and John Lloyd, David Lewis, and John Roberts follow the [national summary](https://www.liturgyoffice.org.uk/Calendar/National/Wales1.shtml) and 2026 calendar. Older descriptive pages contain conflicting memorial labels. Those labels no longer supply obligatory ranks here.
 
-1. The inherited 222-entry general dataset remains a first-pass transcription with a manual audit outstanding.
-2. National summary pages may lag liturgical decrees or use older names (e.g., "Bl John Henry Newman"). The 2020 decree and the 2026 calendar take precedence where the summary is stale.
-3. The Wales detailed page labels a handful of days "Memorial" where the summary rank column is blank; these have been recorded as `memorial`, with provenance, but warrant a final review against current approved calendar texts.
-4. **Year-specific transfers** (e.g., St George impeded by Holy Week or an Easter Sunday), feasts of the Lord, movable solemnities and obligations are out of scope, and should be coded separately, with a proper precedence table.
-5. No diocesan, religious-order or parish-local feasts are included.
-6. This is independently structured factual information, not a reproduction of copyrighted biographies, Missal texts or a scraped publisher database. Source pages and decree links identify provenance, not permission to redistribute their text.
-7. The files are data proposals, not yet wired into the C++ calendar engine; no claims of runtime/precedence correctness are made.
+The original [universal baseline](https://www.liturgyoffice.org.uk/Calendar/Info/General-Roman-Calendar.pdf) predates several amendments. Per-entry Holy See decree references record those updates. Existing IDs remain stable when designations change; Irenaeus now includes Doctor of the Church without changing his identity.
 
-## Validation
-
-All JSON files were parsed successfully; all override/reassignment targets resolve to IDs in an inherited layer; all source references resolve within their files; added IDs are unique, ranks from the allowed vocabulary, and recorded month/day values within basic ranges. Validation does **not** verify every day's official celebration or legal status.
-
-## Suggested next steps
-
-First review entries and ranks, then implement merge operations and a simple candidate lookup. Only after that introduce precedence and date transfers. Keep the fixed facts separate from the C++ rules.
+Movable celebrations, optional choice policy, seasonal boundaries, impediments and suppression are implemented in C++. See [calendar engine status](../../CALENDAR_ENGINE_STATUS.md) for the full rule authorities, validation results, computational range, date-only conventions and unresolved 2038 Corpus Christi occurrence.

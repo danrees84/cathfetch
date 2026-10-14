@@ -3,8 +3,8 @@
   "calendar": "europe",
   "inherits": "general_roman",
   "scope": "fixed_nominal_sanctoral_calendar_only",
-  "status": "draft_independently_structured_facts_review_before_production",
-  "as_of": "2026-10-11",
+  "status": "contemporary_snapshot_with_audited_rules_see_README",
+  "as_of": "2026-10-14",
   "description": "Regional rank changes for the co-patrons of Europe, inherited by England and Wales.",
   "sources": [
     {
