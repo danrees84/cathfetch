@@ -17,10 +17,15 @@ void printLiturgicalDay(const LiturgicalDay& day, bool showCross)
         std::cout << "          ███\n          ███          ";
     std::cout << formatCalendarDate(day.date) << '\n';
     if (showCross) std::cout << "      ███████████      ";
-    if (day.colour)
-        std::cout << terminalColourCode(*day.colour) << "●\033[0m ";
+    const auto seasonColour = seasonalColour(day.season);
+    if (seasonColour)
+        std::cout << terminalColourCode(*seasonColour) << "●\033[0m ";
     std::cout << liturgicalPeriodName(day.season) << '\n';
     if (showCross) std::cout << "          ███          ";
+    // Named celebrations retain their own dot even when their colour matches
+    // the season. Temporal days need one here only when their colour differs.
+    if (day.colour && (day.observanceId != "temporal" || day.colour != seasonColour))
+        std::cout << terminalColourCode(*day.colour) << "●\033[0m ";
     std::cout << day.observanceName;
     if (day.rank) std::cout << " · " << celebrationRankName(day.rank);
     if (day.provisionalTransfer) std::cout << " (provisional transfer)";

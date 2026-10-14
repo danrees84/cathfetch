@@ -8,7 +8,7 @@ std::string terminalColourCode(LiturgicalColour colour)
             return "\033[32m";
 
         case LiturgicalColour::Violet:
-            return "\033[34m";
+            return "\033[35m";
 
         case LiturgicalColour::Rose:
             return "\033[35m";

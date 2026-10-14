@@ -14,7 +14,7 @@ The default on optional memorial days is the temporal weekday. `alternatives` re
 
 `LiturgicalDay` exposes the selected identity, rank, precedence, season, colour, alternatives and transfer provenance. `scheduledFrom` records a national annual scheduling difference from the nominal date. `transferredFrom` records displacement by an impediment. `provisionalTransfer` and `transferNote` qualify an unconfirmed transfer date. On the original day, `displacedObservances` preserves each transferred solemnity and its destination. Permanent national date reassignments remain changes to the inherited fixed facts.
 
-The terminal uses this result, including its colour, and labels a provisional transfer explicitly. It preserves the existing date, calendar and cross options and reports invalid inputs and unresolved occurrences on stderr. The engine has no terminal or Qt dependency.
+The terminal gives the season a dot in its normal seasonal colour and gives each named celebration a separate dot in its resolved observance colour. Temporal days also receive an observance dot when their colour differs from the season, such as Palm Sunday and Good Friday. Ordinary weekdays retain just the season dot. The Triduum has no single seasonal colour, so its season line has no dot. Violet maps to the terminal magenta/purple ANSI colour rather than blue. Provisional transfers are labelled explicitly. It preserves the existing date, calendar and cross options and reports invalid inputs and unresolved occurrences on stderr. The engine has no terminal or Qt dependency.
 
 ## Verified rules and sources
 
