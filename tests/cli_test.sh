@@ -1,6 +1,8 @@
 #!/bin/sh
 set -eu
 app=./build/cathfetch
+COLUMNS=120
+export COLUMNS
 tmp_dir=$(mktemp -d /tmp/cathfetch-cli.XXXXXX)
 trap 'rm -rf "$tmp_dir"' EXIT HUP INT TERM
 expect_failure() {
@@ -72,4 +74,87 @@ PYCOLOUR
 test -s "$tmp_dir/output"
 if ./build/calendar_year invalid >"$tmp_dir/output" 2>"$tmp_dir/stderr"; then exit 1; fi
 if ./build/calendar_year 2026 invalid >"$tmp_dir/output" 2>"$tmp_dir/stderr"; then exit 1; fi
+# Use a real pseudo-terminal to verify ioctl width detection. COLUMNS is set
+# deliberately wrong, so these checks would fail if it overrode TIOCGWINSZ.
+python3 - <<'PYLAYOUT'
+import errno
+import fcntl
+import os
+import pty
+import re
+import struct
+import subprocess
+import termios
+import unicodedata
+
+ansi = re.compile(r'\x1b\[[0-?]*[ -/]*[@-~]')
+
+def visible_width(text):
+    return sum(0 if unicodedata.combining(char) else
+               2 if unicodedata.east_asian_width(char) in ('W', 'F') else 1
+               for char in ansi.sub('', text))
+
+def check(output, width, cross):
+    rows = ansi.sub('', output).splitlines()
+    assert rows and all(visible_width(row) <= width for row in rows), (width, rows)
+    if cross and width >= 55:
+        artwork = ['          ███'] * 8
+        artwork[2] = '      ███████████'
+        assert all(row.startswith(art) for row, art in zip(rows, artwork))
+        assert rows[1].endswith('Tuesday, 8 December 2026')
+        # Strip artwork and its padding by cells, independently of the renderer.
+        text_rows = [row[len(art):].lstrip() for row, art in zip(rows[1:], artwork[1:])]
+        assert ' '.join(text_rows).strip().endswith('· Solemnity')
+        continuation = [row for row in rows[4:] if row.strip(' █')]
+        for row in continuation:
+            # Continuations follow artwork (13 cells) and twelve spaces.
+            assert row.startswith('          ███' + ' ' * 12)
+    elif cross:
+        assert '███████████' in rows[2] and rows[8] == ''
+        assert rows[9] == 'Tuesday, 8 December 2026'
+    # Normalise wrapped whitespace and decoration to check the complete name.
+    name_text = re.sub(r'[█●]', ' ', ' '.join(rows))
+    name_text = ' '.join(name_text.split())
+    assert 'The Immaculate Conception of the Blessed Virgin Mary · Solemnity' in name_text
+
+for width in (120, 100, 80, 60, 40):
+    for cross in (False, True):
+        args = ['./build/cathfetch', '--date=08122026'] + (['--cross'] if cross else [])
+        environment = dict(os.environ, COLUMNS='17')
+        master, slave = pty.openpty()
+        try:
+            fcntl.ioctl(slave, termios.TIOCSWINSZ, struct.pack('HHHH', 24, width, 0, 0))
+            process = subprocess.Popen(args, stdout=slave, stderr=subprocess.PIPE, env=environment)
+            os.close(slave)
+            slave = None
+            output = bytearray()
+            while True:
+                try:
+                    chunk = os.read(master, 4096)
+                    if not chunk:
+                        break
+                    output.extend(chunk)
+                except OSError as error:
+                    if error.errno == errno.EIO:
+                        break
+                    raise
+            assert process.wait(timeout=10) == 0, process.stderr.read().decode()
+            check(output.decode('utf-8'), width, cross)
+        finally:
+            os.close(master)
+            if slave is not None:
+                os.close(slave)
+        # Redirected output uses a valid explicit COLUMNS value.
+        redirected = subprocess.check_output(args, env=dict(os.environ, COLUMNS=str(width)), text=True)
+        check(redirected, width, cross)
+
+args = ['./build/cathfetch', '--date=08122026', '--cross']
+no_columns = dict(os.environ)
+no_columns.pop('COLUMNS', None)
+fallback = subprocess.check_output(args, env=no_columns, text=True)
+check(fallback, 80, True)
+for invalid in ('', '0', '-1', 'abc', '40oops', '999999999999999999999999999999999'):
+    assert subprocess.check_output(args, env=dict(os.environ, COLUMNS=invalid), text=True) == fallback
+print('Terminal width and redirected-output tests passed')
+PYLAYOUT
 echo 'CLI tests passed'

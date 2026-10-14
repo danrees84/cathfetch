@@ -14,6 +14,8 @@ build/cathfetch: build/main.o build/terminal_display.o build/terminal_format.o $
 	$(CXX) $(CXXFLAGS) $^ -o $@
 build/calendar_year: tools/calendar_year.cpp $(ENGINE_OBJECTS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
+build/terminal_render_test: tests/terminal_render_test.cpp build/terminal_display.o build/terminal_format.o $(ENGINE_OBJECTS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
 build/%_test: tests/%_test.cpp $(ENGINE_OBJECTS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
 test: $(TESTS) all
