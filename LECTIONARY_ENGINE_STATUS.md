@@ -187,3 +187,11 @@ The JSON files hold factual definitions and provenance. The Python tools prepare
 The more specialised algorithms remain explicit rather than being hidden behind a new framework. In particular, the Easter formula keeps its published variable names, and the transfer and Unicode rules retain the detail needed for correctness. The existing regression suites and a byte-for-byte comparison of 240 CLI outputs check this maintenance work.
 
 Readability validation: `make -j4 all test` passes all 12 C++ suites, three CLI suites and 17 Python tests with no compiler warnings reported. All 240 saved CLI outputs match byte for byte across the four calendars, five terminal widths and plain/cross/reading/full-verse combinations.
+
+## Command-line help — 15 October 2026
+
+`--help` and `-h` print plain-text usage to standard output and exit with status 0 before consulting the clock or loading data. Help lists all supported options, Mass forms, defaults, the v1 reading policy and examples. Like other information requests, encountering help ends option processing immediately.
+
+Required values accept both `--date=08122026` and `--date 08122026`, likewise `--calendar` and `--mass`. A lone `--` ends options; the application accepts no positional operands, so any following argument is rejected. Exact option names remain required and duplicate options retain the existing error policy. Invalid arguments print a `cathfetch:` diagnostic and help hint to standard error, with the existing failure status 1. Runtime errors also carry the application name. There is no declared release version in the repository, so no version string or `--version` output was invented.
+
+The CLI regression tests cover help from an empty working directory, stdout/stderr separation, both value spellings, missing values, unexpected operands and the end-of-options marker. The full build and all existing C++/CLI/Python suites pass. These changes adopt common GNU/Linux argument conventions without adding an argument-parsing dependency.

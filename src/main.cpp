@@ -67,11 +67,64 @@ std::chrono::year_month_day parseDate(std::string_view value)
     return date;
 }
 
+void printHelp()
+{
+    // Plain text goes to stdout so help can be piped to a pager or saved.
+    std::cout << R"(Usage: cathfetch [OPTIONS]
+Display the Catholic liturgical day for a date and calendar.
+
+Options:
+  -h, --help             Show this help and exit.
+  --date=DDMMYYYY        Choose a date (1583-4099; default: today, local time).
+  --calendar=NAME        grc, europe, england or wales (default: grc).
+  --cross                Display the cross beside or above the information.
+  --readings             Show universal Mass reading references (v1 policy).
+  --full-verses          Show offline Douay-Rheims verses; implies --readings.
+  --mass=FORM            Choose a Mass form; implies --readings.
+                         Forms: day, vigil, vigil-extended, night, dawn,
+                         evening, passion. Only available forms can be used.
+  --                     End options. No positional arguments are accepted.
+
+Options with values also accept '--option VALUE'.
+Without --mass, the default form is selected, usually the daytime Mass.
+V1 readings omit memorial and national saints' propers, while retaining local
+scheduling for universal celebrations. The displayed calendar stays regional.
+
+Examples:
+  cathfetch --date=08122026 --cross
+  cathfetch --calendar wales --readings
+  cathfetch --date=25122026 --mass=night --full-verses
+  cathfetch --date=04042026 --mass=vigil
+)";
+}
+
+std::string_view optionValue(std::string_view argument, std::string_view name,
+                             int& index, int argc, char* argv[])
+{
+    std::string_view value;
+    if (argument.size() > name.size())
+    {
+        // The caller has already recognised the exact '--name=' prefix.
+        value = argument.substr(name.size() + 1);
+    }
+    else if (index + 1 < argc)
+    {
+        // Consume the following argv element for the '--name value' spelling.
+        value = argv[++index];
+    }
+    if (value.empty() || value.starts_with('-'))
+    {
+        throw std::invalid_argument("Missing value for " + std::string{name});
+    }
+    return value;
+}
+
 struct Options
 {
     std::chrono::year_month_day date;
     std::string_view calendar = "grc";
     std::string_view mass = "default";
+    bool showHelp = false;
     bool showCross = false;
     bool showReadings = false;
     bool fullVerses = false;
@@ -81,7 +134,6 @@ struct Options
 Options parseOptions(int argc, char* argv[])
 {
     Options options;
-    options.date = currentLocalDate();
     bool dateSpecified = false;
     bool calendarSpecified = false;
 
@@ -89,6 +141,21 @@ Options parseOptions(int argc, char* argv[])
     {
         // string_view borrows argv's text; argv stays alive throughout main.
         const std::string_view argument{argv[index]};
+        if (argument == "--help" || argument == "-h")
+        {
+            options.showHelp = true;
+            return options;
+        }
+        if (argument == "--")
+        {
+            // There are no file operands: anything after '--' is an error,
+            // even if it happens to look like another option.
+            if (index + 1 < argc)
+            {
+                throw std::invalid_argument("Unexpected argument: " + std::string{argv[index + 1]});
+            }
+            break;
+        }
         if (argument == "--cross")
         {
             if (options.showCross) throw std::invalid_argument("Duplicate option: --cross");
@@ -104,26 +171,26 @@ Options parseOptions(int argc, char* argv[])
             if (options.fullVerses) throw std::invalid_argument("Duplicate option: --full-verses");
             options.fullVerses = true;
         }
-        else if (argument.starts_with("--mass="))
+        else if (argument == "--mass" || argument.starts_with("--mass="))
         {
             if (options.massSpecified) throw std::invalid_argument("Duplicate option: --mass");
-            options.mass = argument.substr(7);
+            options.mass = optionValue(argument, "--mass", index, argc, argv);
             if (!isMassForm(options.mass))
             {
                 throw std::invalid_argument("Unknown Mass form: " + std::string{options.mass});
             }
             options.massSpecified = true;
         }
-        else if (argument.starts_with("--date="))
+        else if (argument == "--date" || argument.starts_with("--date="))
         {
             if (dateSpecified) throw std::invalid_argument("Duplicate option: --date");
-            options.date = parseDate(argument.substr(7));
+            options.date = parseDate(optionValue(argument, "--date", index, argc, argv));
             dateSpecified = true;
         }
-        else if (argument.starts_with("--calendar="))
+        else if (argument == "--calendar" || argument.starts_with("--calendar="))
         {
             if (calendarSpecified) throw std::invalid_argument("Duplicate option: --calendar");
-            options.calendar = argument.substr(11);
+            options.calendar = optionValue(argument, "--calendar", index, argc, argv);
             if (options.calendar != "grc" && options.calendar != "europe" &&
                 options.calendar != "england" && options.calendar != "wales")
             {
@@ -133,9 +200,12 @@ Options parseOptions(int argc, char* argv[])
         }
         else
         {
-            throw std::invalid_argument("Unknown option: " + std::string{argument});
+            const auto description = argument.starts_with('-') ? "Unknown option: " : "Unexpected argument: ";
+            throw std::invalid_argument(description + std::string{argument});
         }
     }
+    // Help must work without consulting the clock or loading any data files.
+    if (!dateSpecified) options.date = currentLocalDate();
     return options;
 }
 } // namespace
@@ -145,6 +215,11 @@ int main(int argc, char* argv[])
     try
     {
         const auto options = parseOptions(argc, argv);
+        if (options.showHelp)
+        {
+            printHelp();
+            return 0;
+        }
         const auto celebrations = loadSelectedCalendar(options.calendar);
         const auto day = resolveLiturgicalDay(options.date, celebrations, options.calendar);
         const bool needsReadings = options.showReadings || options.massSpecified || options.fullVerses;
@@ -170,10 +245,15 @@ int main(int argc, char* argv[])
             printLiturgicalDay(day, options.showCross, &readings);
         }
     }
+    catch (const std::invalid_argument& error)
+    {
+        std::cerr << "cathfetch: " << error.what() << "\nTry 'cathfetch --help' for usage.\n";
+        return 1;
+    }
     catch (const std::exception& error)
     {
         // Helpers report errors with exceptions; only main decides the exit code.
-        std::cerr << error.what() << '\n';
+        std::cerr << "cathfetch: " << error.what() << '\n';
         return 1;
     }
     return 0;

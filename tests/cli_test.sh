@@ -22,6 +22,52 @@ expect_failure --calendar=grc --calendar=wales
 expect_failure --date=14102026 --date=15102026
 expect_failure --cross --cross
 expect_failure --unknown
+# Help is a standalone information request: it must work outside the project
+# directory, without calendar/Bible data, and write only to stdout.
+python3 - <<'PYOPTIONS'
+from pathlib import Path
+import subprocess
+import tempfile
+
+app = str(Path('./build/cathfetch').resolve())
+def run(*arguments, **kwargs):
+    return subprocess.run([app, *arguments], text=True, capture_output=True, **kwargs)
+
+with tempfile.TemporaryDirectory(prefix='cathfetch-help-') as empty_directory:
+    help_output = run('--help', cwd=empty_directory)
+assert help_output.returncode == 0 and not help_output.stderr
+assert help_output.stdout.startswith('Usage: cathfetch [OPTIONS]\n')
+assert '\x1b' not in help_output.stdout
+assert all(len(line) <= 80 for line in help_output.stdout.splitlines())
+assert run('-h').stdout == help_output.stdout
+assert run('--help', '--date=invalid').returncode == 0
+for option in ['--help', '--date', '--calendar', '--cross', '--readings', '--full-verses', '--mass']:
+    assert option in help_output.stdout, option
+for form in ['day', 'vigil', 'vigil-extended', 'night', 'dawn', 'evening', 'passion']:
+    assert form in help_output.stdout, form
+
+equals = run('--date=25122026', '--calendar=wales', '--mass=night', '--full-verses')
+spaces = run('--date', '25122026', '--calendar', 'wales', '--mass', 'night', '--full-verses')
+assert equals.returncode == spaces.returncode == 0
+assert equals.stdout == spaces.stdout and not spaces.stderr
+ordinary = run('--date=08122026')
+assert run('--date=08122026', '--').stdout == ordinary.stdout
+
+for arguments in [('--date',), ('--calendar',), ('--mass',), ('--date=',),
+                  ('--calendar=',), ('--mass=',), ('--date', '--cross'),
+                  ('--mass', '--readings')]:
+    result = run(*arguments)
+    assert result.returncode == 1 and not result.stdout
+    assert result.stderr.startswith('cathfetch: Missing value for ')
+    assert "Try 'cathfetch --help'" in result.stderr
+for arguments in [('--', '--help'), ('unexpected',), ('--cross=yes',),
+                  ('--help=yes',), ('--unknown',)]:
+    result = run(*arguments)
+    assert result.returncode == 1 and not result.stdout
+    assert result.stderr.startswith('cathfetch: ')
+    assert "Try 'cathfetch --help'" in result.stderr
+print('Help, option syntax and diagnostic tests passed')
+PYOPTIONS
 "$app" --date=24062038 >"$tmp_dir/output"
 rg -q 'Body and Blood' "$tmp_dir/output"
 "$app" --date=23062038 >"$tmp_dir/output"
