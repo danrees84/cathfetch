@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Daniel Rees
+// See LICENSE for licence terms and the disclaimer of warranty.
+
 // Literal text checks catch wrong passages that happen to have valid addresses.
 // The later coverage checks separately test all stored references and daily
 // selections, keeping known unavailable Tobit correspondences explicit.

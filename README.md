@@ -173,7 +173,11 @@ from factual calendar and reading data.
 
 ## Licensing and sources
 
-A project licence has not yet been selected; no root `LICENSE` has been added.
+Cathfetch's original code, documentation and commentary are licensed under the
+**GNU General Public License, version 3 or (at your option) any later version**
+(`GPL-3.0-or-later`). See [LICENSE](LICENSE) for the full terms and warranty
+disclaimer, and [LICENSING.md](LICENSING.md) for scope and third-party notices.
+
 Bundled material retains its own source status and attribution requirements:
 
 - [Bible text and mapping provenance](data/bibles/README.md), including the

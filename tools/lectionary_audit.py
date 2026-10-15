@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Daniel Rees
+# See LICENSE for licence terms and the disclaimer of warranty.
+
 """Check the stored citation-comparison ledger against the current assignments.
 
 This checks ledger freshness, not ecclesiastical accuracy. No network access or

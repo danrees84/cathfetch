@@ -1,3 +1,7 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Daniel Rees
+# See LICENSE for licence terms and the disclaimer of warranty.
+
 CXX ?= g++
 CPPFLAGS += -Isrc
 CXXFLAGS ?= -std=c++20 -O2 -Wall -Wextra -Wpedantic
@@ -12,10 +16,13 @@ DESTDIR ?=
 all: build/cathfetch build/calendar_year build/lectionary_year build/summary_year build/en_dra.json
 # Keep source/provenance files alongside installed data. DESTDIR permits staged
 # packaging without writing to the running system.
-install: build/cathfetch build/en_dra.json
+install: build/cathfetch build/en_dra.json LICENSE LICENSING.md licenses/nlohmann-json-MIT.txt
 	install -d "$(DESTDIR)$(PREFIX)/bin" "$(DESTDIR)$(PREFIX)/share/cathfetch"
 	install -m 755 build/cathfetch "$(DESTDIR)$(PREFIX)/bin/cathfetch"
 	cp -R data/. "$(DESTDIR)$(PREFIX)/share/cathfetch/"
+	install -m 644 LICENSE LICENSING.md "$(DESTDIR)$(PREFIX)/share/cathfetch/"
+	install -d "$(DESTDIR)$(PREFIX)/share/cathfetch/licenses"
+	install -m 644 licenses/nlohmann-json-MIT.txt "$(DESTDIR)$(PREFIX)/share/cathfetch/licenses/"
 	install -m 644 build/en_dra.json "$(DESTDIR)$(PREFIX)/share/cathfetch/bibles/en_dra.json"
 build/summary_year: tools/summary_year.cpp $(ENGINE_OBJECTS) | build/en_dra.json
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@

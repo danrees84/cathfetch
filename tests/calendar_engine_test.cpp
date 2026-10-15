@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Daniel Rees
+// See LICENSE for licence terms and the disclaimer of warranty.
+
 // Named examples check particular calendar rules. The full-year sweep below
 // checks consistency and candidate-order independence; it is not an independent
 // published calendar against which every date has been verified.

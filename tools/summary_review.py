@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Daniel Rees
+# See LICENSE for licence terms and the disclaimer of warranty.
+
 """Validate stored editorial work and reproduce its review collection.
 
 There is no prose generator here. Authors edit canonical JSON; this tool checks

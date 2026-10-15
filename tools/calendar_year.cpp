@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Daniel Rees
+// See LICENSE for licence terms and the disclaimer of warranty.
+
 // Diagnostic tool, separate from Cathfetch's terminal presentation. It writes
 // tab-separated rows which can be saved for inspection, one row per civil date.
 #include "calendar_selection.h"

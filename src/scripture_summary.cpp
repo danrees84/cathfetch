@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Daniel Rees
+// See LICENSE for licence terms and the disclaimer of warranty.
+
 #include "scripture_summary.h"
 #include "data_path.h"
 #include <nlohmann/json.hpp>

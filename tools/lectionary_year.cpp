@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Daniel Rees
+// See LICENSE for licence terms and the disclaimer of warranty.
+
 // Write one tab-separated diagnostic row per day. Keep reference availability,
 // verification status and the v1 selection policy distinct in this report.
 #include "calendar_selection.h"

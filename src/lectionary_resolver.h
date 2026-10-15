@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Daniel Rees
+// See LICENSE for licence terms and the disclaimer of warranty.
+
 #ifndef LECTIONARY_RESOLVER_H
 #define LECTIONARY_RESOLVER_H
 

@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Daniel Rees
+// See LICENSE for licence terms and the disclaimer of warranty.
+
 // Start here when reading Cathfetch: parse the options, resolve the day, then
 // render it. Calendar, reading and Scripture rules live in their own modules.
 #include "calendar_selection.h"

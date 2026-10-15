@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Daniel Rees
+# See LICENSE for licence terms and the disclaimer of warranty.
+
 """Exercise build-tree, installed and overridden data paths from another cwd."""
 import os
 from pathlib import Path
@@ -39,6 +43,8 @@ with tempfile.TemporaryDirectory(prefix='cathfetch-data-') as temporary:
                    check=True, stdout=subprocess.DEVNULL)
     installed = root / 'usr/bin/cathfetch'
     data = root / 'usr/share/cathfetch'
+    for notice in ['LICENSE', 'LICENSING.md', 'licenses/nlohmann-json-MIT.txt']:
+        assert (data / notice).read_bytes() == (project / notice).read_bytes()
     assert run(installed, root) == expected
     # A standalone copy can use an explicit data root. Paths containing spaces
     # exercise packaging/override handling as well as executable discovery.

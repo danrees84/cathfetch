@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Daniel Rees
+# See LICENSE for licence terms and the disclaimer of warranty.
+
 """Build an offline JSON index, or reproduce the bundled XML from public USFX.
 
 Uses Python's standard library at build time; Cathfetch's lookup is native C++.

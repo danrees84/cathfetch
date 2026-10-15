@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Daniel Rees
+# See LICENSE for licence terms and the disclaimer of warranty.
+
 """Collect public Universalis citation facts and reconcile them with Cathfetch.
 
 No Scripture text is saved. Reading pages outside the public window are recorded

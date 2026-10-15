@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2026 Daniel Rees
+// See LICENSE for licence terms and the disclaimer of warranty.
+
 // Authoring aid: expose the engine's checked verse candidates, not a second
 // reference parser. Nothing in this program selects a verse editorially.
 #include "lectionary_loader.h"
