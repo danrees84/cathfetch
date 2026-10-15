@@ -11,7 +11,7 @@
 ./build/cathfetch --date=25122026 --mass=night --summary
 ```
 
-`--summary` is opt-in and independent of `--readings`; existing `--mass` and `--full-verses` implications are preserved. Output shows the exact Scripture quotation, native reference and translation, originating reading and passage, Mass form and original 40–70-word commentary. It explicitly labels AI drafts and provisional references. Missing summaries or unavailable reading forms produce a diagnostic, never generated substitutes. Holy Saturday has no daytime summary; the explicit Vigil form uses its assigned readings.
+`--summary` is opt-in and independent of `--readings`; existing `--mass` and `--full-verses` implications are preserved. Output shows the exact Scripture quotation, native reference and translation, originating reading and passage, Mass form and original 40–70-word commentary. Review and reference-verification statuses remain in the data and editorial collection; terminal summaries omit the review-status footer. Missing summaries or unavailable reading forms produce a diagnostic, never generated substitutes. Holy Saturday has no daytime summary; the explicit Vigil form uses its assigned readings.
 
 The implementation is a small separate C++ model/loader/validator and identity lookup. It consumes the existing `LectionaryDay`, preserving calendar transfers, cycles and local universal-feast dates. No new calendar or reading-selection mechanism was added. The shared Scripture parser exposes conservative whole-verse eligibility; full-passage display retains its prior behaviour. The terminal reuses existing Unicode/ANSI-aware wrapping and cross layout. Redirected CLI output now omits ANSI colours; terminal output retains them.
 

@@ -18,7 +18,9 @@ for width in [120, 100, 80, 60, 40]:
         for readings in [[], ['--readings']]:
             output = run('--date=30112025', '--calendar=england', '--summary', *cross, *readings, width=width)
             assert 'Scripture summary' in output
-            assert 'AI draft' in output and 'provisional' in output
+            for notice in ['AI draft', 'not human-reviewed', 'Lectionary references provisional',
+                           'Human-reviewed editorial selection']:
+                assert notice not in output
             assert 'Isaiah 2:5' in output and 'Douay–Rheims' in output
             assert ('Readings:' in output) == bool(readings)
             for line in output.splitlines():

@@ -122,10 +122,6 @@ std::vector<std::string> informationRows(const LiturgicalDay& day, std::size_t c
             append(category + " · " + selected.sourceReading, false);
             rows.emplace_back();
             append(selected.explanation + " " + selected.liturgicalConnection, false);
-            rows.emplace_back();
-            std::string status = selected.editorialStatus == "ai_draft" ? "AI draft · not human-reviewed" : "Human-reviewed editorial selection";
-            if (selected.referenceStatus != "current_edition") status += " · Lectionary references provisional";
-            append(std::move(status), false);
         }
     }
     return rows;
