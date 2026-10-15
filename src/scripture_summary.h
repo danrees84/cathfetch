@@ -48,8 +48,13 @@ struct ScriptureSummaryResult
 };
 
 ScriptureSummaries loadScriptureSummaries(const Lectionary& lectionary, const Bible& bible,
-    const std::string& filename = "data/summaries/roman_summaries.json");
-ScriptureSummaries parseScriptureSummaries(const nlohmann::json& document, const Lectionary& lectionary, const Bible& bible);
+    const std::string& filename = "");
+// Empty readingSetId validates the complete catalogue (tests and diagnostics).
+// A specific ID validates only that entry, but still rejects duplicate identities.
+ScriptureSummaries parseScriptureSummaries(const nlohmann::json& document, const Lectionary& lectionary,
+    const Bible& bible, std::string_view readingSetId = {});
+ScriptureSummaryResult loadScriptureSummary(const LectionaryDay& day, const Lectionary& lectionary,
+    const Bible& bible, const std::string& filename = "");
 void validateScriptureSummary(const ScriptureSummary& summary, const ReadingSet& readings, const Bible& bible);
 ScriptureSummaryResult resolveScriptureSummary(const LectionaryDay& day, const ScriptureSummaries& summaries);
 

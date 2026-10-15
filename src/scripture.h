@@ -56,7 +56,7 @@ struct ScripturePassage
     std::string diagnostic; // Nonempty means no text is returned for this passage.
 };
 
-Bible loadBible(const std::string& filename = "build/en_dra.json");
+Bible loadBible(const std::string& filename = "");
 // psalmNumbering: unspecified, lxx or hebrew. Explicit dual numbering is also
 // recognised. Unverified conversions fail; chapter shifts alone are insufficient.
 ScripturePassage lookupScripture(const Bible& bible, std::string_view reference,

@@ -98,6 +98,9 @@ Examples:
   cathfetch --calendar wales --readings
   cathfetch --date=25122026 --mass=night --full-verses
   cathfetch --date=04042026 --mass=vigil
+
+Data is found beside the installation or development build, independently of
+the working directory. CATHFETCH_DATA_DIR overrides the data directory.
 )";
 }
 
@@ -255,8 +258,7 @@ int main(int argc, char* argv[])
         {
             if (bible)
             {
-                const auto summaries = loadScriptureSummaries(lectionary, *bible);
-                summary = resolveScriptureSummary(readings, summaries);
+                summary = loadScriptureSummary(readings, lectionary, *bible);
             }
             else
             {

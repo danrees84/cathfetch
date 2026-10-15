@@ -1,4 +1,5 @@
 #include "calendar_selection.h"
+#include "data_path.h"
 #include "calendar_loader.h"
 #include "calendar_overlay.h"
 
@@ -20,7 +21,7 @@ std::vector<FixedCelebration> loadSelectedCalendar(
     // Inherit from broadest to most local: Roman, Europe, England & Wales,
     // then the selected country. Each overlay changes this same collection.
     auto celebrations = loadFixedCelebrations(
-        "data/calendars/general_roman_fixed.json");
+        dataFile("calendars/general_roman_fixed.json").string());
 
     if (calendarName == "grc")
     {
@@ -29,7 +30,7 @@ std::vector<FixedCelebration> loadSelectedCalendar(
 
     applyCalendarOverlay(
         celebrations,
-        "data/calendars/europe.json");
+        dataFile("calendars/europe.json").string());
 
     if (calendarName == "europe")
     {
@@ -38,19 +39,19 @@ std::vector<FixedCelebration> loadSelectedCalendar(
 
     applyCalendarOverlay(
         celebrations,
-        "data/calendars/england_wales.json");
+        dataFile("calendars/england_wales.json").string());
 
     if (calendarName == "england")
     {
         applyCalendarOverlay(
             celebrations,
-            "data/calendars/england.json");
+            dataFile("calendars/england.json").string());
     }
     else
     {
         applyCalendarOverlay(
             celebrations,
-            "data/calendars/wales.json");
+            dataFile("calendars/wales.json").string());
     }
 
     return celebrations;

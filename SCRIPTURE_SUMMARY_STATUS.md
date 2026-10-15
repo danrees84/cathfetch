@@ -13,7 +13,7 @@
 
 `--summary` is opt-in and independent of `--readings`; existing `--mass` and `--full-verses` implications are preserved. Output shows the exact Scripture quotation, native reference and translation, originating reading and passage, Mass form and original 40–70-word commentary. Review and reference-verification statuses remain in the data and editorial collection; terminal summaries omit the review-status footer. Missing summaries or unavailable reading forms produce a diagnostic, never generated substitutes. Holy Saturday has no daytime summary; the explicit Vigil form uses its assigned readings.
 
-The implementation is a small separate C++ model/loader/validator and identity lookup. It consumes the existing `LectionaryDay`, preserving calendar transfers, cycles and local universal-feast dates. No new calendar or reading-selection mechanism was added. The shared Scripture parser exposes conservative whole-verse eligibility; full-passage display retains its prior behaviour. The terminal reuses existing Unicode/ANSI-aware wrapping and cross layout. Redirected CLI output now omits ANSI colours; terminal output retains them.
+The implementation is a small separate C++ model/loader/validator and identity lookup. It consumes the existing `LectionaryDay`, preserving calendar transfers, cycles and local universal-feast dates. No new calendar or reading-selection mechanism was added. The shared Scripture parser exposes conservative whole-verse eligibility; full-passage display retains its prior behaviour. The terminal reuses existing Unicode/ANSI-aware wrapping and cross layout through separate calendar, readings and summary helpers. Daily summary loading validates the selected entry; tests and diagnostics retain exhaustive catalogue validation. Redirected CLI output now omits ANSI colours; terminal output retains them.
 
 ## Measured coverage
 
@@ -52,19 +52,38 @@ Summary collation identified four apparent source-table errors in five records. 
 - The v1 policy deliberately omits memorial and national propers. Archived summaries do not enable them. Three archived partial-proper alternatives lack a compatible selection; they are outside v1.
 - The four previously documented Tobit complete-passage correspondences remain unavailable in full-verse mode. Summaries use a verifiable verse from another appointed reading, rather than inventing a correspondence.
 - Eligibility checks are deliberately conservative about partial/merged verses. Source matching does not independently proofread the electronic Bible or prove every textual tradition equivalent.
-- This is coverage of the stored daily-reference catalogue, not every diocesan, historical, ritual or votive provision. Runtime data paths remain relative to the project directory, following the existing application convention.
+- This is coverage of the stored daily-reference catalogue, not every diocesan, historical, ritual or votive provision. Runtime data discovery and installation are documented in [the development guide](docs/DEVELOPMENT.md).
 
 The initial 27-commentary sample and subsequent editorial process are described in the [dataset guide](data/summaries/README.md). No additional v1 policy decision is required; the user's universal-reading policy has been retained.
 
 ## Validation and checkpoints
 
-The full C++20 application and diagnostics build in `build/`. `make --jobserver-style=pipe -j4 all test` passes with no compiler warnings: 13 C++ suites, four CLI suites and 17 Python unit tests, followed by the reproducible summary-data/export check. The GNU Make pipe jobserver option avoids temporary FIFO collisions in this sandbox; ordinary `make -j4 all test` is also supported.
+The full C++20 application and diagnostics build in `build/`. `make --jobserver-style=pipe -j4 all test` passes with no compiler warnings: 13 C++ suites, five CLI/integration suites and 17 Python unit tests, followed by the reproducible summary-data/export check. The GNU Make pipe jobserver option avoids temporary FIFO collisions in this sandbox; ordinary `make -j4 all test` is also supported.
 
 - Calendar regression: 450,238 checks over 64,284 dates, including both candidate orders.
 - Lectionary regression: 44,371 checks; 14,612 date/calendar pairs, with 14,572 available assignments and 40 Holy Saturdays without daytime Mass.
 - Scripture regression: 35,492 checks; 35,811 source verses; 2,661 stored primary citations available and the four documented Tobit selections explicitly unavailable.
-- Summary regression: 11,054 checks; all 807 stored sets, all 10,228 date/calendar pairs in the stated range, invalid/duplicate records, altered quotations, partial and merged boundaries, Advent/leap-year boundaries, transfers and Mass forms. Applicable alternative passages retain the selected verse. The 2038 Corpus Christi test correctly uses Sunday Year A and the existing provisional St John transfer.
+- Summary regression: 11,060 checks; all 807 stored sets, all 10,228 date/calendar pairs in the stated range, invalid/duplicate records, altered quotations, partial and merged boundaries, Advent/leap-year boundaries, transfers and Mass forms. Applicable alternative passages retain the selected verse. The 2038 Corpus Christi test correctly uses Sunday Year A and the existing provisional St John transfer.
 - Rendering/CLI: 120/100/80/60/40 columns with and without the cross, independent and combined flags, full verses, plain redirected output and real pseudo-terminal colour/width checks.
 - Both existing reference-audit freshness tools pass. The independent comparison remains partial. Similarity detection reports no candidates above its threshold; that is not editorial approval.
 
 Checkpoint `458cf8f` contains the tested implementation, complete stored draft corpus, correction evidence, generated collection and regression tests. The documentation follow-up records these results and links the existing Lectionary status to this report. No unrelated user changes were included.
+
+
+## Maintenance follow-up
+
+Data discovery now works independently of the caller's working directory for
+both development builds and installed copies. `make install` supports `PREFIX`
+and `DESTDIR`; `CATHFETCH_DATA_DIR` selects a complete alternative data root.
+See [the development guide](docs/DEVELOPMENT.md) for the layout and commands.
+
+The renderer has separate calendar, readings and summary helpers. The daily CLI
+validates only the selected summary, while complete-catalogue validation remains
+in tests and review/year tools. In 12 interleaved local runs for 30 November 2025,
+median summary startup was 125.3 ms with complete-catalogue loading and 113.5 ms
+with selected-entry loading. This is a modest local measurement, not a portable
+performance guarantee; the full Bible and summary JSON still need parsing.
+
+The full build and regression suite pass, including the new staged-installation,
+external-working-directory, data-override and altered-quotation checks. No
+editorial or reference-verification statuses were upgraded by this maintenance.

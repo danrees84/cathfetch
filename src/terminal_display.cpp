@@ -22,109 +22,129 @@ std::string colourDot(LiturgicalColour colour)
     return terminalColourCode(colour) + "●\033[0m ";
 }
 
-std::vector<std::string> informationRows(const LiturgicalDay& day, std::size_t columns,
-                                        const LectionaryDay* readings, const Bible* bible,
-                                        const ScriptureSummaryResult* summary)
+// Each helper appends fully wrapped rows. The final layout can then place the
+// cross beside those rows without relying on the terminal's automatic wrapping.
+struct InformationRows
 {
-    // Wrap the text before combining it with the cross. Every returned string
-    // is one complete output row, so the terminal never has to wrap around art.
-    auto rows = wrapTerminalText(formatCalendarDate(day.date), columns);
-    const auto seasonColour = seasonalColour(day.season);
-    const auto append = [&](std::string text, bool hasDot) {
+    std::size_t columns;
+    std::vector<std::string> rows;
+
+    void append(std::string text, bool hasDot = false)
+    {
         auto wrapped = wrapTerminalText(text, columns, hasDot ? 2 : 0);
         rows.insert(rows.end(), wrapped.begin(), wrapped.end());
-    };
-    append((seasonColour ? colourDot(*seasonColour) : "") + liturgicalPeriodName(day.season),
+    }
+
+    void blank() { rows.emplace_back(); }
+};
+
+void appendCalendar(InformationRows& output, const LiturgicalDay& day)
+{
+    output.append(formatCalendarDate(day.date));
+    const auto seasonColour = seasonalColour(day.season);
+    output.append((seasonColour ? colourDot(*seasonColour) : "") + liturgicalPeriodName(day.season),
            seasonColour.has_value());
     const bool hasDot = day.colour && (day.observanceId != "temporal" || day.colour != seasonColour);
     std::string observance = (hasDot ? colourDot(*day.colour) : "") + day.observanceName;
     if (day.rank) observance += " · " + std::string{celebrationRankName(day.rank)};
     if (day.provisionalTransfer) observance += " (provisional transfer)";
-    append(std::move(observance), hasDot);
-    if (readings)
+    output.append(std::move(observance), hasDot);
+}
+
+void appendReadings(InformationRows& output, const LectionaryDay& day, const Bible* bible)
+{
+    output.blank();
+    if (day.status == ReadingStatus::NoDaytimeMass)
+        output.append("No daytime Mass · Easter Vigil available with --mass=vigil", false);
+    else if (day.status != ReadingStatus::Available || !day.selected)
+        output.append("Readings · assignment not yet verified for this day or Mass form", false);
+    else
     {
-        rows.emplace_back();
-        if (readings->status == ReadingStatus::NoDaytimeMass)
-            append("No daytime Mass · Easter Vigil available with --mass=vigil", false);
-        else if (readings->status != ReadingStatus::Available || !readings->selected)
-            append("Readings · assignment not yet verified for this day or Mass form", false);
-        else
+        output.append(bible ? "Readings · " + bible->translation : "Readings:", false);
+        std::string references;
+        for (const auto& reading : day.selected->readings)
         {
-            append(bible ? "Readings · " + bible->translation : "Readings:", false);
-            std::string references;
-            for (const auto& reading : readings->selected->readings)
+            if (reading.role == "acclamation") continue;
+            if (bible)
             {
-                if (reading.role == "acclamation") continue;
-                if (bible)
+                output.blank();
+                output.append(reading.reference, false);
+                const auto passage = lookupScripture(*bible, reading.reference, reading.psalmNumbering);
+                if (!passage.diagnostic.empty())
+                    output.append("Text unavailable: " + passage.diagnostic, false);
+                else
                 {
-                    rows.emplace_back();
-                    append(reading.reference, false);
-                    const auto passage = lookupScripture(*bible, reading.reference, reading.psalmNumbering);
-                    if (!passage.diagnostic.empty())
-                        append("Text unavailable: " + passage.diagnostic, false);
-                    else
-                    {
-                        if (passage.includesWholeVerses) append("Whole verses shown for partial-verse references.", false);
-                        if (!passage.numberingNote.empty()) append(passage.numberingNote, false);
-                        for (const auto& verse : passage.verses)
-                            append(std::to_string(verse.chapter) + ":" + std::to_string(verse.verse) +
-                                   " " + verse.text, false);
-                    }
-                    for (const auto& option : reading.alternatives)
-                    {
-                        std::string alternative = "Alternative: " + option.reference;
-                        if (option.condition != "or") alternative += " (" + option.condition + ")";
-                        append(std::move(alternative), false);
-                    }
-                    continue;
+                    if (passage.includesWholeVerses) output.append("Whole verses shown for partial-verse references.", false);
+                    if (!passage.numberingNote.empty()) output.append(passage.numberingNote, false);
+                    for (const auto& verse : passage.verses)
+                        output.append(std::to_string(verse.chapter) + ":" + std::to_string(verse.verse) +
+                               " " + verse.text, false);
                 }
-                if (!references.empty()) references += "; ";
-                references += reading.reference;
                 for (const auto& option : reading.alternatives)
                 {
-                    references += " or " + option.reference;
-                    if (option.condition != "or") references += " (" + option.condition + ")";
+                    std::string alternative = "Alternative: " + option.reference;
+                    if (option.condition != "or") alternative += " (" + option.condition + ")";
+                    output.append(std::move(alternative), false);
                 }
+                continue;
             }
-            if (!bible) append(std::move(references), false);
+            if (!references.empty()) references += "; ";
+            references += reading.reference;
+            for (const auto& option : reading.alternatives)
+            {
+                references += " or " + option.reference;
+                if (option.condition != "or") references += " (" + option.condition + ")";
+            }
         }
+        if (!bible) output.append(std::move(references), false);
     }
-    if (summary)
+}
+
+void appendSummary(InformationRows& output, const ScriptureSummaryResult& result)
+{
+    output.blank();
+    std::string heading = "Scripture summary";
+    if (result.selected)
     {
-        rows.emplace_back();
-        std::string heading = "Scripture summary";
-        if (summary->selected)
-        {
-            const auto& mass = summary->selected->mass;
-            if (mass == "day") heading += " · Day Mass";
-            else if (mass == "night") heading += " · Night Mass";
-            else if (mass == "dawn") heading += " · Dawn Mass";
-            else if (mass == "evening") heading += " · Evening Mass";
-            else if (mass == "vigil") heading += " · Vigil Mass";
-            else if (mass == "vigil-extended") heading += " · Extended Vigil";
-            else if (mass == "passion") heading += " · The Lord's Passion";
-        }
-        append(std::move(heading), false);
-        if (!summary->selected)
-            append("Unavailable: " + summary->diagnostic, false);
-        else
-        {
-            const auto& selected = *summary->selected;
-            append("“" + selected.quotation + "”", false);
-            append("— " + selected.reference + " · " + selected.translation, false);
-            std::string category = selected.category;
-            if (category.starts_with("reading_")) category = "Vigil reading " + category.substr(8);
-            else if (category == "first") category = "First reading";
-            else if (category == "second") category = "Second reading";
-            else if (category == "epistle") category = "Epistle";
-            else if (category.starts_with("psalm")) category = selected.bookId == "PSA" ? "Responsorial Psalm" : "Responsorial canticle";
-            else if (category == "gospel") category = "Gospel";
-            append(category + " · " + selected.sourceReading, false);
-            rows.emplace_back();
-            append(selected.explanation + " " + selected.liturgicalConnection, false);
-        }
+        const auto& mass = result.selected->mass;
+        if (mass == "day") heading += " · Day Mass";
+        else if (mass == "night") heading += " · Night Mass";
+        else if (mass == "dawn") heading += " · Dawn Mass";
+        else if (mass == "evening") heading += " · Evening Mass";
+        else if (mass == "vigil") heading += " · Vigil Mass";
+        else if (mass == "vigil-extended") heading += " · Extended Vigil";
+        else if (mass == "passion") heading += " · The Lord's Passion";
     }
-    return rows;
+    output.append(std::move(heading), false);
+    if (!result.selected)
+        output.append("Unavailable: " + result.diagnostic, false);
+    else
+    {
+        const auto& selected = *result.selected;
+        output.append("“" + selected.quotation + "”", false);
+        output.append("— " + selected.reference + " · " + selected.translation, false);
+        std::string category = selected.category;
+        if (category.starts_with("reading_")) category = "Vigil reading " + category.substr(8);
+        else if (category == "first") category = "First reading";
+        else if (category == "second") category = "Second reading";
+        else if (category == "epistle") category = "Epistle";
+        else if (category.starts_with("psalm")) category = selected.bookId == "PSA" ? "Responsorial Psalm" : "Responsorial canticle";
+        else if (category == "gospel") category = "Gospel";
+        output.append(category + " · " + selected.sourceReading, false);
+        output.blank();
+        output.append(selected.explanation + " " + selected.liturgicalConnection, false);
+    }
+}
+
+std::vector<std::string> informationRows(const LiturgicalDay& day, std::size_t columns,
+                                        const LectionaryDay* readings, const Bible* bible,
+                                        const ScriptureSummaryResult* summary)
+{
+    InformationRows output{columns, {}};
+    appendCalendar(output, day);
+    if (readings) appendReadings(output, *readings, bible);
+    if (summary) appendSummary(output, *summary);
+    return output.rows;
 }
 } // namespace
 

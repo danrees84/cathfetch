@@ -51,6 +51,32 @@ int main()
         require(advent.selected->quotation == "O house of Jacob, come ye, and let us walk in the light of the Lord.", "Pinned exact quotation");
         require(advent.selected->editorialStatus == "ai_draft", "No automatic human approval");
         const auto& original = *advent.selected;
+        const auto daily = parseScriptureSummaries(document, lectionary, bible, original.readingSetId);
+        require(daily.entries.size() == 1 && daily.entries.at(original.readingSetId).quotation == original.quotation,
+                "Daily validation returns only the selected entry, with the same checked quotation");
+        require(parseScriptureSummaries(document, lectionary, bible, "missing").entries.empty(),
+                "A missing identity remains missing in selected-entry mode");
+        const auto rejectDaily = [&](const nlohmann::json& changedDocument) {
+            bool failed = false;
+            try { parseScriptureSummaries(changedDocument, lectionary, bible, original.readingSetId); }
+            catch (const std::exception&) { failed = true; }
+            require(failed, "Selected-entry mode must reject invalid selected data and catalogue duplicates");
+        };
+        bad = document;
+        bad["entries"].push_back(bad["entries"][0]);
+        rejectDaily(bad);
+        bad = document;
+        for (auto& entry : bad["entries"])
+            if (entry["reading_set_id"] == original.readingSetId) entry["quotation"] = "Invented quotation";
+        rejectDaily(bad);
+        // An unrelated entry is not used or validated on a daily invocation.
+        // The complete parser, used by the test/export tools, still rejects it.
+        bad = document;
+        for (auto& entry : bad["entries"])
+            if (entry["reading_set_id"] != original.readingSetId) { entry["quotation"] = "Invented quotation"; break; }
+        require(parseScriptureSummaries(bad, lectionary, bible, original.readingSetId).entries.size() == 1,
+                "Daily loading does not exhaustively validate unused commentary");
+        rejectedData(bad);
         const auto reading = std::ranges::find(lectionary.entries, original.readingSetId, &ReadingSet::id);
         const auto rejected = [&](ScriptureSummary changed) {
             bool failed = false;

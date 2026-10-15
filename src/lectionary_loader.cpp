@@ -1,4 +1,5 @@
 #include "lectionary_loader.h"
+#include "data_path.h"
 #include <nlohmann/json.hpp>
 #include <algorithm>
 #include <fstream>
@@ -169,8 +170,9 @@ Lectionary parseLectionary(const nlohmann::json& document)
 
 Lectionary loadLectionary(const std::string& filename)
 {
-    std::ifstream file{filename};
-    if (!file) throw std::runtime_error("Could not open lectionary file: " + filename);
+    const auto path = filename.empty() ? dataFile("lectionary/roman_references.json") : std::filesystem::path{filename};
+    std::ifstream file{path};
+    if (!file) throw std::runtime_error("Could not open lectionary file: " + path.string());
     try
     {
         nlohmann::json document;
@@ -179,6 +181,6 @@ Lectionary loadLectionary(const std::string& filename)
     }
     catch (const std::exception& error)
     {
-        throw std::runtime_error(filename + ": " + error.what());
+        throw std::runtime_error(path.string() + ": " + error.what());
     }
 }

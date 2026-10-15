@@ -11,7 +11,7 @@ Every entry is an **AI draft, not human-reviewed**. The selection is editorial, 
 - `source_reading` preserves the appointed primary reference. `book_id`, `chapter`, `verse` and `reference` give the quoted Douay–Rheims address.
 - `quotation` is copied from the pinned Bible index, never reconstructed from memory. `translation`, `quotation_source` and `source_xml_sha256` identify its source. The Bible metadata also pins the original downloaded USFX member.
 - `explanation` gives biblical context; `liturgical_connection` relates it to the celebration or its place in the reading sequence. `rationale` records the selection's editorial focus.
-- `technical_validation=checked` and `quotation_verification=bundled_source_checked` are checked again on loading. They do not mean independent proofreading, ecclesiastical approval or human review.
+- `technical_validation=checked` and `quotation_verification=bundled_source_checked` are checked again for the selected summary on daily loading, and for every record in tests and review tools. They do not mean independent proofreading, ecclesiastical approval or human review.
 - `reference_status` must agree with the underlying Lectionary record. All current entries retain `published_table`, not `current_edition`.
 - `editorial_status=ai_draft`, with null reviewer/date, records the actual authorship status. A future manual `human_reviewed` decision requires a named reviewer and review date. No tool upgrades this status.
 

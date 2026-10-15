@@ -1,9 +1,11 @@
 #include "scripture_summary.h"
+#include "data_path.h"
 #include <nlohmann/json.hpp>
 #include <algorithm>
 #include <array>
 #include <fstream>
 #include <sstream>
+#include <set>
 #include <stdexcept>
 #include <string_view>
 
@@ -21,6 +23,16 @@ std::size_t words(const std::string& text)
     std::size_t count = 0;
     for (std::string word; stream >> word;) ++count;
     return count;
+}
+
+nlohmann::json readSummaryDocument(const std::string& filename)
+{
+    const auto path = filename.empty() ? dataFile("summaries/roman_summaries.json") : std::filesystem::path{filename};
+    std::ifstream file{path};
+    if (!file) throw std::runtime_error("Could not open Scripture summaries: " + path.string());
+    nlohmann::json document;
+    file >> document;
+    return document;
 }
 }
 
@@ -78,21 +90,22 @@ void validateScriptureSummary(const ScriptureSummary& summary, const ReadingSet&
 
 ScriptureSummaries loadScriptureSummaries(const Lectionary& lectionary, const Bible& bible, const std::string& filename)
 {
-    std::ifstream file{filename};
-    if (!file) throw std::runtime_error("Could not open Scripture summaries: " + filename);
-    nlohmann::json document;
-    file >> document;
-    return parseScriptureSummaries(document, lectionary, bible);
+    return parseScriptureSummaries(readSummaryDocument(filename), lectionary, bible);
 }
 
-ScriptureSummaries parseScriptureSummaries(const nlohmann::json& document, const Lectionary& lectionary, const Bible& bible)
+ScriptureSummaries parseScriptureSummaries(const nlohmann::json& document, const Lectionary& lectionary,
+                                         const Bible& bible, std::string_view readingSetId)
 {
     if (document.at("schema_version") != 1) throw std::invalid_argument("Unsupported summary schema");
     if (document.at("policy") != "universal_v1") throw std::invalid_argument("Unsupported summary reading policy");
     if (!document.at("entries").is_array()) throw std::invalid_argument("Summary entries must be an array");
     ScriptureSummaries summaries;
+    std::set<std::string> identities;
     for (const auto& item : document.at("entries"))
     {
+        const std::string id = item.at("reading_set_id");
+        if (!identities.insert(id).second) throw std::invalid_argument("Duplicate Scripture summary: " + id);
+        if (!readingSetId.empty() && id != readingSetId) continue;
         ScriptureSummary summary;
         summary.readingSetId = item.at("reading_set_id");
         summary.occasion = item.at("occasion"); summary.cycle = item.at("cycle"); summary.mass = item.at("mass");
@@ -117,6 +130,17 @@ ScriptureSummaries parseScriptureSummaries(const nlohmann::json& document, const
             throw std::invalid_argument("Duplicate Scripture summary");
     }
     return summaries;
+}
+
+ScriptureSummaryResult loadScriptureSummary(const LectionaryDay& day, const Lectionary& lectionary,
+                                          const Bible& bible, const std::string& filename)
+{
+    if (day.status != ReadingStatus::Available || !day.selected)
+        return resolveScriptureSummary(day, {});
+    // Validate what will be displayed, including its exact quotation and source
+    // reading. Exhaustive catalogue checks remain in tests and review tools.
+    const auto summaries = parseScriptureSummaries(readSummaryDocument(filename), lectionary, bible, day.selected->id);
+    return resolveScriptureSummary(day, summaries);
 }
 
 ScriptureSummaryResult resolveScriptureSummary(const LectionaryDay& day, const ScriptureSummaries& summaries)

@@ -1,4 +1,5 @@
 #include "scripture.h"
+#include "data_path.h"
 #include <nlohmann/json.hpp>
 #include <algorithm>
 #include <cctype>
@@ -90,8 +91,9 @@ std::string normaliseReference(std::string_view reference)
 
 Bible loadBible(const std::string& filename)
 {
-    std::ifstream file{filename};
-    if (!file) throw std::runtime_error("Could not open offline Bible index: " + filename + "; run make all");
+    const auto path = filename.empty() ? dataFile("bibles/en_dra.json") : std::filesystem::path{filename};
+    std::ifstream file{path};
+    if (!file) throw std::runtime_error("Could not open offline Bible index: " + path.string() + "; run make all");
     nlohmann::json data;
     file >> data;
     if (data.at("schema_version") != 1) throw std::invalid_argument("Unsupported Bible index schema");
