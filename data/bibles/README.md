@@ -15,7 +15,7 @@ cmp data/bibles/en_dra.xml /tmp/en_dra.xml
 
 The book IDs use USFM codes and modern English book identities. For example, modern `1 Kings` maps to `1KI`, rather than treating it as the historical Douay title for `1 Samuel`. Ambiguous bare names such as `Kings` are rejected. Book aliases are structured metadata, not scattered resolver conditionals.
 
-`make all` builds `build/en_dra.json` from the XML and metadata, validating the recorded hash, the 73-book coverage and unique chapter/verse addresses. Python 3’s standard library is used at build time; no Python packages or XML library are required. **Runtime lookup is C++20**, using the project’s existing nlohmann JSON dependency. It performs no network calls and does not invoke Python. `loadBible(filename)` accepts an index location for reuse by another client. Like the existing calendar data, the CLI’s default paths are relative to the project directory; distribute the generated index with the application if packaging it elsewhere.
+`make all` builds `build/en_dra.json` from the XML and metadata, validating the recorded hash, the 73-book coverage and unique chapter/verse addresses. Python 3’s standard library is used at build time; no Python packages or XML library are required. **Runtime lookup is C++20**, using the project’s existing nlohmann JSON dependency. It performs no network calls and does not invoke Python. `loadBible(filename)` accepts an index location for reuse by another client. Default data discovery is relative to the executable, independently of the working directory. `make install` includes the generated index and source/provenance files. `CATHFETCH_DATA_DIR` overrides the complete data directory; see the [development guide](../../docs/DEVELOPMENT.md).
 
 ## Lookup and display policy
 
@@ -31,7 +31,14 @@ The parser supports book aliases, comma/dot-separated selections, semicolon chap
 
 ## Verse correspondence and measured coverage
 
-The independent follow-up audit corrected the earlier coverage claim. Of **2,665 stored primary non-acclamation citations**, 2,659 return text and **six Tobit citations explicitly report an unverified correspondence**. Some addresses previously resolved numerically despite recension differences. Unlisted Tobit addresses now require an explicit correspondence; commented-out TVTMS sections are not silently enabled. The affected selections are the week 9 cycle I Tobit 1/2, 6/7/8, 11, 12 and 13 passages, plus the week 25 cycle I Tobit 13 canticle. The other week 9 Tobit 2 and 3 passages have explicit table correspondences.
+Of **2,665 stored primary non-acclamation citations**, 2,661 return text and
+**four Tobit citations explicitly report an unavailable complete correspondence**.
+The [reviewed passage audit](tobit_correspondence_audit.json) recovered two of the
+six originally guarded selections through explicit whole-passage mappings. The
+remaining four are listed under [Reviewed Tobit correspondences](#reviewed-tobit-correspondences)
+below. Some addresses previously resolved numerically despite recension
+differences; unlisted Tobit addresses now require an explicit correspondence.
+Commented-out TVTMS sections are not silently enabled.
 
 Two further passages contain a cited verse absent from this translation: Genesis 49:32 and Sirach 3:19. Available verses are displayed with an explicit omission notice. These counts describe stored citations, not independently verified lectionary assignments or a proofread Bible.
 
@@ -57,7 +64,7 @@ The scripture regression test checks all 2,665 primary and 119 alternative non-a
 
 The chapter-only Isaiah 12 alternative retains its source qualification that exact verses were not specified; a whole-chapter lookup does not certify that the whole chapter is appointed.
 
-Text lookup does not certify the underlying lectionary assignment. Douay–Rheims wording is not the ESV–CE/Abbey text used in the current England and Wales Lectionary. Current-edition verification and the documented missing national assignments remain separate limitations. The pinned electronic Bible transcription is not independently proofread. Unstored or ambiguous references can still return an explicit unavailable result.
+Text lookup does not certify the underlying lectionary assignment. Douay–Rheims wording is not the ESV–CE/Abbey text used in the current England and Wales Lectionary. Current-edition verification remains incomplete. The v1 policy omits national propers; the deferred Welsh Martyrs proper remains a future data task rather than a v1 availability gap. The pinned electronic Bible transcription is not independently proofread. Unstored or ambiguous references can still return an explicit unavailable result.
 
 ## Reviewed Tobit correspondences
 

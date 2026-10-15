@@ -1,5 +1,21 @@
+# Generated build products and Python caches
 /build/
 *.o
 core
 core.*
 __pycache__/
+
+# Local credentials and assistant configuration
+/.aws/
+/.ssh/
+/.codex/
+/.agents/
+/.env
+/.env.*
+!/.env.example
+!/.env.sample
+
+# Vim swap and backup files
+*.swp
+*.swo
+*~

@@ -18,7 +18,7 @@ The schema descriptions below include retained source metadata; they do not enab
 
 This dataset stores citation facts only. It includes no Scripture translation, psalm response, Missal prayer or copied biography. See [the engine status](../../LECTIONARY_ENGINE_STATUS.md) for sources, coverage, verified rules and unresolved current-edition differences.
 
-`roman_references.json` contains 804 sets provisionally collated from the Liturgy Office, official diocesan ordos and French bishops’ reference guides. **It is not a verified transcription of the 2024 England and Wales Lectionary.** Psalm and verse conventions are source-specific: older Liturgy Office and French sources generally use Septuagint numbering; Hyderabad generally uses Hebrew numbering. Mixed/dual numbering is retained where supplied. No automatic conversion of psalm numbers or verses is attempted. Unspecified Lectionary numbers remain null.
+`roman_references.json` contains 807 sets provisionally collated from the Liturgy Office, official diocesan ordos and French bishops’ reference guides. **It is not a verified transcription of the 2024 England and Wales Lectionary.** Psalm and verse conventions are source-specific: older Liturgy Office and French sources generally use Septuagint numbering; Hyderabad generally uses Hebrew numbering. Mixed/dual numbering is retained where supplied. No automatic conversion of psalm numbers or verses is attempted. Unspecified Lectionary numbers remain null.
 
 ## Schema version 1
 

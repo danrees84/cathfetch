@@ -1,8 +1,8 @@
 # Cathfetch calendar engine status
 
-As of 14 October 2026, the engine implements the contemporary General Roman Calendar and the supplied European, English and Welsh overlays. Every date in 2024–2030 resolves to an observed day in all four calendars. Corpus Christi also resolves on 24 June 2038, with the Nativity of John the Baptist provisionally anticipated to 23 June; only the transfer date awaits authoritative confirmation. This is a contemporary calendar snapshot, not a historical or diocesan ordo.
+Calendar snapshot: 14 October 2026; documentation reconciled 15 October 2026. The engine implements the contemporary General Roman Calendar and the supplied European, English and Welsh overlays. Every date in 2024–2030 resolves to an observed day in all four calendars. Corpus Christi also resolves on 24 June 2038, with the Nativity of John the Baptist provisionally anticipated to 23 June; only the transfer date awaits authoritative confirmation. This is a contemporary calendar snapshot, not a historical or diocesan ordo.
 
-A separate reference-only lectionary engine now consumes these resolved identities. Its opt-in `--readings` display and year diagnostic are implemented; daily reference coverage and current-edition collation remain incomplete. See [the lectionary status](LECTIONARY_ENGINE_STATUS.md). No calendar calculations or precedence rules were changed for this addition.
+A separate reference-only lectionary engine now consumes these resolved identities. Its opt-in `--readings` display and year diagnostic are implemented; daily reference coverage is complete for the tested v1 universal-reading policy, while complete current-edition collation remains outstanding. See [the lectionary status](LECTIONARY_ENGINE_STATUS.md). No calendar calculations or precedence rules were changed for this addition.
 
 ## Resolution and coverage
 
@@ -55,7 +55,25 @@ make -j4 all test
 
 The existing nlohmann JSON dependency remains required. No new runtime library was added. `calendar_year` produces one TSV record per date, including alternatives, scheduling, transfers and diagnostics.
 
-The suite contains the six original test executables, four additional C++ test executables, and CLI integration checks. The comprehensive test covers 44 complete years in each calendar: 1818, 1900, 1943 and every year from 2000 through 2040. Its 64,284 dates are each resolved in both forward and reversed definition order. Checks include unique annual identities, alternative ordering, colours, week ranges, transfer destinations, duplicate definitions, invalid inputs and transactional overlay failure. Published dates and ordo examples provide independent reference cases. Every tested date now has a resolved observance, including the 2038 and projected 1943 occurrences. The occurrence regression also checks subject-based priority with arbitrary IDs, equal numerical classes, preserved transfers, candidate order, and the 2022 principal-patron exception. Validation passed with `make -j4 all test`: all ten C++ test executables and the CLI checks pass, with no compiler warnings. The comprehensive test passes 450,238 checks over all 64,284 dates, each resolved in both candidate orders. The focused solemnity occurrence regression also passes AddressSanitizer and UndefinedBehaviourSanitizer, with LeakSanitizer disabled for the tracing environment. Generated 2038 TSV diagnostics for `grc` and `europe` each contain 365 resolved records and explicitly label the provisional June 23 transfer.
+The full project suite now contains 13 C++ suites, five CLI/integration suites
+and 17 Python unit tests; the latest full build and test run passes. The
+comprehensive calendar regression covers 44 complete years in each calendar:
+1818, 1900, 1943 and every year from 2000 through 2040. Its 64,284 dates are each
+resolved in both forward and reversed definition order, passing 450,238 checks.
+Checks include unique annual identities, alternative ordering, colours, week
+ranges, transfer destinations, duplicate definitions, invalid inputs and
+transactional overlay failure. Published dates and ordo examples provide
+independent reference cases. Every tested date has a resolved observance,
+including the 2038 and projected 1943 occurrences. The occurrence regression
+checks subject-based priority with arbitrary IDs, equal numerical classes,
+preserved transfers, candidate order and the 2022 principal-patron exception.
+
+Earlier focused runs of the solemnity occurrence regression passed
+AddressSanitizer and UndefinedBehaviourSanitizer, with LeakSanitizer disabled
+for the tracing environment. Those are recorded milestone checks, not a claim
+that the latest full suite was built with sanitizers. Generated 2038 TSV
+diagnostics for `grc` and `europe` each contain 365 resolved records and label
+the provisional June 23 transfer.
 
 Rendering regression tests cover 120, 100, 80, 60 and 40 columns with and without the cross, plus the stacking boundary and extremely narrow widths. Pseudo-terminal integration checks exercise actual ioctl sizing against conflicting `COLUMNS`, and redirected-output checks exercise explicit widths and the 80-column fallback. They verify intact artwork, complete names, hanging indentation, colour preservation and cell-width bounds. The rendering test and changed terminal code also pass AddressSanitizer and UndefinedBehaviourSanitizer; LeakSanitizer is disabled for this execution environment.
 
