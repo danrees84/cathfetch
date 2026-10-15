@@ -6,8 +6,14 @@ CXXFLAGS ?= -std=c++20 -O2 -Wall -Wextra -Wpedantic
 ENGINE_SOURCES := $(filter-out src/main.cpp src/terminal_display.cpp src/terminal_format.cpp,$(wildcard src/*.cpp))
 ENGINE_OBJECTS := $(ENGINE_SOURCES:src/%.cpp=build/%.o)
 TESTS := $(patsubst tests/%.cpp,build/%,$(wildcard tests/*_test.cpp))
-.PHONY: all test clean
-all: build/cathfetch build/calendar_year build/lectionary_year build/en_dra.json
+.PHONY: all test clean summary-review
+all: build/cathfetch build/calendar_year build/lectionary_year build/summary_year build/en_dra.json
+build/summary_year: tools/summary_year.cpp $(ENGINE_OBJECTS) | build/en_dra.json
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
+build/summary_catalogue: tools/summary_catalogue.cpp $(ENGINE_OBJECTS) | build/en_dra.json
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
+summary-review: build/summary_catalogue build/summary_year
+	python3 tools/summary_review.py export
 build:
 	mkdir -p build
 # -MMD/-MP record header dependencies for later incremental builds.
@@ -24,6 +30,7 @@ build/lectionary_year: tools/lectionary_year.cpp $(ENGINE_OBJECTS)
 build/terminal_render_test: tests/terminal_render_test.cpp build/terminal_display.o build/terminal_format.o $(ENGINE_OBJECTS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
 build/scripture_test: | build/en_dra.json
+build/scripture_summary_test: | build/en_dra.json
 build/%_test: tests/%_test.cpp $(ENGINE_OBJECTS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
 # Stop at the first failing suite so a partial run is not reported as success.
@@ -35,6 +42,9 @@ test: $(TESTS) all
 	@python3 tests/bible_mapping_data_test.py
 	@python3 tests/current_lectionary_audit_test.py
 	@sh tests/full_verses_cli_test.sh
+	@python3 tests/summary_cli_test.py
+	@$(MAKE) --no-print-directory build/summary_catalogue
+	@python3 tools/summary_review.py check
 clean:
 	rm -rf build
 -include $(wildcard build/*.d)

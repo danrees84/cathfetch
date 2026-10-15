@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <utility>
 #include <vector>
+#include <unistd.h>
 
 namespace
 {
@@ -22,7 +23,8 @@ std::string colourDot(LiturgicalColour colour)
 }
 
 std::vector<std::string> informationRows(const LiturgicalDay& day, std::size_t columns,
-                                        const LectionaryDay* readings, const Bible* bible)
+                                        const LectionaryDay* readings, const Bible* bible,
+                                        const ScriptureSummaryResult* summary)
 {
     // Wrap the text before combining it with the cross. Every returned string
     // is one complete output row, so the terminal never has to wrap around art.
@@ -87,12 +89,52 @@ std::vector<std::string> informationRows(const LiturgicalDay& day, std::size_t c
             if (!bible) append(std::move(references), false);
         }
     }
+    if (summary)
+    {
+        rows.emplace_back();
+        std::string heading = "Scripture summary";
+        if (summary->selected)
+        {
+            const auto& mass = summary->selected->mass;
+            if (mass == "day") heading += " · Day Mass";
+            else if (mass == "night") heading += " · Night Mass";
+            else if (mass == "dawn") heading += " · Dawn Mass";
+            else if (mass == "evening") heading += " · Evening Mass";
+            else if (mass == "vigil") heading += " · Vigil Mass";
+            else if (mass == "vigil-extended") heading += " · Extended Vigil";
+            else if (mass == "passion") heading += " · The Lord's Passion";
+        }
+        append(std::move(heading), false);
+        if (!summary->selected)
+            append("Unavailable: " + summary->diagnostic, false);
+        else
+        {
+            const auto& selected = *summary->selected;
+            append("“" + selected.quotation + "”", false);
+            append("— " + selected.reference + " · " + selected.translation, false);
+            std::string category = selected.category;
+            if (category.starts_with("reading_")) category = "Vigil reading " + category.substr(8);
+            else if (category == "first") category = "First reading";
+            else if (category == "second") category = "Second reading";
+            else if (category == "epistle") category = "Epistle";
+            else if (category.starts_with("psalm")) category = selected.bookId == "PSA" ? "Responsorial Psalm" : "Responsorial canticle";
+            else if (category == "gospel") category = "Gospel";
+            append(category + " · " + selected.sourceReading, false);
+            rows.emplace_back();
+            append(selected.explanation + " " + selected.liturgicalConnection, false);
+            rows.emplace_back();
+            std::string status = selected.editorialStatus == "ai_draft" ? "AI draft · not human-reviewed" : "Human-reviewed editorial selection";
+            if (selected.referenceStatus != "current_edition") status += " · Lectionary references provisional";
+            append(std::move(status), false);
+        }
+    }
     return rows;
 }
 } // namespace
 
 std::string renderLiturgicalDay(const LiturgicalDay& day, bool showCross, std::size_t columns,
-                               const LectionaryDay* readings, const Bible* bible)
+                               const LectionaryDay* readings, const Bible* bible,
+                               const ScriptureSummaryResult* summary)
 {
     if (columns == 0) throw std::invalid_argument("Terminal width must be positive");
     if (!day.unresolvedReason.empty())
@@ -106,7 +148,7 @@ std::string renderLiturgicalDay(const LiturgicalDay& day, bool showCross, std::s
     constexpr std::size_t textColumn = artworkWidth + gap;
     constexpr std::size_t minimumTextWidth = 32;
     const bool sideBySide = showCross && columns >= textColumn + minimumTextWidth;
-    const auto rows = informationRows(day, sideBySide ? columns - textColumn : columns, readings, bible);
+    const auto rows = informationRows(day, sideBySide ? columns - textColumn : columns, readings, bible, summary);
     std::string output;
     if (sideBySide)
     {
@@ -143,7 +185,11 @@ std::string renderLiturgicalDay(const LiturgicalDay& day, bool showCross, std::s
     return output;
 }
 
-void printLiturgicalDay(const LiturgicalDay& day, bool showCross, const LectionaryDay* readings, const Bible* bible)
+void printLiturgicalDay(const LiturgicalDay& day, bool showCross, const LectionaryDay* readings, const Bible* bible,
+                        const ScriptureSummaryResult* summary)
 {
-    std::cout << renderLiturgicalDay(day, showCross, terminalColumns(), readings, bible);
+    const auto output = renderLiturgicalDay(day, showCross, terminalColumns(), readings, bible, summary);
+    // Keep pure rendering deterministic for tests and other clients; the CLI
+    // alone decides whether stdout is a terminal capable of showing colours.
+    std::cout << (isatty(STDOUT_FILENO) ? output : stripTerminalEscapes(output));
 }

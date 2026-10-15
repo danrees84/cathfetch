@@ -20,6 +20,8 @@ struct BibleBook
 struct Bible
 {
     std::string translation;
+    std::string source;
+    std::string sourceXmlSha256;
     std::map<std::string, BibleBook> books;
     std::map<std::string, std::string> aliases; // Accepted book name -> stable book ID.
     std::map<std::string, std::string> passageMappings;
@@ -29,6 +31,7 @@ struct Bible
     std::map<std::string, std::vector<std::array<int, 2>>> verseMappings;
     std::map<std::string, int> chapterEnds;
     std::set<std::string> omittedVerses;
+    std::set<std::string> nonIdentityTargets; // Guard merged divisions in editorial selections.
 };
 
 struct ScriptureVerse
@@ -36,10 +39,16 @@ struct ScriptureVerse
     int chapter;
     int verse;
     std::string text;
+    // Summary selections must fit wholly within a reading. Full-text display
+    // may show boundary subverses or merged verses, but these are not eligible.
+    bool completeSourceVerse = false;
+    int sourceChapter = 0;
+    int sourceVerse = 0;
 };
 
 struct ScripturePassage
 {
+    std::string bookId;
     std::vector<ScriptureVerse> verses;
     bool includesWholeVerses = false;
     bool omitsAbsentVerses = false;

@@ -11,6 +11,7 @@
 #include <chrono>
 #include <ctime>
 #include <iostream>
+#include <optional>
 #include <stdexcept>
 #include <string>
 #include <string_view>
@@ -79,6 +80,7 @@ Options:
   --calendar=NAME        grc, europe, england or wales (default: grc).
   --cross                Display the cross beside or above the information.
   --readings             Show universal Mass reading references (v1 policy).
+  --summary              Show a prewritten Scripture quotation and commentary.
   --full-verses          Show offline Douay-Rheims verses; implies --readings.
   --mass=FORM            Choose a Mass form; implies --readings.
                          Forms: day, vigil, vigil-extended, night, dawn,
@@ -92,6 +94,7 @@ scheduling for universal celebrations. The displayed calendar stays regional.
 
 Examples:
   cathfetch --date=08122026 --cross
+  cathfetch --date=30112025 --summary
   cathfetch --calendar wales --readings
   cathfetch --date=25122026 --mass=night --full-verses
   cathfetch --date=04042026 --mass=vigil
@@ -128,6 +131,7 @@ struct Options
     bool showCross = false;
     bool showReadings = false;
     bool fullVerses = false;
+    bool showSummary = false;
     bool massSpecified = false;
 };
 
@@ -170,6 +174,11 @@ Options parseOptions(int argc, char* argv[])
         {
             if (options.fullVerses) throw std::invalid_argument("Duplicate option: --full-verses");
             options.fullVerses = true;
+        }
+        else if (argument == "--summary")
+        {
+            if (options.showSummary) throw std::invalid_argument("Duplicate option: --summary");
+            options.showSummary = true;
         }
         else if (argument == "--mass" || argument.starts_with("--mass="))
         {
@@ -222,7 +231,8 @@ int main(int argc, char* argv[])
         }
         const auto celebrations = loadSelectedCalendar(options.calendar);
         const auto day = resolveLiturgicalDay(options.date, celebrations, options.calendar);
-        const bool needsReadings = options.showReadings || options.massSpecified || options.fullVerses;
+        const bool displayReadings = options.showReadings || options.massSpecified || options.fullVerses;
+        const bool needsReadings = displayReadings || options.showSummary;
         if (!needsReadings)
         {
             printLiturgicalDay(day, options.showCross);
@@ -235,15 +245,28 @@ int main(int argc, char* argv[])
         const auto readingDay = resolveLiturgicalDay(options.date, universalCalendar, options.calendar);
         const auto lectionary = loadLectionary();
         const auto readings = resolveMassReadings(readingDay, lectionary, options.calendar, options.mass);
-        if (options.fullVerses && readings.status == ReadingStatus::Available)
+        // Summary-only output still uses the existing reading selection, but
+        // does not implicitly print the list of readings or full passages.
+        std::optional<Bible> bible;
+        std::optional<ScriptureSummaryResult> summary;
+        if (readings.status == ReadingStatus::Available && (options.fullVerses || options.showSummary))
+            bible = loadBible();
+        if (options.showSummary)
         {
-            const auto bible = loadBible();
-            printLiturgicalDay(day, options.showCross, &readings, &bible);
+            if (bible)
+            {
+                const auto summaries = loadScriptureSummaries(lectionary, *bible);
+                summary = resolveScriptureSummary(readings, summaries);
+            }
+            else
+            {
+                // A day without a Mass needs a clear message, not Scripture
+                // files or editorial data which cannot be used on that day.
+                summary = resolveScriptureSummary(readings, ScriptureSummaries{});
+            }
         }
-        else
-        {
-            printLiturgicalDay(day, options.showCross, &readings);
-        }
+        printLiturgicalDay(day, options.showCross, displayReadings ? &readings : nullptr,
+                          options.fullVerses && bible ? &*bible : nullptr, summary ? &*summary : nullptr);
     }
     catch (const std::invalid_argument& error)
     {

@@ -4957,9 +4957,9 @@
           },
           {
             "role": "gospel",
-            "stored": "John 12:33–50",
+            "stored": "John 12:44–50",
             "independent": "John 12:44-50",
-            "result": "requires_collation"
+            "result": "citation_match"
           }
         ]
       }
@@ -12252,9 +12252,9 @@
         "comparisons": [
           {
             "role": "first",
-            "stored": "Numbers 20:1-3",
+            "stored": "Numbers 20:1-13",
             "independent": "Numbers 20:1-13",
-            "result": "requires_collation"
+            "result": "citation_match"
           },
           {
             "role": "psalm",
@@ -13610,9 +13610,9 @@
           },
           {
             "role": "gospel",
-            "stored": "Matthew 20:1-6",
+            "stored": "Matthew 20:1-16",
             "independent": "Matthew 20:1-16",
-            "result": "requires_collation"
+            "result": "citation_match"
           }
         ]
       }
@@ -22719,9 +22719,9 @@
           },
           {
             "role": "gospel",
-            "stored": "Mark 9:14–25",
+            "stored": "Mark 9:14–29",
             "independent": "Mark 9:14-29",
-            "result": "requires_collation"
+            "result": "citation_match"
           }
         ]
       }

@@ -8226,13 +8226,18 @@
         },
         {
           "role": "gospel",
-          "reference": "John 12:33–50",
+          "reference": "John 12:44–50",
           "alternatives": []
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/Easter.shtml#Week4",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
-      "verification": "published_table"
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Summary collation corrected a truncated or incorrect range; see summary_reference_audit.json for independent citation evidence.",
+      "verification": "published_table",
+      "verification_sources": [
+        "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=44",
+        "https://bible.usccb.org/bible/readings/042424.cfm"
+      ],
+      "verification_note": "15 October 2026 targeted range correction: John 12:44–50. Independently corroborated reference facts are recorded in summary_reference_audit.json. This does not verify every slot, alternative, subverse cut or the full current England and Wales edition."
     },
     {
       "id": "temporal:easter:4:4:any:day",
@@ -18891,7 +18896,7 @@
       "readings": [
         {
           "role": "first",
-          "reference": "Numbers 20:1-3",
+          "reference": "Numbers 20:1-13",
           "alternatives": []
         },
         {
@@ -18918,8 +18923,12 @@
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/OT4.shtml#Week18",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
-      "verification": "published_table"
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Summary collation corrected a truncated or incorrect range; see summary_reference_audit.json for independent citation evidence.",
+      "verification": "published_table",
+      "verification_sources": [
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=70"
+      ],
+      "verification_note": "15 October 2026 targeted range correction: Numbers 20:1-13. Independently corroborated reference facts are recorded in summary_reference_audit.json. This does not verify every slot, alternative, subverse cut or the full current England and Wales edition."
     },
     {
       "id": "temporal:ordinary:18:4:II:day",
@@ -20849,13 +20858,18 @@
         },
         {
           "role": "gospel",
-          "reference": "Matthew 20:1-6",
+          "reference": "Matthew 20:1-16",
           "alternatives": []
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/OT4.shtml#Week20",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Citation correction recorded in scripture_corrections.json.",
-      "verification": "published_table"
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Citation correction recorded in scripture_corrections.json. Summary collation corrected a truncated or incorrect range; see summary_reference_audit.json for independent citation evidence.",
+      "verification": "published_table",
+      "verification_sources": [
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=73",
+        "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=106"
+      ],
+      "verification_note": "15 October 2026 targeted range correction: Matthew 20:1-16. Independently corroborated reference facts are recorded in summary_reference_audit.json. This does not verify every slot, alternative, subverse cut or the full current England and Wales edition."
     },
     {
       "id": "temporal:ordinary:20:3:II:day",
@@ -27029,13 +27043,18 @@
         },
         {
           "role": "gospel",
-          "reference": "Mark 9:14–25",
+          "reference": "Mark 9:14–29",
           "alternatives": []
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/OT2.shtml#Week7",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Ambiguous Eccl abbreviation expanded to Sirach or Ecclesiastes as appropriate; Holy Family book identification also checked against https://bible.usccb.org/bible/readings/123016.cfm .",
-      "verification": "published_table"
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Ambiguous Eccl abbreviation expanded to Sirach or Ecclesiastes as appropriate; Holy Family book identification also checked against https://bible.usccb.org/bible/readings/123016.cfm . Summary collation corrected a truncated or incorrect range; see summary_reference_audit.json for independent citation evidence.",
+      "verification": "published_table",
+      "verification_sources": [
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=25",
+        "https://bible.usccb.org/bible/readings/022425.cfm"
+      ],
+      "verification_note": "15 October 2026 targeted range correction: Mark 9:14–29. Independently corroborated reference facts are recorded in summary_reference_audit.json. This does not verify every slot, alternative, subverse cut or the full current England and Wales edition."
     },
     {
       "id": "temporal:ordinary:7:1:II:day",
@@ -27075,13 +27094,18 @@
         },
         {
           "role": "gospel",
-          "reference": "Mark 9:14–25",
+          "reference": "Mark 9:14–29",
           "alternatives": []
         }
       ],
       "source": "https://www.liturgyoffice.org.uk/Calendar/Weekday/OT2.shtml#Week7",
-      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition.",
-      "verification": "published_table"
+      "source_note": "Published Liturgy Office reference table; source numbering retained. Not collated against the printed 2024 England and Wales edition. Summary collation corrected a truncated or incorrect range; see summary_reference_audit.json for independent citation evidence.",
+      "verification": "published_table",
+      "verification_sources": [
+        "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=25",
+        "https://bible.usccb.org/bible/readings/022425.cfm"
+      ],
+      "verification_note": "15 October 2026 targeted range correction: Mark 9:14–29. Independently corroborated reference facts are recorded in summary_reference_audit.json. This does not verify every slot, alternative, subverse cut or the full current England and Wales edition."
     },
     {
       "id": "temporal:ordinary:7:2:I:day",

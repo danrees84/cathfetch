@@ -97,6 +97,8 @@ Bible loadBible(const std::string& filename)
     if (data.at("schema_version") != 1) throw std::invalid_argument("Unsupported Bible index schema");
     Bible bible;
     bible.translation = data.at("translation");
+    bible.source = data.at("source");
+    bible.sourceXmlSha256 = data.at("xml_sha256");
     bible.omittedVerses = data.at("versification").at("omitted_verses").get<std::set<std::string>>();
     bible.passageMappings = data.value("passage_mappings", std::map<std::string, std::string>{});
     bible.passageDiagnostics = data.value("passage_diagnostics", std::map<std::string, std::string>{});
@@ -120,6 +122,16 @@ Bible loadBible(const std::string& filename)
         auto& mapping = bible.verseMappings[source];
         mapping.clear();
         for (const auto& target : targets) mapping.push_back({target.at(1).get<int>(), target.at(2).get<int>()});
+    }
+    for (const auto& [source, targets] : bible.verseMappings)
+    {
+        const auto separator = source.find(':', source.find(':') + 1);
+        const auto prefix = source.substr(0, separator + 1);
+        for (const auto& target : targets)
+        {
+            const auto address = prefix + std::to_string(target[0]) + ":" + std::to_string(target[1]);
+            if (address != source) bible.nonIdentityTargets.insert(address);
+        }
     }
     for (const auto& [scheme, chapters] : data.at("versification").at("chapter_ends").items())
         for (const auto& [chapter, length] : chapters.items())
@@ -256,6 +268,9 @@ ScripturePassage lookupPassage(const Bible& bible, std::string_view reference,
             if (mapped != bible.passageMappings.end())
             {
                 auto passage = lookupPassage(bible, mapped->second, "lxx", true);
+                // A whole-passage correspondence does not establish that an
+                // individual native verse fits an individual source verse.
+                for (auto& verse : passage.verses) verse.completeSourceVerse = false;
                 if (passage.diagnostic.empty()) passage.numberingNote = "Douay–Rheims numbering is used below.";
                 return passage;
             }
@@ -333,8 +348,21 @@ ScripturePassage lookupPassage(const Bible& bible, std::string_view reference,
                         if (chapterFound == book.chapters.end()) throw std::invalid_argument("Mapped chapter is absent from the offline Bible");
                         const auto verse = chapterFound->second.find(address[1]);
                         if (verse == chapterFound->second.end()) throw std::invalid_argument("Mapped verse is absent from the offline Bible");
+                        const bool boundaryCut = (c == first.chapter && v == first.verse && first.partial) ||
+                                                 (c == last.chapter && v == last.verse && last.partial);
+                        const bool complete = !nativeMapping && !boundaryCut && addresses.size() == 1 &&
+                                              !bible.nonIdentityTargets.contains(chapterKey + ":" + std::to_string(v)) &&
+                                              address == std::array<int, 2>{c, v};
                         if (seen.emplace(address[0], address[1]).second)
-                            result.verses.push_back({address[0], address[1], verse->second});
+                            result.verses.push_back({address[0], address[1], verse->second, complete, c, v});
+                        else if (complete)
+                        {
+                            // A separately cited whole verse can make a prior
+                            // partial occurrence safe; two fragments cannot.
+                            for (auto& existing : result.verses)
+                                if (existing.chapter == address[0] && existing.verse == address[1])
+                                    existing.completeSourceVerse = true;
+                        }
                     }
                 }
             }
@@ -352,6 +380,7 @@ ScripturePassage lookupPassage(const Bible& bible, std::string_view reference,
             result.numberingNote += (result.numberingNote.empty() ? "" : " ") +
                 std::string{"Cited verses absent from the Douay–Rheims text are omitted."};
         if (result.verses.empty()) throw std::invalid_argument("No verses were selected");
+        result.bookId = alias->second;
     }
     catch (const std::invalid_argument& error)
     {

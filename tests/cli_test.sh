@@ -88,11 +88,27 @@ rg -q '10th Sunday in Ordinary Time' "$tmp_dir/output"
 rg -q 'Body and Blood' "$tmp_dir/output"
 # Colours must stay attached to the correct line, including cross indentation.
 python3 - <<'PYCOLOUR'
+import os
+import pty
 import subprocess
 
 def output(date, *options):
-    return subprocess.check_output(
-        ['./build/cathfetch', '--date=' + date, *options], text=True).splitlines()
+    master, slave = pty.openpty()
+    try:
+        subprocess.run(['./build/cathfetch', '--date=' + date, *options], stdout=slave, check=True)
+    finally:
+        os.close(slave)
+    contents = b''
+    try:
+        while True:
+            block = os.read(master, 4096)
+            if not block: break
+            contents += block
+    except OSError:
+        pass # Linux signals the closed slave with EIO.
+    finally:
+        os.close(master)
+    return contents.decode().splitlines()
 
 def dot(code):
     return '\x1b[' + code + 'm●\x1b[0m '

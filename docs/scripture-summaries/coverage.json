@@ -1,0 +1,21 @@
+{
+  "total_stored_reading_sets": 807,
+  "v1_universal_complete_sets": 780,
+  "reference_sets_current_edition_verified": 0,
+  "reference_sets_published_table": 807,
+  "sets_with_summaries": 807,
+  "v1_sets_with_summaries": 780,
+  "distinct_commentaries": 442,
+  "quotations_bundled_source_checked": 807,
+  "quotations_independently_proofread": 0,
+  "ai_drafts": 807,
+  "human_reviewed": 0,
+  "missing_summaries": [],
+  "v1_missing_summaries": [],
+  "near_duplicate_commentary_review": [],
+  "scope_note": "Coverage of the stored 807-set catalogue, including archival propers, is not proof of complete Catholic Lectionary coverage. Default passages are summarised; subverse alternatives are not separate editorial records. Technical matching is not independent transcription proofreading, current-edition certification or human editorial approval.",
+  "stored_non_acclamation_passage_alternatives": 119,
+  "passage_alternatives_compatible_with_summary": 116,
+  "v1_incompatible_passage_alternatives": 0,
+  "archival_incompatible_passage_alternatives": 3
+}

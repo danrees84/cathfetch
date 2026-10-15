@@ -1,0 +1,191 @@
+{
+  "Advent / A": {
+    "first": 3,
+    "gospel": 1,
+    "second": 1
+  },
+  "Advent / B": {
+    "second": 1,
+    "first": 2,
+    "psalm": 2
+  },
+  "Advent / C": {
+    "psalm": 1,
+    "first": 1,
+    "second": 3
+  },
+  "Advent / any": {
+    "first": 4,
+    "psalm": 14,
+    "gospel": 6
+  },
+  "Christmas / A": {
+    "first": 1,
+    "psalm": 3
+  },
+  "Christmas / B": {
+    "first": 3,
+    "psalm": 5
+  },
+  "Christmas / C": {
+    "gospel": 4,
+    "first": 1,
+    "psalm": 3
+  },
+  "Christmas / any": {
+    "first": 7,
+    "gospel": 8,
+    "second": 2,
+    "psalm": 5
+  },
+  "Easter / A": {
+    "first": 3,
+    "second": 3,
+    "gospel": 1,
+    "psalm": 2
+  },
+  "Easter / B": {
+    "first": 3,
+    "second": 5,
+    "psalm": 1
+  },
+  "Easter / C": {
+    "first": 2,
+    "second": 4,
+    "psalm": 2,
+    "gospel": 1
+  },
+  "Easter / any": {
+    "psalm": 21,
+    "second": 2,
+    "gospel": 18,
+    "first": 3
+  },
+  "Feasts and propers / A": {
+    "first": 4,
+    "gospel": 1,
+    "psalm": 1,
+    "second": 1
+  },
+  "Feasts and propers / B": {
+    "first": 2,
+    "second": 3,
+    "gospel": 1,
+    "psalm": 1
+  },
+  "Feasts and propers / C": {
+    "gospel": 2,
+    "second": 2,
+    "first": 2,
+    "psalm": 1
+  },
+  "Feasts and propers / any": {
+    "gospel": 31,
+    "psalm": 6,
+    "first": 21,
+    "second": 4
+  },
+  "Holy Week and Triduum / A": {
+    "second": 1,
+    "first": 1
+  },
+  "Holy Week and Triduum / B": {
+    "second": 1,
+    "first": 1
+  },
+  "Holy Week and Triduum / C": {
+    "second": 1,
+    "first": 1
+  },
+  "Holy Week and Triduum / any": {
+    "psalm": 1,
+    "first": 2,
+    "second": 2
+  },
+  "Lent / A": {
+    "second": 2,
+    "first": 1,
+    "psalm": 3
+  },
+  "Lent / B": {
+    "first": 2,
+    "second": 3,
+    "psalm": 4
+  },
+  "Lent / C": {
+    "second": 5,
+    "first": 1,
+    "psalm": 3
+  },
+  "Lent / any": {
+    "gospel": 13,
+    "first": 9,
+    "psalm": 11
+  },
+  "Ordinary Time / A": {
+    "first": 21,
+    "second": 5,
+    "psalm": 2,
+    "gospel": 4
+  },
+  "Ordinary Time / B": {
+    "second": 22,
+    "psalm": 2,
+    "first": 7,
+    "gospel": 1
+  },
+  "Ordinary Time / C": {
+    "gospel": 10,
+    "second": 14,
+    "psalm": 1,
+    "first": 7
+  },
+  "Ordinary Time / I": {
+    "psalm": 58,
+    "first": 41,
+    "gospel": 105
+  },
+  "Ordinary Time / II": {
+    "gospel": 113,
+    "psalm": 59,
+    "first": 32
+  },
+  "Sundays / A": {
+    "first": 29,
+    "psalm": 6,
+    "second": 10,
+    "gospel": 5
+  },
+  "Sundays / B": {
+    "first": 15,
+    "psalm": 8,
+    "second": 31,
+    "gospel": 1
+  },
+  "Sundays / C": {
+    "gospel": 13,
+    "first": 10,
+    "psalm": 6,
+    "second": 26
+  },
+  "Sundays / any": {
+    "gospel": 2,
+    "first": 1
+  },
+  "Sundays testament / A": {
+    "old": 33,
+    "new": 17
+  },
+  "Sundays testament / B": {
+    "old": 21,
+    "new": 34
+  },
+  "Sundays testament / C": {
+    "new": 39,
+    "old": 16
+  },
+  "Sundays testament / any": {
+    "new": 2,
+    "old": 1
+  }
+}

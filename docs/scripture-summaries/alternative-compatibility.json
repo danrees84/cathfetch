@@ -1,0 +1,835 @@
+[
+  {
+    "reading_set_id": "ascension:B:day",
+    "role": "second",
+    "alternative": "Eph 4:1-13",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "ascension:B:day",
+    "role": "second",
+    "alternative": "Eph 4:1-7, 11-13",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "ascension:C:day",
+    "role": "second",
+    "alternative": "Heb 9:24-28; 10:19-23",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "baptism_of_lord:A:day:weekday",
+    "role": "first",
+    "alternative": "Acts 10:34-38",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "baptism_of_lord:B:day:weekday",
+    "role": "first",
+    "alternative": "1 John 5:1-9",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "baptism_of_lord:B:day:weekday:common-readings",
+    "role": "first",
+    "alternative": "Acts 10:34-38",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "baptism_of_lord:C:day:weekday",
+    "role": "first",
+    "alternative": "Titus 2:11-14; 3:4-7",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "baptism_of_lord:C:day:weekday:common-readings",
+    "role": "first",
+    "alternative": "Acts 10:34-38",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:A:vigil",
+    "role": "reading_1",
+    "alternative": "Genesis 1: 1. 26–31",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:A:vigil",
+    "role": "psalm_1",
+    "alternative": "Ps 32: 4-7. 12-13. 20. 22",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:A:vigil",
+    "role": "reading_2",
+    "alternative": "Genesis 22: 1–2. 9–13. 15–18",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:A:vigil",
+    "role": "psalm_7",
+    "alternative": "Isaiah 12",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:A:vigil",
+    "role": "psalm_7",
+    "alternative": "Ps 50:12–15, 18–19 r. 12",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:B:vigil",
+    "role": "reading_1",
+    "alternative": "Genesis 1: 1. 26–31",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:B:vigil",
+    "role": "psalm_1",
+    "alternative": "Ps 32: 4-7. 12-13. 20. 22",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:B:vigil",
+    "role": "reading_2",
+    "alternative": "Genesis 22: 1–2. 9–13. 15–18",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:B:vigil",
+    "role": "psalm_7",
+    "alternative": "Isaiah 12",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:B:vigil",
+    "role": "psalm_7",
+    "alternative": "Ps 50:12–15, 18–19 r. 12",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:C:vigil",
+    "role": "reading_1",
+    "alternative": "Genesis 1: 1. 26–31",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:C:vigil",
+    "role": "psalm_1",
+    "alternative": "Ps 32: 4-7. 12-13. 20. 22",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:C:vigil",
+    "role": "reading_2",
+    "alternative": "Genesis 22: 1–2. 9–13. 15–18",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:C:vigil",
+    "role": "psalm_7",
+    "alternative": "Isaiah 12",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:C:vigil",
+    "role": "psalm_7",
+    "alternative": "Ps 50:12–15, 18–19 r. 12",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:any:day",
+    "role": "second",
+    "alternative": "1 Cor 5:6-8",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "easter_sunday:any:day",
+    "role": "gospel",
+    "alternative": "Luke 24:13–35",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "eternal_high_priest:A:day",
+    "role": "first",
+    "alternative": "Hebrews 10:4–10",
+    "summary_compatible": true,
+    "archival_only": true
+  },
+  {
+    "reading_set_id": "eternal_high_priest:B:day",
+    "role": "first",
+    "alternative": "Hebrews 10:11–18",
+    "summary_compatible": true,
+    "archival_only": true
+  },
+  {
+    "reading_set_id": "eternal_high_priest:C:day",
+    "role": "first",
+    "alternative": "Hebrews 2:10–18",
+    "summary_compatible": true,
+    "archival_only": true
+  },
+  {
+    "reading_set_id": "grc-02-02-the-presentation-of-the-lord:any:day:sunday",
+    "role": "gospel",
+    "alternative": "Lk 2:22-32",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-02-02-the-presentation-of-the-lord:any:day:weekday",
+    "role": "first",
+    "alternative": "Heb 2:14-18",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-02-02-the-presentation-of-the-lord:any:day:weekday",
+    "role": "gospel",
+    "alternative": "Lk 2:22-32",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-03-19-st-joseph-spouse-of-the-blessed-virgin-mary:any:day",
+    "role": "gospel",
+    "alternative": "Luke 2:41-51a",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-07-22-st-mary-magdalene:any:day",
+    "role": "first",
+    "alternative": "2 Corinthians 5:14-17",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-07-29-sts-martha-mary-and-lazarus:any:day",
+    "role": "gospel",
+    "alternative": "Luke 10:38-42",
+    "summary_compatible": false,
+    "archival_only": true
+  },
+  {
+    "reading_set_id": "grc-08-06-the-transfiguration-of-the-lord:A:day:weekday",
+    "role": "first",
+    "alternative": "2Pet 1:16–19",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-08-06-the-transfiguration-of-the-lord:B:day:weekday",
+    "role": "first",
+    "alternative": "2Pet 1:16–19",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-08-06-the-transfiguration-of-the-lord:C:day:weekday",
+    "role": "first",
+    "alternative": "2Pet 1:16–19",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-09-14-the-exaltation-of-the-holy-cross:any:day:weekday",
+    "role": "first",
+    "alternative": "Phil 2:6-11",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-11-02-the-commemoration-of-all-the-faithful-departed-all-souls-day:any:day",
+    "role": "gospel",
+    "alternative": "Mark 15:33-39; 16:1-6",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-11-02-the-commemoration-of-all-the-faithful-departed-all-souls-day:any:day",
+    "role": "gospel",
+    "alternative": "Luke 7:11-17",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-11-09-the-dedication-of-the-lateran-basilica:any:day:weekday",
+    "role": "first",
+    "alternative": "1Cor 3:9-11. 16-17",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-12-25-the-nativity-of-the-lord-christmas:any:day",
+    "role": "gospel",
+    "alternative": "John 1:1-5, 9-14",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-12-25-the-nativity-of-the-lord-christmas:any:vigil",
+    "role": "gospel",
+    "alternative": "Matt 1:18-25",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "holy_family:A:day:weekday",
+    "role": "first",
+    "alternative": "Col 3:12-21",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "holy_family:B:day:sunday",
+    "role": "gospel",
+    "alternative": "Luke 2:22, 39-40",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "holy_family:B:day:sunday:common-readings",
+    "role": "gospel",
+    "alternative": "Luke 2:22, 39-40",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "holy_family:B:day:weekday",
+    "role": "first",
+    "alternative": "Heb 11:8, 11-12, 17-19",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "holy_family:B:day:weekday",
+    "role": "gospel",
+    "alternative": "Luke 2:22, 39-40",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "holy_family:B:day:weekday:common-readings",
+    "role": "first",
+    "alternative": "Col 3:12-21",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "holy_family:B:day:weekday:common-readings",
+    "role": "gospel",
+    "alternative": "Luke 2:22, 39-40",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "holy_family:C:day:weekday",
+    "role": "first",
+    "alternative": "1 John 3:1-2, 21-24",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "holy_family:C:day:weekday:common-readings",
+    "role": "first",
+    "alternative": "Col 3:12-21",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "mary_mother_of_church:any:day",
+    "role": "first",
+    "alternative": "Acts 1:12–14 [III:841]",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "pentecost:B:day",
+    "role": "second",
+    "alternative": "Gal 5:16-25",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "pentecost:B:day",
+    "role": "gospel",
+    "alternative": "John 15:26-27; 16:12-15",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "pentecost:C:day",
+    "role": "second",
+    "alternative": "Rom 8:8-17",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "pentecost:C:day",
+    "role": "gospel",
+    "alternative": "John 14:15–16, 23b–26",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "pentecost:any:vigil",
+    "role": "first",
+    "alternative": "Exod 19:3-8, 16-20",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "pentecost:any:vigil",
+    "role": "first",
+    "alternative": "Ezek 37:1-14",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "pentecost:any:vigil",
+    "role": "first",
+    "alternative": "Joel 3:1-5",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "pentecost:any:vigil-extended",
+    "role": "psalm_2",
+    "alternative": "Psalm 18: 8, 9. 10. 11; r. v. 6:68c",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:advent:december:21:any:day",
+    "role": "first",
+    "alternative": "Zephaniah 3:14–18",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:christmas:january:6:any:day",
+    "role": "gospel",
+    "alternative": "Luke 3:23–38",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:christmas:january:6:any:day",
+    "role": "gospel",
+    "alternative": "Luke 3:23. 31–34. 36. 38",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:christmas:sunday2:any:day",
+    "role": "gospel",
+    "alternative": "John 1:1-5, 9-14",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:easter:3:0:C:day",
+    "role": "gospel",
+    "alternative": "John 21:1-14",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:holy_week:0:A:day",
+    "role": "gospel",
+    "alternative": "Matt 27:11-54",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:holy_week:0:B:day",
+    "role": "procession_gospel",
+    "alternative": "John 12:12-16",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:holy_week:0:B:day",
+    "role": "gospel",
+    "alternative": "Mark 15:1-39",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:holy_week:0:C:day",
+    "role": "gospel",
+    "alternative": "Luke 23:1-49",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:lent:1:0:A:day",
+    "role": "second",
+    "alternative": "Rom 5:12. 17-19",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:lent:2:0:C:day",
+    "role": "second",
+    "alternative": "Phil 3:20–4:1",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:lent:3:0:A:day",
+    "role": "gospel",
+    "alternative": "John 4:5-15, 19-26, 39-42",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:lent:3:0:A:day:alternative-in-B",
+    "role": "gospel",
+    "alternative": "John 4:5-15, 19-26, 39-42",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:lent:3:0:A:day:alternative-in-C",
+    "role": "gospel",
+    "alternative": "John 4:5-15, 19-26, 39-42",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:lent:3:0:B:day",
+    "role": "first",
+    "alternative": "Exod 20:1-3, 7-8, 12-17",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:lent:4:0:A:day",
+    "role": "gospel",
+    "alternative": "John 9:1, 6-9, 13-17, 34-38",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:lent:4:0:A:day:alternative-in-B",
+    "role": "gospel",
+    "alternative": "John 9:1, 6-9, 13-17, 34-38",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:lent:4:0:A:day:alternative-in-C",
+    "role": "gospel",
+    "alternative": "John 9:1, 6-9, 13-17, 34-38",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:lent:5:0:A:day",
+    "role": "gospel",
+    "alternative": "John 11:3-7, 17, 20-27, 33-45",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:lent:5:0:A:day:alternative-in-B",
+    "role": "gospel",
+    "alternative": "John 11:3-7, 17, 20-27, 33-45",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:lent:5:0:A:day:alternative-in-C",
+    "role": "gospel",
+    "alternative": "John 11:3-7, 17, 20-27, 33-45",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:11:0:C:day",
+    "role": "gospel",
+    "alternative": "Luke 7:36-50",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:13:0:B:day",
+    "role": "gospel",
+    "alternative": "Mark 5:21-24. 35-43",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:14:0:C:day",
+    "role": "gospel",
+    "alternative": "Luke 10:1-9",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:15:0:A:day",
+    "role": "gospel",
+    "alternative": "Matt 13:1-9",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:15:0:B:day",
+    "role": "second",
+    "alternative": "Eph 1:3-10",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:15:0:C:day",
+    "role": "psalm",
+    "alternative": "Ps 18: 8-11 r.9",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:16:0:A:day",
+    "role": "gospel",
+    "alternative": "Matt 13:24-30",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:17:0:A:day",
+    "role": "gospel",
+    "alternative": "Matt 13:44-46",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:18:0:C:day",
+    "role": "psalm",
+    "alternative": "Ps 94: 1-2. 6-9 r.7-8",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:19:0:C:day",
+    "role": "second",
+    "alternative": "Heb 11:1-2, 8-12",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:19:0:C:day",
+    "role": "gospel",
+    "alternative": "Luke 12:35-40",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:24:0:C:day",
+    "role": "gospel",
+    "alternative": "Luke 15:1-10",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:25:0:C:day",
+    "role": "gospel",
+    "alternative": "Luke 16:10-13",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:26:0:A:day",
+    "role": "second",
+    "alternative": "Phil 2:1-5",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:27:0:B:day",
+    "role": "gospel",
+    "alternative": "Mark 10:2-12",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:28:0:A:day",
+    "role": "gospel",
+    "alternative": "Matt 22:1-10",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:28:0:B:day",
+    "role": "gospel",
+    "alternative": "Mark 10:17-27",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:29:0:B:day",
+    "role": "gospel",
+    "alternative": "Mark 10:42-45",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:32:0:A:day",
+    "role": "second",
+    "alternative": "1 Thess 4:13-14",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:32:0:B:day",
+    "role": "gospel",
+    "alternative": "Mark 12:41-44",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:32:0:C:day",
+    "role": "gospel",
+    "alternative": "Luke 20:27, 34-38",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:33:0:A:day",
+    "role": "gospel",
+    "alternative": "Matt 25:14-15, 19-21",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:3:0:C:day",
+    "role": "second",
+    "alternative": "1 Cor 12:12-14, 27",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:4:0:C:day",
+    "role": "second",
+    "alternative": "1 Cor 13:4-13",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:5:0:C:day",
+    "role": "second",
+    "alternative": "1 Cor 15:3-8, 11",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:6:0:A:day",
+    "role": "gospel",
+    "alternative": "Matt 5:20-22a, 27-28, 33-34a, 37",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "temporal:ordinary:9:0:B:day",
+    "role": "gospel",
+    "alternative": "Mark 2:23-28",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-01-25-the-conversion-of-st-paul-the-apostle:any:day",
+    "role": "first",
+    "alternative": "Acts 9:1–22",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-01-26-sts-timothy-and-titus-bishops:any:day",
+    "role": "first",
+    "alternative": "Titus 1:1–5",
+    "summary_compatible": false,
+    "archival_only": true
+  },
+  {
+    "reading_set_id": "grc-05-31-the-visitation-of-the-blessed-virgin-mary:any:day",
+    "role": "first",
+    "alternative": "Romans 12:9–16b",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-09-08-the-nativity-of-the-blessed-virgin-mary:any:day",
+    "role": "first",
+    "alternative": "Romans 8:28–30",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-09-08-the-nativity-of-the-blessed-virgin-mary:any:day",
+    "role": "gospel",
+    "alternative": "Matthew 1:18–23",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "grc-09-15-our-lady-of-sorrows:any:day",
+    "role": "gospel",
+    "alternative": "Luke 2:33–35",
+    "summary_compatible": false,
+    "archival_only": true
+  },
+  {
+    "reading_set_id": "grc-09-29-sts-michael-gabriel-and-raphael-archangels:any:day",
+    "role": "first",
+    "alternative": "Revelation 12:7–12a",
+    "summary_compatible": true,
+    "archival_only": false
+  },
+  {
+    "reading_set_id": "ew-03-01-st-david:england:day",
+    "role": "gospel",
+    "alternative": "Luke 2:41-51a",
+    "summary_compatible": true,
+    "archival_only": true
+  },
+  {
+    "reading_set_id": "ew-03-01-st-david:wales:day",
+    "role": "gospel",
+    "alternative": "Luke 2:41-51a",
+    "summary_compatible": true,
+    "archival_only": true
+  },
+  {
+    "reading_set_id": "wal-11-08-all-saints-of-wales:wales:day",
+    "role": "first",
+    "alternative": "1 John 3:1-3",
+    "summary_compatible": true,
+    "archival_only": true
+  }
+]

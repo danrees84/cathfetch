@@ -1,0 +1,86 @@
+{
+  "scope": "Whole-verse reference errors noticed during summary collation. Independent bishops sources corroborate these corrections; no full 2024 England and Wales certification is claimed. No Bible or liturgical prose copied.",
+  "corrections": [
+    {
+      "id": "temporal:easter:4:3:any:day",
+      "role": "gospel",
+      "previous": "John 12:33–50",
+      "reference": "John 12:44–50",
+      "sources": [
+        {
+          "url": "https://liturgie.catholique.fr/wp-content/uploads/sites/11/2022/12/31-ORDO-2023-2024-Annee-bissextile-B.doc.pdf#page=44",
+          "date": "2024-04-24",
+          "reference": "John 12:44-50"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/042424.cfm",
+          "reference": "John 12:44–50"
+        }
+      ]
+    },
+    {
+      "id": "temporal:ordinary:7:1:I:day",
+      "role": "gospel",
+      "previous": "Mark 9:14–25",
+      "reference": "Mark 9:14–29",
+      "sources": [
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=25",
+          "date": "2025-02-24",
+          "reference": "Mark 9:14-29"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/022425.cfm",
+          "reference": "Mark 9:14–29"
+        }
+      ]
+    },
+    {
+      "id": "temporal:ordinary:7:1:II:day",
+      "role": "gospel",
+      "previous": "Mark 9:14–25",
+      "reference": "Mark 9:14–29",
+      "sources": [
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=25",
+          "date": "2025-02-24",
+          "reference": "Mark 9:14-29"
+        },
+        {
+          "url": "https://bible.usccb.org/bible/readings/022425.cfm",
+          "reference": "Mark 9:14–29"
+        }
+      ]
+    },
+    {
+      "id": "temporal:ordinary:20:3:I:day",
+      "role": "gospel",
+      "previous": "Matthew 20:1-6",
+      "reference": "Matthew 20:1-16",
+      "sources": [
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=73",
+          "date": "2025-08-20",
+          "reference": "Matthew 20:1-16"
+        },
+        {
+          "url": "https://hallam-diocese.com/wp-content/uploads/sites/9/2023/12/HALLAM-ORDO-2025-26.pdf#page=106",
+          "reference": "Matthew 20:1-16"
+        }
+      ]
+    },
+    {
+      "id": "temporal:ordinary:18:4:I:day",
+      "role": "first",
+      "previous": "Numbers 20:1-3",
+      "reference": "Numbers 20:1-13",
+      "sources": [
+        {
+          "url": "https://catechese.catholique.fr/wp-content/uploads/sites/15/2024/02/32-ORDO-2024-2025-ANNE%CC%81E-C.doc.pdf#page=70",
+          "date": "2025-08-07",
+          "reference": "Numbers 20:1-13"
+        }
+      ]
+    }
+  ]
+}

@@ -187,6 +187,18 @@ std::size_t visibleTerminalWidth(std::string_view text)
     return width;
 }
 
+std::string stripTerminalEscapes(std::string_view text)
+{
+    std::string result;
+    for (std::size_t at = 0; at < text.size();)
+    {
+        const auto escape = escapeLength(text.substr(at));
+        if (escape) at += escape;
+        else result += text[at++];
+    }
+    return result;
+}
+
 std::vector<std::string> wrapTerminalText(std::string_view text, std::size_t columns,
                                         std::size_t continuationIndent)
 {
