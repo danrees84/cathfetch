@@ -208,23 +208,37 @@ def generate(assignments, summaries):
                 week = int(entry['day_id'].split(':')[2])
                 section += ' — Weeks ' + ('1–17' if week <= 17 else '18–34')
         sections[section].append(identity)
-    index = ['# Scripture summaries: editorial review', '',
-        'Generated from `data/summaries/roman_summaries.json` by `python3 tools/summary_review.py export`.', '',
-        '**AI drafts, not human-reviewed.** These are editorial selections, not officially designated verses. '
-        'Quotation matching checks the pinned electronic Douay–Rheims source; it does not independently proofread it. '
-        'No assignment is certified against the complete 2024 England and Wales Lectionary.', '',
-        'V1 uses universal readings with local scheduling, omitting memorial and national propers. '
-        'Archival sets are included below for visibility. Any absent commentary is explicitly marked.', '',
+    index = ['# Scripture summary review', '',
+        'Read the summaries by season and cycle below. Each entry includes its selected verse, '
+        'commentary, sources and review status.', '',
+        'The commentary was drafted with AI assistance and awaits human review. Quotations match '
+        'the bundled Douay–Rheims text, which has not been independently proofread. Complete checks '
+        'against the current England and Wales Lectionary are still outstanding.', '',
+        'V1 uses universal readings with local feast dates. Archived memorial and national proper '
+        'sets are included for review, but are not selected by the app.', '',
+        'To update this collection from `data/summaries/roman_summaries.json`, run `make summary-review`. '
+        'See the [data guide](../../data/summaries/README.md) for editing instructions.', '',
         '| Measure | Count |', '| --- | ---: |']
-    for key in ['total_stored_reading_sets', 'v1_universal_complete_sets', 'sets_with_summaries',
-                'v1_sets_with_summaries', 'distinct_commentaries', 'reference_sets_current_edition_verified',
-                'quotations_bundled_source_checked', 'quotations_independently_proofread', 'ai_drafts', 'human_reviewed']:
-        index.append(f"| {key.replace('_', ' ')} | {coverage[key]} |")
+    measures = [
+        ('total_stored_reading_sets', 'Stored reading sets'),
+        ('v1_universal_complete_sets', 'Complete universal sets used by v1'),
+        ('sets_with_summaries', 'Sets with summaries'),
+        ('v1_sets_with_summaries', 'V1 sets with summaries'),
+        ('distinct_commentaries', 'Distinct commentaries'),
+        ('reference_sets_current_edition_verified', 'Sets verified against the current edition'),
+        ('quotations_bundled_source_checked', 'Quotations matched to the bundled Bible'),
+        ('quotations_independently_proofread', 'Quotations independently proofread'),
+        ('ai_drafts', 'Drafts awaiting human review'),
+        ('human_reviewed', 'Human-reviewed summaries'),
+    ]
+    for key, label in measures:
+        index.append(f"| {label} | {coverage[key]} |")
     index += [f"| Missing summaries | {len(coverage['missing_summaries'])} |", '', '## Collection', '']
-    index += [f"Passage alternatives compatible with the selected summary: **{coverage['passage_alternatives_compatible_with_summary']} / {len(alternatives)}**. "
-        f"Incompatible v1 alternatives: **{coverage['v1_incompatible_passage_alternatives']}**; "
-        f"incompatible archival proper alternatives: **{coverage['archival_incompatible_passage_alternatives']}**. "
-        'See `alternative-compatibility.json` for the individual records. This reports citation compatibility, not current-edition approval.', '']
+    index += [f"The chosen verses also fit {coverage['passage_alternatives_compatible_with_summary']} of the "
+        f"{len(alternatives)} stored passage alternatives. "
+        f"{coverage['archival_incompatible_passage_alternatives']} archived proper alternatives need another selection; "
+        f"{coverage['v1_incompatible_passage_alternatives']} of these conflicts affect v1. "
+        'See [the compatibility report](alternative-compatibility.json) for the individual records.', '']
     for group, ids in sorted(sections.items(), key=lambda item: natural_key(item[0])):
         filename = re.sub(r'[^a-z0-9]+', '-', group.lower()).strip('-') + '.md'
         completed = sum(identity in summaries for identity in ids)
@@ -259,10 +273,10 @@ def generate(assignments, summaries):
     for group, counts in distribution.items():
         if 'testament' not in group:
             index.append(f"| {group} | " + ' | '.join(str(counts.get(k, 0)) for k in ['first', 'psalm', 'second', 'gospel']) + ' |')
-    index += ['', 'Counts describe stored reading sets, not the frequency of dates in a civil year. '
-        'Shared entries count for each legitimate cycle or Mass form. Sunday groups identify explicit Sunday records, '
-        'including stored alternatives, rather than counting civil Sundays. Coverage describes this catalogue; it does not '
-        'establish a complete or current-edition Lectionary. Near-duplicate candidates are listed in `coverage.json` for review.', '']
+    index += ['', 'These counts are per stored reading set, so a shared passage can appear under several '
+        'cycles or Mass forms. The Sunday rows include stored alternatives, not just the Sundays in a '
+        'particular year. For full figures and possible repeated commentary, see '
+        '[coverage](coverage.json) and [distribution](distribution.json).', '']
     files['README.md'] = '\n'.join(index)
     files['coverage.json'] = json.dumps(coverage, ensure_ascii=False, indent=2) + '\n'
     files['distribution.json'] = json.dumps(distribution, ensure_ascii=False, indent=2) + '\n'

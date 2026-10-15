@@ -1,8 +1,13 @@
-# Cathfetch calendar data
+# Calendar data
 
-These files contain the contemporary nominal fixed facts used by the engine. They are a snapshot as of 14 October 2026. The resolver applies the same snapshot to every accepted year; these files do not reconstruct historical calendars.
+These files hold fixed dates, names, ranks and colours. The calendar engine
+combines them with movable celebrations and the rules for precedence and
+transfers.
 
-## Inheritance
+The data is a snapshot from 14 October 2026. The same definitions are used for
+every accepted year, including dates before these rules came into force.
+
+## Calendar layers
 
 ```text
 general_roman_fixed.json
@@ -12,36 +17,63 @@ general_roman_fixed.json
                 └── wales.json
 ```
 
-Select `grc`, `europe`, `england` or `wales`. The engine loads each ancestor once. England and Wales inherit the five feast dates of Europe's six co-patrons, then their shared and separate national definitions. The universal base contains 222 fixed celebrations.
+Choose `grc`, `europe`, `england` or `wales`. Each layer inherits the preceding
+ones. The universal file has 222 fixed celebrations. Europe adds the five feast
+dates of its six co-patrons; England and Wales then add their shared and national
+entries.
 
-## Data fields and operations
+## Fields and changes
 
-Each fixed entry has a stable ID, nominal month/day, name and rank. All Souls has a null rank and explicit precedence. `rankSourceCalendar` in C++ records the layer that establishes the current rank, so national scheduling alone does not turn a general solemnity into a proper solemnity.
+Each celebration has a stable ID, month and day, name and rank. All Souls has no
+ordinary rank, so its `rank` is null and its precedence is set separately.
+In C++, `rankSourceCalendar` records which layer assigned the rank. Moving a
+universal solemnity to a national observance date does not make it a proper
+solemnity.
 
-| Field or operation | Purpose |
+| Field | Use |
 | --- | --- |
-| `additions` | Add an identity absent from ancestors. Duplicate IDs are errors. |
-| `overrides` / `changes` | Change inherited rank, name, colour or rule metadata while retaining identity. |
-| `date_reassignments` | Permanently change an inherited nominal date for that jurisdiction. |
-| `feast_of_lord` | Classify a general feast of the Lord for level 5. |
-| `precedence` | Explicit exceptional table class, used for Christmas, Epiphany and All Souls. |
-| `names_temporal_baseline` | Give an existing temporal day its celebration identity without changing its class. |
-| `date_rule` | Annual national scheduling, separate from displacement by an impediment. |
-| `transfer_rule` | A verified exception to the general solemnity transfer search. |
-| `subject`, `principal_patron` | Distinguish Lord/saint occurrence priority within class 3 and preserve the patronal exception without changing rank or numerical class. |
-| `colour` | The celebration's colour, independent of the underlying season. |
-| `source_page`, `amendment`, `source_id`, `rule_source` | Trace the factual definition or exception to its authority. |
+| `additions` | Add a celebration. Its ID must be new. |
+| `overrides` / `changes` | Change an inherited entry without changing its ID. |
+| `date_reassignments` | Change the nominal date in this calendar. |
+| `feast_of_lord` | Identify a general feast of the Lord, at precedence level 5. |
+| `precedence` | Set an exceptional precedence, as for Christmas, Epiphany or All Souls. |
+| `names_temporal_baseline` | Name an existing temporal day without changing its precedence. |
+| `date_rule` | Apply annual scheduling, such as a national Sunday observance. |
+| `transfer_rule` | Apply a particular transfer rule when a celebration is impeded. |
+| `subject`, `principal_patron` | Resolve Lord/saint solemnity conflicts and preserve patronal exceptions. |
+| `colour` | Set the celebration's colour. |
+| `source_page`, `amendment`, `source_id`, `rule_source` | Record the source for an entry or rule. |
 
-Colours follow [GIRM 346](https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20030317_ordinamento-messale_en.html), with explicit white for the Conversion of Paul, Chair of Peter, John on 27 December and church dedications. Colour is stored as a fact, never inferred from a name by the runtime engine.
+Colours follow [GIRM 346](https://www.vatican.va/roman_curia/congregations/ccdds/documents/rc_con_ccdds_doc_20030317_ordinamento-messale_en.html).
+They are stored explicitly, including white for the Conversion of Paul, Chair
+of Peter, St John on 27 December and church dedications.
 
-Full overlay application is transactional. Invalid dates, duplicate additions, duplicate override/reassignment targets, unknown targets and unknown change fields are rejected. Annual lookup retains candidates; rank and precedence determine which is observed.
+An overlay is validated before its changes are accepted. Invalid dates,
+duplicate additions or change targets, unknown IDs and unknown fields are
+rejected. Daily selection still considers competing entries; loading the file
+does not decide which celebration wins.
 
-## Audited national distinctions
+## National entries
 
-David is a feast in England and a solemnity in Wales. George is a solemnity in England. Newman is a national feast under the [2020 decree](https://www.liturgyoffice.org.uk/Calendar/National/October/SJHN-CDW-Decrees.pdf); Denis and Leonardi are reassigned to 10 October in those calendars. Adalbert is reassigned to 24 April in England. Walsingham is a feast in England under the [2024 decision](https://www.cbcew.org.uk/our-lady-of-walsingham-now-a-feast-in-dioceses-of-england/). Elizabeth of Hungary is optional alongside Hilda and Hugh in England, remaining obligatory in Wales.
+Some differences between the supplied calendars:
 
-The Welsh optional memorials of Asaph, John Jones, Philip Evans and John Lloyd, David Lewis, and John Roberts follow the [national summary](https://www.liturgyoffice.org.uk/Calendar/National/Wales1.shtml) and 2026 calendar. Older descriptive pages contain conflicting memorial labels. Those labels no longer supply obligatory ranks here.
+- St David is a feast in England and a solemnity in Wales; St George is a
+  solemnity in England.
+- Newman is a national feast under the [2020 decree](https://www.liturgyoffice.org.uk/Calendar/National/October/SJHN-CDW-Decrees.pdf).
+  Denis and Leonardi move to 10 October in those calendars. Adalbert moves to
+  24 April in England.
+- Walsingham is a feast in England under the [2024 decision](https://www.cbcew.org.uk/our-lady-of-walsingham-now-a-feast-in-dioceses-of-england/).
+- Elizabeth of Hungary is optional alongside Hilda and Hugh in England, but
+  remains obligatory in Wales.
+- The Welsh memorials of Asaph, John Jones, Philip Evans and John Lloyd, David
+  Lewis, and John Roberts are optional. This follows the
+  [national summary](https://www.liturgyoffice.org.uk/Calendar/National/Wales1.shtml)
+  and 2026 calendar; older descriptive pages have conflicting labels.
 
-The original [universal baseline](https://www.liturgyoffice.org.uk/Calendar/Info/General-Roman-Calendar.pdf) predates several amendments. Per-entry Holy See decree references record those updates. Existing IDs remain stable when designations change; Irenaeus now includes Doctor of the Church without changing his identity.
+The [universal baseline](https://www.liturgyoffice.org.uk/Calendar/Info/General-Roman-Calendar.pdf)
+predates several amendments. Later decrees are recorded in the affected entries.
+Keep IDs stable when updating names or designations: Irenaeus becoming a Doctor
+of the Church, for example, does not require a new ID.
 
-Movable celebrations, optional choice policy, seasonal boundaries, impediments and suppression are implemented in C++. See [calendar engine status](../../CALENDAR_ENGINE_STATUS.md) for the full rule authorities, validation results, computational range, date-only conventions and provisional anticipation of John the Baptist in the resolved 2038 Corpus Christi occurrence.
+For movable dates, transfer rules, tested coverage and the provisional 2038
+St John transfer, see [Calendar status](../../CALENDAR_ENGINE_STATUS.md).

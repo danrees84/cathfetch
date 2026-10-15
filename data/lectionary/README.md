@@ -1,60 +1,115 @@
 # Mass reading references
 
-## Scripture-summary collation — 15 October 2026
+`roman_references.json` contains 807 reading sets, with references and sources.
+It stores citations rather than Scripture text. The sources include Liturgy
+Office tables, official diocesan ordos and bishops' reference guides. Complete
+collation against the current England and Wales Lectionary is still outstanding.
 
-The offline summary feature reuses these reading identities and preserves the v1 policy below. See the [editorial dataset guide](../summaries/README.md) and [generated review collection](../../docs/scripture-summaries/README.md).
+## What v1 selects
 
-[Five further range corrections](summary_reference_audit.json) address four apparent errors inherited from published tables. Their independent sources are retained in each affected record and in the ledger. Published-table status remains provisional; summary coverage does not upgrade reference certification. The earlier precision-correction and comparison ledgers remain separate evidence with their original scope.
+V1 uses universal Sunday and weekday readings, feasts and solemnities. Memorials
+use the regular weekday readings, including those with proper passages in the
+full Lectionary. National saints' propers are omitted.
 
-## V1 selection policy — 15 October 2026
+Universal celebrations keep their local dates: the calendar engine resolves a
+General Roman reading day using the selected calendar's scheduling rules.
+The displayed celebration still comes from the full regional calendar.
+The Lectionary engine receives the reading day and selects complete sets that
+apply to `grc`.
 
-V1 selects the universal Sunday/weekday cycle and universal feasts and solemnities. All memorials retain regular weekday readings, including memorials with proper passages in the full Lectionary. National saints' propers are omitted. This is an intentionally simplified reference display, not the complete proper-reading policy for every observed Mass.
+National sets, partial memorial sets and the old `memorials` array remain in the
+file for future work. V1 does not use those policies or merge proper readings
+into a weekday set. The year reports label this policy `universal_v1`.
 
-The calendar engine resolves the reading day from General Roman fixed definitions using the selected calendar's scheduling of universal celebrations. Epiphany, Ascension, Corpus Christi and national scheduling of universal holydays therefore retain their local dates. The displayed observance still uses the full selected regional calendar. The Lectionary engine receives the universal reading day, selects only `grc`-applicable complete sets and never loads calendar files itself.
+## Record format
 
-The curated national records, proper memorial slots and old `memorials` JSON array are retained for future work. V1 does not load memorial policies, merge proper slots or offer national/Common selections for those days. Within-reading alternatives and universal Mass forms remain supported. The year diagnostic and coverage report identify this policy as `universal_v1`.
+Schema version 1 has `schema_version`, `edition`, `reference_convention`,
+`entries` and `memorials` at the root.
 
-The schema descriptions below include retained source metadata; they do not enable the former proper-aware selection policy.
+| Field | Meaning |
+| --- | --- |
+| `id` | Unique reading-set ID. |
+| `day_id` | Celebration ID or temporal key. |
+| `cycle` | `any`, A/B/C or I/II. |
+| `mass` | `day`, `vigil`, `vigil-extended`, `night`, `dawn`, `evening` or `passion`. |
+| `calendars` | Calendars to which the record applies. |
+| `day_type` | `any`, `sunday` or `weekday`; optional. |
+| `alternative_only` | A permitted alternative that is not selected by default. |
+| `permitted_alternative` | Marks a selected set that is itself an optional provision. |
+| `use` | `proper`, `accommodated` or `weekday`. Accommodated sets are suggested choices. |
+| `partial` | An archived set containing only proper memorial slots; excluded by v1. |
+| `readings` | Ordered reading slots. |
+| `source`, `source_note`, `verification` | Required source and verification details. |
+| `lectionary_number` | Number from a source, or null when unknown. |
 
-This dataset stores citation facts only. It includes no Scripture translation, psalm response, Missal prayer or copied biography. See [the engine status](../../LECTIONARY_ENGINE_STATUS.md) for sources, coverage, verified rules and unresolved current-edition differences.
+`passion` identifies Good Friday's liturgy, not a Mass. If two records could
+both be the default for the same form, loading fails; file order does not break
+the tie.
 
-`roman_references.json` contains 807 sets provisionally collated from the Liturgy Office, official diocesan ordos and French bishops’ reference guides. **It is not a verified transcription of the 2024 England and Wales Lectionary.** Psalm and verse conventions are source-specific: older Liturgy Office and French sources generally use Septuagint numbering; Hyderabad generally uses Hebrew numbering. Mixed/dual numbering is retained where supplied. No automatic conversion of psalm numbers or verses is attempted. Unspecified Lectionary numbers remain null.
+Each reading slot has a `role`, `reference` and optional `alternatives`. An
+alternative has its own `reference` and a `condition`, such as a shorter form.
+Usual roles are `first`, `psalm`, `second`, `acclamation` and `gospel`. Palm
+Sunday can add `procession_gospel`. Vigils can use `reading_1`–`reading_7`,
+`psalm_1`–`psalm_7` and `epistle`.
 
-## Schema version 1
+`psalm_numbering` is `unspecified`, `lxx` or `hebrew`. Keep the source's
+convention: the older Liturgy Office and French tables generally use LXX
+numbering, while Hyderabad generally uses Hebrew numbering. Mixed and dual
+numbers are retained. The separate Bible lookup handles the conversion.
+Some sources omit Gospel acclamations; these remain absent.
 
-The root contains `schema_version`, `edition`, `reference_convention`, `entries` and `memorials`.
+All supplied records have `verification=published_table`. Use `current_edition`
+only after checking the complete references and options against the applicable
+edition. That status requires `verification_sources` with HTTPS URLs and a
+`verification_note`. Those fields can also document partial checks without
+changing the status.
 
-Each entry has a stable `id` and a `day_id` identifying either the calendar's observed celebration or a temporal key. Selectors are `cycle` (`any`, A/B/C, I/II), `mass`, `calendars` and optional `day_type` (`any`, `sunday`, `weekday`). There is no implicit file-order override or regional priority: overlapping defaults are invalid. To replace a general assignment for a territory, remove that territory from its applicability before adding a national record.
+## Temporal keys
 
-Forms are `day`, `vigil`, `vigil-extended`, `night`, `dawn`, `evening` and `passion`. The last describes Good Friday's liturgy, not a Mass. `alternative_only` records permitted sets that must not be selected as the default. `permitted_alternative` identifies a selected set which is itself an optional provision, rather than counting every set with an available option as an alternative selection. `use` distinguishes `proper`, `accommodated` and `weekday`; accommodated sets are suggestions, not uniquely mandatory assignments.
+Weekdays are numbered Sunday=0, Monday=1, through Saturday=6.
 
-`readings` is an ordered array. Slots may also have `psalm_numbering` (`unspecified`, `lxx` or `hebrew`) when the source establishes that convention; the value is retained for full-text lookup. This supports the separate full-text lookup without changing the citation or its verification status. Slots have `role`, `reference` and optional `alternatives` containing `reference` plus a human-readable `condition`. Normal roles are `first`, `psalm`, `second`, `acclamation` and `gospel`. Palm Sunday can add `procession_gospel`; Vigils can use `reading_1`…`reading_7`, `psalm_1`…`psalm_7` and `epistle`. Non-biblical acclamation texts are not reproduced; some sources also omit an acclamation citation, which remains absent rather than invented. The source qualifications distinguish such tables from complete current-edition records.
-
-`partial: true` identifies archived proper memorial slots; v1 excludes these records from selection. The retained `memorials` array documents the earlier audited policies but is not loaded by v1. All memorials follow the regular temporal cycle under the explicit v1 policy.
-
-Every record requires `source`, `source_note` and `verification`. `published_table` acknowledges a traceable assignment without asserting current-edition collation. `current_edition` is reserved for a record whose complete references and options have actually been checked against the current applicable edition; no supplied record currently makes that claim. That status requires nonempty `verification_sources` (HTTPS URLs) and `verification_note` describing the evidence and scope. These fields may also record partial corroboration without upgrading a provisional set. `lectionary_number` is optional/null unless independently supplied by the cited source.
-
-Temporal keys use Sunday=0, Monday=1…Saturday=6:
-
-| Pattern | Meaning |
+| Pattern | Day |
 | --- | --- |
 | `temporal:ordinary:W:D` | Ordinary Time week and weekday |
-| `temporal:advent:W:D` | Advent week and weekday before the date-specific provision |
-| `temporal:advent:december:N` | 17–24 December weekday |
+| `temporal:advent:W:D` | Advent week and weekday before the date-specific readings |
+| `temporal:advent:december:N` | Weekdays, 17–24 December |
 | `temporal:ash_wednesday` | Ash Wednesday |
 | `temporal:after_ashes:D` | Thursday–Saturday after Ash Wednesday |
 | `temporal:lent:W:D` | Lent weeks 1–5 |
 | `temporal:holy_week:D` | Palm Sunday through Holy Saturday |
-| `temporal:easter:W:D` | Easter weeks 1–7; Easter Sunday itself uses its observed ID |
+| `temporal:easter:W:D` | Easter weeks 1–7; Easter Sunday uses its celebration ID |
 | `temporal:christmas:december:N` | Christmas octave weekdays |
 | `temporal:christmas:january:N` | January weekdays before Epiphany |
 | `temporal:christmas:sunday2` | Second Sunday after Christmas |
-| `temporal:after_epiphany:N` | 7–12 January sequence for fixed Epiphany, or Monday–Saturday sequence for Sunday Epiphany |
+| `temporal:after_epiphany:N` | 7–12 January for fixed Epiphany, or Monday–Saturday after Sunday Epiphany |
 
-Do not add guessed assignments to eliminate coverage gaps. Keep pastoral alternatives conditional, preserve the source's verse conventions and record independent corrections in `source_note`. Run `make test` and regenerate the year diagnostic after changing records. The checked-in coverage TSV records the 2024–2030 sweep for this dataset.
+## Changing the data
 
-`coverage_2024_2030.tsv` separates availability from current-edition verification and reports alternative selections separately from available options. `reference_audit.json` is a partial independent passage-comparison ledger, including explicit unavailable comparisons for every uncollated record. It is not certification. Run `python3 tools/lectionary_audit.py` to check its identities, sources and compared citations against the current assignments. See the status document for exact counts and remaining access blockers.
+Use sourced assignments, keep conditional alternatives conditional and record
+corrections in `source_note`. Run `make test` after changes and regenerate the
+year diagnostic. The summary collection uses these same IDs; see its
+[data guide](../summaries/README.md).
 
-`universalis_reconciliation_2026.json` records the user-requested full public Birmingham date calendar and the nine publicly accessible Mass-page citation sets collected on 14 October 2026. It preserves diocesan differences and repeated reading roles without importing them as national defaults. Universalis redirects Mass dates outside its public window to an access notice; the audit tool records unavailable pages and does not bypass this restriction. See `tools/universalis_audit.py --help` and the status document for commands and exact verification scope.
+The audit files record different checks:
 
-`citation_precision_audit.json` records targeted manual collation of 41 subverse limits in 39 sets. Each correction retains the previous citation, the Hallam 2025–26 page/line and a second bishops' reference. Three conflicting comparisons retain the sourced citation and an explicit reason for further review. Run `python3 tools/current_lectionary_audit.py check data/lectionary/current_ordo_audit.json` to check both the current-ordo report and this manual evidence against the live data. This checks freshness; the complete sets remain `published_table`, and American psalm provisions or regional options are not imported as England and Wales authority.
+| File | Contents |
+| --- | --- |
+| [coverage_2024_2030.tsv](coverage_2024_2030.tsv) | Date coverage, verification and alternative selections. |
+| [reference_audit.json](reference_audit.json) | Partial independent passage comparisons, with unmatched records listed too. |
+| [current_ordo_audit.json](current_ordo_audit.json) | Comparisons with the Hallam 2025–26 ordo. |
+| [citation_precision_audit.json](citation_precision_audit.json) | 41 corrected citation limits in 39 sets, plus three retained differences. |
+| [summary_reference_audit.json](summary_reference_audit.json) | Five range corrections made while preparing summaries. |
+| [universalis_reconciliation_2026.json](universalis_reconciliation_2026.json) | The Birmingham date calendar and nine accessible Mass-page citation sets collected on 14 October 2026. |
+
+```sh
+python3 tools/lectionary_audit.py
+python3 tools/current_lectionary_audit.py check data/lectionary/current_ordo_audit.json
+./build/lectionary_year 2026 england > /tmp/readings-2026.tsv
+```
+
+These commands check that the evidence still matches the data. They do not
+certify a whole reading set against the current edition. The Universalis report
+also retains diocesan differences and repeated reading roles; those are not
+imported as national defaults. Its tool respects the site's public date window.
+See [Lectionary status](../../LECTIONARY_ENGINE_STATUS.md) for the results and
+remaining work.

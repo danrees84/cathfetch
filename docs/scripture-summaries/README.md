@@ -1,28 +1,30 @@
-# Scripture summaries: editorial review
+# Scripture summary review
 
-Generated from `data/summaries/roman_summaries.json` by `python3 tools/summary_review.py export`.
+Read the summaries by season and cycle below. Each entry includes its selected verse, commentary, sources and review status.
 
-**AI drafts, not human-reviewed.** These are editorial selections, not officially designated verses. Quotation matching checks the pinned electronic Douay–Rheims source; it does not independently proofread it. No assignment is certified against the complete 2024 England and Wales Lectionary.
+The commentary was drafted with AI assistance and awaits human review. Quotations match the bundled Douay–Rheims text, which has not been independently proofread. Complete checks against the current England and Wales Lectionary are still outstanding.
 
-V1 uses universal readings with local scheduling, omitting memorial and national propers. Archival sets are included below for visibility. Any absent commentary is explicitly marked.
+V1 uses universal readings with local feast dates. Archived memorial and national proper sets are included for review, but are not selected by the app.
+
+To update this collection from `data/summaries/roman_summaries.json`, run `make summary-review`. See the [data guide](../../data/summaries/README.md) for editing instructions.
 
 | Measure | Count |
 | --- | ---: |
-| total stored reading sets | 807 |
-| v1 universal complete sets | 780 |
-| sets with summaries | 807 |
-| v1 sets with summaries | 780 |
-| distinct commentaries | 442 |
-| reference sets current edition verified | 0 |
-| quotations bundled source checked | 807 |
-| quotations independently proofread | 0 |
-| ai drafts | 807 |
-| human reviewed | 0 |
+| Stored reading sets | 807 |
+| Complete universal sets used by v1 | 780 |
+| Sets with summaries | 807 |
+| V1 sets with summaries | 780 |
+| Distinct commentaries | 442 |
+| Sets verified against the current edition | 0 |
+| Quotations matched to the bundled Bible | 807 |
+| Quotations independently proofread | 0 |
+| Drafts awaiting human review | 807 |
+| Human-reviewed summaries | 0 |
 | Missing summaries | 0 |
 
 ## Collection
 
-Passage alternatives compatible with the selected summary: **116 / 119**. Incompatible v1 alternatives: **0**; incompatible archival proper alternatives: **3**. See `alternative-compatibility.json` for the individual records. This reports citation compatibility, not current-edition approval.
+The chosen verses also fit 116 of the 119 stored passage alternatives. 3 archived proper alternatives need another selection; 0 of these conflicts affect v1. See [the compatibility report](alternative-compatibility.json) for the individual records.
 
 - [Advent](advent.md): 39/39 reading sets.
 - [Christmas](christmas.md): 42/42 reading sets.
@@ -76,4 +78,4 @@ Passage alternatives compatible with the selected summary: **116 / 119**. Incomp
 | Sundays / C | 10 | 6 | 26 | 13 |
 | Sundays / any | 1 | 0 | 0 | 2 |
 
-Counts describe stored reading sets, not the frequency of dates in a civil year. Shared entries count for each legitimate cycle or Mass form. Sunday groups identify explicit Sunday records, including stored alternatives, rather than counting civil Sundays. Coverage describes this catalogue; it does not establish a complete or current-edition Lectionary. Near-duplicate candidates are listed in `coverage.json` for review.
+These counts are per stored reading set, so a shared passage can appear under several cycles or Mass forms. The Sunday rows include stored alternatives, not just the Sundays in a particular year. For full figures and possible repeated commentary, see [coverage](coverage.json) and [distribution](distribution.json).

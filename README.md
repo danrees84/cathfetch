@@ -1,25 +1,18 @@
 # Cathfetch
 
-A small, native Catholic terminal application, loosely inspired by Fastfetch.
-Cathfetch displays the liturgical day, with optional Mass reading references,
-offline Scripture text and a short Scripture summary.
+Cathfetch is a small Catholic terminal app, loosely inspired by Fastfetch. It
+shows the day's liturgical season and celebration, with optional Mass reading
+references, offline Bible text and a short Scripture summary.
 
-Written in C++20 and developed on Arch Linux, it is also a project for learning
-modern C++. Its calendar, Lectionary and Scripture engines are independent of
-the terminal interface, with future reuse in Horarium in mind.
+It runs offline on Linux. The calendar supports the General Roman Calendar,
+Europe, England and Wales. The reading data and summaries are still being
+reviewed; see [Current coverage](#current-coverage).
 
-**Development preview:** the application works offline, but Lectionary
-current-edition verification and human editorial review of the summaries remain
-incomplete. See [coverage and limitations](#coverage-and-limitations).
+## Build
 
-## Build and run
-
-Requirements: Linux, a C++20 compiler, GNU Make, Python 3 and the
-[nlohmann/json headers](https://archlinux.org/packages/extra/any/nlohmann-json/).
-Python is used for build-time data preparation and tests; normal application
-execution uses C++ and requires no network connection or AI service.
-
-On Arch Linux, install the dependencies:
+You need a C++20 compiler, GNU Make, Python 3 and
+[nlohmann/json](https://archlinux.org/packages/extra/any/nlohmann-json/).
+On Arch Linux:
 
 ```sh
 sudo pacman -S --needed gcc make python nlohmann-json git
@@ -30,37 +23,22 @@ From the project directory:
 ```sh
 make -j4 all
 ./build/cathfetch
-./build/cathfetch --help
 ```
 
-The build prepares the offline Bible index from the bundled source. Keep the
-`build/` and `data/` directories in their project layout when running an
-uninstalled copy. The executable can be called from any working directory.
+The build creates a Bible index from the bundled XML. Python is needed for this
+step and for the tests; the app itself is C++.
 
 ## Usage
 
 ```sh
-# Today's liturgical day, with the cross
 ./build/cathfetch --cross
-
-# A chosen date and regional calendar
 ./build/cathfetch --date=08122026 --calendar=england --cross
-
-# Compact Mass reading references
 ./build/cathfetch --date=30112025 --readings
-
-# A selected Scripture quotation and original commentary
-./build/cathfetch --date=30112025 --summary
-
-# Combine the cross, references and summary
 ./build/cathfetch --date=30112025 --cross --readings --summary
-
-# Full offline verses for the Christmas Night Mass
 ./build/cathfetch --date=25122026 --mass=night --full-verses
 ```
 
-For example, `--date=30112025 --readings` produces the following plain output
-at a sufficiently wide terminal width:
+For example, `--date=30112025 --readings` shows:
 
 ```text
 Sunday, 30 November 2025
@@ -71,119 +49,83 @@ Readings:
 Isa 2:1-5; Ps 121:1-2, 4b-5, 6-7, 8-9 r. 1; Rom 13:11-14; Matt 24:37-44
 ```
 
-| Option | Purpose |
+| Option | What it does |
 | --- | --- |
-| `-h`, `--help` | Show usage and available options. |
-| `--date=DDMMYYYY` | Choose a date; the default is today in local time. |
-| `--calendar=NAME` | Select `grc` (default), `europe`, `england` or `wales`. |
-| `--cross` | Show the cross beside or above the information. |
-| `--readings` | Show compact Mass reading references. |
-| `--summary` | Show a stored quotation and commentary, independently of `--readings`. |
-| `--full-verses` | Show offline Douay–Rheims text; implies `--readings`. |
-| `--mass=FORM` | Choose an available liturgical form; implies `--readings`. |
+| `-h`, `--help` | Show help. |
+| `--date=DDMMYYYY` | Choose a date. Defaults to today in local time. |
+| `--calendar=NAME` | Choose `grc` (default), `europe`, `england` or `wales`. |
+| `--cross` | Show the cross. |
+| `--readings` | Show Mass reading references. |
+| `--summary` | Show a Scripture quotation and commentary. Works with or without `--readings`. |
+| `--full-verses` | Show the readings in Douay–Rheims; implies `--readings`. |
+| `--mass=FORM` | Choose a Mass or liturgical form; implies `--readings`. |
 
-Options with values also accept a space, such as `--calendar wales`.
-Available form names are `day`, `vigil`, `vigil-extended`, `night`, `dawn`,
-`evening` and `passion`. A form must exist for the selected day; `passion`
-identifies Good Friday's liturgy. Without `--mass`, the default is normally the
-daytime Mass. Holy Saturday has no daytime Mass; use `--mass=vigil` for the
-Easter Vigil.
+You can also write values with a space: `--calendar wales`.
 
-The season and named celebration have their own liturgical colour indicators.
-Long text wraps within the available width. With `--cross`, narrow terminals
-switch to a stacked layout. Redirected output omits ANSI colours; width falls
-back to `COLUMNS`, then 80 columns, when a terminal width is unavailable.
+Mass forms are `day`, `vigil`, `vigil-extended`, `night`, `dawn`, `evening` and
+`passion`, where available. The default is usually daytime Mass. For example,
+Christmas has separate Night, Dawn and Day readings. Holy Saturday has no daytime
+Mass; `--mass=vigil` selects the Easter Vigil. Good Friday uses `passion` for its
+liturgy.
+
+The coloured dots show the season's colour and the celebration's colour. Text
+wraps to the terminal width, and the cross moves above it in narrow windows.
+Redirected output has no ANSI colours. When no terminal width is available,
+Cathfetch uses `COLUMNS`, or 80 columns if it is unset.
 
 ## Install
-
-For a user installation:
 
 ```sh
 make install PREFIX="$HOME/.local"
 ~/.local/bin/cathfetch --summary
 ```
 
-The executable and data are installed under `bin/` and `share/cathfetch/` in
-that prefix. Add `~/.local/bin` to your `PATH` to invoke it as `cathfetch`.
-Packagers can use `DESTDIR` for a staged installation. `CATHFETCH_DATA_DIR`
-overrides the complete data directory; see the [development guide](docs/DEVELOPMENT.md)
-for details.
+Add `~/.local/bin` to your `PATH` to run it as `cathfetch`. Data is installed in
+`~/.local/share/cathfetch/`.
 
-## Coverage and limitations
+Both installed and development builds work from any directory. An uninstalled
+build needs the project's `build/` and `data/` layout intact. For custom data
+locations or packaging with `DESTDIR`, see [Development](docs/DEVELOPMENT.md).
 
-- **Calendar:** contemporary General Roman Calendar with European, England and
-  Wales overlays, movable celebrations, precedence, colours and transfers.
-  Accepted dates are 1583–4099, using the contemporary calendar snapshot rather
-  than reconstructing historical practice. Full-year regressions cover
-  2024–2030 in all four selections; selected boundary years are tested too.
-- **V1 reading policy:** universal Sunday and weekday readings, feasts and
-  solemnities, retaining local scheduling of universal celebrations. Memorials
-  use the regular weekday readings; national saints' propers are omitted.
-  The displayed regional celebration can therefore differ from the reading
-  selection's context.
-- **References:** the stored catalogue contains 807 reading sets. Published
-  sources and correction evidence are recorded, but complete verification
-  against the current England and Wales Lectionary remains outstanding.
-  Source-specific Psalm numbering is preserved.
-- **Scripture:** the bundled 73-book Douay–Rheims American Edition of 1899 is a
-  public-domain electronic transcription, with source and mapping provenance.
-  It is not the translation currently proclaimed in England and Wales. Four
-  documented Tobit passage correspondences remain unavailable. Partial-verse
-  references display whole verses with an explanatory notice.
-- **Summaries:** all 807 stored sets have prewritten editorial selections and
-  commentary. These remain AI drafts awaiting human review. Quotations are
-  checked against the bundled Bible; technical checks do not constitute
-  independent proofreading or theological approval. Missing content produces
-  an explicit diagnostic rather than a generated substitute.
-- **Scope:** diocesan propers, historical calendars and all ritual or votive
-  Masses are outside current coverage. A date-only calendar cannot represent
-  every transition within a day. The 2038 anticipation of St John's Nativity
-  to 23 June remains a documented provisional transfer.
+## Current coverage
 
-Detailed evidence, policies and remaining work:
+Cathfetch uses a contemporary calendar snapshot, including movable celebrations,
+precedence and transfers. It accepts dates from 1583 to 4099, but does not
+reconstruct historical calendars or predict future decrees. Full-year tests cover
+2024–2030 in all four calendars, with further boundary years tested separately.
+Diocesan calendars and ritual or votive Masses are outside the current scope.
+The proposed transfer of St John's Nativity to 23 June 2038 remains provisional.
 
-- [Calendar engine status](CALENDAR_ENGINE_STATUS.md)
-- [Lectionary engine status](LECTIONARY_ENGINE_STATUS.md)
-- [Scripture Summary status](SCRIPTURE_SUMMARY_STATUS.md)
-- [Summary editorial collection, coverage and distribution](docs/scripture-summaries/README.md)
-- [Bible source and verse correspondences](data/bibles/README.md)
+V1 uses universal readings, retaining local dates for universal feasts such as
+Corpus Christi. Memorials use weekday readings; national saints' proper readings
+are omitted. The regional celebration shown on screen can therefore differ from
+the occasion used to select readings.
 
-## Tests and diagnostics
+There are 807 stored reading sets. Their sources are recorded, but they have not
+all been checked against the current England and Wales Lectionary. Psalm
+numbering follows the cited source.
 
-```sh
-make -j4 test
+Full verses use the 73-book Douay–Rheims American Edition of 1899. Four Tobit
+passages cannot be supplied in full because the textual traditions differ.
+Partial-verse references show whole verses with a notice.
 
-# Tab-separated year-at-a-glance reports
-./build/calendar_year 2026 england > /tmp/calendar-2026.tsv
-./build/lectionary_year 2026 england > /tmp/readings-2026.tsv
-./build/summary_year 2026 england > /tmp/summaries-2026.tsv
+The summaries were drafted with AI assistance and still need human review.
+Quotations are checked against the bundled Bible. All stored reading sets have
+summaries; missing content is reported on screen.
 
-# Reproduce the Markdown editorial collection and coverage reports
-make summary-review
-```
+For the details:
 
-Tests cover calendar and reading resolution, full-year sweeps, transfers,
-Scripture mappings, quotations, invalid data, terminal wrapping and installation.
-Passing tests establish software behaviour, not ecclesiastical approval or
-complete factual certification of the data.
+- [Calendar status](CALENDAR_ENGINE_STATUS.md)
+- [Lectionary status](LECTIONARY_ENGINE_STATUS.md)
+- [Summary status](SCRIPTURE_SUMMARY_STATUS.md) and [review collection](docs/scripture-summaries/README.md)
+- [Bible text and verse numbering](data/bibles/README.md)
 
-For the code structure and validation workflow, see [Development](docs/DEVELOPMENT.md).
-Corrections should preserve source provenance and keep liturgical rules separate
-from factual calendar and reading data.
+## Licence
 
-## Licensing and sources
+Cathfetch's original code, documentation and commentary are licensed under
+**GPL-3.0-or-later**. See [LICENSE](LICENSE) for the terms and warranty disclaimer.
+[LICENSING.md](LICENSING.md) explains the separate terms for bundled material.
 
-Cathfetch's original code, documentation and commentary are licensed under the
-**GNU General Public License, version 3 or (at your option) any later version**
-(`GPL-3.0-or-later`). See [LICENSE](LICENSE) for the full terms and warranty
-disclaimer, and [LICENSING.md](LICENSING.md) for scope and third-party notices.
-
-Bundled material retains its own source status and attribution requirements:
-
-- [Bible text and mapping provenance](data/bibles/README.md), including the
-  public-domain Scripture source and CC BY 4.0 STEPBible-derived mappings.
-- [Calendar definitions and sources](data/calendars/README.md).
-- [Lectionary references and source metadata](data/lectionary/README.md).
-- [Original summary data and editorial status](data/summaries/README.md).
-
-Cathfetch does not bundle the copyrighted ESV–CE or Abbey Lectionary texts.
+Sources and data notes are in the guides for the [calendar](data/calendars/README.md),
+[readings](data/lectionary/README.md), [Bible](data/bibles/README.md) and
+[summaries](data/summaries/README.md).
