@@ -11,6 +11,8 @@ std::string terminalColourCode(LiturgicalColour colour);
 
 // Width of stdout's terminal, then a valid COLUMNS value, then 80 cells.
 std::size_t terminalColumns();
+// Display cells are not byte counts: colours occupy no cells, and some Unicode
+// characters occupy two. Use these helpers instead of string::size() for layout.
 std::size_t visibleTerminalWidth(std::string_view text);
 std::vector<std::string> wrapTerminalText(std::string_view text, std::size_t columns,
                                         std::size_t continuationIndent = 0);

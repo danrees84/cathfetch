@@ -1,3 +1,6 @@
+// Literal text checks catch wrong passages that happen to have valid addresses.
+// The later coverage checks separately test all stored references and daily
+// selections, keeping known unavailable Tobit correspondences explicit.
 #include "scripture.h"
 #include "lectionary_loader.h"
 #include "lectionary_resolver.h"

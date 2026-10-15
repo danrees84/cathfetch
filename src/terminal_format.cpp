@@ -6,6 +6,7 @@
 #include <cwchar>
 #include <locale.h>
 #include <stdexcept>
+#include <utility>
 #include <sys/ioctl.h>
 #include <unistd.h>
 
@@ -40,6 +41,8 @@ namespace
 {
 // wcwidth uses the calling thread's character locale. Keep UTF-8 width handling
 // independent of main's locale, without changing process-wide date formatting.
+// The destructor restores the old locale on every exit from the scope, including
+// exceptions. This scope-bound cleanup is the C++ pattern commonly called RAII.
 class CharacterLocale
 {
 public:
@@ -57,6 +60,7 @@ private:
 
 struct Cell
 {
+    // text contains the original bytes; width counts terminal display cells.
     std::string text;
     std::size_t width;
     bool space = false;

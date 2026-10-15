@@ -20,36 +20,27 @@
 
 std::chrono::year_month_day calculateEaster(int year)
 {
+    // Keep the published variable names so this formula can be checked against
+    // its reference. All divisions below are integer divisions, not fractions.
+    const int y = year;
 
-	int y = year;
+    // Century and position within the 19-year lunar cycle.
+    const int c = y / 100;
+    const int n = y - 19 * (y / 19);
+    const int k = (c - 17) / 25;
+    int i = c - c / 4 - (c - k) / 3 + 19 * n + 15;
 
-	// Century and 19-year lunar cycle.
-	int c = y / 100;             
-	int n = y - 19 * (y / 19); 
-	int k = (c - 17) / 25; 
-	int i = c - c / 4 - (c - k) / 3 + 19 * n + 15;
+    // Find the ecclesiastical Paschal full moon, including its exceptional cases.
+    i = i - 30 * (i / 30);
+    i = i - (i / 28) * (1 - (i / 28) * (29 / (i + 1)) * ((21 - n) / 11));
 
-	// Calculate the ecclesiastical Paschal full moon offset.
-	// Reduce to a 30-day cycle and apply the exceptional-case correction.
-	i = i - 30 * ( i / 30 );
-	i = i - ( i / 28 ) * ( 1 - ( i / 28 ) * ( 29 / ( i + 1 ) ) * ( ( 21 - n ) / 11 ) );
+    // Move from that full moon to the following Sunday.
+    int j = y + y / 4 + i + 2 - c + c / 4;
+    j = j - 7 * (j / 7);
+    const int l = i - j;
 
-
-	// Apply the weekday correction to determine Easter Sunday.
-	int j = y + y / 4 + i + 2 - c + c / 4;
-	j = j - 7 * ( j / 7 );
-	int l = i - j;
-
-	// Convert the result into Gregorian month and day.
-	int m = 3 + ( l + 40 ) / 44;
-	int d = l + 28 - 31 * ( m / 4 );
-
-	std::chrono::year_month_day easterDate{
-		std::chrono::year{y},
-			std::chrono::month{unsigned(m)},
-			std::chrono::day{unsigned(d)}
-	};
-
-	return easterDate;
-
+    // Convert the result into a Gregorian month and day.
+    const int m = 3 + (l + 40) / 44;
+    const int d = l + 28 - 31 * (m / 4);
+    return {std::chrono::year{y}, std::chrono::month{unsigned(m)}, std::chrono::day{unsigned(d)}};
 }

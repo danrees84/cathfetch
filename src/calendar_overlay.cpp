@@ -1,171 +1,139 @@
 #include "calendar_overlay.h"
 #include "calendar_loader.h"
+
+#include <algorithm>
 #include <fstream>
-#include <stdexcept>
 #include <nlohmann/json.hpp>
-#include <optional>
 #include <set>
-#include "celebration_rank.h"
+#include <stdexcept>
+#include <utility>
 
-void applyRankOverrides(
-    std::vector<FixedCelebration>& celebrations,
-    const std::string& filename)
+namespace
 {
-    std::ifstream overlayFile{filename};
-
-    if (!overlayFile)
+nlohmann::json readOverlay(const std::string& filename)
+{
+    std::ifstream file{filename};
+    if (!file)
     {
-        throw std::runtime_error(
-            "Could not open calendar overlay: " + filename);
+        throw std::runtime_error("Could not open calendar overlay: " + filename);
     }
-
     nlohmann::json overlay;
-    overlayFile >> overlay;
-
-std::string sourceCalendar =
-    overlay.at("calendar").get<std::string>();
-
-    std::set<std::string> overriddenIds;
-    for (const auto& overrideEntry : overlay.at("overrides"))
-    {
-        std::string id =
-            overrideEntry.at("id").get<std::string>();
-        if (!overriddenIds.insert(id).second)
-            throw std::invalid_argument("Duplicate calendar override ID: " + id);
-        const std::set<std::string> allowedChanges{
-            "rank", "name", "feast_of_lord", "precedence", "names_temporal_baseline",
-            "date_rule", "transfer_rule", "colour", "subject", "principal_patron"};
-        for (const auto& [key, value] : overrideEntry.at("changes").items())
-        {
-            (void)value;
-            if (!allowedChanges.contains(key)) throw std::invalid_argument("Unknown overlay change: " + key);
-        }
-
-
-
-	bool found = false;
-
-        for (auto& celebration : celebrations)
-        {
-            if (celebration.id == id)
-            {
-                updateCelebrationMetadata(celebration, overrideEntry.at("changes"), sourceCalendar);
-                found = true;
-                break;
-            }
-        }
-
-        if (!found)
-        {
-            throw std::runtime_error(
-                "Unknown calendar override ID: " + id);
-        }
-    }
+    file >> overlay;
+    return overlay;
 }
 
-void applyAdditions(
-    std::vector<FixedCelebration>& celebrations,
-    const std::string& filename)
+// The private helpers work with an already parsed document. Applying a whole
+// overlay therefore reads the file once, even though it has three kinds of change.
+void addCelebrations(std::vector<FixedCelebration>& celebrations, const nlohmann::json& overlay)
 {
-    std::ifstream overlayFile{filename};
-
-    if (!overlayFile)
-    {
-        throw std::runtime_error(
-            "Could not open calendar overlay: " + filename);
-    }
-
-    nlohmann::json overlay;
-    overlayFile >> overlay;
-
-    std::string sourceCalendar =
-    overlay.at("calendar").get<std::string>();
-
+    const std::string sourceCalendar = overlay.at("calendar");
     for (const auto& entry : overlay.at("additions"))
     {
-        std::string id = entry.at("id").get<std::string>();
-
-        for (const auto& celebration : celebrations)
+        const std::string id = entry.at("id");
+        const auto existing = std::ranges::find_if(celebrations, [&](const auto& celebration) {
+            return celebration.id == id;
+        });
+        if (existing != celebrations.end())
         {
-            if (celebration.id == id)
-            {
-                throw std::runtime_error(
-                    "Duplicate calendar celebration ID: " + id);
-            }
+            throw std::runtime_error("Duplicate calendar celebration ID: " + id);
         }
-
-        auto celebration = parseFixedCelebration(entry, sourceCalendar);
-
-        celebrations.push_back(celebration);
+        celebrations.push_back(parseFixedCelebration(entry, sourceCalendar));
     }
 }
 
-void applyDateReassignments(
-    std::vector<FixedCelebration>& celebrations,
-    const std::string& filename)
+void overrideCelebrations(std::vector<FixedCelebration>& celebrations, const nlohmann::json& overlay)
 {
-    std::ifstream overlayFile{filename};
-
-    if (!overlayFile)
+    const std::string sourceCalendar = overlay.at("calendar");
+    const std::set<std::string> allowedChanges{
+        "rank", "name", "feast_of_lord", "precedence", "names_temporal_baseline",
+        "date_rule", "transfer_rule", "colour", "subject", "principal_patron"};
+    std::set<std::string> overriddenIds;
+    for (const auto& entry : overlay.at("overrides"))
     {
-        throw std::runtime_error(
-            "Could not open calendar overlay: " + filename);
+        const std::string id = entry.at("id");
+        if (!overriddenIds.insert(id).second)
+        {
+            throw std::invalid_argument("Duplicate calendar override ID: " + id);
+        }
+        // Reject misspelt fields rather than silently ignoring the intended change.
+        for (const auto& [key, value] : entry.at("changes").items())
+        {
+            (void)value; // Only the field names are checked here.
+            if (!allowedChanges.contains(key))
+            {
+                throw std::invalid_argument("Unknown overlay change: " + key);
+            }
+        }
+
+        auto celebration = std::ranges::find_if(celebrations, [&](const auto& value) {
+            return value.id == id;
+        });
+        if (celebration == celebrations.end())
+        {
+            throw std::runtime_error("Unknown calendar override ID: " + id);
+        }
+        updateCelebrationMetadata(*celebration, entry.at("changes"), sourceCalendar);
     }
+}
 
-    nlohmann::json overlay;
-    overlayFile >> overlay;
-
+void reassignDates(std::vector<FixedCelebration>& celebrations, const nlohmann::json& overlay)
+{
     std::set<std::string> reassignedIds;
-    for (const auto& reassignment : overlay.at("date_reassignments"))
+    for (const auto& entry : overlay.at("date_reassignments"))
     {
-        std::string id = reassignment.at("id").get<std::string>();
+        const std::string id = entry.at("id");
         if (!reassignedIds.insert(id).second)
+        {
             throw std::invalid_argument("Duplicate date reassignment ID: " + id);
-
-        int month = reassignment.at("new_month").get<int>();
-        int day = reassignment.at("new_day").get<int>();
-
+        }
+        const int month = entry.at("new_month");
+        const int day = entry.at("new_day");
         if (month < 1 || month > 12 || day < 1 || day > 31)
+        {
             throw std::invalid_argument("Invalid reassignment date for: " + id);
-        std::chrono::month_day newDate{
-            std::chrono::month{unsigned(month)} /
-            std::chrono::day{unsigned(day)}
-        };
-
+        }
+        const auto newDate = std::chrono::month{unsigned(month)} / std::chrono::day{unsigned(day)};
         if (!newDate.ok())
         {
-            throw std::runtime_error(
-                "Invalid reassignment date for: " + id);
+            throw std::runtime_error("Invalid reassignment date for: " + id);
         }
 
-        bool found = false;
-
-        for (auto& celebration : celebrations)
+        auto celebration = std::ranges::find_if(celebrations, [&](const auto& value) {
+            return value.id == id;
+        });
+        if (celebration == celebrations.end())
         {
-            if (celebration.id == id)
-            {
-                celebration.date = newDate;
-                found = true;
-                break;
-            }
+            throw std::runtime_error("Unknown calendar reassignment ID: " + id);
         }
-
-        if (!found)
-        {
-            throw std::runtime_error(
-                "Unknown calendar reassignment ID: " + id);
-        }
+        celebration->date = newDate;
     }
 }
+} // namespace
 
-void applyCalendarOverlay(
-    std::vector<FixedCelebration>& celebrations,
-    const std::string& filename)
+void applyRankOverrides(std::vector<FixedCelebration>& celebrations, const std::string& filename)
 {
+    overrideCelebrations(celebrations, readOverlay(filename));
+}
+
+void applyAdditions(std::vector<FixedCelebration>& celebrations, const std::string& filename)
+{
+    addCelebrations(celebrations, readOverlay(filename));
+}
+
+void applyDateReassignments(std::vector<FixedCelebration>& celebrations, const std::string& filename)
+{
+    reassignDates(celebrations, readOverlay(filename));
+}
+
+void applyCalendarOverlay(std::vector<FixedCelebration>& celebrations, const std::string& filename)
+{
+    const auto overlay = readOverlay(filename);
+    // Work on a copy so a failed change leaves the caller's calendar intact.
+    // Additions come first: later changes may refer to a newly added celebration.
     auto updated = celebrations;
-    applyAdditions(updated, filename);
-    applyRankOverrides(updated, filename);
-    applyDateReassignments(updated, filename);
+    addCelebrations(updated, overlay);
+    overrideCelebrations(updated, overlay);
+    reassignDates(updated, overlay);
     validateCalendar(updated);
     celebrations = std::move(updated);
 }

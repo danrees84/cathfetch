@@ -12,6 +12,8 @@ void updateCelebrationMetadata(FixedCelebration& celebration,
 {
     if (changes.contains("rank"))
     {
+        // A regional rank can also change the celebration's precedence class.
+        // Keep the rank's origin, not just its displayed name.
         celebration.rank = changes.at("rank").is_null()
             ? std::nullopt : std::optional{parseCelebrationRank(changes.at("rank").get<std::string>())};
         celebration.rankSourceCalendar = sourceCalendar;

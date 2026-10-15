@@ -1,6 +1,8 @@
 CXX ?= g++
 CPPFLAGS += -Isrc
 CXXFLAGS ?= -std=c++20 -O2 -Wall -Wextra -Wpedantic
+# The reusable engine excludes main and terminal rendering. Both the app and
+# regression tests link these same object files.
 ENGINE_SOURCES := $(filter-out src/main.cpp src/terminal_display.cpp src/terminal_format.cpp,$(wildcard src/*.cpp))
 ENGINE_OBJECTS := $(ENGINE_SOURCES:src/%.cpp=build/%.o)
 TESTS := $(patsubst tests/%.cpp,build/%,$(wildcard tests/*_test.cpp))
@@ -8,6 +10,7 @@ TESTS := $(patsubst tests/%.cpp,build/%,$(wildcard tests/*_test.cpp))
 all: build/cathfetch build/calendar_year build/lectionary_year build/en_dra.json
 build:
 	mkdir -p build
+# -MMD/-MP record header dependencies for later incremental builds.
 build/%.o: src/%.cpp | build
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -MMD -MP -c $< -o $@
 build/en_dra.json: data/bibles/en_dra.xml data/bibles/en_dra_metadata.json data/bibles/en_dra_versification.json tools/bible_data.py | build
@@ -23,6 +26,7 @@ build/terminal_render_test: tests/terminal_render_test.cpp build/terminal_displa
 build/scripture_test: | build/en_dra.json
 build/%_test: tests/%_test.cpp $(ENGINE_OBJECTS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
+# Stop at the first failing suite so a partial run is not reported as success.
 test: $(TESTS) all
 	@set -e; for test in $(TESTS); do $$test; done
 	@sh tests/cli_test.sh

@@ -5,24 +5,20 @@ std::optional<LiturgicalColour> seasonalColour(LiturgicalPeriod period)
     switch (period)
     {
         case LiturgicalPeriod::Advent:
+        case LiturgicalPeriod::Lent:
             return LiturgicalColour::Violet;
 
-	case LiturgicalPeriod::Christmas:
-	    return LiturgicalColour::White;
+        case LiturgicalPeriod::Christmas:
+        case LiturgicalPeriod::Easter:
+            return LiturgicalColour::White;
 
-	case LiturgicalPeriod::Easter:
-	    return LiturgicalColour::White;
+        case LiturgicalPeriod::OrdinaryTime:
+            return LiturgicalColour::Green;
 
-	case LiturgicalPeriod::Lent:
-	    return LiturgicalColour::Violet;
-
-	case LiturgicalPeriod::OrdinaryTime:
-	    return LiturgicalColour::Green;
-
-	case LiturgicalPeriod::Triduum:
-	    return std::nullopt;
-
+        case LiturgicalPeriod::Triduum:
+            // Individual Triduum days have different colours; the season alone
+            // cannot tell us which one to display.
+            return std::nullopt;
     }
-
     return std::nullopt;
 }

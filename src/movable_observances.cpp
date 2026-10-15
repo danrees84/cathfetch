@@ -3,6 +3,7 @@
 #include "easter.h"
 
 #include <stdexcept>
+#include <utility>
 
 std::vector<ObservanceCandidate> findMovableObservances(
     std::chrono::year_month_day date, std::string_view calendarName)

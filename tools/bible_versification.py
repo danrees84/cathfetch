@@ -97,6 +97,9 @@ def derive(source, metadata, xml):
             elif cells[0] in ROW_TYPES:
                 section['rows'].append((line_number, cells))
 
+    # These maps describe a direction: a cited source verse -> whole verses in
+    # the bundled Latin-numbered Bible. Equal verse numbers do not by themselves
+    # prove that two textual traditions contain the same passage.
     maps = collections.defaultdict(dict)
     evidence = collections.defaultdict(set)
     ends = collections.defaultdict(dict)

@@ -6,6 +6,7 @@
 #include <array>
 #include <iostream>
 #include <stdexcept>
+#include <utility>
 #include <vector>
 
 namespace
@@ -23,6 +24,8 @@ std::string colourDot(LiturgicalColour colour)
 std::vector<std::string> informationRows(const LiturgicalDay& day, std::size_t columns,
                                         const LectionaryDay* readings, const Bible* bible)
 {
+    // Wrap the text before combining it with the cross. Every returned string
+    // is one complete output row, so the terminal never has to wrap around art.
     auto rows = wrapTerminalText(formatCalendarDate(day.date), columns);
     const auto seasonColour = seasonalColour(day.season);
     const auto append = [&](std::string text, bool hasDot) {

@@ -17,6 +17,8 @@ std::vector<FixedCelebration> loadSelectedCalendar(
             "Unsupported calendar: " + std::string{calendarName});
     }
 
+    // Inherit from broadest to most local: Roman, Europe, England & Wales,
+    // then the selected country. Each overlay changes this same collection.
     auto celebrations = loadFixedCelebrations(
         "data/calendars/general_roman_fixed.json");
 

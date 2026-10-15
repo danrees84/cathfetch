@@ -4,6 +4,8 @@
 #include <chrono>
 #include <string_view>
 
+// "Temporal" means the seasonal calendar: Sundays, weekdays and the movable
+// celebrations related to Easter and Christmas, rather than a saint's proper.
 enum class LiturgicalPeriod
 {
     Advent,

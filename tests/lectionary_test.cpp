@@ -1,3 +1,6 @@
+// Start with the literal date/reference examples, then the loader rejection
+// cases and full-year sweep. "Available" means the v1 engine selected a set;
+// it does not claim that every citation has current-edition verification.
 #include "lectionary_cycle.h"
 #include "lectionary_loader.h"
 #include "lectionary_resolver.h"

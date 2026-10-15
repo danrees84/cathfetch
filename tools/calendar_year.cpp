@@ -1,3 +1,5 @@
+// Diagnostic tool, separate from Cathfetch's terminal presentation. It writes
+// tab-separated rows which can be saved for inspection, one row per civil date.
 #include "calendar_selection.h"
 #include "liturgical_resolver.h"
 #include "liturgical_format.h"

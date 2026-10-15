@@ -14,6 +14,8 @@ enum class CelebrationSubject { Other, Lord, Saint };
 enum class FixedDateRule { Nominal, Epiphany, AdjacentSunday, AllSouls };
 enum class SolemnityTransferRule { General, SaintJoseph, Annunciation, AfterEasterOctave, AnticipateBeforeLord };
 
+// A calendar definition stores the usual month/day. The resolver works out the
+// actual date for a particular year, including scheduling rules and transfers.
 struct FixedCelebration
 {
     std::string id;

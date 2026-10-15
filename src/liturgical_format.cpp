@@ -9,183 +9,181 @@
 
 std::string liturgicalPeriodName(LiturgicalPeriod period)
 {
-	switch (period)
-	{
-		case LiturgicalPeriod::Advent:
-			return "Advent";
+    switch (period)
+    {
+        case LiturgicalPeriod::Advent:
+            return "Advent";
 
-		case LiturgicalPeriod::Christmas:
-			return "Christmas Time";
-		case LiturgicalPeriod::Easter:
-			return "Easter Time";
-		case LiturgicalPeriod::Lent:
-			return "Lent";
-		case LiturgicalPeriod::OrdinaryTime:
-			return "Ordinary Time";
-		case LiturgicalPeriod::Triduum:
-			return "Sacred Paschal Triduum";
+        case LiturgicalPeriod::Christmas:
+            return "Christmas Time";
+        case LiturgicalPeriod::Easter:
+            return "Easter Time";
+        case LiturgicalPeriod::Lent:
+            return "Lent";
+        case LiturgicalPeriod::OrdinaryTime:
+            return "Ordinary Time";
+        case LiturgicalPeriod::Triduum:
+            return "Sacred Paschal Triduum";
 
-	}
+    }
 
-	return "Unknown";
+    return "Unknown";
 }
 
 std::string liturgicalColourName(LiturgicalColour colour)
 {
-	switch (colour)
-	{
-		case LiturgicalColour::White:
-			return "White";
-		case LiturgicalColour::Violet:
-			return "Violet";
-		case LiturgicalColour::Black:
-			return "Black";
-		case LiturgicalColour::Green:
-			return "Green";
-		case LiturgicalColour::Red:
-			return "Red";
-		case LiturgicalColour::Rose:
-			return "Rose";
-	}
+    switch (colour)
+    {
+        case LiturgicalColour::White:
+            return "White";
+        case LiturgicalColour::Violet:
+            return "Violet";
+        case LiturgicalColour::Black:
+            return "Black";
+        case LiturgicalColour::Green:
+            return "Green";
+        case LiturgicalColour::Red:
+            return "Red";
+        case LiturgicalColour::Rose:
+            return "Rose";
+    }
 
-	return "Unknown";
+    return "Unknown";
 }
 
 std::string formatCalendarDate(std::chrono::year_month_day date)
 {
-	return std::format(
-			"{:%A}, {} {:%B} {}",
-			std::chrono::sys_days{date},
-			unsigned(date.day()),
-			date.month(),
-			int(date.year())
-			);
+    return std::format(
+            "{:%A}, {} {:%B} {}",
+            std::chrono::sys_days{date},
+            unsigned(date.day()),
+            date.month(),
+            int(date.year())
+            );
 }
 
 std::string formatOrdinal(int number)
 {
-	std::string suffix = "th";
+    std::string suffix = "th";
 
-	int lastTwo = number % 100;
+    // The teens are exceptions: 11th, 12th and 13th, rather than 11st, etc.
+    const int lastTwo = number % 100;
 
-	if (lastTwo < 11 || lastTwo > 13)
-	{
-		switch (number % 10)
-		{
-			case 1:
-				suffix = "st";
-				break;
-			case 2:
-				suffix = "nd";
-				break;
-			case 3:
-				suffix = "rd";
-				break;
-		}
-	}
+    if (lastTwo < 11 || lastTwo > 13)
+    {
+        switch (number % 10)
+        {
+            case 1:
+                suffix = "st";
+                break;
+            case 2:
+                suffix = "nd";
+                break;
+            case 3:
+                suffix = "rd";
+                break;
+        }
+    }
 
-	return std::to_string(number) + suffix;
+    return std::to_string(number) + suffix;
 }
 
 std::string formatOrdinaryTimeDay(
-		std::chrono::year_month_day date, int week)
+        std::chrono::year_month_day date, int week)
 {
-	std::chrono::sys_days calendarDay{date};
-	std::chrono::weekday dayOfWeek{calendarDay};
+    std::chrono::sys_days calendarDay{date};
+    std::chrono::weekday dayOfWeek{calendarDay};
 
-	if (dayOfWeek == std::chrono::Sunday)
-	{
-		return formatOrdinal(week) + " Sunday in Ordinary Time";
-	}
+    if (dayOfWeek == std::chrono::Sunday)
+    {
+        return formatOrdinal(week) + " Sunday in Ordinary Time";
+    }
 
-	return std::format("{:%A}", calendarDay)
-		+ " of the " + formatOrdinal(week)
-		+ " Week in Ordinary Time";
+    return std::format("{:%A}", calendarDay)
+        + " of the " + formatOrdinal(week)
+        + " Week in Ordinary Time";
 }
 
 std::string formatAdventDay(
-		std::chrono::year_month_day date,
-		int week)
+        std::chrono::year_month_day date,
+        int week)
 {
-	constexpr std::array<std::string_view, 4> weekNames{
-		"First",
-		"Second",
-		"Third",
-		"Fourth"
-	};
+    constexpr std::array<std::string_view, 4> weekNames{
+        "First",
+        "Second",
+        "Third",
+        "Fourth"
+    };
 
-	std::string_view weekName = weekNames.at(week - 1);
+    std::string_view weekName = weekNames.at(week - 1);
 
-	std::chrono::sys_days calendarDay{date};
-	std::chrono::weekday dayOfWeek{calendarDay};
+    std::chrono::sys_days calendarDay{date};
+    std::chrono::weekday dayOfWeek{calendarDay};
 
-	if (dayOfWeek == std::chrono::Sunday)
-	{
-		return std::format("{} Sunday of Advent", weekName);
-	}
+    if (dayOfWeek == std::chrono::Sunday)
+    {
+        return std::format("{} Sunday of Advent", weekName);
+    }
 
-	if (date.month() == std::chrono::December &&
-			unsigned(date.day()) >= 17)
-	{
-		return std::format("{} December", unsigned(date.day()));
-	}
+    if (date.month() == std::chrono::December &&
+            unsigned(date.day()) >= 17)
+    {
+        return std::format("{} December", unsigned(date.day()));
+    }
 
-	return std::format(
-			"{:%A} of the {} Week of Advent",
-			calendarDay,
-			weekName);
+    return std::format(
+            "{:%A} of the {} Week of Advent",
+            calendarDay,
+            weekName);
 }
 
 std::string formatChristmasDay(
-		std::chrono::year_month_day date,
-		std::string_view calendarName)
+        std::chrono::year_month_day date,
+        std::string_view calendarName)
 {
-	std::chrono::sys_days calendarDay{date};
-	std::chrono::weekday dayOfWeek{calendarDay};
+    std::chrono::sys_days calendarDay{date};
+    std::chrono::weekday dayOfWeek{calendarDay};
 
-	if (date.month() == std::chrono::January &&
-			unsigned(date.day()) >= 2 &&
-			unsigned(date.day()) <= 5 &&
-			dayOfWeek == std::chrono::Sunday)
-	{
-		return "Second Sunday after Christmas";
-	}
-
-
-if (date.month() == std::chrono::December)
-{
-    switch (unsigned(date.day()))
+    if (date.month() == std::chrono::January &&
+            unsigned(date.day()) >= 2 &&
+            unsigned(date.day()) <= 5 &&
+            dayOfWeek == std::chrono::Sunday)
     {
-        case 29:
-            return "Fifth Day within the Octave of the Nativity of the Lord";
-
-        case 30:
-            return "Sixth Day within the Octave of the Nativity of the Lord";
-
-        case 31:
-            return "Seventh Day within the Octave of the Nativity of the Lord";
+        return "Second Sunday after Christmas";
     }
-}
 
+    if (date.month() == std::chrono::December)
+    {
+        switch (unsigned(date.day()))
+        {
+            case 29:
+                return "Fifth Day within the Octave of the Nativity of the Lord";
 
+            case 30:
+                return "Sixth Day within the Octave of the Nativity of the Lord";
 
-	auto epiphanyDate = calculateEpiphany(
-			int(date.year()), calendarName);
+            case 31:
+                return "Seventh Day within the Octave of the Nativity of the Lord";
+        }
+    }
 
-	auto baptismDate = calculateBaptismOfLord(
-			int(date.year()), calendarName);
+    auto epiphanyDate = calculateEpiphany(
+            int(date.year()), calendarName);
 
-	if (date > epiphanyDate && date < baptismDate)
-	{
-		return std::format(
-				"{:%A} after Epiphany",
-				std::chrono::sys_days{date});
-	}
-	return std::format(
-			"{} {:%B}",
-			unsigned(date.day()),
-			date.month()
-			);
+    auto baptismDate = calculateBaptismOfLord(
+            int(date.year()), calendarName);
+
+    if (date > epiphanyDate && date < baptismDate)
+    {
+        return std::format(
+                "{:%A} after Epiphany",
+                std::chrono::sys_days{date});
+    }
+    return std::format(
+            "{} {:%B}",
+            unsigned(date.day()),
+            date.month()
+            );
 }
 
 std::string formatEasterDay(
@@ -205,8 +203,7 @@ std::string formatEasterDay(
             calendarDay);
     }
 
-    std::chrono::days daysSinceEaster =
-    calendarDay - easterSunday;
+    const std::chrono::days daysSinceEaster = calendarDay - easterSunday;
 
     std::chrono::weekday dayOfWeek{calendarDay};
 

@@ -1,198 +1,178 @@
-#include <iostream>
-#include <chrono>
-#include <ctime>
-#include <stdexcept>
-// #include "easter.h"
-#include "temporal_calendar.h"
-#include "liturgical_format.h"
-#include "liturgical_colour.h"
-#include "terminal_format.h"
-#include "terminal_display.h"
-#include <string_view>
-#include <algorithm>
+// Start here when reading Cathfetch: parse the options, resolve the day, then
+// render it. Calendar, reading and Scripture rules live in their own modules.
 #include "calendar_selection.h"
-#include "liturgical_resolver.h"
-#include "celebration_rank.h"
 #include "lectionary_loader.h"
 #include "lectionary_resolver.h"
+#include "liturgical_resolver.h"
+#include "scripture.h"
+#include "terminal_display.h"
 
-std::chrono::year_month_day getCurrentLocalDate()
+#include <algorithm>
+#include <chrono>
+#include <ctime>
+#include <iostream>
+#include <stdexcept>
+#include <string>
+#include <string_view>
+
+namespace
 {
+// These helpers belong only to the command-line application. Keeping them in
+// an unnamed namespace prevents other source files from depending on them.
+std::chrono::year_month_day currentLocalDate()
+{
+    const std::time_t now = std::time(nullptr);
+    const std::tm* local = std::localtime(&now);
+    if (local == nullptr)
+    {
+        throw std::runtime_error("Could not retrieve local date");
+    }
 
-	std::time_t now = std::time(nullptr);
-	std::tm* local = std::localtime(&now);
-
-	if (local == nullptr)
-	{
-		throw std::runtime_error("Could not retrieve local date");
-	}
-
-	std::chrono::year_month_day localDate{
-		std::chrono::year{local->tm_year + 1900},
-			std::chrono::month{unsigned(local->tm_mon + 1)},
-			std::chrono::day{unsigned(local->tm_mday)}
-	};
-
-	return localDate;
-
+    // The C time structure counts years from 1900 and months from zero.
+    return {std::chrono::year{local->tm_year + 1900},
+            std::chrono::month{unsigned(local->tm_mon + 1)},
+            std::chrono::day{unsigned(local->tm_mday)}};
 }
+
+int parseDigits(std::string_view digits)
+{
+    // parseDate checks that every character is a digit before calling this.
+    int number = 0;
+    for (char digit : digits)
+    {
+        number = number * 10 + (digit - '0');
+    }
+    return number;
+}
+
+std::chrono::year_month_day parseDate(std::string_view value)
+{
+    const bool allDigits = std::ranges::all_of(value, [](char character) {
+        return character >= '0' && character <= '9';
+    });
+    if (value.size() != 8 || !allDigits)
+    {
+        throw std::invalid_argument("Date must be DDMMYYYY");
+    }
+
+    const int day = parseDigits(value.substr(0, 2));
+    const int month = parseDigits(value.substr(2, 2));
+    const int year = parseDigits(value.substr(4, 4));
+    const std::chrono::year_month_day date{
+        std::chrono::year{year}, std::chrono::month{unsigned(month)}, std::chrono::day{unsigned(day)}};
+    if (!date.ok())
+    {
+        throw std::invalid_argument("Invalid calendar date");
+    }
+    return date;
+}
+
+struct Options
+{
+    std::chrono::year_month_day date;
+    std::string_view calendar = "grc";
+    std::string_view mass = "default";
+    bool showCross = false;
+    bool showReadings = false;
+    bool fullVerses = false;
+    bool massSpecified = false;
+};
+
+Options parseOptions(int argc, char* argv[])
+{
+    Options options;
+    options.date = currentLocalDate();
+    bool dateSpecified = false;
+    bool calendarSpecified = false;
+
+    for (int index = 1; index < argc; ++index)
+    {
+        // string_view borrows argv's text; argv stays alive throughout main.
+        const std::string_view argument{argv[index]};
+        if (argument == "--cross")
+        {
+            if (options.showCross) throw std::invalid_argument("Duplicate option: --cross");
+            options.showCross = true;
+        }
+        else if (argument == "--readings")
+        {
+            if (options.showReadings) throw std::invalid_argument("Duplicate option: --readings");
+            options.showReadings = true;
+        }
+        else if (argument == "--full-verses")
+        {
+            if (options.fullVerses) throw std::invalid_argument("Duplicate option: --full-verses");
+            options.fullVerses = true;
+        }
+        else if (argument.starts_with("--mass="))
+        {
+            if (options.massSpecified) throw std::invalid_argument("Duplicate option: --mass");
+            options.mass = argument.substr(7);
+            if (!isMassForm(options.mass))
+            {
+                throw std::invalid_argument("Unknown Mass form: " + std::string{options.mass});
+            }
+            options.massSpecified = true;
+        }
+        else if (argument.starts_with("--date="))
+        {
+            if (dateSpecified) throw std::invalid_argument("Duplicate option: --date");
+            options.date = parseDate(argument.substr(7));
+            dateSpecified = true;
+        }
+        else if (argument.starts_with("--calendar="))
+        {
+            if (calendarSpecified) throw std::invalid_argument("Duplicate option: --calendar");
+            options.calendar = argument.substr(11);
+            if (options.calendar != "grc" && options.calendar != "europe" &&
+                options.calendar != "england" && options.calendar != "wales")
+            {
+                throw std::invalid_argument("Unknown calendar: " + std::string{options.calendar});
+            }
+            calendarSpecified = true;
+        }
+        else
+        {
+            throw std::invalid_argument("Unknown option: " + std::string{argument});
+        }
+    }
+    return options;
+}
+} // namespace
 
 int main(int argc, char* argv[])
 {
-
-	bool showCross = false;
-    bool showReadings = false;
-    bool fullVerses = false;
-    std::string_view mass = "default";
-    bool massSpecified = false;
-	auto selectedDate = getCurrentLocalDate();
-	bool dateSpecified = false;
-	std::string_view selectedCalendar = "grc";
-	bool calendarSpecified = false;
-
-	for (int i = 1; i < argc; ++i)
-	{
-		std::string_view arg{argv[i]};
-
-		if (arg == "--cross")
-		{
-			if (showCross)
-			{
-				std::cerr << "Duplicate option: --cross\n";
-				return 1;
-			}
-
-			showCross = true;
-		}
-
-        else if (arg == "--readings")
-        {
-            if (showReadings) { std::cerr << "Duplicate option: --readings\n"; return 1; }
-            showReadings = true;
-        }
-        else if (arg == "--full-verses")
-        {
-            if (fullVerses) { std::cerr << "Duplicate option: --full-verses\n"; return 1; }
-            fullVerses = true;
-        }
-        else if (arg.starts_with("--mass="))
-        {
-            if (massSpecified) { std::cerr << "Duplicate option: --mass\n"; return 1; }
-            mass = arg.substr(7);
-            if (!isMassForm(mass))
-            {
-                std::cerr << "Unknown Mass form: " << mass << '\n';
-                return 1;
-            }
-            massSpecified = true;
-        }
-		else if (arg.starts_with("--date="))
-		{
-			if (dateSpecified)
-			{
-				std::cerr << "Duplicate option: --date\n";
-				return 1;
-			}
-
-			std::string_view value = arg.substr(7);
-
-			if (value.size() != 8 ||
-					!std::ranges::all_of(value, [](char c) {
-						return c >= '0' && c <= '9';
-						}))
-			{
-				std::cerr << "Date must be DDMMYYYY\n";
-				return 1;
-			}
-
-			auto parseNumber = [](std::string_view digits)
-			{
-				int number = 0;
-
-				for (char digit : digits)
-				{
-					number = number * 10 + (digit - '0');
-				}
-
-				return number;
-			};
-
-			int day = parseNumber(value.substr(0, 2));
-			int month = parseNumber(value.substr(2, 2));
-			int year = parseNumber(value.substr(4, 4));
-
-			std::chrono::year_month_day parsedDate{
-				std::chrono::year{year},
-					std::chrono::month{unsigned(month)},
-					std::chrono::day{unsigned(day)}
-			};
-
-			if (!parsedDate.ok())
-			{
-				std::cerr << "Invalid calendar date\n";
-				return 1;
-			}
-
-			selectedDate = parsedDate;
-			dateSpecified = true;
-
-
-		}
-
-
-		else if (arg.starts_with("--calendar="))
-		{
-			if (calendarSpecified)
-			{
-				std::cerr << "Duplicate option: --calendar\n";
-				return 1;
-			}
-
-			auto calendarName = arg.substr(11);
-
-			if (calendarName != "grc" &&
-					calendarName != "europe" &&
-					calendarName != "england" &&
-					calendarName != "wales")
-			{
-				std::cerr << "Unknown calendar: " << calendarName << "\n";
-				return 1;
-			}
-
-			selectedCalendar = calendarName;
-			calendarSpecified = true;
-		}
-
-		else
-		{
-			std::cerr << "Unknown option: " << arg << "\n";
-			return 1;
-		}
-	}
-
-
-
-
     try
     {
-        const auto celebrations = loadSelectedCalendar(selectedCalendar);
-        const auto day = resolveLiturgicalDay(selectedDate, celebrations, selectedCalendar);
-        if (showReadings || massSpecified || fullVerses)
+        const auto options = parseOptions(argc, argv);
+        const auto celebrations = loadSelectedCalendar(options.calendar);
+        const auto day = resolveLiturgicalDay(options.date, celebrations, options.calendar);
+        const bool needsReadings = options.showReadings || options.massSpecified || options.fullVerses;
+        if (!needsReadings)
         {
-            const auto data = loadLectionary();
-            const auto readingDay = resolveLiturgicalDay(selectedDate, loadSelectedCalendar("grc"), selectedCalendar);
-            const auto readings = resolveMassReadings(readingDay, data, selectedCalendar, mass);
-            if (fullVerses && readings.status == ReadingStatus::Available)
-            {
-                const auto bible = loadBible();
-                printLiturgicalDay(day, showCross, &readings, &bible);
-            }
-            else printLiturgicalDay(day, showCross, &readings);
+            printLiturgicalDay(day, options.showCross);
+            return 0;
         }
-        else printLiturgicalDay(day, showCross);
+
+        // V1 displays the regional celebration, but selects universal readings.
+        // Reusing the calendar engine preserves local dates for universal feasts.
+        const auto universalCalendar = loadSelectedCalendar("grc");
+        const auto readingDay = resolveLiturgicalDay(options.date, universalCalendar, options.calendar);
+        const auto lectionary = loadLectionary();
+        const auto readings = resolveMassReadings(readingDay, lectionary, options.calendar, options.mass);
+        if (options.fullVerses && readings.status == ReadingStatus::Available)
+        {
+            const auto bible = loadBible();
+            printLiturgicalDay(day, options.showCross, &readings, &bible);
+        }
+        else
+        {
+            printLiturgicalDay(day, options.showCross, &readings);
+        }
     }
     catch (const std::exception& error)
     {
+        // Helpers report errors with exceptions; only main decides the exit code.
         std::cerr << error.what() << '\n';
         return 1;
     }

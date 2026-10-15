@@ -14,24 +14,53 @@ bool applies(const std::vector<std::string>& calendars, std::string_view calenda
 {
     return std::ranges::find(calendars, calendar) != calendars.end();
 }
-std::vector<ReadingSet> assignments(const Lectionary& data, const std::string& key,
-                                   const ReadingCycles& cycles, std::string_view calendar,
-                                   std::chrono::year_month_day date)
+// A national record does not imply a universal record. In particular, finding
+// no records at all must still report missing data for a universal celebration.
+bool hasOnlyNationalAssignments(const Lectionary& data, const std::string& key)
 {
+    bool foundNational = false;
+    for (const auto& entry : data.entries)
+    {
+        if (entry.dayId != key) continue;
+        if (applies(entry.calendars, "grc")) return false;
+        foundNational = true;
+    }
+    return foundNational;
+}
+
+std::vector<ReadingSet> matchingAssignments(const Lectionary& data, const std::string& key,
+                                           const ReadingCycles& cycles, std::string_view calendar,
+                                           std::chrono::year_month_day date)
+{
+    const bool sunday = std::chrono::weekday{std::chrono::sys_days{date}} == std::chrono::Sunday;
+    const std::string_view dayType = sunday ? "sunday" : "weekday";
     std::vector<ReadingSet> matches;
     for (const auto& entry : data.entries)
-        if (!entry.partial && entry.dayId == key && applies(entry.calendars, calendar) &&
-            (entry.dayType == "any" || entry.dayType ==
-                (std::chrono::weekday{std::chrono::sys_days{date}} == std::chrono::Sunday ? "sunday" : "weekday")) &&
-            (entry.cycle == "any" || entry.cycle == cycleName(cycles.sunday) ||
-             entry.cycle == cycleName(cycles.weekday)))
+    {
+        if (entry.partial || entry.dayId != key || !applies(entry.calendars, calendar)) continue;
+        const bool matchesDayType = entry.dayType == "any" || entry.dayType == dayType;
+        const bool matchesCycle = entry.cycle == "any" || entry.cycle == cycleName(cycles.sunday) ||
+                                  entry.cycle == cycleName(cycles.weekday);
+        if (matchesDayType && matchesCycle)
+        {
             matches.push_back(entry);
+        }
+    }
+
+    // Sorting makes the returned alternatives predictable. It does not decide
+    // which reading set wins; two default sets for the same Mass are an error.
     std::ranges::sort(matches, {}, &ReadingSet::id);
-    // No implicit specificity or file-order policy: overlapping matches are errors.
-    for (std::size_t i = 0; i < matches.size(); ++i)
-        for (std::size_t j = i + 1; j < matches.size(); ++j)
-            if (!matches[i].alternativeOnly && !matches[j].alternativeOnly && matches[i].mass == matches[j].mass)
+    for (std::size_t first = 0; first < matches.size(); ++first)
+    {
+        for (std::size_t second = first + 1; second < matches.size(); ++second)
+        {
+            if (!matches[first].alternativeOnly && !matches[second].alternativeOnly &&
+                matches[first].mass == matches[second].mass)
+            {
                 throw std::logic_error("Ambiguous reading assignment: " + key);
+            }
+        }
+    }
     return matches;
 }
 }
@@ -40,7 +69,7 @@ std::string temporalReadingKey(const LiturgicalDay& day, std::string_view calend
 {
     using namespace std::chrono;
     validateCalendar(calendarName);
-    (void)readingCycles(day.date);
+    (void)readingCycles(day.date); // Validate the date before calculating a key.
     const sys_days date{day.date};
     const unsigned weekdayNumber = weekday{date}.c_encoding();
     const auto weekdayKey = std::to_string(weekdayNumber);
@@ -57,6 +86,8 @@ std::string temporalReadingKey(const LiturgicalDay& day, std::string_view calend
         case LiturgicalPeriod::Lent:
         case LiturgicalPeriod::Triduum:
         {
+            // Easter is day zero. Negative offsets count backwards: Ash Wednesday
+            // is -46, the first Sunday of Lent is -42, and Palm Sunday is -7.
             const auto offset = (date - sys_days{calculateEaster(int(day.date.year()))}).count();
             if (offset == -46) return prefix + "ash_wednesday";
             if (offset >= -45 && offset <= -43) return prefix + "after_ashes:" + weekdayKey;
@@ -85,7 +116,8 @@ LectionaryDay resolveMassReadings(const LiturgicalDay& day, const Lectionary& da
     validateCalendar(calendarName);
     if (mass != "default" && !isMassForm(mass))
         throw std::invalid_argument("Unknown Mass form: " + std::string{mass});
-    LectionaryDay result{readingCycles(day.date), ReadingStatus::MissingData, {}, {}, {}, {}, {}};
+    LectionaryDay result;
+    result.cycles = readingCycles(day.date);
     if (!day.unresolvedReason.empty() || day.observanceId.empty())
     {
         result.status = ReadingStatus::UnresolvedDay;
@@ -112,19 +144,14 @@ LectionaryDay resolveMassReadings(const LiturgicalDay& day, const Lectionary& da
     // the selected calendar's scheduling of universal celebrations.
     const bool memorial = day.rank == CelebrationRank::Memorial ||
                           day.rank == CelebrationRank::OptionalMemorial;
-    const bool nationalProper = std::ranges::any_of(data.entries, [&](const auto& entry) {
-        return entry.dayId == result.key && !applies(entry.calendars, "grc");
-    }) && std::ranges::none_of(data.entries, [&](const auto& entry) {
-        return entry.dayId == result.key && applies(entry.calendars, "grc");
-    });
-    if (memorial || nationalProper) result.key = temporal;
-    auto sets = assignments(data, result.key, result.cycles, "grc", day.date);
-    const auto chosen = std::ranges::find_if(sets, [&](const auto& set) {
-        return !set.alternativeOnly && set.mass == (mass == "default" ? "day" : mass);
+    if (memorial || hasOnlyNationalAssignments(data, result.key)) result.key = temporal;
+    auto sets = matchingAssignments(data, result.key, result.cycles, "grc", day.date);
+    const std::string_view requestedMass = mass == "default" ? "day" : mass;
+    auto selected = std::ranges::find_if(sets, [&](const auto& set) {
+        return !set.alternativeOnly && set.mass == requestedMass;
     });
     // Thursday evening and Good Friday have a single proper liturgy, not a
     // fictitious daytime Mass. A Vigil is never implicitly selected.
-    auto selected = chosen;
     if (selected == sets.end() && mass == "default" && sets.size() == 1 && !sets.front().alternativeOnly &&
         (sets.front().mass == "evening" || sets.front().mass == "passion"))
         selected = sets.begin();

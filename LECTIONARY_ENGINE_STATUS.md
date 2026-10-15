@@ -164,3 +164,26 @@ python3 tools/lectionary_audit.py
 The application is rebuilt in `build/cathfetch`. All twelve C++ test executables, all three CLI suites and the six Universalis Python tests pass. The lectionary test performs **14,612 date/calendar pairs** (2008, 2022, 2024–2030 and 2038, all four calendars), including reversed assignment order: 14,563 available, nine explicit gaps and 40 Holy Saturdays. The calendar regression performs 450,238 checks across 64,284 date/calendar pairs, each resolved in both candidate orders. Reading and calendar CLI tests include 120, 100, 80, 60 and 40 columns, with/without the cross and redirected output. The 168 late Ordinary Time selectors, independent literal reference cases, proper-slot/weekday combinations, national versus general ranks and verification-evidence validation have dedicated checks.
 
 These are implementation, coverage and selected reference checks, **not independent verification of every reading over complete liturgical years**. Completing that final audit requires the authoritative material described above.
+
+## Code reading notes — 15 October 2026
+
+The readability pass preserves the v1 policy and calendar rules. Command-line parsing now has named helpers and one error-reporting boundary. Calendar overlays are parsed once and applied to a copy before validation. Date helpers share explicit day arithmetic, reading selection uses named conditions, and Scripture syntax cleanup is separate from verse-number conversion. Comments explain the reasons for the less obvious rules and the lifetimes of borrowed data. No dependency or public engine interface was added.
+
+For a first reading of the C++ code, follow this order:
+
+| File | What to look for |
+| --- | --- |
+| [main.cpp](src/main.cpp) | Options, error handling and the steps from input to displayed result. |
+| [calendar_selection.cpp](src/calendar_selection.cpp) | How the universal calendar receives regional overlays. |
+| [temporal_calendar.cpp](src/temporal_calendar.cpp) | Readable dates versus `sys_days`, seasonal boundaries and week numbering. |
+| [liturgical_resolver.cpp](src/liturgical_resolver.cpp) | Candidate gathering, transfers and one precedence-based selection process. |
+| [lectionary_resolver.cpp](src/lectionary_resolver.cpp) | Converting the resolved universal day into a reading-set key under the v1 policy. |
+| [scripture.cpp](src/scripture.cpp) | Tidying a reference, mapping its numbering and retrieving whole Bible verses. |
+| [terminal_display.cpp](src/terminal_display.cpp) | Turning resolved information into wrapped rows beside or below the cross. |
+| [terminal_format.cpp](src/terminal_format.cpp) | The specialised details of ANSI escapes and Unicode display widths. |
+
+The JSON files hold factual definitions and provenance. The Python tools prepare or audit those files; the running application uses C++. Tests combine literal examples with full-year consistency checks. A passing coverage sweep is not, by itself, independent verification of all liturgical facts.
+
+The more specialised algorithms remain explicit rather than being hidden behind a new framework. In particular, the Easter formula keeps its published variable names, and the transfer and Unicode rules retain the detail needed for correctness. The existing regression suites and a byte-for-byte comparison of 240 CLI outputs check this maintenance work.
+
+Readability validation: `make -j4 all test` passes all 12 C++ suites, three CLI suites and 17 Python tests with no compiler warnings reported. All 240 saved CLI outputs match byte for byte across the four calendars, five terminal widths and plain/cross/reading/full-verse combinations.

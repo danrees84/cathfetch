@@ -5,6 +5,8 @@
 #include "fixed_celebration.h"
 #include <string_view>
 
+// Lower numbers take priority. Rank and precedence are different: a solemnity
+// does not always belong to the same numbered class.
 enum class PrecedenceLevel : int
 {
     Triduum = 1,

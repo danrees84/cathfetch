@@ -5,6 +5,7 @@
 #include <fstream>
 #include <regex>
 #include <stdexcept>
+#include <utility>
 
 namespace
 {
@@ -37,7 +38,14 @@ bool psalmPair(const Bible& bible, int hebrew, int latin)
     return !mapped && hebrew == latin;
 }
 
-struct Address { int chapter; int verse; bool partial; };
+// An address may point to only part of a verse (for example, 3b). The bundled
+// Bible contains whole verses, so partial selections need a display notice.
+struct Address
+{
+    int chapter;
+    int verse;
+    bool partial;
+};
 
 Address endpoint(std::string& text, int chapter)
 {
@@ -55,6 +63,29 @@ void trimLeft(std::string& text)
 {
     text.erase(0, text.find_first_not_of(" \t\r\n"));
 }
+
+// Normalise typography and remove labels which are not part of the address.
+// This only tidies syntax; it does not change chapter or verse numbering.
+std::string normaliseReference(std::string_view reference)
+{
+    std::string text{reference};
+    for (const auto& dash : {"–", "—", "−"}) replaceAll(text, dash, "-");
+    replaceAll(text, " ", " ");
+    replaceAll(text, " and ", ", ");
+    static const std::regex volumeReference{R"(\s+\[[IVX]+:[0-9]+\]$)"};
+    text = std::regex_replace(text, volumeReference, "");
+    // The responsorial refrain is not another passage to look up.
+    static const std::regex response{R"([rR]\.\s*|\s*℟)"};
+    std::smatch match;
+    if (std::regex_search(text, match, response)) text.erase(match.position());
+    static const std::regex canticlePrefix{R"(^[Pp][Ss]\s+(?=(?:[1-3]\s*)?[A-Za-z]))"};
+    text = std::regex_replace(text, canticlePrefix, "");
+    while (!text.empty() && (std::isspace(static_cast<unsigned char>(text.back())) ||
+                            text.back() == '.' || text.back() == ';')) text.pop_back();
+    return text;
+}
+
+
 }
 
 Bible loadBible(const std::string& filename)
@@ -147,20 +178,8 @@ ScripturePassage lookupPassage(const Bible& bible, std::string_view reference,
     ScripturePassage result;
     try
     {
-        std::string text{reference};
-        for (const auto& dash : {"–", "—", "−"}) replaceAll(text, dash, "-");
-        replaceAll(text, " ", " ");
-        replaceAll(text, " and ", ", ");
-        static const std::regex volumeReference{R"(\s+\[[IVX]+:[0-9]+\]$)"};
-        text = std::regex_replace(text, volumeReference, "");
-        // The responsorial refrain is not another passage to look up.
-        static const std::regex response{R"([rR]\.\s*|\s*℟)"};
+        std::string text = normaliseReference(reference);
         std::smatch match;
-        if (std::regex_search(text, match, response)) text.erase(match.position());
-        static const std::regex canticlePrefix{R"(^[Pp][Ss]\s+(?=(?:[1-3]\s*)?[A-Za-z]))"};
-        text = std::regex_replace(text, canticlePrefix, "");
-        while (!text.empty() && (std::isspace(static_cast<unsigned char>(text.back())) ||
-                                text.back() == '.' || text.back() == ';')) text.pop_back();
         // Traditional tables sometimes cite a complete psalm, or omit the
         // chapter colon. Single-chapter letters also omit their chapter.
         static const std::regex wholePsalm{R"(^\s*(Ps|Psalm)\s*([0-9]+)$)", std::regex::icase};
@@ -227,17 +246,28 @@ ScripturePassage lookupPassage(const Bible& bible, std::string_view reference,
             else if (psalmPair(bible, other, chapter)) psalmNumbering = "lxx";
             else throw std::invalid_argument("Unrecognised dual psalm numbering");
         }
+        // Prefer a checked whole-passage correspondence to individual verse
+        // mappings. The recursive call uses native numbers, so it cannot apply
+        // this source-to-native conversion for a second time.
         if (!nativeMapping)
-            if (const auto mapped = bible.passageMappings.find(psalm ? std::string{psalmNumbering} + ":" + key : key); mapped != bible.passageMappings.end())
+        {
+            const auto mappingKey = psalm ? std::string{psalmNumbering} + ":" + key : key;
+            const auto mapped = bible.passageMappings.find(mappingKey);
+            if (mapped != bible.passageMappings.end())
             {
                 auto passage = lookupPassage(bible, mapped->second, "lxx", true);
                 if (passage.diagnostic.empty()) passage.numberingNote = "Douay–Rheims numbering is used below.";
                 return passage;
             }
-        if (!nativeMapping)
-            if (const auto diagnostic = bible.passageDiagnostics.find(key); diagnostic != bible.passageDiagnostics.end())
+            const auto diagnostic = bible.passageDiagnostics.find(key);
+            if (diagnostic != bible.passageDiagnostics.end())
+            {
                 throw std::invalid_argument(diagnostic->second);
+            }
+        }
         text = match[4];
+        // A merged verse or overlapping subverse may be selected twice; print it
+        // once, in the order in which the reference first requests it.
         std::set<std::pair<int, int>> seen;
         while (!text.empty())
         {
@@ -323,8 +353,18 @@ ScripturePassage lookupPassage(const Bible& bible, std::string_view reference,
                 std::string{"Cited verses absent from the Douay–Rheims text are omitted."};
         if (result.verses.empty()) throw std::invalid_argument("No verses were selected");
     }
-    catch (const std::invalid_argument& error) { result = {}; result.diagnostic = error.what(); }
-    catch (const std::out_of_range&) { result = {}; result.diagnostic = "Scripture reference is outside the supported range"; }
+    catch (const std::invalid_argument& error)
+    {
+        // Discard any verses already collected: a failed passage must not look
+        // like a successfully retrieved but shorter reading.
+        result = {};
+        result.diagnostic = error.what();
+    }
+    catch (const std::out_of_range&)
+    {
+        result = {};
+        result.diagnostic = "Scripture reference is outside the supported range";
+    }
     return result;
 }
 }

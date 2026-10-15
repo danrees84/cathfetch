@@ -7,10 +7,19 @@ ReadingCycles readingCycles(std::chrono::year_month_day date)
     const int civilYear = int(date.year());
     if (!date.ok() || civilYear < 1583 || civilYear > 4099)
         throw std::invalid_argument("Lectionary date must be valid and within 1583–4099");
-    const int year = civilYear + (date >= calculateFirstAdventSunday(civilYear) ? 1 : 0);
-    const auto sunday = year % 3 == 1 ? SundayCycle::A :
-                        year % 3 == 2 ? SundayCycle::B : SundayCycle::C;
-    return {year, sunday, year % 2 ? WeekdayCycle::I : WeekdayCycle::II};
+    // Name the liturgical year by the civil year in which it ends. For example,
+    // Advent 2026 starts the liturgical year ending in 2027.
+    int liturgicalYear = civilYear;
+    if (date >= calculateFirstAdventSunday(civilYear))
+    {
+        ++liturgicalYear;
+    }
+
+    SundayCycle sunday = SundayCycle::C;
+    if (liturgicalYear % 3 == 1) sunday = SundayCycle::A;
+    else if (liturgicalYear % 3 == 2) sunday = SundayCycle::B;
+    const auto weekday = liturgicalYear % 2 == 1 ? WeekdayCycle::I : WeekdayCycle::II;
+    return {liturgicalYear, sunday, weekday};
 }
 
 std::string_view cycleName(SundayCycle cycle)

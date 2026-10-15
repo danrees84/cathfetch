@@ -1,3 +1,6 @@
+// Named examples check particular calendar rules. The full-year sweep below
+// checks consistency and candidate-order independence; it is not an independent
+// published calendar against which every date has been verified.
 #include "calendar_selection.h"
 #include "calendar_loader.h"
 #include "calendar_overlay.h"

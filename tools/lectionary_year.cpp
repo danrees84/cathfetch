@@ -1,3 +1,5 @@
+// Write one tab-separated diagnostic row per day. Keep reference availability,
+// verification status and the v1 selection policy distinct in this report.
 #include "calendar_selection.h"
 #include "liturgical_resolver.h"
 #include "lectionary_loader.h"

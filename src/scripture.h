@@ -11,7 +11,7 @@
 struct BibleBook
 {
     std::string name;
-    std::map<int, std::map<int, std::string>> chapters;
+    std::map<int, std::map<int, std::string>> chapters; // chapter -> verse -> text
     std::string numbering;
     bool requiresExplicitMapping = false;
     std::set<int> nativeChapters;
@@ -21,9 +21,11 @@ struct Bible
 {
     std::string translation;
     std::map<std::string, BibleBook> books;
-    std::map<std::string, std::string> aliases;
+    std::map<std::string, std::string> aliases; // Accepted book name -> stable book ID.
     std::map<std::string, std::string> passageMappings;
     std::map<std::string, std::string> passageDiagnostics;
+    // One source verse can correspond to several native verses. Each pair is
+    // {chapter, verse}; "native" means the numbering in the bundled Bible.
     std::map<std::string, std::vector<std::array<int, 2>>> verseMappings;
     std::map<std::string, int> chapterEnds;
     std::set<std::string> omittedVerses;

@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <stdexcept>
+#include <utility>
 #include <set>
 
 namespace
@@ -110,6 +111,9 @@ std::vector<ObservanceCandidate> scheduledMovables(year_month_day date,
 
 struct ScheduledCelebration
 {
+    // Borrow the definition from the caller's vector; this schedule owns dates,
+    // not another copy of each celebration. The input vector stays alive while
+    // the schedule is being used.
     const FixedCelebration* definition;
     year_month_day scheduled;
     year_month_day observed;
@@ -130,9 +134,9 @@ std::vector<ScheduledCelebration> fixedSchedule(int year,
         if (date.ok()) schedule.push_back({&celebration, date, date, {}});
     }
     std::ranges::sort(schedule, [](const auto& left, const auto& right) {
-        const auto lp = fixedCelebrationPrecedence(*left.definition);
-        const auto rp = fixedCelebrationPrecedence(*right.definition);
-        if (lp != rp) return lp < rp;
+        const auto leftPrecedence = fixedCelebrationPrecedence(*left.definition);
+        const auto rightPrecedence = fixedCelebrationPrecedence(*right.definition);
+        if (leftPrecedence != rightPrecedence) return leftPrecedence < rightPrecedence;
         if (left.scheduled != right.scheduled) return left.scheduled < right.scheduled;
         return left.definition->id < right.definition->id;
     });
@@ -150,6 +154,8 @@ std::vector<ScheduledCelebration> fixedSchedule(int year,
                                    previous.definition->id + " / " + current.definition->id);
     }
     const sys_days easter{calculateEaster(year)};
+    // Find the strongest competing day. Excluding "self" prevents a solemnity
+    // from blocking its own date when we check possible transfer destinations.
     const auto blockingPrecedence = [&](year_month_day date, const ScheduledCelebration* self) {
         auto best = temporalBaselinePrecedence(date, calendar);
         for (const auto& movable : scheduledMovables(date, celebrations, calendar))
@@ -170,6 +176,7 @@ std::vector<ScheduledCelebration> fixedSchedule(int year,
         const auto blocker = blockingPrecedence(fixed.scheduled, &fixed);
         const sys_days original{fixed.scheduled};
         const auto available = [&](sys_days day) {
+            // A transferred solemnity needs a day outside precedence classes 1–8.
             return blockingPrecedence(year_month_day{day}, &fixed) > PrecedenceLevel::ProperFeast;
         };
         std::optional<sys_days> destination;
@@ -199,8 +206,10 @@ std::vector<ScheduledCelebration> fixedSchedule(int year,
             for (const auto& rival : rivals)
                 if (!rival.optional && rival.precedence == precedence)
                 {
-                    impeded |= observanceOutranks(rival, self);
-                    ambiguous |= !observanceOutranks(rival, self) && !observanceOutranks(self, rival);
+                    const bool rivalWins = observanceOutranks(rival, self);
+                    const bool selfWins = observanceOutranks(self, rival);
+                    if (rivalWins) impeded = true;
+                    if (!rivalWins && !selfWins) ambiguous = true;
                 }
             if (!impeded)
             {
@@ -285,6 +294,8 @@ LiturgicalDay selectDay(year_month_day date, std::vector<ObservanceCandidate> ca
         if (candidate.id == "temporal" || !identities.insert(candidate.id).second)
             throw std::invalid_argument("Duplicate or reserved candidate identity: " + candidate.id);
     std::optional<ObservanceCandidate> namedBaseline;
+    // A named baseline replaces the unnamed seasonal day. It is not an extra
+    // competitor with the same precedence, which would create an artificial tie.
     for (const auto& candidate : candidates)
     {
         if (!candidate.namesTemporalBaseline) continue;
@@ -326,9 +337,16 @@ LiturgicalDay selectDay(year_month_day date, std::vector<ObservanceCandidate> ca
     std::ranges::sort(candidates, {}, &ObservanceCandidate::id);
     std::vector<const ObservanceCandidate*> winners;
     for (const auto& candidate : candidates)
-        if (!candidate.optional && !std::ranges::any_of(candidates, [&](const auto& rival) {
-                return !rival.optional && observanceOutranks(rival, candidate);
-            })) winners.push_back(&candidate);
+    {
+        if (candidate.optional) continue;
+        const bool beatenByRival = std::ranges::any_of(candidates, [&](const auto& rival) {
+            return !rival.optional && observanceOutranks(rival, candidate);
+        });
+        if (!beatenByRival)
+        {
+            winners.push_back(&candidate);
+        }
+    }
     // A principal-patron exception needs jurisdiction-specific authority even
     // when the patron's proper class differs numerically from the general class.
     const bool localDisposition = std::ranges::any_of(candidates, [](const auto& candidate) {
