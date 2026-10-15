@@ -186,7 +186,7 @@ int main()
         using namespace std::chrono;
         for (const auto calendar : {"grc", "europe", "england", "wales"})
         {
-            const auto celebrations = loadSelectedCalendar(calendar);
+            const auto celebrations = loadSelectedCalendar("grc");
             for (int y = 2024; y <= 2030; ++y)
                 for (sys_days date{year{y}/January/1}; date < sys_days{year{y+1}/January/1}; date += days{1})
                 {

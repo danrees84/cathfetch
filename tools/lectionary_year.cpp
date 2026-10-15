@@ -21,6 +21,7 @@ int main(int argc, char** argv)
         const std::string_view calendar = argc == 3 ? argv[2] : "grc";
         const auto celebrations = loadSelectedCalendar(calendar);
         const auto data = loadLectionary();
+        const auto universalCalendar = loadSelectedCalendar("grc");
         using namespace std::chrono;
         std::map<ReadingStatus, int> counts;
         int verified = 0;
@@ -30,12 +31,13 @@ int main(int argc, char** argv)
         int dates = 0;
         std::cout << "date\tobservance\tsunday_cycle\tweekday_cycle\tstatus\tkey\tmass\treadings\tdiagnostic"
                      "\tverification\tpermitted_alternative_selected\talternatives_available\tsource\tsource_note"
-                     "\tverification_sources\tverification_scope\tliturgical_year\n";
+                     "\tverification_sources\tverification_scope\tliturgical_year\treading_policy\n";
         for (sys_days date{std::chrono::year{year}/January/1};
              date < sys_days{std::chrono::year{year+1}/January/1}; date += days{1})
         {
             const auto day = resolveLiturgicalDay(year_month_day{date}, celebrations, calendar);
-            const auto readings = resolveMassReadings(day, data, calendar);
+            const auto readingDay = resolveLiturgicalDay(year_month_day{date}, universalCalendar, calendar);
+            const auto readings = resolveMassReadings(readingDay, data, calendar);
             ++counts[readings.status];
             ++dates;
             const auto status = readings.status == ReadingStatus::Available ? "available" :
@@ -76,7 +78,7 @@ int main(int argc, char** argv)
                 for (const auto& source : readings.selected->verificationSources) std::cout << source << "; ";
             std::cout << '\t';
             if (readings.selected) std::cout << readings.selected->verificationNote;
-            std::cout << '\t' << readings.cycles.liturgicalYear << '\n';
+            std::cout << '\t' << readings.cycles.liturgicalYear << "\tuniversal_v1\n";
         }
         std::cerr << year << ' ' << calendar << ": " << dates << " dates; "
                   << counts[ReadingStatus::Available] << " with references; " << verified

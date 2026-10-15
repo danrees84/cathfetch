@@ -42,7 +42,7 @@ struct ReadingSet
     std::vector<std::string> calendars;
     std::optional<int> lectionaryNumber;
     ReadingUse use = ReadingUse::Proper;
-    bool partial = false; // Proper memorial reading(s) replacing weekday slots.
+    bool partial = false; // Retained source metadata; partial sets are not selected in v1.
     bool alternativeOnly = false; // Permitted set, never the deterministic default.
     bool permittedAlternative = false; // This selected set is itself an optional provision.
     ReferenceVerification verification = ReferenceVerification::PublishedTable;
@@ -53,20 +53,11 @@ struct ReadingSet
     std::string sourceNote;
 };
 
-struct MemorialReadingPolicy
-{
-    std::string observanceId;
-    std::vector<std::string> calendars;
-    ReadingUse use;
-    std::string source;
-};
-
 struct Lectionary
 {
     std::string edition;
     std::string referenceConvention;
     std::vector<ReadingSet> entries;
-    std::vector<MemorialReadingPolicy> memorials;
 };
 
 enum class ReadingStatus { Available, MissingData, NoDaytimeMass, UnresolvedDay };

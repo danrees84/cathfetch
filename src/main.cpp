@@ -180,7 +180,8 @@ int main(int argc, char* argv[])
         if (showReadings || massSpecified || fullVerses)
         {
             const auto data = loadLectionary();
-            const auto readings = resolveMassReadings(day, data, selectedCalendar, mass);
+            const auto readingDay = resolveLiturgicalDay(selectedDate, loadSelectedCalendar("grc"), selectedCalendar);
+            const auto readings = resolveMassReadings(readingDay, data, selectedCalendar, mass);
             if (fullVerses && readings.status == ReadingStatus::Available)
             {
                 const auto bible = loadBible();

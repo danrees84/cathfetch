@@ -110,16 +110,7 @@ void validateLectionary(const Lectionary& data)
                 }))
                 throw std::invalid_argument("Conflicting reading assignments: " + a.dayId);
         }
-    std::set<std::pair<std::string, std::string>> policies;
-    for (const auto& policy : data.memorials)
-    {
-        if (!nonBlank(policy.observanceId) || !sourceUrl(policy.source))
-            throw std::invalid_argument("Invalid memorial reading policy");
-        validateCalendars(policy.calendars);
-        for (const auto& calendar : policy.calendars)
-            if (!policies.emplace(policy.observanceId, calendar).second)
-                throw std::invalid_argument("Conflicting memorial reading policies");
-    }
+
 }
 
 Lectionary parseLectionary(const nlohmann::json& document)
@@ -129,8 +120,8 @@ Lectionary parseLectionary(const nlohmann::json& document)
     Lectionary data;
     data.edition = document.at("edition").get<std::string>();
     data.referenceConvention = document.at("reference_convention").get<std::string>();
-    if (!document.at("entries").is_array() || !document.at("memorials").is_array())
-        throw std::invalid_argument("Lectionary entries and memorials must be arrays");
+    if (!document.at("entries").is_array())
+        throw std::invalid_argument("Lectionary entries must be an array");
     for (const auto& value : document.at("entries"))
     {
         ReadingSet entry;
@@ -170,9 +161,8 @@ Lectionary parseLectionary(const nlohmann::json& document)
         }
         data.entries.push_back(std::move(entry));
     }
-    for (const auto& value : document.at("memorials"))
-        data.memorials.push_back({value.at("observance_id"),
-            value.at("calendars").get<std::vector<std::string>>(), parseUse(value.at("use")), value.at("source")});
+    // Historical memorial policies remain in the source data for future work;
+    // v1 deliberately does not load or apply them.
     validateLectionary(data);
     return data;
 }

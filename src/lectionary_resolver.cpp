@@ -20,7 +20,7 @@ std::vector<ReadingSet> assignments(const Lectionary& data, const std::string& k
 {
     std::vector<ReadingSet> matches;
     for (const auto& entry : data.entries)
-        if (entry.dayId == key && applies(entry.calendars, calendar) &&
+        if (!entry.partial && entry.dayId == key && applies(entry.calendars, calendar) &&
             (entry.dayType == "any" || entry.dayType ==
                 (std::chrono::weekday{std::chrono::sys_days{date}} == std::chrono::Sunday ? "sunday" : "weekday")) &&
             (entry.cycle == "any" || entry.cycle == cycleName(cycles.sunday) ||
@@ -107,28 +107,18 @@ LectionaryDay resolveMassReadings(const LiturgicalDay& day, const Lectionary& da
         }
         if (mass == "vigil") result.key = "easter_sunday";
     }
-    bool memorial = day.rank == CelebrationRank::Memorial || day.rank == CelebrationRank::OptionalMemorial;
-    ReadingUse use = ReadingUse::Proper;
-    if (memorial)
-    {
-        const auto policy = std::ranges::find_if(data.memorials, [&](const auto& value) {
-            return value.observanceId == day.observanceId && applies(value.calendars, calendarName);
-        });
-        if (policy == data.memorials.end())
-        {
-            result.diagnostic = "Proper-reading provision has not been verified for this memorial";
-            return result;
-        }
-        use = policy->use;
-    }
-    auto sets = assignments(data, result.key, result.cycles, calendarName, day.date);
-    if (memorial && use != ReadingUse::Proper)
-    {
-        result.alternatives = std::move(sets);
-        result.key = temporal;
-        sets = assignments(data, temporal, result.cycles, calendarName, day.date);
-        result.notes.push_back("Weekday readings retained for the memorial (LM Introduction 83–84)");
-    }
+    // V1 uses the universal cycle: no memorial policies, Common selections or
+    // proper memorial slots. The caller supplies the General Roman day using
+    // the selected calendar's scheduling of universal celebrations.
+    const bool memorial = day.rank == CelebrationRank::Memorial ||
+                          day.rank == CelebrationRank::OptionalMemorial;
+    const bool nationalProper = std::ranges::any_of(data.entries, [&](const auto& entry) {
+        return entry.dayId == result.key && !applies(entry.calendars, "grc");
+    }) && std::ranges::none_of(data.entries, [&](const auto& entry) {
+        return entry.dayId == result.key && applies(entry.calendars, "grc");
+    });
+    if (memorial || nationalProper) result.key = temporal;
+    auto sets = assignments(data, result.key, result.cycles, "grc", day.date);
     const auto chosen = std::ranges::find_if(sets, [&](const auto& set) {
         return !set.alternativeOnly && set.mass == (mass == "default" ? "day" : mass);
     });
@@ -140,6 +130,8 @@ LectionaryDay resolveMassReadings(const LiturgicalDay& day, const Lectionary& da
         selected = sets.begin();
     if (selected == sets.end())
     {
+        // TODO(v2): restore verified national propers, including the Six Welsh
+        // Martyrs (25 October), only with an explicit national-reading policy.
         result.alternatives.insert(result.alternatives.end(), sets.begin(), sets.end());
         result.diagnostic = "Reading assignment unavailable for " + result.key +
             " (" + std::string{mass == "default" ? "day" : mass} + ")";
@@ -148,30 +140,8 @@ LectionaryDay resolveMassReadings(const LiturgicalDay& day, const Lectionary& da
     result.selected = *selected;
     for (auto it = sets.begin(); it != sets.end(); ++it)
         if (it != selected) result.alternatives.push_back(*it);
-    if (result.selected->partial)
-    {
-        const auto weekdays = assignments(data, temporal, result.cycles, calendarName, day.date);
-        const auto weekday = std::ranges::find(weekdays, "day", &ReadingSet::mass);
-        if (weekday == weekdays.end())
-        {
-            result.selected.reset();
-            result.diagnostic = "Weekday readings needed to complete the proper memorial readings are unavailable";
-            return result;
-        }
-        auto merged = weekday->readings;
-        for (const auto& proper : result.selected->readings)
-        {
-            const auto slot = std::ranges::find(merged, proper.role, &ReadingReference::role);
-            if (slot == merged.end()) throw std::logic_error("Proper reading has no matching weekday role");
-            *slot = proper;
-        }
-        result.selected->readings = std::move(merged);
-        result.selected->partial = false;
-        if (weekday->verification == ReferenceVerification::PublishedTable)
-            result.selected->verification = ReferenceVerification::PublishedTable;
-        result.notes.push_back("Proper memorial readings replace the corresponding weekday slots; " + weekday->source);
-    }
     result.status = ReadingStatus::Available;
+    result.notes.push_back("V1 universal reading cycle; memorial and national propers omitted");
     result.notes.push_back(data.referenceConvention);
     result.notes.push_back(result.selected->sourceNote);
     return result;

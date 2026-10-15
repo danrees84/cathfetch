@@ -39,7 +39,9 @@ assert christmas == run('--date=25122026', '--readings', '--full-verses')
 assert christmas == run('--date=25122026', '--full-verses', '--readings')
 assert 'No daytime Mass' in run('--date=04042026', '--full-verses')
 assert 'Text unavailable' not in run('--date=02032026', '--calendar=wales', '--full-verses')
-assert 'assignment not yet verified' in run('--date=25102025', '--calendar=wales', '--full-verses')
+martyrs = run('--date=25102025', '--calendar=wales', '--full-verses')
+assert 'Readings · Douay–Rheims' in martyrs
+assert 'assignment not yet verified' not in martyrs and 'Text unavailable' not in martyrs
 assert 'Text unavailable:' not in run('--date=20102026', '--full-verses')
 assert 'Have mercy on me' in run('--date=18022026', '--full-verses')
 assert 'I will take the chalice' in run('--date=02042026', '--mass=evening', '--full-verses')

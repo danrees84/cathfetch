@@ -36,8 +36,12 @@ assert 'Acts 10:34a, 37-43' in ' '.join(run('--date=05042026', '--readings').spl
 assert 'Luke 2:1-14' in run('--date=25122026', '--mass=night', width=120)
 assert 'No daytime Mass' in run('--date=04042026', '--readings', width=120)
 assert 'Readings:\nGal 5:18-25;' in run('--date=14102026', '--readings', width=120)
-assert 'Isaiah 61:1-3, 10-11' in run('--date=02032026', '--calendar=wales', '--readings', width=120)
-assert 'assignment not yet verified' in run('--date=25102025', '--calendar=wales', '--readings', width=120)
+david = run('--date=02032026', '--calendar=wales', '--readings', width=120)
+assert 'St David' in david and 'Daniel 9:4b-10' in david and 'Isaiah 61' not in david
+martyrs = run('--date=25102025', '--calendar=wales', '--readings', width=120)
+assert 'Welsh Martyrs' in martyrs and 'Readings:\n' in martyrs and 'assignment not yet verified' not in martyrs
+assert run('--date=07062026', '--calendar=england', '--readings', width=120).split('Readings:\n')[1] == \
+       run('--date=04062026', '--calendar=grc', '--readings', width=120).split('Readings:\n')[1]
 assert 'with references;' in subprocess.run(['./build/lectionary_year', '2026', 'grc'],
     text=True, capture_output=True, check=True).stderr
 assert 'Readings' not in run('--date=08122026', width=120)
