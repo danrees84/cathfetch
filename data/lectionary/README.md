@@ -1,5 +1,11 @@
 # Mass reading references
 
+## Scripture-summary collation — 15 October 2026
+
+The offline summary feature reuses these reading identities and preserves the v1 policy below. See the [editorial dataset guide](../summaries/README.md) and [generated review collection](../../docs/scripture-summaries/README.md).
+
+[Five further range corrections](summary_reference_audit.json) address four apparent errors inherited from published tables. Their independent sources are retained in each affected record and in the ledger. Published-table status remains provisional; summary coverage does not upgrade reference certification. The earlier precision-correction and comparison ledgers remain separate evidence with their original scope.
+
 ## V1 selection policy — 15 October 2026
 
 V1 selects the universal Sunday/weekday cycle and universal feasts and solemnities. All memorials retain regular weekday readings, including memorials with proper passages in the full Lectionary. National saints' propers are omitted. This is an intentionally simplified reference display, not the complete proper-reading policy for every observed Mass.

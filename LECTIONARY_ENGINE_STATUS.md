@@ -1,5 +1,11 @@
 # Cathfetch lectionary engine status
 
+## Offline Scripture summaries — 15 October 2026
+
+`--summary` now uses the resolved v1 reading identity to display a prewritten Douay–Rheims quotation and original draft commentary. All 807 stored reading sets have a summary; this does not enable the retained memorial or national proper policies. The [summary status](SCRIPTURE_SUMMARY_STATUS.md) and [generated editorial collection](docs/scripture-summaries/README.md) distinguish technical source matching, provisional assignment references and human review. None of the drafts is human-reviewed or fully current-edition-certified.
+
+Summary collation corrected four apparent reference-table errors across five records, with [independent citation evidence](data/lectionary/summary_reference_audit.json): Easter IV Wednesday's John 12 range, Ordinary Time VII Monday's Mark 9 range in both cycles, Ordinary Time XX Wednesday I's Matthew 20 range and Ordinary Time XVIII Thursday I's Numbers 20 range. The existing French comparison ledger now records 1,205 matching slots, 766 requiring collation and 423 unsupplied or ambiguous slots. These remain partial comparisons, not whole-set certification.
+
 ## Current v1 policy — 15 October 2026
 
 At the user's request, v1 now uses **universal readings with local dates for universal celebrations**. All memorials use the regular weekday cycle, and national saints' propers are omitted. Sundays, universal feasts and solemnities, seasonal weekdays and the existing universal Mass forms remain supported. This explicitly simplified policy also omits mandatory proper memorial passages; it is not a claim to reproduce every provision of the full Lectionary.
