@@ -10,10 +10,6 @@ The downloaded USFX was converted to a simpler XML structure:
 layout and Strong-number annotations were removed, and whitespace was
 normalised. The electronic text has not been independently proofread.
 
-The earlier [GitHub copy](https://github.com/thiagobodruk/bible/blob/c5179e5f736a44237c0746858c5be33824f29db3/xml/en_dra.xml)
-was unsuitable: it has 66 books and lacks the deuterocanonical books and Daniel's
-Greek additions. It is not the text distributed here.
-
 ## Source and build
 
 The source archive is [engDRA_usfx.zip](https://ebible.org/Scriptures/engDRA_usfx.zip),
@@ -25,9 +21,6 @@ and numbering information. To reproduce the XML:
 python3 tools/bible_data.py convert /path/to/engDRA_usfx.zip data/bibles/en_dra_metadata.json /tmp/en_dra.xml
 cmp data/bibles/en_dra.xml /tmp/en_dra.xml
 ```
-
-You need the archive version matching the recorded hash. A changed upstream
-file will be rejected.
 
 `make all` creates `build/en_dra.json`, checking the hash, 73-book coverage and
 unique chapter/verse addresses. Indexing uses Python's standard library. The

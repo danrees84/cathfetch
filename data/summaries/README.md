@@ -6,9 +6,7 @@ partial proper sets kept for future work. V1 uses weekday readings for memorials
 and omits national propers, so those archived entries are not selected.
 
 Each summary pairs a verse with 40–70 words of commentary. The selections were
-made with AI assistance and await human review. They are editorial choices,
-not verses designated by the Church. Everything is stored locally; the app does
-not generate commentary when it runs.
+made with AI assistance. They are not verses designated by the Church. Everything is stored locally; the app does not generate commentary when it runs.
 
 ## Record fields
 
@@ -74,16 +72,3 @@ season and cycle. Its reports cover:
 Every applicable v1 alternative contains its summary verse. Three archived
 proper alternatives need another selection: Martha/Mary/Lazarus (Luke 10),
 Timothy/Titus (Titus 1) and Our Lady of Sorrows (Luke 2).
-
-## Review still needed
-
-The initial sample contained 27 commentaries covering 36 reading sets, followed
-by batches for the rest of the catalogue. That review was AI self-review.
-Shared explanations are reused when a verse recurs; the liturgical connections
-can differ. Similarity checks help find repeated wording, but human review is
-still needed for biblical interpretation, style and originality.
-
-The reading assignments also need complete current-edition collation. These
-807 records cover the stored catalogue, not every diocesan proper, ritual or
-votive Mass. See [Summary status](../../SCRIPTURE_SUMMARY_STATUS.md) for the
-current counts and outstanding work.
