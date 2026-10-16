@@ -2,7 +2,7 @@
 
 Read the summaries by season and cycle below. Each entry includes its selected verse, commentary, sources and review status.
 
-The commentary was drafted with AI assistance and awaits human review. Quotations match the bundled Douay–Rheims text, which has not been independently proofread. Complete checks against the current England and Wales Lectionary are still outstanding.
+The summaries were generated with AI assistance. Quotations match the bundled Douay–Rheims text, which has not been independently proofread. Complete checks against the current England and Wales Lectionary are still outstanding.
 
 V1 uses universal readings with local feast dates. Archived memorial and national proper sets are included for review, but are not selected by the app.
 
@@ -18,8 +18,6 @@ To update this collection from `data/summaries/roman_summaries.json`, run `make 
 | Sets verified against the current edition | 0 |
 | Quotations matched to the bundled Bible | 807 |
 | Quotations independently proofread | 0 |
-| Drafts awaiting human review | 807 |
-| Human-reviewed summaries | 0 |
 | Missing summaries | 0 |
 
 ## Collection

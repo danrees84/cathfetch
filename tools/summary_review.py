@@ -211,7 +211,7 @@ def generate(assignments, summaries):
     index = ['# Scripture summary review', '',
         'Read the summaries by season and cycle below. Each entry includes its selected verse, '
         'commentary, sources and review status.', '',
-        'The commentary was drafted with AI assistance and awaits human review. Quotations match '
+        'The summaries were generated with AI assistance. Quotations match '
         'the bundled Douay–Rheims text, which has not been independently proofread. Complete checks '
         'against the current England and Wales Lectionary are still outstanding.', '',
         'V1 uses universal readings with local feast dates. Archived memorial and national proper '
@@ -228,8 +228,6 @@ def generate(assignments, summaries):
         ('reference_sets_current_edition_verified', 'Sets verified against the current edition'),
         ('quotations_bundled_source_checked', 'Quotations matched to the bundled Bible'),
         ('quotations_independently_proofread', 'Quotations independently proofread'),
-        ('ai_drafts', 'Drafts awaiting human review'),
-        ('human_reviewed', 'Human-reviewed summaries'),
     ]
     for key, label in measures:
         index.append(f"| {label} | {coverage[key]} |")

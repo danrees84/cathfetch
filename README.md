@@ -5,8 +5,7 @@ shows the day's liturgical season and celebration, with optional Mass reading
 references, offline Bible text and a short Scripture summary.
 
 It runs offline on Linux. The calendar supports the General Roman Calendar,
-Europe, England and Wales. The reading data and summaries are still being
-reviewed; see [Current coverage](#current-coverage).
+Europe, England and Wales.
 
 ## Build
 
@@ -109,7 +108,7 @@ Full verses use the 73-book Douay–Rheims American Edition of 1899. Four Tobit
 passages cannot be supplied in full because the textual traditions differ.
 Partial-verse references show whole verses with a notice.
 
-The summaries were drafted with AI assistance.
+The summaries were generated with AI assistance.
 Quotations are checked against the bundled Bible. All stored reading sets have
 summaries; missing content is reported on screen.
 
