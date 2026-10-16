@@ -109,7 +109,7 @@ Full verses use the 73-book Douay–Rheims American Edition of 1899. Four Tobit
 passages cannot be supplied in full because the textual traditions differ.
 Partial-verse references show whole verses with a notice.
 
-The summaries were drafted with AI assistance and still need human review.
+The summaries were drafted with AI assistance.
 Quotations are checked against the bundled Bible. All stored reading sets have
 summaries; missing content is reported on screen.
 
