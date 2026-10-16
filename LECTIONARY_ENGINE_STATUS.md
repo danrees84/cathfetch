@@ -1,6 +1,6 @@
 # Cathfetch Lectionary engine status
 
-Current state: 15 October 2026. The offline engine resolves every tested v1
+Current state: 16 October 2026. The offline engine resolves every tested v1
 reading day, but complete verification against the current England and Wales
 Lectionary remains outstanding. Reference availability, exact Bible text matching
 and human editorial review are separate measures.
@@ -111,7 +111,7 @@ python3 tools/lectionary_audit.py
 python3 tools/current_lectionary_audit.py check data/lectionary/current_ordo_audit.json
 ```
 
-The latest full run passes 13 C++ suites, five CLI/integration suites and
+The latest full run passes nine C++ suites, five CLI/integration suites and
 17 Python unit tests, plus the generated-summary freshness check. The Lectionary
 suite performs 44,371 checks, Scripture 35,492 and summaries 11,060. CLI checks
 cover 120/100/80/60/40 columns, cross layouts, redirected output, staged

@@ -9,11 +9,17 @@ CXXFLAGS ?= -std=c++20 -O2 -Wall -Wextra -Wpedantic
 # regression tests link these same object files.
 ENGINE_SOURCES := $(filter-out src/main.cpp src/terminal_display.cpp src/terminal_format.cpp,$(wildcard src/*.cpp))
 ENGINE_OBJECTS := $(ENGINE_SOURCES:src/%.cpp=build/%.o)
-TESTS := $(patsubst tests/%.cpp,build/%,$(wildcard tests/*_test.cpp))
+CALENDAR_TESTS := $(addprefix build/, \
+    calendar_engine_test liturgical_precedence_test movable_observances_test \
+    observance_resolver_test solemnity_occurrence_test)
+READING_TESTS := $(addprefix build/,lectionary_test scripture_test scripture_summary_test)
+TOOLS := $(addprefix build/,calendar_year lectionary_year summary_year summary_catalogue)
 PREFIX ?= /usr/local
 DESTDIR ?=
-.PHONY: all test clean summary-review install
-all: build/cathfetch build/calendar_year build/lectionary_year build/summary_year build/en_dra.json
+.PHONY: all tools test test-calendar test-readings test-cli test-data clean summary-review install
+# A normal build needs only the application. Developer diagnostics are opt-in.
+all: build/cathfetch
+tools: $(TOOLS)
 # Keep source/provenance files alongside installed data. DESTDIR permits staged
 # packaging without writing to the running system.
 install: build/cathfetch build/en_dra.json LICENSE LICENSING.md licenses/nlohmann-json-MIT.txt
@@ -49,18 +55,28 @@ build/scripture_test: | build/en_dra.json
 build/scripture_summary_test: | build/en_dra.json
 build/%_test: tests/%_test.cpp $(ENGINE_OBJECTS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
-# Stop at the first failing suite so a partial run is not reported as success.
-test: $(TESTS) all
-	@set -e; for test in $(TESTS); do $$test; done
+# Run a group while working on it, or use `make test` to run everything.
+# Each command stops on failure; a successful partial run is not the full suite.
+test: test-calendar test-readings test-cli test-data
+
+test-calendar: $(CALENDAR_TESTS)
+	@set -e; for test in $(CALENDAR_TESTS); do $$test; done
+
+test-readings: $(READING_TESTS)
+	@set -e; for test in $(READING_TESTS); do $$test; done
+
+test-cli: all build/terminal_render_test
+	@./build/terminal_render_test
 	@sh tests/cli_test.sh
 	@sh tests/lectionary_cli_test.sh
-	@python3 tests/universalis_audit_test.py
-	@python3 tests/bible_mapping_data_test.py
-	@python3 tests/current_lectionary_audit_test.py
 	@sh tests/full_verses_cli_test.sh
 	@python3 tests/summary_cli_test.py
 	@python3 tests/data_path_cli_test.py
-	@$(MAKE) --no-print-directory build/summary_catalogue
+
+test-data: tools
+	@python3 tests/universalis_audit_test.py
+	@python3 tests/bible_mapping_data_test.py
+	@python3 tests/current_lectionary_audit_test.py
 	@python3 tools/summary_review.py check
 clean:
 	rm -rf build

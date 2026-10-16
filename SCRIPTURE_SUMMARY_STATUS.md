@@ -58,7 +58,7 @@ The initial 27-commentary sample and subsequent editorial process are described 
 
 ## Validation and checkpoints
 
-The full C++20 application and diagnostics build in `build/`. `make --jobserver-style=pipe -j4 all test` passes with no compiler warnings: 13 C++ suites, five CLI/integration suites and 17 Python unit tests, followed by the reproducible summary-data/export check. The GNU Make pipe jobserver option avoids temporary FIFO collisions in this sandbox; ordinary `make -j4 all test` is also supported.
+The full C++20 application and diagnostics build in `build/`. `make --jobserver-style=pipe -j4 all test` passes with no compiler warnings: nine C++ suites, five CLI/integration suites and 17 Python unit tests, followed by the reproducible summary-data/export check. The GNU Make pipe jobserver option avoids temporary FIFO collisions in this sandbox; ordinary `make -j4 all test` is also supported.
 
 - Calendar regression: 450,238 checks over 64,284 dates, including both candidate orders.
 - Lectionary regression: 44,371 checks; 14,612 date/calendar pairs, with 14,572 available assignments and 40 Holy Saturdays without daytime Mass.

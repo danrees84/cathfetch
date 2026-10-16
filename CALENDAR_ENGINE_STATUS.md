@@ -1,6 +1,6 @@
 # Cathfetch calendar engine status
 
-Calendar snapshot: 14 October 2026; documentation reconciled 15 October 2026. The engine implements the contemporary General Roman Calendar and the supplied European, English and Welsh overlays. Every date in 2024–2030 resolves to an observed day in all four calendars. Corpus Christi also resolves on 24 June 2038, with the Nativity of John the Baptist provisionally anticipated to 23 June; only the transfer date awaits authoritative confirmation. This is a contemporary calendar snapshot, not a historical or diocesan ordo.
+Calendar snapshot: 14 October 2026; documentation reconciled 16 October 2026. The engine implements the contemporary General Roman Calendar and the supplied European, English and Welsh overlays. Every date in 2024–2030 resolves to an observed day in all four calendars. Corpus Christi also resolves on 24 June 2038, with the Nativity of John the Baptist provisionally anticipated to 23 June; only the transfer date awaits authoritative confirmation. This is a contemporary calendar snapshot, not a historical or diocesan ordo.
 
 A separate reference-only lectionary engine now consumes these resolved identities. Its opt-in `--readings` display and year diagnostic are implemented; daily reference coverage is complete for the tested v1 universal-reading policy, while complete current-edition collation remains outstanding. See [the lectionary status](LECTIONARY_ENGINE_STATUS.md). No calendar calculations or precedence rules were changed for this addition.
 
@@ -55,7 +55,7 @@ make -j4 all test
 
 The existing nlohmann JSON dependency remains required. No new runtime library was added. `calendar_year` produces one TSV record per date, including alternatives, scheduling, transfers and diagnostics.
 
-The full project suite now contains 13 C++ suites, five CLI/integration suites
+The full project suite now contains nine C++ suites, five CLI/integration suites
 and 17 Python unit tests; the latest full build and test run passes. The
 comprehensive calendar regression covers 44 complete years in each calendar:
 1818, 1900, 1943 and every year from 2000 through 2040. Its 64,284 dates are each

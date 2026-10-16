@@ -185,7 +185,7 @@ int main()
         rejects([&]{resolveLiturgicalDay(2026y/October/6, {solemnity, secondSolemnity});}, "No arbitrary ordering between equal fixed solemnities");
         auto duplicateMovable = solemnity; duplicateMovable.id = "ascension"; duplicateMovable.date = May/14; duplicateMovable.rank = CelebrationRank::Feast;
         rejects([&]{resolveLiturgicalDay(2026y/May/14, {duplicateMovable});}, "Fixed and movable identities cannot duplicate");
-                // Invalid JSON facts fail during loading; overlays apply transactionally.
+        // Invalid JSON facts fail during loading; overlays apply transactionally.
         const std::string badFile = "/tmp/cathfetch-invalid-calendar-test.json";
         {std::ofstream file{badFile}; file << R"({"calendar":"general_roman","entries":[{"id":"x","name":"X","month":2,"day":30,"rank":"feast"}]})";}
         rejects([&]{loadFixedCelebrations(badFile);}, "Invalid fixed JSON date");
@@ -201,7 +201,7 @@ int main()
         rejects([&]{applyCalendarOverlay(unchanged,badFile);}, "Duplicate overrides cannot silently use their order");
         {std::ofstream file{badFile}; file << R"({"calendar":"wales","additions":[],"overrides":[],"date_reassignments":[{"id":"grc-01-03-the-most-holy-name-of-jesus","new_month":257,"new_day":3}]})";}
         rejects([&]{applyCalendarOverlay(unchanged,badFile);}, "Oversized month cannot wrap into a valid date");
-                // Full-year resolution, boundary invariants, unique celebrations and order independence.
+        // Full-year resolution, boundary invariants, unique celebrations and order independence.
         int dates = 0;
         for (std::string_view calendar : {"grc", "europe", "england", "wales"})
         {

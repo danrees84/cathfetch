@@ -11,6 +11,12 @@ make -j4 test
 ./build/cathfetch --date=30112025 --summary
 ```
 
+`make` builds only the application and its Bible index. Use `make tools` for
+optional year diagnostics and the summary catalogue. `make test-calendar`,
+`make test-readings`, `make test-cli` and `make test-data` run individual groups;
+`make test` still runs all of them. See the [test guide](../tests/README.md) and
+[tool guide](../tools/README.md).
+
 The executable can be called from any working directory. A development build
 finds the project's `data/` directory relative to its own location, and the
 generated Bible index alongside the executable in `build/`. Keep this directory
